@@ -1,0 +1,465 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+<div class="boxed_wrapper">
+<!-- ?php include "assets/inc/header.php" ?> -->
+<div class="preloader"></div>
+	
+<!--Main Slider-->
+<section class="main-slider">
+    <div class="rev_slider_wrapper fullwidthbanner-container" id="rev_slider_two_wrapper" data-source="gallery">
+        <div class="rev_slider fullwidthabanner" id="rev_slider_two" data-version="5.4.1">
+            <ul>
+                <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-thumb="<?=base_url('material/front/assets/img')?>/banner-new-1.jpg" data-title="Slide Title" data-transition="parallaxvertical">
+                <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="<?=base_url('material/front/assets/img')?>/banner-new-1.jpg"> 
+                <div class="tp-caption" 
+                data-paddingbottom="[0,0,0,0]"
+                data-paddingleft="[0,0,0,0]"
+                data-paddingright="[0,0,0,0]"
+                data-paddingtop="[0,0,0,0]"
+                data-responsive_offset="on"
+                data-type="text"
+                data-height="none"
+                data-width="['775','775','775','290']"
+                data-whitespace="normal"
+                data-hoffset="['15','15','15','15']"
+                data-voffset="['-90','-70','-90','-110']"
+                data-x="['center','center','center','center']"
+                data-y="['middle','middle','middle','middle']"
+                data-textalign="['top','top','top','top']"
+                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    style="z-index: 7; white-space: nowrap;">
+                    <div class="slide-content left-slide">
+                        <div class="big-title">
+							Welcome to<br>GBC Infrastructure Pvt. Ltd.
+                        </div>    
+                    </div>
+                </div>
+                <div class="tp-caption" 
+                data-paddingbottom="[0,0,0,0]"
+                data-paddingleft="[0,0,0,0]"
+                data-paddingright="[0,0,0,0]"
+                data-paddingtop="[0,0,0,0]"
+                data-responsive_offset="on"
+                data-type="text"
+                data-height="none"
+                data-whitespace="normal"
+                data-width="['775','775','775','290']"
+                data-hoffset="['15','15','15','15']"
+                data-voffset="['30','50','20','-30']"
+                data-x="['center','center','center','center']"
+                data-y="['middle','middle','middle','middle']"
+                data-textalign="['top','top','top','top']"
+                data-frames='[{"from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    style="z-index: 7; white-space: nowrap;">
+                    <div class="slide-content left-slide">
+                        <!-- <div class="text text-center">Sit amet, consectetur adipiscing ipsum suspendisse ultrices gravida. </div>     -->
+                    </div>
+                </div>
+                <div class="tp-caption" 
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingtop="[0,0,0,0]"
+                    data-responsive_offset="on"
+                    data-type="text"
+                    data-height="none"
+                    data-width="['700','700','700','290']"
+                    data-whitespace="normal"
+                    data-hoffset="['15','15','15','15']"
+                    data-voffset="['120','135','105','130']"
+                    data-x="['center','center','center','center']"
+                    data-y="['middle','middle','middle','middle']"
+                    data-textalign="['top','top','top','top']"
+                    data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    style="z-index: 7; white-space: nowrap;">
+                    <div class="slide-content left-slide">
+                        <div class="btn-box mx-auto d-table">
+                            <a class="btn-one" href="<?=base_url('about')?>">View all about</a>
+                        </div>    
+                    </div>
+                </div>
+                </li>
+                
+                <li data-description="Slide Description" data-easein="default" data-easeout="default" data-fsmasterspeed="1500" data-fsslotamount="7" data-fstransition="fade" data-hideafterloop="0" data-hideslideonmobile="off" data-index="rs-1691" data-masterspeed="default" data-param1="" data-param10="" data-param2="" data-param3="" data-param4="" data-param5="" data-param6="" data-param7="" data-param8="" data-param9="" data-rotate="0" data-saveperformance="off" data-slotamount="default" data-thumb="<?=base_url('material/front/assets/img')?>/banner-new-2.jpg" data-title="Slide Title" data-transition="parallaxvertical">
+                
+                <img alt="" class="rev-slidebg" data-bgfit="cover" data-bgparallax="10" data-bgposition="center center" data-bgrepeat="no-repeat" data-no-retina="" src="<?=base_url('material/front/assets/img')?>/banner-new-2.jpg"> 
+                <div class="tp-caption" 
+                data-paddingbottom="[0,0,0,0]"
+                data-paddingleft="[0,0,0,0]"
+                data-paddingright="[0,0,0,0]"
+                data-paddingtop="[0,0,0,0]"
+                data-responsive_offset="on"
+                data-type="text"
+                data-height="none"
+                data-width="['775','775','775','290']"
+                data-whitespace="normal"
+                data-hoffset="['15','15','15','15']"
+                data-voffset="['-90','-70','-90','-110']"
+                data-x="['center','center','center','center']"
+                data-y="['middle','middle','middle','middle']"
+                data-textalign="['top','top','top','top']"
+                data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    style="z-index: 7; white-space: nowrap;">
+                    <div class="slide-content left-slide">
+                        <div class="big-title">
+							Welcome to<br>GBC Infrastructure Pvt. Ltd.
+                        </div>    
+                    </div>
+                </div>
+                <div class="tp-caption" 
+                data-paddingbottom="[0,0,0,0]"
+                data-paddingleft="[0,0,0,0]"
+                data-paddingright="[0,0,0,0]"
+                data-paddingtop="[0,0,0,0]"
+                data-responsive_offset="on"
+                data-type="text"
+                data-height="none"
+                data-whitespace="normal"
+                data-width="['775','775','775','290']"
+                data-hoffset="['15','15','15','15']"
+                data-voffset="['30','50','20','-30']"
+                data-x="['center','center','center','center']"
+                data-y="['middle','middle','middle','middle']"
+                data-textalign="['top','top','top','top']"
+                data-frames='[{"from":"x:[-100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    style="z-index: 7; white-space: nowrap;">
+                    <div class="slide-content left-slide">
+                        <!-- <div class="text text-center">Sit amet, consectetur adipiscing ipsum suspendisse ultrices gravida. </div>     -->
+                    </div>
+                </div>
+                <div class="tp-caption" 
+                    data-paddingbottom="[0,0,0,0]"
+                    data-paddingleft="[0,0,0,0]"
+                    data-paddingright="[0,0,0,0]"
+                    data-paddingtop="[0,0,0,0]"
+                    data-responsive_offset="on"
+                    data-type="text"
+                    data-height="none"
+                    data-width="['700','700','700','290']"
+                    data-whitespace="normal"
+                    data-hoffset="['15','15','15','15']"
+                    data-voffset="['120','135','105','130']"
+                    data-x="['center','center','center','center']"
+                    data-y="['middle','middle','middle','middle']"
+                    data-textalign="['top','top','top','top']"
+                    data-frames='[{"from":"y:[100%];z:0;rX:0deg;rY:0;rZ:0;sX:1;sY:1;skX:0;skY:0;","mask":"x:0px;y:0px;s:inherit;e:inherit;","speed":1500,"to":"o:1;","delay":1000,"ease":"Power3.easeInOut"},{"delay":"wait","speed":1000,"to":"auto:auto;","mask":"x:0;y:0;s:inherit;e:inherit;","ease":"Power3.easeInOut"}]'
+                    style="z-index: 7; white-space: nowrap;">
+                    <div class="slide-content left-slide">
+                        <div class="btn-box mx-auto d-table">
+                            <a class="btn-one" href="<?=base_url('about')?>">View all about</a>
+                        </div>    
+                    </div>
+                </div>
+                </li>
+                
+                
+                
+            </ul>
+        </div>
+    </div>
+</section>
+<!--End Main Slider-->
+<!-- start card era -->
+    <section class="card-area">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-md-4 ">
+					<div class="getQuote-card">
+						<div class="card-img">
+							<a class="popup-youtube" href="https://www.youtube.com/watch?v=Sqm_Do0QkAw"><img src="<?=base_url('material/front/assets/img')?>/first-card.jpg" alt=""></a>
+						</div>
+                    	<h3>A Company involved in servicing, maintenance.</h3>
+                    	<p>Looking for a 100% quality and affordable constructor for your project?</p>
+                    	<button class="getQuote-card-btn"><a href="#!" data-toggle="modal" data-target="#quickget">Get a Quote <i class="fas fa-arrow-right"></i></a></button>
+					</div>
+                </div>
+                <div class="col-12 col-md-4 waterPlant-card" data-aos="fade-left"  data-aos-duration="2000">
+                    <h2>19</h2>
+                    <p class="card-head">Water Plants</p>
+                    <p class="card-body-rit">Water in water treatment plant is treated through physical processes for example filtration or settling and chemical processes such as coagulation and disinfection.</p>
+                    <a href="<?=base_url('project')?>">View All</a>
+                </div>
+                <div class="col-12 col-md-4 project-card" data-aos="fade-right"  data-aos-duration="2000">
+                    <h2>80</h2>
+                    <p class="card-head">All Projects</p>
+                    <p class="card-body-rit">We have completed end number of projects successfully and have become the preferred choice of various government and non-government organization. </p>
+                    <a href="<?=base_url('project')?>">View All</a>
+                </div>
+            </div>
+        </div>
+    </section>
+<!-- end card era -->
+<!--Start About area-->
+<section class="home-industries-section">
+    <div class="container-fluid">
+        <div class="container indust-con">
+            <div class="row industry-row">
+                <div class="col-12 col-md-5 industryleft-col">
+                    <div class="industryleft-info" data-aos="zoom-in" data-aos-duration="2000">
+                        <h5>Industries</h5>
+                        <h3>We Serve</h3>
+                        <p class="mt-5">GBC Infrastructure has been successfully executing various projects over the years in different industries like water treatment plants, raw water intake plants and many more.  Our team of professionals with an extensive experience in the water treatment industry, provides optimized solutions to your needs.</p>
+                    </div>
+                    <!-- <div class="home-icon-div">
+                        <div class="home-circle" onclick="owl.trigger('prev.owl.carousel')"><i
+                                class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="home-circle" onclick="owl.trigger('next.owl.carousel')"><i
+                                class="fas fa-long-arrow-alt-right"></i></div>
+                    </div> -->
+                </div>
+                <div class="col-12 col-md-7 owl-carousel owl-carousel1">
+                    <div class="owl-card">
+                        <div class="owl-card-img">
+                            <img src="<?=base_url('material/front/assets/img')?>/home_scroll_img1.png" alt="">
+                        </div>
+                        <p>WATER TREATMENT <br> PLANTS</p>
+                        <a href="<?=base_url('project')?>">EXPLORE</a>
+                    </div>
+                    <div class="owl-card">
+                        <div class="owl-card-img">
+                            <img src="<?=base_url('material/front/assets/img')?>/home_scroll_img2.png" alt="">
+                        </div>
+                        <p>RAW WATER <br> INTAKE PLANTS</p>
+                        <a href="<?=base_url('project')?>">EXPLORE</a>
+                    </div>
+                    <div class="owl-card">
+                        <div class="owl-card-img">
+                            <img src="<?=base_url('material/front/assets/img')?>/home_scroll_img3.png" alt="">
+                        </div>
+                        <p>PIPELAYING & <br> JACK PUSHING</p>
+                        <a href="<?=base_url('project')?>">EXPLORE</a>
+                    </div>
+                    
+                </div>
+                    <div class="home-icon-div">
+                        <div class="home-circle" onclick="owl.trigger('prev.owl.carousel')"><i
+                                class="fas fa-long-arrow-alt-left"></i></div>
+                        <div class="home-circle" onclick="owl.trigger('next.owl.carousel')"><i
+                                class="fas fa-long-arrow-alt-right"></i></div>
+                    </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!--End About area-->
+<!--Start services style2 area-->
+<div class="single-service-tab-box project-box">
+                    <div class="sec-title-box">
+                        <h2>OUR PROJECTS</h2>
+                    </div>
+                   <div class="container">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="service-tab-box" data-aos="zoom-in-up" data-aos-duration="900">
+                                    <div class="mobile-tab-view accordion" id="accordionExample">
+                                        <div class="card rit-acor-card">
+                                            <div class="item-one card-header" id="headingOne" aria-controls="collapseOne" type="button"
+                                                data-toggle="collapse" data-target="#collapseOne" aria-expanded="true">
+                                                Completed
+                                            </div>
+                                            <div class="def-one card-body collapse show" aria-labelledby="headingOne" id="collapseOne"
+                                                data-parent="#accordionExample">
+                                                <div class="owl-carousel owl-carousel2">
+                                                <?php if($project) {  foreach($project as $row) { ?>
+                                                    <div class="col tab-content-col">
+                                                        <div class="tab-img">
+                                                            <img src="<?=base_url('/uploads/projects/'.$row->image)?>" alt="">
+                                                        </div>
+                                                        <p><?php echo $row->title; ?></p>
+                                                        <a href="<?=base_url('blog-details/'.$row->slug)?>">VIEW DETAILS</a>
+                                                    </div>                                                    
+                                                    <?php } } ?>
+                                                </div>
+                                                <div class="home-icon-div-two">
+                                                    <div class="home-circle" onclick="owl2.trigger('prev.owl.carousel')"><i
+                                                            class="fas fa-long-arrow-alt-left"></i></div>
+                                                    <button class="icon-btn btn-efct"><a href="<?=base_url('project')?>">VIEW ALL PROJECTS</a></button>
+                                                    <div class="home-circle" onclick="owl2.trigger('next.owl.carousel')"><i
+                                                            class="fas fa-long-arrow-alt-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     
+                                        <div class="card rit-acor-card">
+                                            <div class="item-two card-header" id="headingTwo" aria-controls="collapseTwo" type="button"
+                                                data-toggle="collapse" data-target="#collapseTwo" aria-expanded="true">
+                                                Ongoing
+                                            </div>
+                                            <div class="def-two card-body collapse" aria-labelledby="headingTwo" id="collapseTwo"
+                                                data-parent="#accordionExample">
+                                                <div class="row owl-carousel owl-carousel3">
+                                                <?php if($project2) {  foreach($project2 as $row) { ?>
+                                                    <div class="col tab-content-col">
+                                                        <div class="tab-img">
+                                                            <img src="<?=base_url('/uploads/projects/'.$row->image)?>" alt="">
+                                                        </div>
+                                                        <p><?php echo $row->title; ?></p>                                                    
+                                                        <a href="<?=base_url('blog-details/'.$row->slug)?>">VIEW DETAILS</a>
+                                                    </div>
+                                                    <?php } } ?>
+                                                </div>
+                                                <div class="home-icon-div-two">
+                                                    <div class="home-circle" onclick="owl3.trigger('prev.owl.carousel')"><i
+                                                            class="fas fa-long-arrow-alt-left"></i></div>
+                                                    <button class="icon-btn btn-efct"><a href="<?=base_url('project')?>">VIEW ALL PROJECTS</a></button>
+                                                    <div class="home-circle" onclick="owl3.trigger('next.owl.carousel')"><i
+                                                            class="fas fa-long-arrow-alt-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     
+                                        <div class="card rit-acor-card">
+                                            <div class="item-three card-header" id="headingThree" aria-controls="collapseThree" type="button"
+                                                data-toggle="collapse" data-target="#collapseThree" aria-expanded="true">
+                                                Upcoming
+                                            </div>
+                                            <div class="def-three card-body collapse" aria-labelledby="headingThree" id="collapseThree"
+                                                data-parent="#accordionExample">
+                                                <div class="row owl-carousel owl-carousel4">
+                                                <?php if($project3) { $i=1; foreach($project3 as $row) { ?>
+                                                    <div class="col tab-content-col">
+                                                        <div class="tab-img">
+                                                            <img src="<?=base_url('/uploads/projects/'.$row->image)?>" alt="">
+                                                        </div>
+                                                        <p><?php echo $row->title; ?></p>                                                    
+                                                        <a href="<?=base_url('blog-details/'.$row->slug)?>">VIEW DETAILS</a>
+                                                    </div>
+                                                    <?php } } ?>
+                                                </div>
+                                                <div class="home-icon-div-two">
+                                                    <div class="home-circle" onclick="owl4.trigger('prev.owl.carousel')"><i
+                                                            class="fas fa-long-arrow-alt-left"></i></div>
+                                                    <button class="icon-btn btn-efct"><a href="<?=base_url('project')?>">VIEW ALL PROJECTS</a></button>
+                                                    <div class="home-circle" onclick="owl4.trigger('next.owl.carousel')"><i
+                                                            class="fas fa-long-arrow-alt-right"></i></div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                     
+                                    </div>
+                                    
+                                    <div class="tabmenu-box">
+                                        <ul class="tab-menu">
+                                            <li data-tab-name="completed" class="active"><span>Completed</span></li>
+                                            <li data-tab-name="ongoing" class=""><span>Ongoing</span></li>
+                                            <li data-tab-name="upcoming" class=""><span>Upcoming</span></li>
+                                        </ul>
+                                    </div>
+                                    <div class="tab-content-box">
+                                        <div class="single-tab-content" id="completed" style="display: block;">
+                                            <div class="owl-carousel owl-carousel2">
+                                                <?php if($project) {  foreach($project as $row) { ?>
+                                                    <div class="col tab-content-col">
+                                                        <div class="tab-img">
+                                                            <img src="<?=base_url('/uploads/projects/'.$row->image)?>" alt="">
+                                                        </div>
+                                                        <p><?php echo $row->title; ?></p>                                                    
+                                                        <a href="<?=base_url('blog-details/'.$row->slug)?>">VIEW DETAILS</a>
+                                                    </div>
+                                                    <?php } } ?>
+                                                
+                                            </div>
+                                            <div class="home-icon-div-two">
+                                                <div class="home-circle" onclick="owl2.trigger('prev.owl.carousel')"><i
+                                                        class="fas fa-long-arrow-alt-left"></i></div>
+                                                <button class="icon-btn btn-efct"><a href="<?=base_url('project')?>">VIEW ALL PROJECTS</a></button>
+                                                <div class="home-circle" onclick="owl2.trigger('next.owl.carousel')"><i
+                                                        class="fas fa-long-arrow-alt-right"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="single-tab-content" id="ongoing" style="display: none;">
+                                            <div class="row owl-carousel owl-carousel3">
+                                                <?php if($project2) {  foreach($project2 as $row) { ?>
+                                                    <div class="col tab-content-col">
+                                                        <div class="tab-img">
+                                                            <img src="<?=base_url('/uploads/projects/'.$row->image)?>" alt="">
+                                                        </div>
+                                                        <p><?php echo $row->title; ?></p>                                                    
+                                                        <a href="<?=base_url('blog-details/'.$row->slug)?>">VIEW DETAILS</a>
+                                                    </div>
+                                                    <?php } } ?>
+                                            </div>
+                                            <div class="home-icon-div-two">
+                                                <div class="home-circle" onclick="owl3.trigger('prev.owl.carousel')"><i
+                                                        class="fas fa-long-arrow-alt-left"></i></div>
+                                                <button class="icon-btn btn-efct"><a href="<?=base_url('project')?>">VIEW ALL PROJECTS</a></button>
+                                                <div class="home-circle" onclick="owl3.trigger('next.owl.carousel')"><i
+                                                        class="fas fa-long-arrow-alt-right"></i></div>
+                                            </div>
+                                        </div>
+                                        <div class="single-tab-content" id="upcoming" style="display: none;">
+                                            <div class="row owl-carousel owl-carousel4">
+                                                <?php if($project3) {  foreach($project3 as $row) { ?>
+                                                    <div class="col tab-content-col">
+                                                        <div class="tab-img">
+                                                            <img src="<?=base_url('/uploads/projects/'.$row->image)?>" alt="">
+                                                        </div>
+                                                        <p><?php echo $row->title; ?></p>                                                    
+                                                        <a href="<?=base_url('blog-details/'.$row->slug)?>">VIEW DETAILS</a>
+                                                    </div>
+                                                    <?php } } ?>
+                                            </div>
+                                            <div class="home-icon-div-two">
+                                                <div class="home-circle" onclick="owl4.trigger('prev.owl.carousel')"><i
+                                                        class="fas fa-long-arrow-alt-left"></i></div>
+                                                <button class="icon-btn btn-efct"> <a href="<?=base_url('project')?>">VIEW ALL PROJECTS</a></button>
+                                                <div class="home-circle" onclick="owl4.trigger('next.owl.carousel')"><i
+                                                        class="fas fa-long-arrow-alt-right"></i></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                   </div>
+</div>
+<!--End services style2 area-->
+<section class="business-two-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-12 home-enquiry-col">
+                <div class="home-enquiry-details">
+                    <h3>BUSINESS ENQUIRY</h3>
+                    <form method="POST" id="contactFormHome" class="my-contactForm4">
+                        <input type="text" placeholder="Name" name="name" class="requiredContactHomePage" data-check="Name" autocomplete="off"><br>
+                        <input type="number" placeholder="Phone No" name="phone" class="requiredContactHomePage" data-check="Phone" autocomplete="off"><br>
+                        <input type="email" placeholder="Email" name="email" class="requiredContactHomePage" data-check="Email" autocomplete="off"><br>
+                        <textarea cols="30" rows="5" placeholder="Message" name="comment" class="requiredContactHomePage" data-check="Message" autocomplete="off"></textarea>
+                        <div class="form-group cal-group col-md-12 pl-0" style="margin-bottom: 0px; color: #fff;">
+                            <label> Solve the calculation first </label>
+                        </div>
+                        <!-- <div class="form-group cal-part form_calc_part col-md-12 mb-3 pl-0">
+                            <input type="submit" name="submit" value="SEND ENQUIRY">
+                        </div> -->
+                        <button type="submit" class="form-control btn btn-secondary rounded submit" style="padding:0">SEND ENQUIRY</button>
+                    </form>                    
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-12 home-scroll-col">
+                <h3>LATEST BLOGS</h3>
+                <div data-spy="scroll" data-target="#list-example" data-offset="0" class="home-scrollspy-example">
+                    <?php if($blog) {  foreach($blog as $row) { ?>
+                    <div class="home-img-details-wrap">
+                        <div class="home-blog-scroll-img">
+                            
+                            <img src="<?=base_url('/uploads/blogs/'.$row->image)?>" alt="">
+                        </div>
+                        <div class="blog-details">
+                            <h5><?php echo $row->title; ?></h5>
+                            <p class="post-details">
+                                By <?php echo $row->post_by; ?> <br>
+                                <?=date_format(date_create($row->content_date), "M d Y")?>                                 
+                            </p>
+                        </div>
+                    </div>
+                    <?php } } ?>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+</div>  
+</body>
+</html>
