@@ -1,0 +1,451 @@
+<?php
+
+namespace App\Controllers;
+
+use App\Models\CommonModel;
+use App\Models\MainModel;
+use DB;
+use Config\Services;
+
+
+class Frontend extends BaseController
+{
+    public function __construct()
+    {
+        $session = \Config\Services::session();
+        $db = \Config\Database::connect();
+    }
+
+    public function index()
+    {
+
+        $data                       = [];
+        $title                      = 'Home';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'index';
+        $data['footsteps']         = $this->common_model->find_data('footsteps', 'array');
+        $condition = ['published' => 1, 'show_on_frontend' => 1];
+        $orderBy[0] = ['field' => 'created_at', 'type' => 'DESC'];
+        $packageDtl = $this->common_model->find_data('package', 'array', $condition, '*', '', '', $orderBy, 9);
+
+        foreach ($packageDtl as $pkg) {
+            $additionalImg = [];
+            $additional_images = json_decode($pkg->additional_images_titles);
+            /* add img path for additional images */
+            foreach ($additional_images as $images)
+                $additionalImg[] = base_url() . '/uploads/package/' . $images;
+
+            $data['packages'][] = [
+                'package_id'          => $pkg->id,
+                'package_name'        => $pkg->package_name,
+                'feature_img'         => base_url() . '/uploads/package/' . $pkg->feature_image,
+                'banner_image'        => base_url() . '/uploads/package/' . $pkg->banner_image,
+                'day_night'           => $pkg->day_night,
+                'person'              => $pkg->person,
+                'price'               => number_format($pkg->package_price),
+                'heading_one'         => $pkg->description_heading,
+                'heading_two'         => $pkg->description2_heading,
+                'heading_one_points'  => json_decode($pkg->description_points),
+                'heading_two_points'  => json_decode($pkg->description2_points),
+                'additional_img_title' => $additionalImg,
+                'country_name'        => $pkg->country_name,
+            ];
+        }
+
+
+        // endforeach;
+
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function about()
+    {
+
+        $title                      = 'Home';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'about';
+        $data['footsteps']         = $this->common_model->find_data('footsteps', 'array');
+        echo $this->front_layout($title, $page_name, $data);
+    }
+    public function allied_services()
+    {
+        $data                       = [];
+        $title                      = 'Allied services';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'allied-services';
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function corporate_travel()
+    {
+        $data                       = [];
+        $title                      = 'Corporate Travel';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'corporate-travel';
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function holiday_package()
+    {
+        $data                       = [];
+        $title                      = 'Holiday Package';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'holiday-package';
+
+
+        $condition = ['published' => 1];
+        $orderBy[0] = ['field' => 'created_at', 'type' => 'DESC'];
+        $packageDtl = $this->common_model->find_data('package', 'array', $condition, '*', '', '', $orderBy);
+
+        foreach ($packageDtl as $pkg) {
+            $additionalImg = [];
+            $additional_images = json_decode($pkg->additional_images_titles);
+            /* add img path for additional images */
+            foreach ($additional_images as $images)
+                $additionalImg[] = base_url() . '/uploads/package/' . $images;
+
+            $data['packages'][] = [
+                'package_id'          => $pkg->id,
+                'package_name'        => $pkg->package_name,
+                'feature_img'         => base_url() . '/uploads/package/' . $pkg->feature_image,
+                'banner_image'        => base_url() . '/uploads/package/' . $pkg->banner_image,
+                'day_night'           => $pkg->day_night,
+                'person'              => $pkg->person,
+                'price'               => number_format($pkg->package_price),
+                'heading_one'         => $pkg->description_heading,
+                'heading_two'         => $pkg->description2_heading,
+                'heading_one_points'  => json_decode($pkg->description_points),
+                'heading_two_points'  => json_decode($pkg->description2_points),
+                'additional_img_title' => $additionalImg,
+                'country_name'        => $pkg->country_name,
+            ];
+        }
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function luxury()
+    {
+        $data                       = [];
+        $title                      = 'Luxury';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'luxury';
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function mice()
+    {
+        $data                       = [];
+        $title                      = 'Mice';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'mice';
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function promos_details($id)
+    {
+        $data                       = [];
+        $title                      = 'Promos Details';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'promos-details';
+        $id = decoded($id);
+
+        $orderBy[0] = ['field' => 'created_at', 'type' => 'DESC'];
+        $packageDtl = $this->common_model->find_data('package', 'array', ['id' => $id], '*', '', '', $orderBy);
+        $category_id = 0;
+        foreach ($packageDtl as $pkg) {
+            $category_id = $pkg->category_id;
+            $additionalImg = [];
+            $additional_images = json_decode($pkg->additional_images);
+            /* add img path for additional images */
+            foreach ($additional_images as $images)
+                $additionalImg[] = base_url() . '/uploads/package/' . $images;
+            $data['package'] = [
+                'package_id'          => $pkg->id,
+                'package_name'        => $pkg->package_name,
+                'feature_img'         => base_url() . '/uploads/package/' . $pkg->feature_image,
+                'banner_image'        => base_url() . '/uploads/package/' . $pkg->banner_image,
+                'day_night'           => $pkg->day_night,
+                'person'              => $pkg->person,
+                'price'               => number_format($pkg->package_price),
+                'heading_one'         => $pkg->description_heading,
+                'heading_two'         => $pkg->description2_heading,
+                'heading_one_points'  => json_decode($pkg->description_points),
+                'heading_two_points'  => json_decode($pkg->description2_points),
+                'additional_imgs'     => $additionalImg,
+                'country_name'        => $pkg->country_name,
+            ];
+        }
+
+
+        // more package
+
+        $data['packages'] = [];
+
+        $condition = ['published' => 1, 'category_id' => $category_id, 'id!=' => $id];
+
+        $packageDtl = $this->common_model->find_data('package', 'array', $condition);
+
+        foreach ($packageDtl as $pkg) {
+
+            $additionalImg = [];
+            $additional_images = json_decode($pkg->additional_images_titles);
+
+            /* add img path for additional images */
+            foreach ($additional_images as $images)
+                $additionalImg[] = base_url() . '/uploads/package/' . $images;
+
+            $data['packages'][] = [
+                'package_id'          => $pkg->id,
+                'package_name'        => $pkg->package_name,
+                'feature_img'         => base_url() . '/uploads/package/' . $pkg->feature_image,
+                'banner_image'        => base_url() . '/uploads/package/' . $pkg->banner_image,
+                'day_night'           => $pkg->day_night,
+                'person'              => $pkg->person,
+                'price'               => number_format($pkg->package_price),
+                'heading_one'         => $pkg->description_heading,
+                'heading_two'         => $pkg->description2_heading,
+                'heading_one_points'  => json_decode($pkg->description_points),
+                'heading_two_points'  => json_decode($pkg->description2_points),
+                'additional_img_title' => $additionalImg,
+                'country_name'        => $pkg->country_name,
+            ];
+        }
+
+
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function promos()
+    {
+        $data                       = [];
+        $title                      = 'Promos';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'promos';
+
+        $select_columns = ['id', 'name'];
+        $data['categories'] = $this->common_model->find_data('package_category', 'array', ['published' => 1], $select_columns);
+
+        // get all list
+        foreach ($data['categories'] as $category) :
+            $data['packages'][$category->id] = [];
+            $condition = ['category_id' => $category->id, 'published' => 1, 'show_on_promos' => 1];
+            $orderBy[0] = ['field' => 'created_at', 'type' => 'DESC'];
+            $packageDtl = $this->common_model->find_data('package', 'array', $condition, '*', '', '', $orderBy);
+
+            if (count($packageDtl))
+                foreach ($packageDtl as $pkg) {
+                    $data['packages'][$category->id][] = [
+                        'package_id'          => $pkg->id,
+                        'package_name'        => $pkg->package_name,
+                        'feature_img'         => base_url() . '/uploads/package/' . $pkg->feature_image,
+                        'banner_image'        => base_url() . '/uploads/package/' . $pkg->banner_image,
+                        'day_night'           => $pkg->day_night,
+                        'person'              => $pkg->person,
+                        'price'               => number_format($pkg->package_price),
+                        'heading_one'         => $pkg->description_heading,
+                        'heading_two'         => $pkg->description2_heading,
+                        'heading_one_points'  => json_decode($pkg->description_points),
+                        'heading_two_points'  => json_decode($pkg->description2_points),
+                        'country_name'        => $pkg->country_name,
+                    ];
+                }
+        endforeach;
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function social_functions()
+    {
+        $data                       = [];
+        $title                      = 'Social Functions';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'social-functions';
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+
+
+    public function bookEnquire()
+    {
+        $response                   = [];
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        if ($this->request->getMethod() == 'post') {
+            // $formData = $this->request->getPost();
+            $response['isError'] = 0;
+            $postData =  json_decode(json_encode($this->request->getJSON()), true);
+
+            foreach ($postData as $key => $val)
+                $postData[$key] = htmlspecialchars(trim($val));
+
+            if ($postData['fname'] == '') {
+                $response['message'] = 'First name is required';
+                $response['isError'] = 1;
+            }
+            if ($postData['lname'] == '') {
+                $response['message'] = 'Last name is required';
+                $response['isError'] = 1;
+            }
+            if ($postData['email'] == '') {
+                $response['message'] = 'Email is required';
+                $response['isError'] = 1;
+            }
+            if ($postData['phone'] == '') {
+                $response['message'] = 'Phone number is required';
+                $response['isError'] = 1;
+            }
+            if ($postData['destination'] == '') {
+                $response['message'] = 'Destination is required';
+                $response['isError'] = 1;
+            }
+
+            if ($postData['month'] == '') {
+                $response['message'] = 'Please select your month';
+                $response['isError'] = 1;
+            }
+
+
+
+            if ($postData['vacation_type'] == '') {
+                $response['message'] = 'Please select vacation type';
+                $response['isError'] = 1;
+            }
+
+            if ($postData['pax'] == '')
+                $postData['pax'] = 0;
+
+
+
+            if (!$response['isError']) {
+                $data = [
+                    'first_name' => $postData['fname'],
+                    'last_name' => $postData['lname'],
+                    'email' => $postData['email'],
+                    'phone' => $postData['phone'],
+                    'destination' => $postData['destination'],
+                    'month' => $postData['month'],
+                    'pax' => $postData['pax'],
+                    'vacation_type' => $postData['vacation_type'],
+                    'package_id' => $postData['pkg_id'] != 0 ? $postData['pkg_id'] : null
+                ];
+
+                $insert_id = $this->common_model->save_data('booking_enquire', $data);
+
+                if ($insert_id) {
+                    $response['message'] = 'Request send successfully';
+                }
+            }
+
+
+            // Return success response with JSON
+
+            return $this->response->setJSON($response);
+        }
+    }
+
+    public function getPromos()
+    {
+        $response                   = [];
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+
+        if ($this->request->getMethod() == 'post') {
+            $response['packages'] = [];
+            $response['isError'] = 0;
+            $postData =  json_decode(json_encode($this->request->getJSON()), true);
+
+            foreach ($postData as $key => $val)
+                $postData[$key] = htmlspecialchars(trim($val));
+
+
+            if ($postData['category_id'] == '') {
+                $response['message'] = 'Please send category id';
+                $response['isError'] = 1;
+            }
+
+
+            if (!$response['isError']) {
+
+                $condition = ['category_id' => $postData['category_id'], 'published' => 1, 'show_on_promos' => 1];
+                $orderBy[0] = ['field' => 'created_at', 'type' => 'DESC'];
+
+                $packageDtl = $this->common_model->find_data('package', 'array', $condition, '*', '', '', $orderBy);
+
+                foreach ($packageDtl as $pkg) {
+                    $additionalImg = [];
+                    $additional_images = json_decode($pkg->additional_images_titles);
+                    /* add img path for additional images */
+
+                    $response['packages'][] = [
+                        'package_id'          => $pkg->id,
+                        'package_name'        => $pkg->package_name,
+                        'feature_img'         => base_url() . '/uploads/package/' . $pkg->feature_image,
+                        'banner_image'        => base_url() . '/uploads/package/' . $pkg->banner_image,
+                        'day_night'           => $pkg->day_night,
+                        'person'              => $pkg->person,
+                        'price'               => number_format($pkg->package_price),
+                        'heading_one'         => $pkg->description_heading,
+                        'heading_two'         => $pkg->description2_heading,
+                        'heading_one_points'  => json_decode($pkg->description_points),
+                        'heading_two_points'  => json_decode($pkg->description2_points),
+                        'country_name'        => $pkg->country_name,
+                    ];
+                }
+            }
+
+            // Return success response with JSON
+            return $this->response->setJSON($response);
+        }
+    }
+
+
+    public function subscribe()
+    {
+        $response                   = [];
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        if ($this->request->getMethod() == 'post') {
+
+            $response['isError'] = 0;
+            $postData =  json_decode(json_encode($this->request->getJSON()), true);
+
+            foreach ($postData as $key => $val)
+                $postData[$key] = htmlspecialchars(trim($val));
+
+            if ($postData['email'] == '') {
+                $response['message'] = 'Email is required';
+                $response['isError'] = 1;
+            }
+            if (!preg_match('/^[^\s@]+@[^\s@]+\.[^\s@]+$/', $postData['email'])) {
+                $response['message'] = 'Email is invalid';
+                $response['isError'] = 1;
+            }
+
+            if (!$response['isError']) {
+                $data = [
+                    'email' => $postData['email']
+                ];
+
+                $insert_id = $this->common_model->save_data('subscribe', $data);
+
+                if ($insert_id) {
+                    $response['message'] = 'Subscription Successfully';
+                }
+            }
+
+
+            // Return success response with JSON
+
+            return $this->response->setJSON($response);
+        }
+    }
+}

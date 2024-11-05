@@ -1,0 +1,208 @@
+/* Imported styles */
+
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700;900&display=swap');
+
+/* about fonts link */
+
+@import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700&display=swap');
+ @import url(bootstrap/bootstrap.css);
+ @import url(font-awesome.css);
+ @import url('bootstrap/bootstrap-select.min.css');
+
+
+
+/*** jquery ui css ***/
+
+@import url(library/jquery-ui.css);
+/*@import url(../assets/bootstrap-sl-1.12.1/bootstrap-select.css);*/
+
+:root {
+ --primaryColor: #18a3f3;
+ --secondaryColor: #18a3f3;
+ --trirdColor: #ebebeb;
+ --fourthColor: #646368;
+ --textColor: #282828;
+ --card-headColor: #0d79c6;
+
+}
+/*==============================================
+
+   Base Css
+
+===============================================*/
+
+html,  body {
+	height: 100%;
+}
+body {
+	font-family: 'Lato', sans-serif;
+	font-size: 16px;
+	line-height: 1.25;
+	font-weight: 400;
+	background:#dcf2eb url(../img/home_bg.jpg) 0 0 repeat;
+}
+button:focus {
+	outline: none;
+}
+button {
+	cursor: pointer;
+	border: none;
+	background: transparent;
+	padding: 0;
+}
+h1,  h2,  h3,  h4,  h5,  h6 {
+	font-family: 'Lato', sans-serif;
+	font-weight: 500;
+	margin: 0;
+}
+h3 {
+	font-size: 20px;
+	line-height: 1.25;
+}
+h4 {
+}
+a,  a:hover,  a:active,  a:focus {
+	text-decoration: none;
+	outline: none;
+	border: none;
+}
+.fix {
+	overflow: hidden;
+}
+img {
+	max-width: 100%;
+	height: auto;
+}
+i {
+	font-style: normal;
+}
+ul,  li {
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+.toplogo {
+    padding-top: 50px;
+}
+.toplogo img {
+    max-width: 190px;
+}
+.pleage_jointext h2.black {
+    font-size: 40px;
+}
+.pleage_jointext h4 {
+    text-transform: uppercase;
+    font-size: 22px;
+}
+.pleage_jointext h3 {
+    font-weight: 800;
+    text-transform: uppercase;
+    color: #417b4c;
+    font-size: 40px;
+}
+.biggreen_btn {
+    margin: 0 auto;
+    display: table;
+}
+.biggreen_btn a {
+    position: relative;
+    padding: 12px 45px 12px 25px;
+    display: inline-block;
+    background: #207330;
+    margin-bottom: 20px;
+    border: 9px solid #b9cbc5;
+    border-radius: 60px;
+    color: #dfe95b;
+    font-size: 20px;
+}
+.biggreen_btn a:hover {
+    background: #dfe95b;
+    color: #207330;
+}
+.biggreen_btn a:after {
+    content: "";
+    position: absolute;
+    right: 11px;
+    width: 25px;
+    height: 25px;
+    top: 12px;
+    background: url(../img/hand_icon.png) 0 0 no-repeat;
+    background-size: 21px;
+    
+}
+.biggreen_btn a:hover:after {
+    filter: brightness(0.5);
+}
+.lastbutton_section p {
+    font-weight: 700;
+    line-height: 25px;
+    font-size: 18px;
+}
+.blue_twobtn {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    padding: 20px 0 0;
+}
+.blue_twobtn a {
+    color: #106495;
+    text-align: center;
+    border: 2px solid #106495;
+    width: 100%;
+    max-width: 300px;
+    padding: 10px 0;
+    border-radius: 50px;
+    font-weight: 600;
+    font-size: 15px;
+	    margin-bottom: 20px;
+}
+.blue_twobtn a:hover {
+    color: #fff;
+	background: #106495;
+}
+.pleage_form_section {
+    background: #afcd54;
+    padding: 25px;
+}
+.pleage_form_section .career-heading-box {
+    text-align: center;
+    margin-bottom: 40px;
+}
+.pleage_form_section .career-heading-box h5 {
+    font-size: 28px;
+    font-weight: 800;
+}
+.pleage_form_section button.btn {
+    background: #417b4c;
+    border: none;
+    border-radius: 50px;
+    width: 100%;
+    margin: 0 auto;
+    max-width: 400px;
+    display: table;
+    text-transform: uppercase;
+    padding: 10px;
+}
+.pleage_form_section button.btn:hover {
+    background: #999;
+}
+
+
+
+
+
+
+.footer_section {
+    background: url(../img/home_footer.png) left bottom no-repeat;
+    background-size: cover;
+    height: 165px;
+    padding: 0 0 180px;
+    bottom: 0;
+    width: 100%;
+}
+
+
+
+
