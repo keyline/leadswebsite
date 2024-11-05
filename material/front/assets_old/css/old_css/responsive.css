@@ -1,0 +1,218 @@
+
+
+/* Large Layout: 1200px. */
+
+
+
+@media only screen and (min-width: 1200px) {
+
+.container {
+
+	padding: 0;
+
+}
+
+.container-fluid {
+
+	padding: 0;
+
+}
+
+
+
+}
+
+
+
+/* Medium screen  */
+
+
+
+@media only screen and (min-width: 992px) and (max-width: 1199px) {
+
+}
+
+
+
+/* Tablet Layout: 768px. */
+
+
+
+@media only screen and (min-width: 768px) and (max-width: 991px) {
+
+}
+
+@media only screen and (max-width: 991px) {
+.mobile_cer_name {
+    top: 50% !important;
+}
+.mobile_cer_name span {
+    font-size: 20px !important;
+}
+.mobile_cer_nub {
+    bottom: 85px !important;
+    left: 80px !important;
+    font-size: 15px;
+}
+.mobile_cer_nub {
+    bottom: 85px !important;
+    left: 80px !important;
+    font-size: 15px;
+}
+.mobile_cer_date {
+    right: 70px !important;
+    bottom: 90px !important;
+    font-size: 15px;
+}
+
+
+}
+
+/* Mobile Layout: 320px. */
+
+@media only screen and (min-width: 769px) {
+
+	
+
+}
+
+@media only screen and (max-width: 767px) {
+.toplogo {
+    text-align: center;
+    padding-bottom: 40px;
+}
+.pleage_jointext {
+    text-align: center;
+    padding-bottom: 40px;
+}
+.lastbutton_section {
+    margin-top: 30px;
+}
+	
+.mobile_cer_nub {
+    bottom: 50px !important;
+    left: 50px !important;
+	font-size: 12px;
+	width: 50%;
+    text-align: left;
+}
+.mobile_cer_date {
+    right: 50px !important;
+    bottom: 55px !important;
+	font-size: 12px;
+	width: 50%;
+    text-align: right;
+}
+
+}
+
+
+
+@media (max-width:1208px) {
+
+
+
+}
+
+
+
+/* Wide Mobile Layout: 480px. */
+
+
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+
+
+}
+
+
+
+@media (min-width: 992px) {
+
+}
+
+
+
+@media only screen and (max-width: 991px) {
+
+
+}
+
+
+
+@media only screen and (max-width: 767px) {
+
+}
+
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1300px) {
+
+
+
+}
+
+
+
+@media only screen and (min-width: 1040px) and (max-width: 1199px) {
+
+
+
+}
+
+
+
+@media only screen and (min-width: 778px) and (max-width: 1039px) {
+
+}
+
+
+
+@media only screen and (min-width: 480px) and (max-width: 767px) {
+
+}
+
+
+
+@media only screen and (max-width: 479px) {
+.pleage_form_section {
+    padding: 0;
+}
+.mobile_cer_name span {
+    font-size: 15px !important;
+}
+.mobile_cer_nub {
+    bottom: 45px  !important;
+    left: 45px  !important;
+    font-size: 10px;
+}
+.mobile_cer_date {
+    right: 45px !important;
+    bottom: 45px !important;
+    font-size: 10px;
+}
+.pleage_form_section .career-heading-box {
+    text-align: center;
+    margin-bottom: 12px;
+}
+.pleage_form_section .career-heading-box h5 {
+    font-size: 28px;
+    font-weight: 800;
+    padding-top: 10px;
+}
+}
+
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1300px) {
+
+}
+
+
+
+@media only screen and (min-width: 1200px) and (max-width: 1919px) {
+
+}
+
+

@@ -1,0 +1,7 @@
+---
+deployment:
+  tasks:
+    - export DEPLOYPATH=/home/keyline1/repositories/leadswebsite/
+    - /bin/cp * $DEPLOYPATH
+
+    

@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<body>
+    <div class="boxed_wrapper">
+        <div class="preloader"></div>
+        <!--?php include "assets/inc/header.php" ?>-->
+        <!-- <section class="office-address-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-6">
+                <h3>Corporate Office Address</h3>
+                <p>GBC Infrastructure Private Limited</p>
+                <ul>
+                    <li><i class="far fa-user-project-circle"></i></li> 
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                    <li></li>
+                </ul>
+            </div>
+            <div class="col-6"></div>
+        </div>
+    </div>
+</section>  -->
+        <section class="project-industries-section">
+        </section>
+        <section class="choose-area">
+            <div class="container">
+                <div class="row choose-row">
+                    <div class="col-12 col-md choose-img-col order-2 order-md-1">
+                        <img src="<?=base_url('material/front/assets/img')?>/choose-img.png" alt="">
+                    </div>
+                    <div class="col-12 col-md choose-detail-col order-1 order-md-2">
+                        <div class="triangle"><i class="fas fa-play"></i></div>
+                        <div class="choose-write" data-aos="zoom-in-down"
+                        data-aos-duration="1000">
+                            <h3>WHY CHOOSE US</h3>
+                            <p>We have completed end number of projects successfully and have become the preferred
+                                choice of
+                                various government and non-government organization. Professional competence and
+                                thoroughness
+                                is maintained by us during the execution of every project. We have specialization in
+                                providing turnkey solutions for various projects that contributes a lot towards
+                                infrastructural development of the nation.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="project-area">
+            <div class="container-fluid">
+                <div class="container con-proj">
+                    <h3>COMPLETE PROJECTS</h3>
+                    <div class="owl-carousel owl-carousel1">
+                        <?php 
+                        if($project) { $i=1; foreach($project as $row) { ?>
+                        <div class="row-cols-1 row-cols-lg-2 project">
+                            <div class="col project-text" data-aos="zoom-in-right" data-aos-duration="1000">
+                                <p class="project-head"><?php echo $row->title; ?></p>
+                                <p class="proj-body"><?php echo $row->description; ?>
+                                </p>                                
+                                <div class="project-icon-div">
+                                    <div class="project-circle" onclick="owl.trigger('prev.owl.carousel')"><i
+                                            class="fas fa-long-arrow-alt-left"></i></div>
+                                    <div class="project-circle" onclick="owl.trigger('next.owl.carousel')"><i
+                                            class="fas fa-long-arrow-alt-right"></i></div>
+                                </div>
+                            </div>
+                                
+                            <div class="col">
+                            
+                                <div class="big-img">
+                                    <!-- <img src="?=base_url('material/front/assets/img')?>/proj-one.png" alt=""> -->
+                                    <img src="<?=base_url('/uploads/projects/'.$row->image)?>" alt="">
+                                </div>
+                                <div class="container-fluid img-fluid">
+                                    <div class="container image-container">
+                                    
+                                        <div class="owl-carousel owl-carousel5">
+                                        <?php
+                                        $project_image = $common_model->find_data('image_gallery', 'array', ['project_id' => $row->id, 'published' => 1]);
+                        //                
+                                        if($project_image) { foreach($project_image as $row1) { ?>
+                                            <div class="proj-img proj-active" onclick="projToggle(this)">
+                                                <!-- <img src="?=base_url('material/front/assets/img')?>/proj-one.png" alt=""> -->
+                                                <img src="<?=base_url('/uploads/gallery/'.$row1->image_file)?>" alt="">
+                                            </div>
+                                            <!-- <div class="proj-img" onclick="projToggle(this)">
+                                                <img src="?=base_url('/uploads/gallery/'.$row1->image_file)?>" alt="">
+                                            </div> -->
+                                            <!-- <div class="proj-img" onclick="projToggle(this)">
+                                                <img src="?=base_url('material/front/assets/img')?>/proj-three.png" alt="">
+                                            </div>
+                                            <div class="proj-img" onclick="projToggle(this)">
+                                                <img src="?=base_url('material/front/assets/img')?>/proj-three.png" alt="">
+                                            </div> -->
+                                            <?php } } ?>
+                                        </div>
+                                       
+                                    </div>
+                                </div>
+                                
+                            </div>
+                            
+                        </div>
+                        <?php } } ?>
+                    </div>
+                </div>
+            </div>
+    </div>
+    </div>
+    </section>
+    <section class="video-area">
+        <div class="container-fluid">
+            <div class="container">
+                <div class="row video-row">
+                    <div class="col video-col" data-aos="zoom-in" data-aos-duration="1000">
+                        <h3>Our Complete Projects video</h3>
+                         <p>Watch our completed project videos and get the latest information on water treatment plants on how they were constructed and used.</p> 
+                    </div>
+                    <div class="col button-col">
+                        <!-- Button trigger modal -->
+                        <img src="<?=base_url('material/front/assets/img')?>/play.png" type="button" data-toggle="modal"
+                            data-target="#staticBackdrop">
+                            <!-- my model -->
+                            <div class="project-video modal fade" id="staticBackdrop" data-backdrop="static" data-keyboard="false"
+                            tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                    <div class="modal-content">
+                                        <div class="modal-header">
+                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
+                                        <div class="modal-body">
+                                            <iframe width="560" height="315" src="https://www.youtube.com/embed/SPIrw6vysKw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                                        </div>
+                                        <!-- <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-primary">Save changes</button>
+                                        </div> -->
+                                    </div>
+                                </div>
+                            </div>
+                        <!-- Modal -->
+                        <!-- <div >
+                            <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                            <span aria-hidden="true">&times;</span>
+                                    </div>
+                                    <div class="modal-body">
+                                        
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div> -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!--?php include "assets/inc/footer.php" ?>-->
+    </div>
+<!--Scroll to top-->
+<div class="scroll-to-top scroll-to-target thm-bg-clr" data-target="html"><span class="fa fa-angle-up"></span></div>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<!-- main jQuery -->
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<!-- bootstrap -->
+<script src="<?=base_url('material/front/assets/js')?>/bootstrap/bootstrap.js"></script>
+<!-- owl carousel -->
+<script src="<?=base_url('material/front/assets/js')?>/library/owl-min.js"></script>
+<!-- mixit up -->
+<script src="<?=base_url('material/front/assets/js')?>/library/jquery.mixitup.min.js"></script>
+<!-- isotope script-->
+<script src="<?=base_url('material/front/assets/js')?>/library/isotope.js"></script>
+<!-- Easing -->
+<script src="<?=base_url('material/front/assets/js')?>/library/jquery.easing.min.js"></script>
+<!-- jQuery ui js -->
+<script src="<?=base_url('material/front/assets/js')?>/library/jquery-ui.js"></script>
+<!-- Bootstrap select picker js -->
+<script src="<?=base_url('material/front/assets/js')?>/bootstrap/bootstrap-select.js"></script> 
+    
+    <!-- thm custom script -->
+    <script src="assets/js/custom.js"></script>
+    <script defer>(function ($) {
+            $(document).ready(function () {
+                // var menuLeft = $('#test-menu-left').slideMenu({
+                //     position: 'left',
+                //     submenuLinkAfter: ' >',
+                //     backLinkBefore: '< '
+                // });
+                var menuRight = $('#test-menu-right').slideMenu({
+                    //submenuLinkAfter: ' >',
+                    //backLinkBefore: '< '
+                });
+            });
+        })(jQuery);</script>
+    <script type="text/javascript">
+        // Create a media condition that targets viewports at least 768px wide
+        const mediaQuery = window.matchMedia('(min-width: 992px)')
+        // Check if the media query is true
+        if (mediaQuery.matches) {
+            // Then trigger an alert
+            document.getElementById('myDIV').className += ' collapse';
+        }
+    </script>
+    <script>
+        let owl = $('.owl-carousel1');
+        $('.owl-carousel1').owlCarousel({
+            loop: true,
+            margin: 10,
+            nav: false,
+            dots: false,
+            items: 1,
+        })
+    </script>
+    <script>
+        function projToggle(t) {
+            $(".big-img").html(t.innerHTML);
+            $(t).parent().parent().children().children().removeClass('proj-active');
+            $(t).addClass('proj-active');
+        }
+        // function projOne() {
+        //     $('.proj-one').addClass('proj-active')
+        //     $('.proj-three').removeClass('proj-active')
+        //     $('.proj-two').removeClass('proj-active')
+        //     $("body").get(0).style.setProperty("--proj-active-img", "var(--proj-img-one)");
+        // }
+        // function projTwo() {
+        //     $('.proj-one').removeClass('proj-active')
+        //     $('.proj-three').removeClass('proj-active')
+        //     $('.proj-two').addClass('proj-active')
+        //     $("body").get(0).style.setProperty("--proj-active-img", "var(--proj-img-two)");
+        // }
+        // function projThree() {
+        //     $('.proj-one').removeClass('proj-active')
+        //     $('.proj-three').addClass('proj-active')
+        //     $('.proj-two').removeClass('proj-active')
+        //     $("body").get(0).style.setProperty("--proj-active-img", "var(--proj-img-three)");
+        // }
+        // function projFour() {
+        //     $('.proj-four').addClass('proj-active')
+        //     $('.proj-five').removeClass('proj-active')
+        //     $('.proj-six').removeClass('proj-active')
+        //     $("body").get(0).style.setProperty("--proj-active-img", "var(--proj-img-one)");
+        // }
+        // function projFive() {
+        //     $('.proj-four').removeClass('proj-active')
+        //     $('.proj-five').addClass('proj-active')
+        //     $('.proj-six').removeClass('proj-active')
+        //     $("body").get(0).style.setProperty("--proj-active-img", "var(--proj-img-two)");
+        // }
+        // function projSix() {
+        //     $('.proj-four').removeClass('proj-active')
+        //     $('.proj-five').removeClass('proj-active')
+        //     $('.proj-six').addClass('proj-active')
+        //     $("body").get(0).style.setProperty("--proj-active-img", "var(--proj-img-three)");
+        // }
+    </script>
+    
+    <script>
+        let abc = $('.owl-carousel5');
+        $('.owl-carousel5').owlCarousel({
+            loop: true,
+            margin: 5,
+            navText: ["<div class='prev-div'><div><i class='fa fa-chevron-left'></i></div></div>", "<div class='next-div'><div><i class='fa fa-chevron-right'></i></div></div>"],
+            nav: true,
+            items: 3,
+        })
+    </script>
+</body>
+</html>
