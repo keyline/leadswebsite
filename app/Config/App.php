@@ -24,7 +24,7 @@ class App extends BaseConfig
 	 * @var string
 	 */
 	#'https://victoriatravels.com/';
-	public $baseURL = 'https://leadsdev.keylines.net.in/';
+	public $baseURL = BASEURL;
 
 	/**
 	 * --------------------------------------------------------------------------
