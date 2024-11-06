@@ -93,7 +93,7 @@
                                         <div class="col-md-7">
                                             <div class="home_slider_info">
                                                 <div class="home_slider_inner">
-                                                    <h2 class="animated fadeInRight delay-3">Effortless Cooking,<br>Elegant Design</h2>
+                                                    <h2 class="animated fadeInRight delay-3">+Effortless Cooking,<br>Elegant Design</h2>
                                                     <p class="animated fadeInRight delay-4">Upgrade Your Cook Top!</p>
                                                     <div class="home_banner_btn_holder animated fadeInUp delay-5">
                                                         <a href="#" class="home_banner_btn">View All <img
