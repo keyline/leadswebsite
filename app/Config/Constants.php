@@ -101,15 +101,15 @@ define('SMTP_PORT', 587);
 $configs = [
     'laragon' => [
         'BASEURL' => 'http://example1.com',
-        'USERNAME' => 'user1',
-        'PASSWORD' => 'password1',
+        'USERNAME' => 'root',
+        'PASSWORD' => '',
         'DATABASE' => 'database1',
     ],
     'localhost' => [
-        'BASEURL' => 'http://example2.com',
-        'USERNAME' => 'user2',
-        'PASSWORD' => 'password2',
-        'DATABASE' => 'database2',
+        'BASEURL' => 'http://localhost/leadswebsite/',
+        'USERNAME' => 'root',
+        'PASSWORD' => '',
+        'DATABASE' => 'keyline_leads',
     ],
     'live' => [
         'BASEURL' => 'https://leadsdev.keylines.net.in/',
@@ -120,7 +120,7 @@ $configs = [
 ];
 
 // Determine the current user (this can be done based on session, environment variable, etc.)
-$currentUser = 'live'; // For example, 'laragon' is logged in
+$currentUser = 'localhost'; // For example, 'laragon' is logged in
 
 // Set configuration based on the current user
 define('BASEURL', $configs[$currentUser]['BASEURL']);

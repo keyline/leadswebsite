@@ -39,36 +39,19 @@
                         <table id="simpletable" class="table table-striped table-bordered wrap">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Company Name</th>
-                                    <th>Product Title</th>
-                                    <th>Product icon</th>
+                                    <th>#</th>                                   
+                                    <th>Product Title</th>                                    
                                     <th>Product Image</th>
                                     <th>Product Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if($rows) { $i=1; foreach($rows as $row) {
-                                    
-                                            ?>
+                                <?php if($rows) { $i=1; foreach($rows as $row) {                                    
+                                ?>
                                 <tr>
-                                    <td><?php echo $i++; ?></td>
-                                    
-                                    <td>
-                                        <?php 
-                                    $companies= $common_model->find_data('sms_company', 'row', ['id'=>$row->company_name]);
-                                    if($companies){                                        
-                                        echo $companies->name; 
-                                    } ?>
-                                    </td>
-                                
-                                    <td><?php echo $row->product_title; ?></td>
-                                    <td>
-                                        <?php if($row->product_icon!='') { ?>
-                                          <img src="<?=base_url('/uploads/product/'.$row->product_icon)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
-                                        <?php } ?>                                        
-                                    </td>
+                                    <td><?php echo $i++; ?></td>                                                                                                        
+                                    <td><?php echo $row->product_title; ?></td>                                    
                                     <td>
                                         <?php if($row->product_image!='') { ?>
                                           <img src="<?=base_url('/uploads/product/'.$row->product_image)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
