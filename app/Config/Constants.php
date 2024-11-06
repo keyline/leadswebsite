@@ -120,7 +120,7 @@ $configs = [
 ];
 
 // Determine the current user (this can be done based on session, environment variable, etc.)
-$currentUser = 'laragon'; // For example, 'laragon' is logged in
+$currentUser = 'live'; // For example, 'laragon' is logged in
 
 // Set configuration based on the current user
 define('BASEURL', $configs[$currentUser]['BASEURL']);
