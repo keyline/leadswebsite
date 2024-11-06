@@ -143,7 +143,7 @@ class Frontend extends BaseController
 
     public function index()
     {
-        die('hello test');
+
         $data                       = [];
 
         $title                      = 'Home';
