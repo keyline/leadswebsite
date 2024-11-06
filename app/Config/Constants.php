@@ -97,3 +97,33 @@ define('SMTP_USER', 'victoriatravelskdpl@gmail.com');
 define('SMTP_PASS', 'My5XaC1cn2EpP8Is');
 define('SMTP_PORT', 587);
 
+// Define configurations for different users
+$configs = [
+    'laragon' => [
+        'BASEURL' => 'http://example1.com',
+        'USERNAME' => 'user1',
+        'PASSWORD' => 'password1',
+        'DATABASE' => 'database1',
+    ],
+    'localhost' => [
+        'BASEURL' => 'http://example2.com',
+        'USERNAME' => 'user2',
+        'PASSWORD' => 'password2',
+        'DATABASE' => 'database2',
+    ],
+    'live' => [
+        'BASEURL' => 'https://leadsdev.keylines.net.in/',
+        'USERNAME' => 'keyline1_leadsdev',
+        'PASSWORD' => 'ovpBo~0e7m8.',
+        'DATABASE' => 'keyline1_leadsdev',
+    ],
+];
+
+// Determine the current user (this can be done based on session, environment variable, etc.)
+$currentUser = 'laragon'; // For example, 'laragon' is logged in
+
+// Set configuration based on the current user
+define('BASEURL', $configs[$currentUser]['BASEURL']);
+define('USERNAME', $configs[$currentUser]['USERNAME']);
+define('PASSWORD', $configs[$currentUser]['PASSWORD']);
+define('DATABASE', $configs[$currentUser]['DATABASE']);
