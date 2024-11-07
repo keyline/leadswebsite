@@ -62,10 +62,10 @@
             <div class="col-md-2">
                 <div class="home_enquiry_social_btn">
                     <ul>
-                        <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                        <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                        <li><a href="<?= $whatsapp_link ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -74,9 +74,13 @@
 </section>
 
 
+
+
+<?= $this->section('scripts') ?>
 <script>
     function onSubmit(token) {
         document.getElementById("recaptcha_token").value = token;
         document.getElementsByClassName('enquiry_form')[0].submit();
     }
 </script>
+<?= $this->endSection() ?>

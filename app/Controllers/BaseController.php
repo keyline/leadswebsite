@@ -90,11 +90,16 @@ class BaseController extends Controller
 		$data['common_model'] 		= new CommonModel;
 		$data['uri'] 				= new \CodeIgniter\HTTP\URI();
 		$data['site_setting'] 		= $this->common_model->find_data('sms_site_settings', 'row');
+		$data['first_whatsapp_no']  = !empty($data['site_setting']->whatsapp_no) ? str_replace('+', '', strtok($data['site_setting']->whatsapp_no, ',')) : '';
+		$data['phone_numbers']		= explode(',', $data['site_setting']->whatsapp_no);
+		$data['admin_mails']		= explode(',', $data['site_setting']->admin_email);
+		$data['whatsapp_link'] 	    = !empty($data['first_whatsapp_no']) ? "https://wa.me/" . trim($data['first_whatsapp_no']) . "?text=Hello!%20I'm%20excited%20to%20explore%20your%20offerings.%20Can%20we%20connect%20to%20discuss%20further?" : "";
+	
 		$data['metadetails'] 		= $this->common_model->find_data('metadetails', 'array');
 		$data['title'] 				= $title . '-' . $data['site_setting']->site_name;
 		$data['page_header'] 		= $title;
-
 		/** testimonials & accreditations **/
+
 
 		// $orderBy[0] = ['field' => 'created_at', 'type' => 'DESC'];
 		$data['testimonials'] 		= $this->common_model->find_data('sms_testimonials', 'array', ['published' => 1]);

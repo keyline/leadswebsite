@@ -21,14 +21,14 @@
         <div class="full_menu_flex">
             <div class="fullsreen_menu">
                 <ul>
-                    <li><a href="#">Home</a></li>
+                    <li><a href="<?=base_url()?>">Home</a></li>
                     <li><a href="#">Produst Registration</a></li>
                     <li class="deskrewad_img"><img src="<?= base_url('public/assets/') ?>/img/desktop_rewardoffer.png" alt="logo"></li>
                 </ul>
             </div>
             <div class="fullsreen_menu">
                 <ul>
-                    <li><a href="about.html">About Us</a>
+                    <li><a href="<?=base_url()?>/about">About Us</a>
                         <ul>
                             <li><a href="#">Mission & Vision</a></li>
                             <li><a href="#">Our Presence</a></li>
@@ -63,7 +63,7 @@
                         </ul>
                     </li>
                     <li><a href="#">Become A Distributor</a></li>
-                    <li><a href="#">Blog</a></li>
+                    <li><a href="<?=base_url()?>/blog">Blog</a></li>
                     <li><a href="#">Reach Us</a>
                         <ul>
                             <li><a href="#">Enquiry & Service Request</a></li>

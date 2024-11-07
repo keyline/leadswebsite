@@ -1,3 +1,4 @@
+<?= $this->section('style') ?>
 <style>
     svg {
         width: 70px;
@@ -6,6 +7,8 @@
         display: inline-block;
     }
 </style>
+<?= $this->endSection() ?>
+
 
 
 <!-- inner page banner start -->
