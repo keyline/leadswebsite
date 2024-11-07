@@ -86,11 +86,7 @@ $routes->get('/mice', 'Frontend::mice');
 
 $routes->post('api/contact-us', 'Frontend::contact_us');
 
-
 $routes->get('privacypolicy', 'Frontend::privacypolicy');
-
-
-
 
 
 $routes->get('/promos-details/(:any)', 'Frontend::promos_details/$1');
