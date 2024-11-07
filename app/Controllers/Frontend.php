@@ -234,7 +234,8 @@ class Frontend extends BaseController
 
         $page_name                  = 'about';
 
-        $data['footsteps']          = $this->common_model->find_data('footsteps', 'array');
+        $data['certificates']          = $this->common_model->find_data('certificate_images', 'array');
+        $data['setting']          = $this->common_model->find_data('about_setting', 'row');
 
         echo $this->front_layout($title, $page_name, $data);
     }
@@ -495,8 +496,6 @@ class Frontend extends BaseController
 
         if ($this->request->getMethod() === 'post') {
 
-            $expirationTime = 6;
-
             $postData = $this->request->getPost();
 
             $rules = [
@@ -511,7 +510,9 @@ class Frontend extends BaseController
             ];
 
             if (!$this->validate($rules)) {
-                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+                return $this->response->setStatusCode(400) // Bad Request
+                    ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
             } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
 
                 $this->common_model = new CommonModel();
@@ -527,12 +528,17 @@ class Frontend extends BaseController
 
                 $insert_id = $this->common_model->save_data('sms_contact_enquiry', $data);
 
-
                 if ($insert_id) {
-                    return redirect()->back()->withInput()->with('success_message', 'Request sent successfully');
+                    // return redirect()->back()->withInput()->with('success_message', 'Request sent successfully');
+
+                    return $this->response->setStatusCode(201) // Created
+                        ->setJSON(['status' => true, 'message' => 'Request sent successfully']);
                 }
             } else {
-                return redirect()->back()->withInput()->with('error_message', 'reCAPTCHA verification failed. Please try again.');
+                return $this->response->setStatusCode(201) // Created
+                    ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
+
+                // return redirect()->back()->withInput()->with('error_message', 'reCAPTCHA verification failed. Please try again.');
             }
         }
     }

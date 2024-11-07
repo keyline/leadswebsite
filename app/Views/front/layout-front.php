@@ -279,7 +279,7 @@
         });
     </script>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/2.0.1/js/toastr.js"></script>
 
     <script type="text/javascript">
         function commonFormChecking(flag, cls = '', msgbox = '') {
@@ -737,6 +737,23 @@
             });
 
         });
+
+
+        function showAlert({
+            position = "center",
+            icon = "success",
+            title = "Data saved",
+            showConfirmButton = false,
+            timer = 1500
+        }) {
+            Swal.fire({
+                position: position,
+                icon: icon,
+                title: title,
+                showConfirmButton: showConfirmButton,
+                timer: timer
+            });
+        }
     </script>
 
 

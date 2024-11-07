@@ -128,7 +128,9 @@ if ($row) {
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="description">Description <span class="text-danger">*</span></label>
-                                    <textarea class="form-control ckeditor" name="description" id="description" placeholder="" required="required"><?php echo $description; ?></textarea>
+                                    <!-- <textarea class="form-control ckeditor" name="description" id="description" placeholder="" required="required"><?php echo $description; ?></textarea> -->
+                                    <textarea class="form-control summernote" name="description" id="description" placeholder="" required="required"><?php echo $description; ?></textarea>
+                                    
                                     <?php if (session('errors.description')): ?>
                                         <div class="error text-danger"><?= esc(session('errors.description')) ?></div>
                                     <?php endif; ?>
@@ -219,7 +221,9 @@ if ($row) {
                                             <div class="form-group">
                                                 <label class="form-label" for="meta_description">Content <span class="text-danger">*</span>
                                                 </label>
-                                                <textarea class="form-control ckeditor" name="content_description[]" id="meta_description<?= $key ?>" placeholder="" required="required" rows="5"><?= $content->content ?></textarea>
+                                                <!-- <textarea class="form-control ckeditor" name="content_description[]" id="meta_description<?= $key ?>" placeholder="" required="required" rows="5"><?= $content->content ?></textarea> -->
+                                                <textarea class="form-control summernote" name="content_description[]" id="meta_description<?= $key ?>" placeholder="" required="required" rows="5"><?= $content->content ?></textarea>
+                                                
                                             </div>
                                         </div>
 
@@ -254,7 +258,9 @@ if ($row) {
                                     <div class="form-group">
                                         <label class="form-label" for="meta_description">Content <span class="text-danger">*</span>
                                         </label>
-                                        <textarea class="form-control ckeditor" name="content_description[]" id="meta_description" placeholder="" required="required" rows="5"></textarea>
+                                        <!-- <textarea class="form-control ckeditor" name="content_description[]" id="meta_description" placeholder="" required="required" rows="5"></textarea> -->
+                                        <textarea class="form-control summernote" name="content_description[]" id="meta_description" placeholder="" required="required" rows="5"></textarea>
+                                        
                                     </div>
                                 </div>
 
@@ -302,8 +308,9 @@ if ($row) {
                                     <div class="form-group">
                                         <label class="form-label" for="meta_description">Content <span class="text-danger">*</span>
                                         </label>
-                                        <textarea class="form-control ckeditor" name="content_description[]" id="meta_description" placeholder="" required="required" rows="5"></textarea>
-                                    </div>
+                                        <textarea class="form-control summernote" name="content_description[]" id="meta_description" placeholder="" required="required" rows="5"></textarea>
+                            
+                                        </div>
                                 </div>
                              
 

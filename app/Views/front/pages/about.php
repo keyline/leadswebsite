@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-9">
                 <div class="inner_banner_info">
-                    <h4>“We are passionate about our work <br> and inspired by our team”</h4>
+                    <h4> <?= $setting->banner_text ?? '' ?> </h4>
                 </div>
             </div>
         </div>
@@ -29,7 +29,7 @@
                                                 </div>
                                                 <div class="mission_text">
                                                     <h4>Mission</h4>
-                                                    <p>To build sustainable relationships with customers, by satisfying with their evolving health & hygiene.</p>
+                                                    <?= $setting->mission_text ?? '' ?>
                                                 </div>
                                             </li>
                                             <li class="d-flex align-items-center">
@@ -38,89 +38,30 @@
                                                 </div>
                                                 <div class="mission_text">
                                                     <h4>Vision</h4>
-                                                    <p>A happy, healthy, safe and pollution free environment with new technologies, ideas which making life much easier & comfortable.</p>
+                                                    <?= $setting->vision_text  ?? '' ?>
                                                 </div>
                                             </li>
                                         </ul>
                                         <div class="feature_plan mission_text mt-4">
                                             <h4>Future Planning</h4>
-                                            <p>We have plans to import more Health and Hygienic related products in india which will be also the first time in Indian market and we are empathizing to flourish our presence at unrepresented area as early as possible through our strong marketing policies, promotional activities and media campaigning.</p>
+                                            <?= $setting->future_plan_text  ?? '' ?>
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
                                     <div class="row justify-content-end">
                                         <div class="col-md-11">
                                             <ul class="client-logo-list">
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-1.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-2.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-3.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-4.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-5.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-6.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-7.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-8.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-9.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-10.webp" alt="" class="img-fluid">
-                                                </li>
+                                                <?php foreach ($certificates as $certificate): ?>
+                                                    <li>
+                                                        <img src="<?= base_url('uploads/') ?>/certificate/<?= $certificate->image_data ?>" alt="" class="img-fluid">
+                                                    </li>
+                                                <?php endforeach; ?>
                                             </ul>
                                         </div>
                                     </div>
-                                    <div class="row justify-content-end mt-5">
-                                        <div class="col-md-11">
-                                            <ul class="client-logo-list">
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-1.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-2.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-3.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-4.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-5.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-6.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-7.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-8.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-9.webp" alt="" class="img-fluid">
-                                                </li>
-                                                <li>
-                                                    <img src="<?= base_url('public/') ?>/assets/img/clients-10.webp" alt="" class="img-fluid">
-                                                </li>
-                                            </ul>
-                                        </div>
-                                    </div>
+
                                 </div>
                             </div>
                         </div>
