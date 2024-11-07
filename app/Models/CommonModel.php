@@ -95,7 +95,8 @@ class CommonModel extends Model
         $builder = $this->db->table($table);
         if ($id == '') {
             $builder->insert($postdata);
-            return $this->db->insertID();
+             return $this->db->getLastQuery();
+            // return $this->db->insertID();
         } else {
             $builder->where($field, $id);
             $builder->update($postdata);

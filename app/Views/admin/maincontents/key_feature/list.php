@@ -1,3 +1,6 @@
+<?php
+$db = \Config\Database::connect();
+?>
 <div class="pcoded-content">
     <div class="page-header">
         <div class="page-block">
@@ -40,9 +43,10 @@
                             <thead>
                                 <tr>
                                     <th>#</th>                                   
-                                    <th>Product Title</th>                                    
-                                    <th>Product Image</th>
-                                    <th>Product Description</th>
+                                    <th>Product Category</th>
+                                    <th>Key Feature Title</th>
+                                    <th>Key Feature Icon</th>
+                                    <th>Key Feature Description</th>
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -51,13 +55,21 @@
                                 ?>
                                 <tr>
                                     <td><?php echo $i++; ?></td>                                                                                                        
-                                    <td><?php echo $row->product_title; ?></td>                                    
+                                    <td><?php
+                                    $productID = $row->product_category;
+                                    $sql = "SELECT * FROM `product_category` WHERE `id` = '$productID'";
+                                    // $query = $db->query($sql, [$deprt_id]);
+                                    $categories = $db->query($sql)->getResult();
+                                    foreach($categories as $category){ 
+                                    echo $category->name; } ?>
+                                    </td> 
+                                    <td><?php echo $row->key_feature_title; ?></td>                                    
                                     <td>
-                                        <?php if($row->product_image!='') { ?>
-                                          <img src="<?=base_url('/uploads/product/'.$row->product_image)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
+                                        <?php if($row->key_feature_icon!='') { ?>
+                                          <img src="<?=base_url('/uploads/key_feature/'.$row->key_feature_icon)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
                                         <?php } ?>                                        
                                     </td>
-                                    <td><?php echo $row->air_flow; ?></td>
+                                    <td><?php echo $row->key_feature_description; ?></td>
                                     
                                     <td>
                                         <?php $primary_key = $moduleDetail['primary_key']; ?>

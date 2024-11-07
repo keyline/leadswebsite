@@ -1,16 +1,34 @@
 <?php
 if($row) {
-    $product_category                      = $row->product_category;  
+    $product_category                  = $row->product_category;  
     $product_title                     = $row->product_title;  
-    $air_flow               = $row->air_flow;
-    $product_icon                      = $row->product_icon;
+    $air_flow                          = $row->air_flow;
+    $generation                        = $row->generation;
+    $motor_power                       = $row->motor_power;
+    $speed                             = $row->speed;
+    $lamp                              = $row->lamp;
+    $noise_level                       = $row->noise_level;
+    $cabinet_hood                      = $row->cabinet_hood;
+    $dimension                         = $row->dimension;
+    $warrenty_section                  = json_decode($row->warrenty_section);
+    $key_feature_id                    = json_decode($row->key_feature);   
     $product_image                     = $row->product_image;
+    $others_image                      = $row->image_file;
 } else {
-    $product_category                      = set_value('product_category', '');
+    $product_category                  = set_value('product_category', '');
     $product_title                     = set_value('product_title', '');
-    $air_flow               = set_value('air_flow', '');
-    $product_icon                      = set_value('product_icon', '');
+    $air_flow                          = set_value('air_flow', '');
+    $generation                        = set_value('generation', '');
+    $motor_power                       = set_value('motor_power', '');
+    $speed                             = set_value('speed', '');
+    $lamp                              = set_value('lamp', '');
+    $cabinet_hood                      = set_value('cabinet_hood', '');
+    $noise_level                       = set_value('noise_level', '');
+    $dimension                         = set_value('dimension', '');    
     $product_image                     = set_value('product_image', '');
+    $others_image = '';
+    $key_feature_id = [];
+    $warrenty_section = [];
 }
 ?>
 <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
@@ -71,43 +89,78 @@ if($row) {
                                     <input type="text" class="form-control" name="product_title" id="product_title" placeholder="Product Title" value="<?php echo $product_title; ?>" required="required">
                                 </div>
                             </div> 
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="product_description">Product Specifications</label>                                    
-                                        <div class="form-group">
-                                            <label class="form-label" for="air_flow">Air Flow</label>
-                                            <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                        </div>                                   
-                                        <div class="form-group">
-                                            <label class="form-label" for="air_flow">Generation</label>
-                                            <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                        </div>                                    
-                                        <div class="form-group">
-                                            <label class="form-label" for="air_flow">Motor Power</label>
-                                            <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                        </div>                                    
-                                        <div class="form-group">
-                                            <label class="form-label" for="air_flow">Speed</label>
-                                            <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                        </div>                                    
-                                        <div class="form-group">
-                                            <label class="form-label" for="air_flow">Lamp</label>
-                                            <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                        </div>                                   
-                                        <div class="form-group">
-                                            <label class="form-label" for="air_flow">Noise Level</label>
-                                            <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                        </div>                                         
-                                        <div class="form-group">
-                                            <label class="form-label" for="air_flow">Cabinet Hood</label>
-                                            <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                        </div> 
-                                        <div class="form-group">
-                                            <label class="form-label" for="air_flow">Dimension</label>
-                                            <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                        </div>                                                                          
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="air_flow">Air Flow</label>
+                                                <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
+                                            </div>                                   
+                                        </div>  
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="generation">Generation</label>
+                                                <input type="text" class="form-control" name="generation" id="generation" placeholder="Product Title" value="<?php echo $generation; ?>">
+                                            </div> 
+                                        </div>   
+                                    </div>   
+                                    <div class="row">  
+                                        <div class="col-md-6">                                                             
+                                            <div class="form-group">
+                                                <label class="form-label" for="motor_power">Motor Power</label>
+                                                <input type="text" class="form-control" name="motor_power" id="motor_power" placeholder="Product Title" value="<?php echo $motor_power; ?>">
+                                            </div>
+                                        </div>     
+                                        <div class="col-md-6">                                 
+                                            <div class="form-group">
+                                                <label class="form-label" for="speed">Speed</label>
+                                                <input type="text" class="form-control" name="speed" id="speed" placeholder="Product Title" value="<?php echo $speed; ?>">
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">                                   
+                                            <div class="form-group">
+                                                <label class="form-label" for="lamp">Lamp</label>
+                                                <input type="text" class="form-control" name="lamp" id="lamp" placeholder="Product Title" value="<?php echo $lamp; ?>">
+                                            </div> 
+                                        </div>
+                                        <div class="col-md-6">                                  
+                                            <div class="form-group">
+                                                <label class="form-label" for="noise_level">Noise Level</label>
+                                                <input type="text" class="form-control" name="noise_level" id="noise_level" placeholder="Product Title" value="<?php echo $noise_level; ?>">
+                                            </div> 
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-md-6">                                        
+                                            <div class="form-group">
+                                                <label class="form-label" for="cabinet_hood">Cabinet Hood</label>
+                                                <input type="text" class="form-control" name="cabinet_hood" id="cabinet_hood" placeholder="Product Title" value="<?php echo $cabinet_hood; ?>">
+                                            </div> 
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-group">
+                                                <label class="form-label" for="dimension">Dimension</label>
+                                                <input type="text" class="form-control" name="dimension" id="dimension" placeholder="Product Title" value="<?php echo $dimension; ?>">
+                                            </div>  
+                                        </div>
+                                    </div> 
+                                </div>                                                                   
+                            </div>                            
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="warrenty" class="form-label">Warrenty Section</label><br>
+                                    <input type="checkbox" id="warrenty" name="warrenty_section[]" value="warrenty" <?= set_value('warrenty_section', $warrenty_section ?? '') == 'warrenty' ? 'checked' : '' ?>>
+                                    <label for="warrenty">Warrenty</label>
+                                    <input type="checkbox" id="motion_sensor" name="warrenty_section[]" value="motion_sensor" <?= set_value('warrenty_section', $warrenty_section ?? '') == 'motion_sensor' ? 'checked' : '' ?>>
+                                    <label for="motion_sensor">Motion Sensor</label>
+                                    <input type="checkbox" id="isa_technology" name="warrenty_section[]" value="isa_technology" <?= set_value('warrenty_section', $warrenty_section ?? '') == 'isa_technology' ? 'checked' : '' ?>>
+                                    <label for="isa_technology">ISA Technology</label>
                                 </div>
-                            </div>                             
+                            </div>                            
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="services_image">Product Image</label>                                    
@@ -125,21 +178,56 @@ if($row) {
                                             <span class="input-group-text">Product Image</span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="product_image" name="product_image" <?php if($action == 'Add'){?>required<?php }?>>
-                                            <label class="custom-file-label" for="product_image">Choose file</label>
+                                            <input type="file" class="form-control" id="product_image" name="product_image" <?php if($action == 'Add'){?>required<?php }?>>
+                                            <small class="text-info">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed</small><br>
+                                            
                                         </div>
                                     </div>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="is_warrenty" class="form-label">is_warrenty</label>
-                                    <input type="radio" id="is_warrenty_yes" name="is_warrenty" value="1" <?= set_value('is_warrenty', $is_warrenty ?? '') == 1 ? 'checked' : '' ?>>
-                                    <label for="is_warrenty_yes">Yes</label>
-                                    <input type="radio" id="is_warrenty_no" name="is_warrenty" value="0" <?= set_value('is_warrenty', $is_warrenty ?? '') == 0 ? 'checked' : '' ?>>
-                                    <label for="is_warrenty_no">No</label>
+                                    <label for="Key Feature" class="form-label">Key Feature</label><br>
+                                    <?php                                          
+                                         if($key_feature){ $i=1; foreach ($key_feature as $row) {
+                                            $checked = in_array($row->id, $key_feature_id) ? 'checked' : ''; ?>
+                                         <input type="checkbox" id="key_feature" name="key_feature[]" value="<?=$row->id; ?>" <?=$checked; ?>> <?=$row->key_feature_title;?>
+                                    <?php }} ?>                                        
                                 </div>
+                            </div>        
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="others_image">Others Image</label>                                    
+                                    <div class="row">
+                                        <?php if($others_image!='') { ?>
+                                        <div class="col-md-3">
+                                            <img src="<?php echo base_url();?>/uploads/product/<?php echo $others_image; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
+                                        </div>
+                                        <?php } ?>                                                                                                                                                      
+                                    </div>
+                                    
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Others Image</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" name="others_image[]" class="form-control" id="others_image" multiple>
+                                            <small class="text-info">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed</small><br>                                            
+                                        </div>
+                                        <div class="image-preview" id="imagePreview"></div> 
+                                    </div>
+                                </div>                                
+                            </div> 
+                            <div class="col-md-6">
+                            <label for="is_new" class="col-md-2 col-lg-2 col-form-label">Is New</label>
+                            <div class="col-md-10 col-lg-10">
+                                <input type="radio" id="is_new_yes" name="is_new" value="1" <?= set_value('is_new', $is_new ?? '') == '1' ? 'checked' : '' ?>>
+                                <label for="is_new_yes">Yes</label>
+                                <input type="radio" id="is_new_no" name="is_new" value="0" <?= set_value('is_new', $is_new ?? '') == '0' ? 'checked' : '' ?>>
+                                <label for="is_new_no">No</label>
                             </div>
+                        </div> 
                         </div>
                         <button type="submit" class="btn  btn-primary">Submit</button>
                     </form>
@@ -148,3 +236,26 @@ if($row) {
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('others_image').addEventListener('change', function(event) {
+        const imagePreview = document.getElementById('imagePreview');
+        imagePreview.innerHTML = ''; // Clear previous previews
+        const files = event.target.files;
+        
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            
+            if (file && file.type.match('image.*')) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    imagePreview.appendChild(img);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+</script>
