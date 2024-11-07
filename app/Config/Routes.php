@@ -82,7 +82,9 @@ $routes->get('/mice', 'Frontend::mice');
 
 // $routes->get('/contact-us', 'Frontend::contact_us');
 
-$routes->post('contact-us', 'Frontend::contact_us');
+// $routes->post('contact-us', 'Frontend::contact_us');
+
+$routes->post('api/contact-us', 'Frontend::contact_us');
 
 
 $routes->get('privacypolicy', 'Frontend::privacypolicy');

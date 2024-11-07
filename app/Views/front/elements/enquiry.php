@@ -4,7 +4,8 @@
             <div class="col-md-10">
                 <div class="about_info" data-aos="zoom-in" data-aos-duration="1000">
                     <div class="home_form_holder">
-                        <form class="enquiry_form" action="<?= base_url('contact-us') ?>" method="post">
+                        <!-- action="<?= base_url('contact-us') ?>" -->
+                        <form class="enquiry_form" method="post">
                             <div class="row">
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Name" aria-label="First name" name="name" value="<?= old('name') ?>">
@@ -78,9 +79,71 @@
 
 <?= $this->section('scripts') ?>
 <script>
+    // function onSubmit(token) {
+    //     // document.getElementById("recaptcha_token").value = token;
+    //     // document.getElementsByClassName('enquiry_form')[0].submit();
+
+    //     Swal.fire({
+    //         position: "center",
+    //         icon: "success",
+    //         title: "Data saved",
+    //         showConfirmButton: false,
+    //         timer: 1500
+    //     });
+    // }
+
+    // ______________________________________________________
+
+    // Handle reCAPTCHA callback
     function onSubmit(token) {
-        document.getElementById("recaptcha_token").value = token;
-        document.getElementsByClassName('enquiry_form')[0].submit();
+        // Set the token in the hidden input
+        $('#recaptcha_token').val(token);
+
+        // Trigger AJAX form submission
+        submitForm();
     }
+
+    // Submit the form via AJAX
+    function submitForm() {
+        $.ajax({
+            url: "api/contact-us", // Replace with your server URL
+            type: "POST",
+            data: $('.enquiry_form').serialize(),
+            success: function(response) {
+                if (response.status) {
+                    // Show success message and reset form
+                    showAlert({
+                        title: response.message,
+                        icon: "success"
+                    });
+                    $('.enquiry_form')[0].reset(); // Clear the form
+
+                } else {
+                    showAlert({
+                        title: response.message,
+                        icon: "error"
+                    });
+                }
+                grecaptcha.reset(); // Reset the reCAPTCHA widget
+            },
+            error: function(xhr, status, error) {
+                // Show error message
+                showAlert({
+                    title: "An error occurred. Please try again.",
+                    icon: "error",
+                    timer: 2000
+                });
+                console.error(error); // Log the error for debugging
+            }
+        });
+    }
+
+    // Attach event listener to form submission button
+    $('.enquiry_form').on('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Trigger reCAPTCHA validation
+        grecaptcha.execute();
+    });
 </script>
 <?= $this->endSection() ?>

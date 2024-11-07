@@ -5,7 +5,9 @@
 <head>
 
 	<?php echo $head; ?>
-
+	<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.css" rel="stylesheet">
+	<!-- [ page wise css ] -->
+	<?= $this->renderSection('style') ?>
 </head>
 
 <body class="">
@@ -136,6 +138,8 @@
 	<script src="<?php echo base_url('material/'); ?>/assets/js/plugins/ekko-lightbox.min.js"></script>
 	<script src="<?php echo base_url('material/'); ?>/assets/js/plugins/lightbox.min.js"></script>
 	<script src="<?php echo base_url('material/'); ?>/assets/js/pages/ac-lightbox.js"></script>
+	<!-- Summernote JS -->
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-bs4.min.js"></script>
 	<script>
 		// [ customer-scroll ] start
 		var px = new PerfectScrollbar('.cust-scroll', {
@@ -151,6 +155,29 @@
 		$('#simpletable').dataTable({
 			"pageLength": 25
 		})
+
+
+
+
+
+		$(document).ready(function() {
+			$('.summernote').summernote({
+				placeholder: '',
+				tabsize: 2,
+				height: 200, // Set the height of the editor
+				toolbar: [
+					['style', ['style']],
+					['font', ['bold', 'italic', 'underline', 'clear']],
+					['fontname', ['fontname']],
+					['fontsize', ['fontsize']],
+					['color', ['color']],
+					['para', ['ul', 'ol', 'paragraph']],
+					['height', ['height']],
+					['insert', ['picture', 'link', 'video']],
+					['view', ['fullscreen', 'codeview', 'help']]
+				]
+			});
+		});
 	</script>
 
 	<!-- [ page wise Scripts ] -->

@@ -10,6 +10,15 @@
             <!-- Enquire List -->
             <li class="nav-item"><a href="<?php echo base_url('admin/manage_enquire'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">Enquiry</span></a></li>
 
+            <!-- about -->
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">About</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_certificates/') ?>">Certificates</a></li>
+                    <li><a href="<?= base_url('admin/about_setting') ?>">About</a></li>
+                </ul>
+            </li>
+
             <!-- Blog -->
             <li class="nav-item pcoded-hasmenu">
                 <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Blogs</span></a>
