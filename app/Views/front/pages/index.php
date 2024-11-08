@@ -197,7 +197,7 @@ $db = \Config\Database::connect();
                         <div class="tab-content" id="pills-tabContent">
                             <?php foreach($product_category as $key => $row) { 
                                 $productcatID = $row->id;
-                                $sql = "SELECT * FROM `product` WHERE `product_category` = '$productcatID'";
+                                $sql = "SELECT * FROM `product` WHERE `product_category` = '$productcatID' and `published` != '3'";
                                 $products = $db->query($sql)->getResult();                                     
                                 ?>
                             <div class="tab-pane fade <?= $key == 0 ? 'show active' : '' ?>" id="<?=$row->id?>" role="tabpanel"
@@ -218,7 +218,7 @@ $db = \Config\Database::connect();
                                                 <div class="swiper productimgswiper" id="mySwiperId">
                                                     <div class="swiper-wrapper">
                                                         <?php $productID = $product->id;
-                                                        $sql1 = "SELECT * FROM `product_others_image` WHERE `product_id` = '$productID'";
+                                                        $sql1 = "SELECT * FROM `product_others_image` WHERE `product_id` = '$productID' and `published` != '3'";
                                                         $others_images = $db->query($sql1)->getResult();
                                                          foreach($others_images as $others_image){ ?>
                                                         <div class="swiper-slide">
