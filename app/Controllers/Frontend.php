@@ -511,7 +511,7 @@ class Frontend extends BaseController
 
             if (!$this->validate($rules)) {
                 // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-                return $this->response->setStatusCode(400) // Bad Request
+                return $this->response->setStatusCode(200) // Bad Request
                     ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
             } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
 
@@ -535,7 +535,7 @@ class Frontend extends BaseController
                         ->setJSON(['status' => true, 'message' => 'Request sent successfully']);
                 }
             } else {
-                return $this->response->setStatusCode(201) // Created
+                return $this->response->setStatusCode(200) // Created
                     ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
 
                 // return redirect()->back()->withInput()->with('error_message', 'reCAPTCHA verification failed. Please try again.');
