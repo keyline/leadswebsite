@@ -28,6 +28,21 @@
                 </ul>
             </li>
 
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Products</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_product_category/') ?>">Products Category</a></li>
+                    <li><a href="<?= base_url('admin/manage_product') ?>">Products</a></li>
+                </ul>
+            </li>
+
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Master</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_key_feature/') ?>">Key Features</a></li>                    
+                </ul>
+            </li>
+
             <!-- Testimonial -->
             <li class="nav-item"><a href="<?php echo base_url('admin/manage_testimonial'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Testimonial</span></a></li>
 
