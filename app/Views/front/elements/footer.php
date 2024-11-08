@@ -5,15 +5,15 @@
         <div class="col-lg-3 col-md-3">
             <div class="footer_left">
                 <div class="footer_logo">
-                    <a href="#"><img class="img-fluid" src="<?= base_url('public/assets/') ?>/img/logo.png" alt="logo"></a>
+                    <a href="<?= base_url() ?>"><img class="img-fluid" src="<?= base_url('public/assets/') ?>/img/logo.png" alt="logo"></a>
                 </div>
                 <div class="footer_subsocial">
                     <div class="footer_social">
                         <ul>
-                            <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-                            <li><a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                            <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                            <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                            <li><a href="<?= $whatsapp_link ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                         </ul>
                     </div>
                 </div>
@@ -23,14 +23,14 @@
             <div class="foot-righttop">
                 <h4>Quick Links:</h4>
                 <ul>
-                    <li><a href="#">Home</a></li>
-                    <li><a href="#">About Us</a></li>
-                    <li><a href="#">Products</a></li>
+                    <li><a href="<?= base_url() ?>">Home</a></li>
+                    <li><a href="<?= base_url() ?>/about"">About Us</a></li>
+                    <li><a href=" #">Products</a></li>
                     <li><a href="#">Media</a></li>
                     <li><a href="#">Download</a></li>
                     <li><a href="j#">Become A Distributor</a></li>
-                    <li><a href="#">Blog</a></li>
-                    <li><a href="#">Reach Us</a></li>
+                    <li><a href="<?= base_url() ?>/blog"">Blog</a></li>
+                    <li><a href=" #">Reach Us</a></li>
                 </ul>
             </div>
         </div>
@@ -44,13 +44,38 @@
                             <div class="footer_fa">
                                 <i class="fa-solid fa-phone-volume"></i>
                             </div>
-                            <p class="pb-3"><a href="tel:">+91 95640 14111</a>, <a href="tel:">+91 94340 56065</a></p>
+                            <p class="pb-3">
+                                <?php if (count($phone_numbers)) {
+                                    $totalNumbers = count($phone_numbers);
+                                    foreach ($phone_numbers as $index => $number) { ?>
+                                        <a href="tel:"> <?= $number ?> </a>
+                                <?php
+                                        if ($index < $totalNumbers - 1) {
+                                            echo ', '; // Add comma if it's not the last number
+                                        }
+                                    }
+                                } ?>
+
+                            </p>
                         </li>
                         <li class="foot_location">
                             <div class="footer_fa">
                                 <i class="fa-solid fa-at"></i>
                             </div>
-                            <p><a href="mailto:">leadsindia.net@gmail.com</a><br><a href="mailto:">info@leadsindia.net</a></p>
+                            <p>
+
+                                <?php if (count($admin_mails)) {
+                                    $totalNumbers = count($admin_mails);
+                                    foreach ($admin_mails as $index => $mail) { ?>
+                                        <a href="mailto:"> <?= $mail ?> </a>
+                                <?php
+                                        if ($index < $totalNumbers - 1) {
+                                            echo ', '; // Add comma if it's not the last number
+                                        }
+                                    }
+                                } ?>
+
+
                         </li>
                     </ul>
                 </div>
@@ -72,6 +97,3 @@
 
 
 <!--    FOOTER ENDS-->
-
-
-

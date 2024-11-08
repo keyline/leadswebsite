@@ -77,30 +77,30 @@
                                         <input type="text" class="form-control" name="twitter_link" placeholder="Twitter Link" value="<?php echo $site_setting->twitter_link; ?>">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Linkedin Link</label>
                                         <input type="text" class="form-control" name="linkedin_link" placeholder="Linkedin Link" value="<?php echo $site_setting->linkedin_link; ?>">
                                     </div>
-                                </div>
-                                <div class="col-md-6">
+                                </div> -->
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Instagram Link</label>
                                         <input type="text" class="form-control" name="instagram_link" placeholder="Instagram Link" value="<?php echo $site_setting->instagram_link; ?>">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Youtube Link</label>
                                         <input type="text" class="form-control" name="youtube_link" placeholder="Youtube Link" value="<?php echo $site_setting->youtube_link; ?>">
                                     </div>
                                 </div>
-                                <div class="col-md-6">
+                                <!-- <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">PInterest Link</label>
                                         <input type="text" class="form-control" name="pinterest_link" placeholder="PInterest Link" value="<?php echo $site_setting->pinterest_link; ?>">
                                     </div>
-                                </div>
+                                </div> -->
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <?php if($site_setting->site_logo!='') { ?>

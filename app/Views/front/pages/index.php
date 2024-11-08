@@ -1112,7 +1112,7 @@
                         <p>LEADS is the Brand Name of Leads Overseas Pvt. Ltd. AN ISO 9001:2008 Certified company, established in 2002. Company has gained excellent reputation within a very short period.</p>
                         <p class="mt-3">We Presently importing kitchen appliances from Malaysia and Manufactured Domestic and commercial water purification system with reputed High quality imported spare..</p>
                         <div class="about_more_box">
-                            <a href="#">
+                            <a href="<?= base_url('about') ?>">
                                 <h4>About</h4>
                                 <p>MORE <img src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt="" class="img-fluid long-arrow"></p>
                             </a>

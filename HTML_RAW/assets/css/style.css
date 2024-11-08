@@ -131,7 +131,7 @@ ul.head_social {
     padding-right: 50px;
 }
 .head_social li {
-    margin: 0 5px;
+    margin: 0 5px 0 0;
 }
 .head_social li a {
     color: #717171;
@@ -582,7 +582,7 @@ body.abrido .hide_notshow_normal {
     font-size: 30px;
 }
 .home_banner_slider_holder3 .home_slider_info .home_silder_imginner .home_banner_slider_product {
-    max-width: 33%;
+    max-width: 300px;
 }
 .home_banner_slider_holder3 .home_slider_inner .home_banner_btn_holder {
     text-align: left;
@@ -829,7 +829,7 @@ body.abrido .hide_notshow_normal {
     background: #ed1c24;
 }
 .view_all_box a{
-    color: #000;
+    color: #ed1c24;
     text-decoration: none;
 }
 /* home_about_section css */
@@ -1015,11 +1015,12 @@ body.abrido .hide_notshow_normal {
 }
 .testimonialSwiper{
     height: 100%;
+    padding-top: 20px;
 }
 .testimonialSwiper .swiper-pagination{
-    top: 22%;
+    top: 0;
     text-align: right;
-    bottom: unset;
+    bottom: auto;
 }
 .testimonialSwiper .swiper-pagination-bullet{
     width: 15px;
@@ -1032,6 +1033,21 @@ body.abrido .hide_notshow_normal {
 .testimonialSwiper .swiper-pagination-bullet.swiper-pagination-bullet-active{
     background: #fff;
     border: 3px solid #ed1c24;
+}
+.owl-videotestmorial .owl-dots button.owl-dot {
+    background: #dfdfdf;
+    border: 3px solid #ababab;
+    height: 16px;
+    width: 16px;
+    border-radius: 50px;
+    margin: 0 3px;
+}
+.owl-videotestmorial .owl-dots button.owl-dot.active {
+    background: #fff;
+    border-color: #ed1c24;
+}
+.owl-videotestmorial .owl-dots {
+    text-align: right;
 }
 /* home_enquiry section css */
 .home_enquiry{
@@ -2061,9 +2077,14 @@ footer.footer {
 .contact_innerbox {
     background: #f3f3f3;
     padding: 50px;
-    border-radius: 30px;
+    border-radius: 10px;
     min-height: 400px;
     margin-bottom: 25px;
+}
+.contact_section iframe {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 20px;
 }
 .contact_innerbox .cont_title {
     color: #ed1c24;
@@ -2121,7 +2142,7 @@ footer.footer {
 /* ********|| Blog start ||******** */
 .blog_list_item {
     background: #fff;
-    border-radius: 25px;
+    border-radius: 10px;
     box-shadow: 0px 3px 5px 0px #999;
     margin-bottom: 60px;
     overflow: hidden;
@@ -2162,14 +2183,14 @@ ul.blogitem_cat li {
     font-size: 14px;
 }
 .blogitem_detials ul.blogitem_cat li {
-    background: #f6f6f7;
+    background: var(--primaryColor);
     padding: 3px 20px;
     border-radius: 6px;
     display: inline-block;
     margin: 0 10px;
     text-decoration: none;
     font-size: 14px;
-    color: #444;
+    color: #fff;
 }
 .blog_list_item p.u-text-gray-700 {
     color: #ababb0;
@@ -2203,6 +2224,7 @@ ul.blogitem_cat li {
     padding: 20px;
     box-shadow: 0 0 10px 5px rgba(0, 0, 0, .03);
     border-radius: 6px;
+        margin-bottom: 25px;
 }
 #sticky-sidebar-demo .nav-title {
     padding: 0;
@@ -2210,7 +2232,7 @@ ul.blogitem_cat li {
     font-size: 18px;
     line-height: 22px;
     font-weight: 700;
-    color: #1458A4;
+    color: var(--primaryColor);
     text-transform: uppercase;
     border-bottom: none;
 }
@@ -2224,21 +2246,22 @@ ul.blogitem_cat li {
     color: #578ABF;
     position: relative;
     white-space: pre-wrap;
+    text-decoration: none;
 }
 #sticky-sidebar-demo a.anchor_links_nav_health_guides:before {
     width: 8px;
     height: 8px;
     display: block;
-    background: transparent;
+    background: var(--primaryColor);
     content: " ";
-    border: 1px solid #D7BDD7;
+    border: 1px solid var(--primaryColor);
     border-radius: 50%;
     position: absolute;
     left: 2px;
     top: 6px;
 }
 #sticky-sidebar-demo a.anchor_links_nav_health_guides:before {
-    border: 1px solid #D7BDD7;
+    border: 1px solid var(--primaryColor);
 }
 #sticky-sidebar-demo a.anchor_links_nav_health_guides.active {
     color: #00406B;
@@ -2270,9 +2293,9 @@ ul.blog_meta li i {
 }
 .medical-disclaimer {
     background: #f7f7f7;
-    margin: 20px 0;
+    margin: 20px 0 40px;
     padding: 25px;
-    border-left: 4px solid #f9233f;
+    border: 1px solid var(--primaryColor);
 }
 .medical-disclaimer h4 {
     color: #f9233f;
