@@ -85,7 +85,7 @@ class CommonModel extends Model
                 $result = $query->getNumRows();
                 break;
         }
-        //echo $this->db->getLastQuery();die;
+        // echo $this->db->getLastQuery();die;
         return $result;
     }
 
@@ -95,11 +95,12 @@ class CommonModel extends Model
         $builder = $this->db->table($table);
         if ($id == '') {
             $builder->insert($postdata);
-             return $this->db->getLastQuery();
-            // return $this->db->insertID();
+            //   return $this->db->getLastQuery();
+             return $this->db->insertID();
         } else {
             $builder->where($field, $id);
             $builder->update($postdata);
+            //  return $this->db->getLastQuery();
             return $this->db->affectedRows();
         }
     }
@@ -123,6 +124,7 @@ class CommonModel extends Model
     function upload_single_file($fieldName, $fileName, $uploadedpath, $uploadType)
     {
         $imge = $fileName;
+
         if ($imge == '') {
             $slider_image = 'no-user-image.jpg';
         } else {
@@ -190,6 +192,7 @@ class CommonModel extends Model
             } else {
                 $return_array = array('status' => 0, 'message' => $message, 'newFilename' => '');
             }
+            // pr($return_array) ; die;
             return $return_array;
         }
     }
@@ -266,6 +269,8 @@ class CommonModel extends Model
         $apiMessage = [];
         $apiResponse = [];
         if (count($images) > 0) {
+            // pr($images);
+
             for ($p = 0; $p < count($images); $p++) {
                 $imge = $images[$p]->getClientName();
                 //pr($imge);

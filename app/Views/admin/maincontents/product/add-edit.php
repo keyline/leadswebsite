@@ -13,7 +13,8 @@ if($row) {
     $warrenty_section                  = json_decode($row->warrenty_section);
     $key_feature_id                    = json_decode($row->key_feature);   
     $product_image                     = $row->product_image;
-    $others_image                      = $row->image_file;
+    $is_new                            = $row->is_new;
+    // $others_image                      = $row->image_file;
 } else {
     $product_category                  = set_value('product_category', '');
     $product_title                     = set_value('product_title', '');
@@ -153,11 +154,11 @@ if($row) {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="warrenty" class="form-label">Warrenty Section</label><br>
-                                    <input type="checkbox" id="warrenty" name="warrenty_section[]" value="warrenty" <?= set_value('warrenty_section', $warrenty_section ?? '') == 'warrenty' ? 'checked' : '' ?>>
+                                    <input type="checkbox" id="warrenty" name="warrenty_section[]" value="warrenty" <?= !empty($warrenty_section) && in_array('warrenty', $warrenty_section) ? 'checked' : '' ?>>
                                     <label for="warrenty">Warrenty</label>
-                                    <input type="checkbox" id="motion_sensor" name="warrenty_section[]" value="motion_sensor" <?= set_value('warrenty_section', $warrenty_section ?? '') == 'motion_sensor' ? 'checked' : '' ?>>
+                                    <input type="checkbox" id="motion_sensor" name="warrenty_section[]" value="motion_sensor" <?= !empty($warrenty_section) && in_array('motion_sensor', $warrenty_section) ? 'checked' : '' ?>>
                                     <label for="motion_sensor">Motion Sensor</label>
-                                    <input type="checkbox" id="isa_technology" name="warrenty_section[]" value="isa_technology" <?= set_value('warrenty_section', $warrenty_section ?? '') == 'isa_technology' ? 'checked' : '' ?>>
+                                    <input type="checkbox" id="isa_technology" name="warrenty_section[]" value="isa_technology" <?= !empty($warrenty_section) && in_array('isa_technology', $warrenty_section) ? 'checked' : '' ?>>
                                     <label for="isa_technology">ISA Technology</label>
                                 </div>
                             </div>                            
@@ -199,11 +200,15 @@ if($row) {
                                 <div class="form-group">
                                     <label class="form-label" for="others_image">Others Image</label>                                    
                                     <div class="row">
-                                        <?php if($others_image!='') { ?>
+                                        <?php if($others_image!='') { foreach($others_image as $image) {?>
                                         <div class="col-md-3">
-                                            <img src="<?php echo base_url();?>/uploads/product/<?php echo $others_image; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
+                                            <img src="<?php echo base_url();?>/uploads/product/<?php echo $image->image_file; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
+                                            <p class="mt-2">
+                                                    <a href="<?php echo base_url(); ?>/admin/manage_product/edit_image/<?php echo $image->image_id; ?>" class="btn btn-primary btn-sm" title="Edit Image"><i class="fa fa-edit"></i> Edit</a>
+                                                    <a href="<?php echo base_url(); ?>/admin/manage_product/delete_image/<?php echo $image->image_id; ?>" class="btn btn-danger btn-sm" title="Delete Image" onclick="return confirm('Do You Want To Delete This Image');"><i class="fa fa-trash"></i> Delete</a>
+                                            </p>
                                         </div>
-                                        <?php } ?>                                                                                                                                                      
+                                        <?php } }?>                                                                                                                                                      
                                     </div>
                                     
 

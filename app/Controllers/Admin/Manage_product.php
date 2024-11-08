@@ -28,7 +28,7 @@ class Manage_product extends BaseController
         'content_description.*' => 'required|min_length[3]|max_length[3000]|regex_match[/^(?!.*<script.*?>).*$/i]',
     */
     public function __construct()
-    {
+    {        
         $session = \Config\Services::session();
         if (!$session->get('is_admin_login')) {
             return redirect()->to('/Administrator');
@@ -116,14 +116,17 @@ class Manage_product extends BaseController
                 ];
                 //   pr($fields1);
                  $productId = $this->data['model']->save_data($this->data['table_name'], $fields1, '', $this->data['primary_key']);
-                  echo $productId;
+                //   echo $productId; 
                 
                 // Handle others_image upload (optional)
-                $imageFile = $this->request->getFile('others_image');
+                //  pr($this->request->getFiles());
+                 $imageFile = $this->request->getFiles(); 
+                //    pr($imageFile['others_image']);
                 $others_image = [];
         
                 if($imageFile != '') {                    
-                    $uploadedFile = $this->commonFileArrayUpload('product', $imageFile, 'image');
+                    $uploadedFile = $this->data['model']->commonFileArrayUpload('product', $imageFile['others_image'], 'image');
+
                     if(!empty($uploadedFile)) {
                         $others_image = $uploadedFile;
                     } else {
@@ -138,10 +141,10 @@ class Manage_product extends BaseController
                             'product_id'                   => $productId,
                             'image_file'                => $image,                           
                         ];
-                        pr($imageFields);
+                        // pr($imageFields);
                         // NewsContentImage::insert($imageFields);
                         $imageId = $this->data['model']->save_data('product_others_image', $imageFields, '', 'image_id');
-                        echo $imageId;die;
+                        // echo $imageId;die;
                     }
                 }
 
@@ -163,12 +166,8 @@ class Manage_product extends BaseController
                 // }
                 /* others image */
 
-                return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Inserted successfully');            
-            } else {
-                return redirect()->back()->withInput()->with('error_message', 'An unexpected error occurred');
-            }
-        }
-
+                return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Inserted successfully');                   
+        }        
         echo $this->layout_after_login($title, $page_name, $data);
     }
     public function edit($id)
@@ -179,94 +178,86 @@ class Manage_product extends BaseController
         $page_name                  = 'product/add-edit';
         $conditions                 = array($this->data['primary_key'] => $id);
         $data['row']                = $this->data['model']->find_data($this->data['table_name'], 'row', $conditions);
-        $data['blogCats']           = $this->data['model']->find_data('blog_category', 'array', ['published!=' => 3]);
-        $data['blogContents']       = $this->data['model']->find_data('blog_contents', 'array', ['blog_id' => $id]);
+        // pr($data['row']);
+        $data['productCats']           = $this->data['model']->find_data('product_category', 'array', ['published!=' => 3]);
+        $data['key_feature']       = $this->data['model']->find_data('key_feature', 'array', ['published!=' => 3]);
+        $data['others_image']       = $this->data['model']->find_data('product_others_image', 'array', ['product_id' => $id,'published!=' => 3]);
+        // pr($data['others_image']);
 
         if ($this->request->getMethod() == 'post') {
-            $postData = $this->request->getPost();
+            $postData = $this->request->getPost(); 
+            $slug = strtolower($this->data['model']->clean($this->request->getPost('product_title')));
+            //  pr($postData)   ;                   
 
-            $isValid = true;  // Initialize validation flag
-
-
-            // Validation check
-            if (!$this->validate($this->rules)) {
-                $isValid = false;
-                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-                // $errorMessage = 'fill all inputs';
-            }
-
-
-
-            // File upload check if validation passed
-            if ($isValid) {
-                $file = $this->request->getFile('image');
+            // File upload check if validation passed           
+                $file = $this->request->getFile('product_image');
                 if ($file && $file->isValid()) {
-                    $uploadArray = $this->common_model->upload_single_file('image', $file->getClientName(), 'blogs', 'image');
-                    if (!$uploadArray['status']) {
-                        $isValid = false;
+                    $uploadArray = $this->common_model->upload_single_file('product_image', $file->getClientName(), 'product', 'image');
+                    if (!$uploadArray['status']) {                        
                         $errorMessage = $uploadArray['message'];
+                        return redirect()->back()->withInput()->with('error_message', $errorMessage);
                     } else {
                         $image = $uploadArray['newFilename'];
                     }
-                } else {
-                    $image = $data['row']->image;
-                }
-            }
+                } else {                    
+                    $image = $data['row']->product_image;
+                }                                                               
 
-            // Redirect if there was an error
-            if (!$isValid) {
-                return redirect()->back()->withInput()->with('error_message', $errorMessage);
-            }
-
-            // Data processing and insertion if validation passed
-            try {
+            // Data processing and insertion if validation passed            
                 $fields1 = [
-                    'blog_category'             => $postData['blog_category'],
-                    'title'                     => $postData['title'],
-                    'slug'                      => clean($postData['slug']),
-                    'content_date'              => date_format(date_create($postData['content_date']), "Y-m-d"),
-                    'short_description'         => $postData['short_description'],
-                    'description'               => $postData['description'],
-                    'meta_title'                => $postData['meta_title'],
-                    'meta_keyword'              => $postData['meta_keyword'],
-                    'meta_description'          => $postData['meta_description'],
-                    'image'                     => $image
+                    'product_category'          => $postData['product_category'],
+                    'product_title'             => $postData['product_title'],
+                    'slug'                      => $slug,
+                    'air_flow'                  => $postData['air_flow'],
+                    'generation'                => $postData['generation'],
+                    'motor_power'               => $postData['motor_power'],
+                    'speed'                     => $postData['speed'],
+                    'lamp'                      => $postData['lamp'],
+                    'noise_level'               => $postData['noise_level'],
+                    'cabinet_hood'              => $postData['cabinet_hood'],
+                    'dimension'                 => $postData['dimension'],
+                    'warrenty_section'          => json_encode($postData['warrenty_section']), 
+                    'key_feature'               => json_encode($postData['key_feature']), 
+                    'is_new'                    => $postData['is_new'],
+                    'product_image'             => $image
                 ];
+                //    pr($fields1);
+                 $this->data['model']->save_data($this->data['table_name'], $fields1, $id, $this->data['primary_key']);
+                
+                
+                 $productId = $id;
 
-                $this->data['model']->save_data($this->data['table_name'], $fields1, $id, $this->data['primary_key']);
+                // $this->data['model']->removeData('blog_contents', $id, 'blog_id');
+                // Handle others_image upload (optional)
+                //   pr($this->request->getFiles());
+                $imageFile = $this->request->getFiles(); 
+                //    pr($imageFile['others_image']);
+                $others_image = [];
+        
+                if($imageFile != '') {                    
+                    $uploadedFile = $this->data['model']->commonFileArrayUpload('product', $imageFile['others_image'], 'image');
 
-                $blogId = $id;
-
-                $this->data['model']->removeData('blog_contents', $id, 'blog_id');
-                /* blog content */
-
-                $content_description   = $postData['content_description'];
-                $summary               = $postData['summary'];
-                $content               = $postData['content'];
-
-                if (count($content_description)) {
-                    for ($k = 0; $k < count($content_description); $k++) {
-                        if ($content_description[$k]) {
-                            $fields2 = [
-                                'blog_id'                   => $blogId,
-                                'table_of_content'          => $content[$k],
-                                'table_of_content_slug'     => clean($content[$k]),
-                                'summary'                   => $summary[$k],
-                                'content'                   => $content_description[$k],
-                            ];
-
-
-                            $contentId = $this->data['model']->save_data('blog_contents', $fields2, '', 'content_id');
-                        }
+                    if(!empty($uploadedFile)) {
+                        $others_image = $uploadedFile;
+                    } else {
+                        $others_image = [];
                     }
                 }
-                /* blog content */
-
-                return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Update successfully');
-            } catch (\Exception $e) {
-                log_message('error', $e->getMessage()); // Log the error message
-                return redirect()->back()->withInput()->with('error_message', 'An unexpected error occurred');
-            }
+        
+                // Insert into NewsContentImage if others_image is not empty
+                if(count($others_image) > 0) {
+                    foreach($others_image as $image) {
+                        $imageFields = [
+                            'product_id'                   => $productId,
+                            'image_file'                => $image,                           
+                        ];
+                        //  pr($imageFields);
+                        // NewsContentImage::insert($imageFields);
+                        $imageId = $this->data['model']->save_data('product_others_image', $imageFields, '', 'image_id');
+                        // echo $imageId;die;
+                    }
+                }                            
+                return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Update successfully');            
         }
         echo $this->layout_after_login($title, $page_name, $data);
     }
@@ -297,38 +288,84 @@ class Manage_product extends BaseController
         $this->session->setFlashdata('success_message', $this->data['module'] . ' activated successfully');
         return redirect()->to('/admin/' . $this->data['controller']);
     }
-    // public function manage_image()
-    // {
-    //     $data['moduleDetail']       = $this->data;
-    //     $title                      = 'Manage Images';
-    //     $page_name                  = 'product/manage-images';
-    //     $order_by[0]                = array('field' => 'id', 'type' => 'desc');
-    //     $data['rows']               = $this->data['model']->find_data('sms_images', 'array', ['status!=' => 3], '', '', '', $order_by);
+    /* image gallery */
+    public function image_list($id) 
+    {
+        $data['moduleDetail']       = $this->data;
+        $data['product']              = $this->data['model']->find_data($this->data['table_name'], 'row', ['id' => $id]);
+        $title                      = 'Manage Image Gallery Of '.$data['product']->product_title;
+        $page_name                  = 'product/image-list';        
+        $order_by[0]                = array('field' => 'image_id', 'type' => 'asc');
+        $data['rows']               = $this->data['model']->find_data('product_others_image', 'array', ['product_id' => $id, 'published!=' => 3], '', '', '', $order_by);
+        //   pr($data['rows']);
 
-    //     if ($this->request->getMethod() == 'post') {
-    //         /* category images upload */
-    //         $category_images_array  = $this->request->getFiles('image_file')['image_file'];
-    //         $images                 = $this->data['model']->commonFileArrayUpload('editor_images', $category_images_array, 'image');
-    //         if (!empty($images)) {
-    //             $image_file = $images;
-    //         } else {
-    //             $this->session->setFlashdata('msg1', 'Please upload an image');
-    //             return redirect()->to(current_url());
-    //         }
-    //         //pr($image_file);
-    //         /* category images upload */
-    //         if (count($image_file) > 0) {
-    //             for ($k = 0; $k < count($image_file); $k++) {
-    //                 $postData   = array(
-    //                     'image_file'                => $image_file[$k]
-    //                 );
-    //                 $record     = $this->data['model']->save_data('sms_images', $postData, '', 'id');
-    //             }
-    //         }
-    //         $this->session->setFlashdata('success_message', 'Images inserted successfully');
-    //         return redirect()->to('/admin/' . $this->data['controller'] . '/manage_image');
-    //     }
+        if($this->request->getPost('mode') == 'bulklead'){
+            if($this->request->getPost('image_id') == ''){
+                $this->session->setFlashdata('error_message', 'you need to select atleast one image for delete !!!');
+                return redirect()->to(current_url());
+            } else {                    
+                $image_id = $this->request->getPost('image_id');
+                if(!empty($image_id)){
+                    for($k=0;$k<count($image_id);$k++){
+                        $postData5   = array(
+                                            'published'                  => 3
+                                            );
+                        //pr($postData);
+                        $this->data['model']->save_data('product_others_image', $postData5, $image_id[$k], 'id');
+                    }
+                }
+                $this->session->setFlashdata('success_message', 'Image(s) Succesfully Deleted !!!');
+                return redirect()->to(current_url());
+            }
+            
+        }
+        echo $this->layout_after_login($title,$page_name,$data);
+    }
+    /* edit image */
+    public function edit_image($id)
+    {
+        $data['moduleDetail']       = $this->data;       
+        $title                          = 'Image Update';
+        $page_name                      = 'product/edit_image';        
+        $conditions                 = array('image_id' => $id);
+        $data['row']                = $this->data['model']->find_data('product_others_image', 'row', $conditions);                  
 
-    //     echo $this->layout_after_login($title, $page_name, $data);
-    // }
+        if ($this->request->getMethod() == 'post') {
+            $postData = $this->request->getPost();                                                                             
+                    /* others image */
+                     $imageFile = $this->request->getFile('others_image');                                                        
+                        $uploadArray = $this->common_model->upload_single_file('others_image', $imageFile->getClientName(), 'product', 'image');
+                        if (!$uploadArray['status']) {                        
+                            $errorMessage = $uploadArray['message'];
+                            return redirect()->back()->withInput()->with('error_message', $errorMessage);
+                        } else {
+                            $image = $uploadArray['newFilename'];
+                        }                                                              
+                    /* others image */                               
+                    
+                            $fields   = [
+                                                'product_id'  => $data['row']->product_id,
+                                               'image_file'   => $image,
+                            ];   
+                        //    pr($fields);
+                           $imageId = $this->data['model']->save_data('product_others_image', $fields, $id, 'image_id');
+                        //    echo $imageId ; die;
+                                                                                                                                           
+                    
+                    return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Update successfully');                           
+           
+        }
+        echo $this->layout_after_login($title, $page_name, $data);
+    }
+    /* edit image */
+    /* delete image */
+   public function delete_image($id)
+   {       
+       $fields = [
+           'published'             => 3
+       ];
+       $imageId = $this->data['model']->save_data('product_others_image', $fields, $id, 'image_id');
+       return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Image Deleted Successfully !!!');
+   }
+   /* delete image */
 }

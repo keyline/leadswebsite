@@ -1,3 +1,6 @@
+<?php
+$db = \Config\Database::connect();
+?>
 <div class="pcoded-content">
     <div class="page-header">
         <div class="page-block">
@@ -41,8 +44,7 @@
                                 <tr>
                                     <th>#</th>                                   
                                     <th>Product Title</th>                                    
-                                    <th>Product Image</th>
-                                    <th>Product Description</th>
+                                    <th>Product Image</th>                                    
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -51,25 +53,27 @@
                                 ?>
                                 <tr>
                                     <td><?php echo $i++; ?></td>                                                                                                        
-                                    <td><?php echo $row->product_title; ?></td>                                    
+                                    <td><?php 
+                                    $productID = $row->product_id;
+                                    $sql = "SELECT * FROM `product` WHERE `id` = '$productID'";
+                                    // $query = $db->query($sql, [$deprt_id]);
+                                    $products = $db->query($sql)->getResult();
+                                    foreach($products as $product){ 
+                                    echo $product->product_title; } ?></td>                                    
                                     <td>
-                                        <?php if($row->product_image!='') { ?>
-                                          <img src="<?=base_url('/uploads/product/'.$row->product_image)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
+                                        <?php if($row->image_file!='') { ?>
+                                          <img src="<?=base_url('/uploads/product/'.$row->image_file)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
                                         <?php } ?>                                        
-                                    </td>
-                                    <td><?php echo $row->air_flow; ?></td>
-                                    
-                                    <td>
-                                        <?php $primary_key = $moduleDetail['primary_key']; ?>
-                                        <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/edit/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-primary" title="Edit"><i class="feather icon-edit"></i></a>
-                                        <!-- <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/image_list/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-primary" title="Show Other Images"><i class="feather icon-edit"></i>Show Other Images</a> -->
+                                    </td>                                                                    
+                                    <td>                                        
+                                        <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/edit/<?php echo $row->image_id; ?>" class="btn  btn-icon btn-primary" title="Edit"><i class="feather icon-edit"></i></a>                                        
                                         
-                                        <button type="button" class="btn btn-danger" onclick="sweet_multiple('<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/confirm_delete/<?php echo $row->$primary_key; ?>');"><i class="feather icon-trash"></i></button>
+                                        <button type="button" class="btn btn-danger" onclick="sweet_multiple('<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/confirm_delete/<?php echo $row->image_id; ?>');"><i class="feather icon-trash"></i></button>
 
                                         <?php if($row->published) { ?>
-                                            <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/deactive/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-success" title="Active"><i class="feather icon-check-circle"></i></a>
+                                            <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/deactive/<?php echo $row->image_id; ?>" class="btn  btn-icon btn-success" title="Active"><i class="feather icon-check-circle"></i></a>
                                         <?php } else { ?>
-                                            <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/active/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-warning" title="Deactive"><i class="feather icon-slash"></i></a>
+                                            <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/active/<?php echo $row->image_id; ?>" class="btn  btn-icon btn-warning" title="Deactive"><i class="feather icon-slash"></i></a>
                                         <?php } ?>
                                     </td>
                                 </tr>                                    
