@@ -79,20 +79,6 @@
 
 <?= $this->section('scripts') ?>
 <script>
-    // function onSubmit(token) {
-    //     // document.getElementById("recaptcha_token").value = token;
-    //     // document.getElementsByClassName('enquiry_form')[0].submit();
-
-    //     Swal.fire({
-    //         position: "center",
-    //         icon: "success",
-    //         title: "Data saved",
-    //         showConfirmButton: false,
-    //         timer: 1500
-    //     });
-    // }
-
-    // ______________________________________________________
 
     // Handle reCAPTCHA callback
     function onSubmit(token) {

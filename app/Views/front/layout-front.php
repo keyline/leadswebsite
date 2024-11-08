@@ -102,7 +102,7 @@
             loop: true,
             autoHeight: true,
             slidesPerView: 1,
-            autoplay: true,
+            autoplay: false,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
@@ -248,25 +248,26 @@
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <script>
-        jQuery(function() {
+        // jQuery(function() {
 
-            jQuery('.popup-youtube, .popup-vimeo').magnificPopup({
+        //     jQuery('.popup-youtube, .popup-vimeo').magnificPopup({
 
-                disableOn: 700,
+        //         disableOn: 700,
 
-                type: 'iframe',
+        //         type: 'iframe',
 
-                mainClass: 'mfp-fade',
+        //         mainClass: 'mfp-fade',
 
-                removalDelay: 160,
+        //         removalDelay: 160,
 
-                preloader: false,
+        //         preloader: false,
 
-                fixedContentPos: false
+        //         fixedContentPos: false
 
-            });
+        //     });
 
-        });
+        // });
+        
     </script>
 
     <script type="text/javascript" src="<?= base_url('material/assets/js/jquery.captcha.basic.min.js') ?>"></script>
