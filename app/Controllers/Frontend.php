@@ -223,7 +223,6 @@ class Frontend extends BaseController
 
 
     public function about()
-
     {
 
         $title                      = 'Home';

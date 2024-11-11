@@ -28,6 +28,15 @@
                 </ul>
             </li>
 
+            <!-- Media -->
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Media</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/Manage_video_media/') ?>">Video Media</a></li>
+                    <li><a href="<?= base_url('admin/Manage_image_media') ?>">Image Media</a></li>
+                </ul>
+            </li>
+
             <!-- Testimonial -->
             <li class="nav-item"><a href="<?php echo base_url('admin/manage_testimonial'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Testimonial</span></a></li>
 

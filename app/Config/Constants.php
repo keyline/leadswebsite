@@ -87,12 +87,12 @@ define('SECRET_KEY', '6LcrV24qAAAAAOIAhAdBL4W4H33lis3VRnsZXOUz');
 
 //mail
 
-define('CLIENT_MAIL', 'shubhasinha77@gmail.com');// sudip.keyline@gmail.com   // old:'enquiry@victoriatravels.net' 'snehasish@victoriatravels.net'    #'website.victoriatravels@gmail.com'
+define('CLIENT_MAIL', 'shubhasinha77@gmail.com'); // sudip.keyline@gmail.com   // old:'enquiry@victoriatravels.net' 'snehasish@victoriatravels.net'    #'website.victoriatravels@gmail.com'
 define('CLIENT_CC_MAIL', 'system@keylines.net');
 define('SET_FROM', 'no-replay@victoriatravels.com');
 define('SET_NAME', 'Victoria Travels');
 
-define('SMTP_HOST', 'smtp-relay.brevo.com'); 
+define('SMTP_HOST', 'smtp-relay.brevo.com');
 define('SMTP_USER', 'victoriatravelskdpl@gmail.com');
 define('SMTP_PASS', 'My5XaC1cn2EpP8Is');
 define('SMTP_PORT', 587);
@@ -120,10 +120,22 @@ $configs = [
 ];
 
 // Determine the current user (this can be done based on session, environment variable, etc.)
-$currentUser = 'live'; // For example, 'localhost' is logged in
+$currentUser = 'localhost'; // For example, 'localhost' is logged in
 
 // Set configuration based on the current user
 define('BASEURL', $configs[$currentUser]['BASEURL']);
 define('USERNAME', $configs[$currentUser]['USERNAME']);
 define('PASSWORD', $configs[$currentUser]['PASSWORD']);
 define('DATABASE', $configs[$currentUser]['DATABASE']);
+
+
+
+// media_categories
+
+define('MEDIA_CATEGORIES', [
+    1 => "Electronic Media",
+    2 => "Outdoor Media",
+    3 => "Print Media",
+    4 => "Press Release",
+    5 => "AGM"
+]);

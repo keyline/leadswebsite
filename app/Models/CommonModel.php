@@ -64,6 +64,9 @@ class CommonModel extends Model
         if ($limit != 0) $builder->limit($limit, $offset);
         $query = $builder->get();
 
+        // Debugging: Get the last executed query
+        // die($this->db->getLastQuery()); // Output the query
+
         switch ($return_type) {
             case 'array':
             case '':
@@ -607,5 +610,4 @@ class CommonModel extends Model
     {
         return  $this->db->table($table)->where($field, $id)->delete();
     }
-    
 }
