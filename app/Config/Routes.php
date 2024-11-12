@@ -70,32 +70,15 @@ $routes->get('api/load-blogs', 'Frontend::loadMoreBlog');
 
 $routes->get('/blog-details/(:any)', 'Frontend::blog_details/$1');
 
-$routes->get('/allied-services', 'Frontend::allied_services');
+$routes->get('/media/(:any)', 'Frontend::media/$1');
 
-$routes->get('/corporate-travel', 'Frontend::corporate_travel');
+$routes->get('/contact', 'Frontend::contact_us');
 
-$routes->get('/holiday-package', 'Frontend::holiday_package');
-
-$routes->get('/luxury', 'Frontend::luxury');
-
-$routes->get('/mice', 'Frontend::mice');
-
-// $routes->get('/contact-us', 'Frontend::contact_us');
-
-// $routes->post('contact-us', 'Frontend::contact_us');
-
-$routes->post('api/contact-us', 'Frontend::contact_us');
+// $routes->post('api/contact-us', 'Frontend::contact_us');
 
 $routes->get('privacypolicy', 'Frontend::privacypolicy');
 
 
-$routes->get('/promos-details/(:any)', 'Frontend::promos_details/$1');
-
-$routes->get('/promos', 'Frontend::promos');
-
-$routes->get('/social-functions', 'Frontend::social_functions');
-
-$routes->post('save-enquire', 'Frontend::saveEnquire');
 
 $routes->get('/mail', 'Frontend::mailTest');
 

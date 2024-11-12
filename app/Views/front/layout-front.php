@@ -64,6 +64,7 @@
     <!-- <script defer type="text/javascript" src="assets/js/script.js"></script> -->
     <script src="<?= base_url('public/assets/') ?>/owl/owl-min.js"></script>
     <script src="<?= base_url('public/assets/') ?>/js/menumaker.js"></script>
+    <script src="<?= base_url('public/assets/') ?>/js/jquery.viewbox.min.js"></script>
     <script src="https://www.jquery-az.com/jquery/js/sticky-sidebar/sticky-sidebar.js"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -246,6 +247,8 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/magnific-popup.css" />
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+   
 
     <script>
         // jQuery(function() {

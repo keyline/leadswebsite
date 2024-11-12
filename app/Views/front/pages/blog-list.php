@@ -51,7 +51,7 @@
                                         <span class="ps-2"><?= (new DateTime($blog->created_at))->format('M j, Y') ?></span> | <span class="ps-2"><?= $blog->post_by ?></span> | <span class="pe-2"><?= (new DateTime($blog->created_at))->format('h.m A') ?></span>
                                     </p>
                                     <h3><?= $blog->title ?></h3>
-                                    <p class="shortdes"><?= truncateText($blog->description); ?></p>
+                                    <p class="shortdes"><?= truncateText($blog->short_description); ?></p>
                                     <a href="<?php echo base_url('blog-details/' . $blog->slug); ?>">Read More</a>
                                 </div>
                             </a>

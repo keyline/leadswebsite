@@ -305,7 +305,7 @@ body.abrido a#burger {
 
 /*SMALL MOBILE VERSION*/
 @media screen and (max-width: 480px) {
-ul.head_social{display: none;}    
+ul.head_social{display: flex;}    
 .home_banner_slider_holder3 .home_slider_info .home_silder_imginner .home_banner_slider_product {
     max-width: 50%;
 }

@@ -56,6 +56,16 @@
             <!-- Testimonial -->
             <li class="nav-item"><a href="<?php echo base_url('admin/manage_testimonial'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Testimonial</span></a></li>
 
+            <!-- download -->
+            <li class="nav-item"><a href="<?php echo base_url('admin/Manage_download'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Download</span></a></li>
+
+            <!-- <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext"></span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/Manage_video_media/') ?>">E-catalog Download</a></li>
+                    <li><a href="<?= base_url('admin/Manage_image_media') ?>">Price List</a></li>
+                </ul>
+            </li> -->
 
 
             <!-- <li class="nav-item"><a href="<?php echo base_url('admin/manage_footsteps'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-command"></i></span><span class="pcoded-mtext">Footsteps</span></a></li> -->

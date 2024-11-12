@@ -86,12 +86,12 @@
         <div class="col-md-12">
             <div class="foot_redline"></div>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <div class="col-lg-12 col-md-12">
             <div class="footercopytext">Copyright © <span style="color:#ed1c24;">Leads Overseas</span> 2024. All Rights Reserved.</div>
         </div>
-        <div class="col-lg-6 col-md-6">
+        <!-- <div class="col-lg-6 col-md-6">
             <div class="footercopytext footdesign">Designed & Developed by <a href="https://keylines.net/" target="_blank" class="uppercase" style="color:#a1a1a1;text-decoration: none;">Keyline</a></div>
-        </div>
+        </div> -->
     </div>
 </div>
 

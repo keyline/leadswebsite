@@ -31,58 +31,55 @@
                         </div>
                     <?php } ?>
                     <h5>
-                        <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/add/<?= $category ?>" class="btn btn-success">Add <?php echo $moduleDetail['module']; ?></a>
+                        <!-- <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/add" class="btn btn-success">Add <?php echo $moduleDetail['module']; ?></a> -->
                     </h5>
                 </div>
                 <div class="card-body">
                     <form action="" method="post" enctype="multipart/form-data">
                         <div class="dt-responsive table-responsive">
-                            <table id="simpletable" class="table table-striped table-bordered nowrap">
+                            <table id="simpletable" class="table table-striped table-bordered wrap">
                                 <thead>
                                     <tr>
-                                        <th class="admin-select-none"><a href="javascript:selectToggle(selete);" id="show"
-                                                onclick="checkALL();">Select All</a> | <a
-                                                href="javascript:selectToggle(unselect);" id="hide"
-                                                onclick="unCheckALL();">Deselect All</a>
-                                        </th>
+                                   
                                         <th>#</th>
-
-                                        <th>Video</th>
+                                        <th>Name</th>
+                                       
+                                  
                                         <th>Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <?php
-                                    if ($rows) {
+                                    <?php if ($rows) {
                                         $i = 1;
-                                        foreach ($rows as $row) {
-                                          
-                                    ?>
+                                        foreach ($rows as $row) { ?>
                                             <tr>
-                                                <td>
-                                                    <input type='checkbox' name='draw[]' value="<?php echo $row->id ?>" id="required-checkbox1" onClick="CheckIfChecked()">
-                                                </td>
+                                                <!-- <td>
+                                        <input type='checkbox' name='draw[]' value="<?php echo $row->id ?>" id="required-checkbox1" onClick="CheckIfChecked()">
+                                        </td> -->
                                                 <td><?php echo $i++; ?></td>
-
-                                                <td>
-                                                    <?= $row->video_type == 0 ? 'Youtube video' : 'Video file' ?>
-
-                                                    <?php /* if ($row->file != '') { ?>
-                                                        <img src="<?= base_url('/uploads/media/' . $row->file) ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
+                                                <td><?php echo $row->name; ?></td>
+                                              
+                                              
+                                                <!-- <td>
+                                                    <?php /* if ($row->image != '') { ?>
+                                                        <img src="<?= base_url('/uploads/testimonials/' . $row->image) ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
                                                     <?php } */ ?>
-                                                </td>
-
+                                                </td> -->
                                                 <td>
                                                     <?php $primary_key = $moduleDetail['primary_key']; ?>
                                                     <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/edit/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-primary" title="Edit"><i class="feather icon-edit"></i></a>
 
-                                                    <button type="button" class="btn btn-danger" onclick="sweet_multiple('<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/confirm_delete/<?php echo $row->$primary_key; ?>');"><i class="feather icon-trash"></i></button>
+                                                    <!-- <button type="button" class="btn btn-danger" onclick="sweet_multiple('<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/confirm_delete/<?php echo $row->$primary_key; ?>');"><i class="feather icon-trash"></i></button> -->
 
-                                                    <?php if ($row->published) { ?>
+                                                    <?php
+                                                    /*
+                                                    if ($row->status) { ?>
                                                         <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/deactive/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-success" title="Active"><i class="feather icon-check-circle"></i></a>
                                                     <?php } else { ?>
                                                         <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/active/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-warning" title="Deactive"><i class="feather icon-slash"></i></a>
-                                                    <?php } ?>
+                                                    <?php } 
+                                                    
+                                                    */?>
                                                 </td>
                                             </tr>
                                     <?php }

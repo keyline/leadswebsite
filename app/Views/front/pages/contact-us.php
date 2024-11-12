@@ -1,334 +1,117 @@
-    <!-- about banner start -->
-
-    <section class="contactus-banner">
-
-    	<div class="container">
-
-    		<div class="row">
-
-    			<h1>Contact us</h1>
-
-    			<div class="breadcrumb-box">
-
-    				<nav aria-label="breadcrumb">
-
-    					<ol class="breadcrumb">
-
-    						<li class="breadcrumb-item"><a href="<?= base_url('') ?>">Home</a></li>
-
-    						<li class="breadcrumb-item active" aria-current="page">Contact Us</li>
-
-    					</ol>
-
-    				</nav>
-
-    			</div>
-
-    		</div>
-
-    	</div>
-
-    </section>
-
-    <!-- about banner end -->
-
-
-
-    <!-- our mission section start -->
-
-    <section class="contacttext-section">
-
-
-
-    	<div class="container">
-
-    		<div class="row">
-
-    			<div class="col-md-12 text-center">
-
-    				<div class="heading-box-2 " data-aos="fade-left" data-aos-duration="1500">
-
-    					<h3 class="sub-heading sub-heading-2">Reach Out <span class="fontnormal">and Connect</span></h3>
-
-    				</div>
-
-    				<p>As a full-service travel agency, we offer a comprehensive range of services to cater to all your travel needs. </p>
-
-    				<p>From designing bespoke itineraries and providing expert travel advice to handling visa assistance, travel insurance, accommodation bookings, transportation arrangements, and more, our dedicated team is committed to making your travel experience seamless and hassle-free.
-
-    				</p>
-
-
-
-    				<div class="contactform_inner">
-
-    					<img class="contactformimg" src="<?= base_url('material/front/assets/img') ?>/modal-logo.webp" alt="modal-logo">
-
-    					<div class="contactmodal-body">
-
-
-
-
-
-    						<?php if (session()->has('success_mag')) : ?>
-
-    							<div class="alert alert-success">
-
-    								<?= session('success_mag') ?>
-
-    							</div>
-
-    						<?php
-
-								session()->remove('success_mag');
-
-							endif; ?>
-
-
-
-    						<?php if (session()->has('error_msg')) : ?>
-
-    							<div class="alert alert-danger">
-
-    								<?= session('error_msg') ?>
-
-    							</div>
-
-    						<?php
-
-								session()->remove('error_msg');
-
-							endif; ?>
-
-
-
-
-
-
-
-    						<form id="saveFrm" action="<?= base_url('contact-us') ?>" method="post">
-
-    							<div class="row">
-
-    								<div class="col-lg-6">
-
-    									<div class="form-group">
-
-    										<label class="form-label">First Name*</label>
-
-    										<input type="text" required pattern="[A-Za-z]+" name="fname" class="form-control">
-
-    									</div>
-
-
-
-    								</div>
-
-    								<div class="col-lg-6">
-
-    									<div class="form-group">
-
-    										<label class="form-label">Last Name*</label>
-
-    										<input type="text" required pattern="[A-Za-z]+" name="lname" class="form-control">
-
-    									</div>
-
-    								</div>
-
-    							</div>
-
-    							<div class="row">
-
-    								<div class="col-lg-6">
-
-    									<div class="form-group">
-
-    										<label class="form-label">Phone*</label>
-
-    										<input type="tel" pattern="[0-9]{10}" required name="phone" class="form-control">
-
-    									</div>
-
-    								</div>
-
-    								<div class="col-lg-6">
-
-    									<div class="form-group">
-
-    										<label class="form-label">Email*</label>
-
-    										<input type="email" required name="email" class="form-control">
-
-    									</div>
-
-    								</div>
-
-    							</div>
-
-    							<div class="row">
-
-    								<div class="col-lg-6">
-
-    									<div class="form-group">
-
-    										<label class="form-label">Preferred Destination*</label>
-
-    										<input type="text" required pattern="[A-Za-z]+" name="destination" class="form-control">
-
-    									</div>
-
-    								</div>
-
-    								<div class="col-lg-6">
-
-    									<div class="form-group">
-
-    										<label class="form-label">Preferred month of travel*</label>
-
-    										<select name="month" required id="month" class="form-control">
-
-    											<option value="1">January</option>
-
-    											<option value="2">February</option>
-
-    											<option value="3">March</option>
-
-    											<option value="4">April</option>
-
-    											<option value="5">May</option>
-
-    											<option value="6">June</option>
-
-    											<option value="7">July</option>
-
-    											<option value="8">August</option>
-
-    											<option value="9">September</option>
-
-    											<option value="10">October</option>
-
-    											<option value="11">November</option>
-
-    											<option value="12">December</option>
-
-    										</select>
-
-    									</div>
-
-    								</div>
-
-    							</div>
-
-    							<div class="row">
-
-    								<div class="col-lg-6">
-
-    									<div class="form-group">
-
-    										<label class="form-label">No. of pax</label>
-
-    										<input type="text" oninput="this.value = this.value.replace(/[^0-9]/g, '')" maxlength=2 name="pax" required class="form-control">
-
-    									</div>
-
-    								</div>
-
-
-
-    								<div class="col-lg-6">
-
-    									<div class="form-group">
-
-    										<label class="form-label">Type of Holidays*</label>
-
-    										<select name="vacation_type" required id="vacation_type" class="form-control">
-
-    											<?php foreach (HOLIDAY_TYPES as $key =>  $type) : ?>
-
-    												<option value="<?= $key ?>"><?= $type ?></option>
-
-    											<?php endforeach; ?>
-
-    										</select>
-
-    									</div>
-
-    								</div>
-
-    							</div>
-
-    							<div class="row">
-
-    								<div class="col-md-12">
-
-    									<div class="btn-box">
-
-    										<input type="hidden" id="set_pkg_id" name="pkg_id" value="0">
-
-    										<input type="hidden" name="recaptcha_token" id="recaptcha_token">
-
-
-
-    										<button type="submit" class="btn primary-btn g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit'>Submit</button>
-
-
-
-
-
-
-
-
-
-    									</div>
-
-    								</div>
-
-    							</div>
-
-    						</form>
-
-    					</div>
-
-    				</div>
-
-    			</div>
-
-    		</div>
-
-    	</div>
-
-    	<img src="<?= base_url('material/front/assets/img') ?>/contact_passport.jpg" alt="contact_passport" class="img-fluid contact-left d-none d-lg-block fade-up">
-
-    	<img src="<?= base_url('material/front/assets/img') ?>/contact_glass.jpg" alt="contact_glass" class="img-fluid contact-right d-none d-lg-block fade-up">
-
-    </section>
-
-    <!-- our mission section end -->
-
-
-
-
-
-
-
-    <script src="https://www.google.com/recaptcha/api.js"></script>
-
-
-
-    <script>
-    	function onSubmit(token) {
-
-    		document.getElementById("recaptcha_token").value = token;
-
-    		// $("#recaptcha_token").value(token);
-
-    		$('#saveFrm').submit();
-
-    	}
-
-
-		
-
-
-    </script>
+<!-- inner page banner start -->
+<section class="inner_banner inner_floting_box_banner">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<div class="inner_floting_box">
+					<div class="about_more_box">
+						<div class="mission_tabs">
+							<h4>Contact</h4>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- inner page banner end -->
+<!-- mission section start -->
+<section class="contact_section">
+	<div class="container">
+		<div class="row justify-content-center">
+			<div class="col-md-12">
+				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58916.47387804551!2d88.36018915820313!3d22.643361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8a1362e4125df%3A0x5c4bc4b5cd9f4737!2sLEADS%20OVERSEAS%20PVT%20LTD%20-%20MADHYAMGRAM%2C%20KOLKATA!5e0!3m2!1sen!2sin!4v1730718239387!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+			</div>
+			<div class="col-md-6">
+				<div class="contact_innerbox">
+					<div class="cont_title">Head Office & Warehouse</div>
+					<div class="cont_infoadd">
+						<div class="cont_info_item">
+							<div class="cont_it_icon"><i class="fa-solid fa-map-pin"></i></div>
+							<div class="cont_in_text"><strong>Address :</strong><br> <?= $site_setting->site_address ?> </div>
+						</div>
+						<div class="cont_info_item">
+							<div class="cont_it_icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+							<div class="cont_in_text">
+								<!-- <a href="tel:">+91 95640 14111</a>, <a href="tel:">+91 94340 56065</a> -->
+								<?php if (count($phone_numbers)) {
+									$totalNumbers = count($phone_numbers);
+									foreach ($phone_numbers as $index => $number) { ?>
+										<a href="tel:"> <?= $number ?> </a>
+								<?php
+										if ($index < $totalNumbers - 1) {
+											echo ', '; // Add comma if it's not the last number
+										}
+									}
+								} ?>
+							</div>
+						</div>
+						<div class="cont_info_item">
+							<div class="cont_it_icon"><i class="fa-solid fa-globe"></i></div>
+							<div class="cont_in_text"><a href="#"><?= $site_setting->site_url ?></a></div>
+						</div>
+						<div class="cont_info_item">
+							<div class="cont_it_icon"><i class="fa-solid fa-envelope"></i></div>
+							<div class="cont_in_text">
+								<!-- <a href="#">leadsindia.net@gmail.com</a>, <a href="#">info@leadsindia.net</a> -->
+								<?php if (count($admin_mails)) {
+									$totalNumbers = count($admin_mails);
+									foreach ($admin_mails as $index => $mail) { ?>
+										<a href="mailto:"> <?= $mail ?> </a>
+								<?php
+										if ($index < $totalNumbers - 1) {
+											echo ', '; // Add comma if it's not the last mail
+										}
+									}
+								} ?>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div class="col-md-6">
+				<div class="contact_innerbox">
+					<div class="cont_title">Registered Office</div>
+					<div class="cont_infoadd">
+						<div class="cont_info_item">
+							<div class="cont_it_icon"><i class="fa-solid fa-map-pin"></i></div>
+							<div class="cont_in_text"><strong>Address :</strong><br><?= $site_setting->registered_address ?></div>
+						</div>
+						<div class="cont_info_item">
+							<div class="cont_it_icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
+							<div class="cont_in_text">
+								<!-- <a href="tel:">+91 95640 14111</a> -->
+								<a href="tel:"><?= $site_setting->office_no ?></a>
+							</div>
+						</div>
+
+						<div class="cont_info_item">
+							<div class="cont_it_icon"><i class="fa-solid fa-envelope"></i></div>
+							<div class="cont_in_text"><strong>Please write us for any Suggestion / complains at :</strong><br>
+								<!-- <a href="#">customerservice@leadsindia.net</a> -->
+								<a href="#"><?=$site_setting->service_email?></a>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+
+			<div class="col-md-12">
+				<a class="cont_btn" href="#home_enquiry">SEND ENQUIRY SERVICE REQUEST</a>
+			</div>
+		</div>
+	</div>
+</section>
+<!-- mission section end -->
+
+<!-- our clients start -->
+<?= $clientbox ?>
+<!--our clients  end -->
+
+<!-- feature icon section start -->
+<?= $feature ?>
+<!-- feature icon section end -->
+
+<!-- home enquiry start -->
+<?= $enquiry ?>
+<!-- home enquiry end -->

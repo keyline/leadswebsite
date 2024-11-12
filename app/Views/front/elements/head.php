@@ -53,6 +53,8 @@ endforeach;
 <link rel="stylesheet" href="<?= base_url('public/assets/css/') ?>/custom.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/responsive.css">
 
+<link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/viewbox.css">
+
 <!-- <link rel="canonical" href="https://victoriatravels.com<?php echo ($_SERVER['REQUEST_URI']); ?>"> -->
 
 <!-- Google Tag Manager -->

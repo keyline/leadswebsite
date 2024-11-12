@@ -121,7 +121,7 @@
                                                   <span class="ps-2"><?= (new DateTime($relatedBlog->created_at))->format('M j, Y') ?></span> | <span class="pe-2"><?= $relatedBlog->category_name  ?></span> | <span class="ps-2"><?= $relatedBlog->post_by ?></span>
                                               </p>
                                               <h3><?= $relatedBlog->title ?></h3>
-                                              <p class="shortdes"> <?= truncateText($relatedBlog->description); ?> <span class="u-text-primary">read more</span></p>
+                                              <p class="shortdes"> <?= truncateText($relatedBlog->short_description); ?> <span class="u-text-primary">read more</span></p>
                                           </div>
                                       </a>
                                   </div>

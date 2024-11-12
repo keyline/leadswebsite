@@ -21,14 +21,14 @@
         <div class="full_menu_flex">
             <div class="fullsreen_menu">
                 <ul>
-                    <li><a href="<?=base_url()?>">Home</a></li>
+                    <li><a href="<?= base_url() ?>">Home</a></li>
                     <li><a href="#">Produst Registration</a></li>
                     <li class="deskrewad_img"><img src="<?= base_url('public/assets/') ?>/img/desktop_rewardoffer.png" alt="logo"></li>
                 </ul>
             </div>
             <div class="fullsreen_menu">
                 <ul>
-                    <li><a href="<?=base_url()?>/about">About Us</a>
+                    <li><a href="<?= base_url() ?>/about">About Us</a>
                         <ul>
                             <li><a href="#">Mission & Vision</a></li>
                             <li><a href="#">Our Presence</a></li>
@@ -43,13 +43,18 @@
                             <li><a href="#">Water Treatment Plant</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Media</a>
+                    <li><a href="" onclick="return false;">Media</a>
                         <ul>
-                            <li><a href="#">Electronic Media</a></li>
+                            <?php foreach (MEDIA_CATEGORIES as $key => $media) {
+                                $mediaSlug = strtolower(explode(" ", $media)[0]);
+                            ?>
+                                <li><a href="<?= base_url() ?>/media/<?= $mediaSlug ?>"><?= $media ?></a></li>
+                            <?php }  ?>
+                            <!-- <li><a href="#">Electronic Media</a></li>
                             <li><a href="#">Outdoor Media</a></li>
                             <li><a href="#">Print Media</a></li>
                             <li><a href="#">Press Release</a></li>
-                            <li><a href="#">AGM</a></li>
+                            <li><a href="#">AGM</a></li> -->
                         </ul>
                     </li>
                 </ul>
@@ -63,12 +68,12 @@
                         </ul>
                     </li>
                     <li><a href="#">Become A Distributor</a></li>
-                    <li><a href="<?=base_url()?>/blog">Blog</a></li>
+                    <li><a href="<?= base_url() ?>/blog">Blog</a></li>
                     <li><a href="#">Reach Us</a>
                         <ul>
                             <li><a href="#">Enquiry & Service Request</a></li>
                             <li><a href="#">Career</a></li>
-                            <li><a href="#">Contact Us</a></li>
+                            <li><a href="<?=base_url()?>/contact">Contact Us</a></li>
                         </ul>
                     </li>
                     <li><a href="#">After Sales Sevices</a>

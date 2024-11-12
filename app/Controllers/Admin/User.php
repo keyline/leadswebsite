@@ -131,12 +131,16 @@ class User extends BaseController {
 
             $postData = array(
                     'site_name'=>$this->request->getPost('site_name'),
+                    'site_url'=>$this->request->getPost('site_url'),
                     // 'site_description'=>$this->request->getPost('site_description'),
                     // 'site_video'=>$this->request->getPost('site_video'),
                     'admin_email'=>$this->request->getPost('admin_email'),
                     'site_address'=>$this->request->getPost('site_address'),
+                    'registered_address'=>$this->request->getPost('registered_address'),
+                    'service_email'=>$this->request->getPost('service_email'),
                     // 'site_phone'=>$this->request->getPost('site_phone'),
                     'whatsapp_no'=>$this->request->getPost('whatsapp_no'),
+                    'office_no'=>$this->request->getPost('office_no'),
                     // 'site_state_code'=>$this->request->getPost('site_state_code'),
                     // 'site_gstn'=>$this->request->getPost('site_gstn'),
                     // 'site_pan'=>$this->request->getPost('site_pan'),

@@ -20,9 +20,10 @@ class Manage_video_media extends BaseController
         $this->data = array(
             'model'         => $model,
             'session'       => $session,
-            'module'        => 'Video Media',
+            'module'        => 'Media',
             'controller'    => 'manage_video_media',
-            'table_name'    => 'sms_client',
+            'table_name'    => 'media',
+            'sub_table_name' => 'media_file',
             'primary_key'   => 'id'
         );
     }
@@ -109,9 +110,9 @@ class Manage_video_media extends BaseController
         $data['rows']               = $this->getMediaFiles($data['category']);
 
         if ($this->request->getMethod() == 'post') {
-            // pr($this->request->getPost());
+
             $bulkData   = $this->request->getPost();
-            // $bulkcount      =count($bulkData['draw']);
+
             for ($j = 0; $j < count($bulkData['draw']); $j++) {
                 $id = $bulkData['draw'][$j];
                 $postData = array(
@@ -127,91 +128,212 @@ class Manage_video_media extends BaseController
         echo $this->layout_after_login($title, $page_name, $data);
     }
 
-    public function add()
+
+
+
+    public function add($category)
     {
-        $data['moduleDetail']       = $this->data;
-        $data['action']             = 'Add';
-        $title                      = $data['action'] . ' ' . $this->data['module'];
-        $page_name                  = 'media/video-add-edit';
-        $data['row'] = [];
-        if ($this->request->getMethod() == 'post') {
-            /* image upload */
-            $file = $this->request->getFile('client_logo');
-            $originalName = $file->getClientName();
-            $fieldName = 'client_logo';
-            if ($originalName != '') {
-                $upload_array = $this->common_model->upload_single_file($fieldName, $originalName, 'client', 'image');
-                if ($upload_array['status']) {
-                    $client_logo = $upload_array['newFilename'];
+        $data = [
+            'category'       => htmlspecialchars($category, ENT_QUOTES, 'UTF-8'),
+            'moduleDetail'   => $this->data,
+            'action'         => 'Add',
+            'row'            => [],
+        ];
+        $title      = $data['action'] . ' ' . $this->data['module'];
+        $page_name  = 'media/video-add-edit';
+
+        if ($this->request->getMethod() === 'post') {
+            $isVideoUpload = isset($_POST['videoUpload']);
+
+            $postData = [
+                'category_id' => $data['category'],
+                'type'        => 2,
+                'video_type'  => $isVideoUpload,
+            ];
+
+            // Handle video upload if applicable
+            if ($isVideoUpload) {
+                $file = $this->request->getFile('client_logo');
+                if ($file && $file->isValid()) {
+                    $uploadArray = $this->common_model->upload_video_file('client_logo', $file->getClientName(), 'media');
+
+                    if ($uploadArray['status']) {
+                        $postData   = [
+                            'category_id'              => $data['category'],
+                            'type'                     => 2,
+                            'video_type'               => $isVideoUpload,
+                            'caption'                  => $this->request->getPost('caption')
+                        ];
+
+                        $client_logo = $uploadArray['newFilename'];
+                    } else {
+                        return $this->redirectWithError($uploadArray['message']);
+                    }
                 } else {
-                    $this->session->setFlashdata('error_message', $upload_array['message']);
-                    return redirect()->to(current_url());
+                    return $this->redirectWithError('Please upload a valid video file.');
                 }
-            } else {
-                $this->session->setFlashdata('error_message', 'Please upload an image');
-                //return redirect()->to('/admin/'.$this->data['controller'].'/add');
-                return redirect()->to(current_url());
+            } else if (!$this->matchYoutubeUrl($this->request->getPost('url'))) {
+                return $this->redirectWithError('Please provide a valid youtube link');
             }
-            /* image upload */
-            $postData   = array(
-                'client_type'              => null, //$this->request->getPost('client_type'),
-                'client_name'              => $this->request->getPost('client_name'),
-                'client_logo'              => $client_logo,
-            );
-            //pr($postData, false);
-            $record     = $this->data['model']->save_data($this->data['table_name'], $postData, '', $this->data['primary_key']);
-            // $db = \Config\Database::connect();
-            // $query = $db->getLastQuery();
-            // echo (string)$query;
-            // die;
-            $this->session->setFlashdata('success_message', $this->data['module'] . ' inserted successfully');
-            return redirect()->to('/admin/' . $this->data['controller']);
+
+            // Save main record
+            $record = $this->data['model']->save_data($this->data['table_name'], $postData, '', $this->data['primary_key']);
+
+            if ($record) {
+                $mediaData = ['media_id' => $record];
+                if ($isVideoUpload) {
+                    $mediaData['file'] = $client_logo;
+                } else {
+                    $mediaData['youtube_link'] = $this->matchYoutubeUrl($this->request->getPost('url'));
+                }
+
+                // Save media data and set success message
+                if ($this->data['model']->save_data($this->data['sub_table_name'], $mediaData, '', $this->data['primary_key'])) {
+                    $this->session->setFlashdata('success_message', "{$this->data['module']} inserted successfully.");
+                }
+            }
+
+            return redirect()->to('/admin/' . $this->data['controller'] . '/list/' . $category);
         }
+
         echo $this->layout_after_login($title, $page_name, $data);
     }
+
+
+    // public function edit($id)
+    // {
+    //     $id                         = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
+    //     $data['moduleDetail']       = $this->data;
+    //     $data['action']             = 'Edit';
+    //     $title                      = $data['action'] . ' ' . $this->data['module'];
+    //     $page_name                  = 'media/video-add-edit';
+    //     $data['row']               = $this->getMediaFiles(0, $id);
+
+    //     if ($this->request->getMethod() == 'post') {
+    //         /* image upload */
+    //         $file = $this->request->getFile('client_logo');
+    //         $originalName = $file->getClientName();
+    //         $fieldName = 'client_logo';
+    //         if ($originalName != '') {
+
+    //             if ($data['row']->client_logo != '') {
+    //                 unlink('uploads/client/' . $data['row']->client_logo);
+    //             }
+
+    //             $upload_array = $this->common_model->upload_single_file($fieldName, $originalName, 'client', 'image');
+    //             if ($upload_array['status']) {
+    //                 $client_logo = $upload_array['newFilename'];
+    //             } else {
+    //                 $this->session->setFlashdata('error_message', $upload_array['message']);
+    //                 return redirect()->to(current_url());
+    //             }
+    //         } else {
+    //             $client_logo = $data['row']->client_logo;
+    //         }
+    //         /* image upload */
+    //         $postData = array(
+    //             'client_type'              => null, //$this->request->getPost('client_type'),
+    //             'client_name'              => $this->request->getPost('client_name'),
+    //             'client_logo'              => $client_logo,
+    //             'updated_at'                => date('Y-m-d h:i:s')
+    //         );
+    //         $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
+    //         $this->session->setFlashdata('success_message', $this->data['module'] . ' updated successfully');
+    //         return redirect()->to('/admin/' . $this->data['controller']);
+    //     }
+    //     echo $this->layout_after_login($title, $page_name, $data);
+    // }
+
+
     public function edit($id)
     {
-        $data['moduleDetail']       = $this->data;
-        $data['action']             = 'Edit';
-        $title                      = $data['action'] . ' ' . $this->data['module'];
-        $page_name                  = 'media/video-add-edit';
-        $conditions                 = array($this->data['primary_key'] => $id);
-        $data['row']                = $this->data['model']->find_data($this->data['table_name'], 'row', $conditions);
+        // Sanitize the input ID
+        $id = htmlspecialchars($id, ENT_QUOTES, 'UTF-8');
 
-        if ($this->request->getMethod() == 'post') {
-            /* image upload */
-            $file = $this->request->getFile('client_logo');
-            $originalName = $file->getClientName();
-            $fieldName = 'client_logo';
-            if ($originalName != '') {
+        // Prepare data for the view
+        $data = [
+            'category'       => '', // This will be fetched from the record later
+            'moduleDetail'   => $this->data,
+            'action'         => 'Edit',
+            'row'            => $this->getMediaFiles(0, $id), // Get the existing record for this ID
+        ];
 
-                if ($data['row']->client_logo != '') {
-                    unlink('uploads/client/' . $data['row']->client_logo);
-                }
+        // Set the title and page name for the view
+        $title = $data['action'] . ' ' . $this->data['module'];
+        $page_name = 'media/video-add-edit';
 
-                $upload_array = $this->common_model->upload_single_file($fieldName, $originalName, 'client', 'image');
-                if ($upload_array['status']) {
-                    $client_logo = $upload_array['newFilename'];
+        // If the request method is POST, handle the form submission
+        if ($this->request->getMethod() === 'post') {
+            $postData = [
+                'update_on' => date('Y-m-d H:i:s')
+            ];
+            // Check if a video is being uploaded
+            $isVideoUpload = isset($_POST['videoUpload']);
+
+            // Handle video upload if applicable
+            if ($isVideoUpload) {
+                $postData['caption'] = $this->request->getPost('caption');
+
+                $file = $this->request->getFile('client_logo');
+                $originalName = $file->getClientName();
+
+                if ($originalName != '') {
+                    // Delete the old video file if it exists
+                    if ($data['row']->file != '') {
+                        unlink('uploads/media/' . $data['row']->file);
+                    }
+
+                    // Upload the new video file
+                    $uploadArray = $this->common_model->upload_video_file('client_logo', $file->getClientName(), 'media');
+                    if ($uploadArray['status']) {
+
+                        $client_logo = $uploadArray['newFilename'];
+                    } else {
+                        return $this->redirectWithError($uploadArray['message']);
+                    }
                 } else {
-                    $this->session->setFlashdata('error_message', $upload_array['message']);
-                    return redirect()->to(current_url());
+                    $client_logo = $data['row']->file;
                 }
             } else {
-                $client_logo = $data['row']->client_logo;
+                // Handle YouTube URL if no video is uploaded
+                if (!$this->matchYoutubeUrl($this->request->getPost('url'))) {
+                    return $this->redirectWithError('Please provide a valid youtube link');
+                }
             }
-            /* image upload */
-            $postData = array(
-                'client_type'              => null, //$this->request->getPost('client_type'),
-                'client_name'              => $this->request->getPost('client_name'),
-                'client_logo'              => $client_logo,
-                'updated_at'                => date('Y-m-d h:i:s')
-            );
-            $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
-            $this->session->setFlashdata('success_message', $this->data['module'] . ' updated successfully');
-            return redirect()->to('/admin/' . $this->data['controller']);
+
+            // Update the record in the main table
+            $record = $this->data['model']->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
+
+            if ($record) {
+                // Prepare the media data to save
+
+                if ($isVideoUpload) {
+                    $mediaData['file'] = $client_logo;
+                } else {
+                    $mediaData['youtube_link'] = $this->matchYoutubeUrl($this->request->getPost('url'));
+                }
+
+                // Save the media data in the sub-table
+                $record2 = $this->data['model']->save_data($this->data['sub_table_name'], $mediaData, $id, 'media_id');
+
+                if ($record2) {
+                    $this->session->setFlashdata('success_message', "{$this->data['module']} updated successfully.");
+                }
+            }
+
+            // Redirect to the category list page after successful update
+            return redirect()->to('/admin/' . $this->data['controller'] . '/list/' . $data['row']->category_id);
         }
+
+        // Load the view to display the edit form
         echo $this->layout_after_login($title, $page_name, $data);
     }
+
+
+
+
+
+
     public function confirm_delete($id)
     {
         $postData = array(
@@ -219,7 +341,7 @@ class Manage_video_media extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' deleted successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        return redirect()->back();
     }
     public function deactive($id)
     {
@@ -228,7 +350,7 @@ class Manage_video_media extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' deactivated successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        return redirect()->back();
     }
     public function active($id)
     {
@@ -237,6 +359,16 @@ class Manage_video_media extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' activated successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        return redirect()->back();
+    }
+
+
+
+
+    // Helper method for redirect with error message
+    private function redirectWithError($message)
+    {
+        $this->session->setFlashdata('error_message', $message);
+        return redirect()->to(current_url());
     }
 }

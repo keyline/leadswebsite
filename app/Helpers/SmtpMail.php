@@ -3,10 +3,11 @@
 namespace App\Helpers;
 
 // Include PHPMailer classes directly
-// die(file_exists('PHPMailer/src/PHPMailer.php'));
-require_once 'PHPMailer/src/PHPMailer.php';
-require_once 'PHPMailer/src/SMTP.php';
-require_once 'PHPMailer/src/Exception.php';
+var_dump(file_exists('/vendor/phpmailer/phpmailer/src/PHPMailer.php'));
+die('end');
+require_once 'vendor/phpmailer/src/PHPMailer.php';
+require_once 'vendor/phpmailer/src/SMTP.php';
+require_once 'vendor/phpmailer/src/Exception.php';
 
 use PHPMailer\PHPMailer\PHPMailer;
 use PHPMailer\PHPMailer\Exception;
@@ -22,14 +23,14 @@ class SmtpMail
 
         try {
             // Server settings
-            $mail->SMTPDebug = 2;//SMTP::DEBUG_SERVER;
+            $mail->SMTPDebug = SMTP::DEBUG_SERVER;
             $mail->isSMTP(); // Send using SMTP
             $mail->Host       = SMTP_HOST;
             $mail->SMTPAuth   = true; // Enable SMTP authentication
             $mail->Username   = SMTP_USER;
             $mail->Password   = SMTP_PASS;
-            $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;  #ENCRYPTION_STARTTLS // Enable TLS encryption
-            $mail->Port       = '587';
+            $mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;  #ENCRYPTION_STARTTLS // Enable TLS encryption
+            $mail->Port       = '465';
 
             // Recipients
             $mail->setFrom(SET_FROM,SET_NAME);

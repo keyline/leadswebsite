@@ -89,13 +89,13 @@ define('SECRET_KEY', '6LcrV24qAAAAAOIAhAdBL4W4H33lis3VRnsZXOUz');
 
 define('CLIENT_MAIL', 'shubhasinha77@gmail.com'); // sudip.keyline@gmail.com   // old:'enquiry@victoriatravels.net' 'snehasish@victoriatravels.net'    #'website.victoriatravels@gmail.com'
 define('CLIENT_CC_MAIL', 'system@keylines.net');
-define('SET_FROM', 'no-replay@victoriatravels.com');
-define('SET_NAME', 'Victoria Travels');
+define('SET_FROM', 'no-reply@leadsdev.keylines.net.in');
+define('SET_NAME', 'Leadsindia');
 
-define('SMTP_HOST', 'smtp-relay.brevo.com');
-define('SMTP_USER', 'victoriatravelskdpl@gmail.com');
-define('SMTP_PASS', 'My5XaC1cn2EpP8Is');
-define('SMTP_PORT', 587);
+define('SMTP_HOST', 'leadsdev.keylines.net.in');
+define('SMTP_USER', 'no-reply@leadsdev.keylines.net.in');
+define('SMTP_PASS', 'cX?9C(REdqM,');
+define('SMTP_PORT', 465);
 
 // Define configurations for different users
 $configs = [

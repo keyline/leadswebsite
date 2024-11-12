@@ -1,4 +1,4 @@
-<section class="home_enquiry">
+<section class="home_enquiry" id="home_enquiry">
     <div class="container">
         <div class="row">
             <div class="col-md-10">

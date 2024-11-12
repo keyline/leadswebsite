@@ -118,7 +118,7 @@ class Manage_image_media extends BaseController
                 // echo $this->db->getLastQuery();die;
             }
             $this->session->setFlashdata('success_message', $this->data['module'] . ' deleted successfully');
-           return redirect()->back();
+            return redirect()->back();
         }
 
         echo $this->layout_after_login($title, $page_name, $data);
@@ -229,7 +229,7 @@ class Manage_image_media extends BaseController
                     'file'                  => $client_logo,
                     'update_on'             => date('Y-m-d H:i:s')
                 ];
-                $record2 = $this->data['model']->save_data($this->data['sub_table_name'], $postData2, $id, $this->data['primary_key']);
+                $record2 = $this->data['model']->save_data($this->data['sub_table_name'], $postData2, $id, 'media_id');
 
                 if ($record2)
                     $this->session->setFlashdata('success_message', $this->data['module'] . ' updated successfully');

@@ -46,7 +46,15 @@
                                         <label class="form-label">Site Name</label>
                                         <input type="text" class="form-control" name="site_name" placeholder="Site Name" value="<?php echo $site_setting->site_name; ?>" required="required">
                                     </div>
-                                </div>                                
+                                </div>   
+
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Site Link</label>
+                                        <input type="text" class="form-control" name="site_url" placeholder="site Link" value="<?php echo $site_setting->site_url; ?>">
+                                    </div>
+                                </div>                             
+                                
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Email</label>
@@ -55,10 +63,28 @@
                                 </div>                                                            
                                 <div class="col-md-6">
                                     <div class="form-group">
-                                        <label class="form-label">Site Address</label>
+                                        <label class="form-label">Head Office & Warehouse Address</label>
                                         <textarea class="form-control" name="site_address" ><?php echo $site_setting->site_address; ?></textarea>
                                     </div>
-                                </div>                                
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Registered Office Address</label>
+                                        <textarea class="form-control" name="registered_address" ><?php echo $site_setting->registered_address; ?></textarea>
+                                    </div>
+                                </div>     
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Customer service Email</label>
+                                        <input type="email" class="form-control" name="service_email" placeholder="Email" value="<?php echo $site_setting->service_email; ?>" required="required">
+                                    </div>
+                                </div>  
+                                <div class="col-md-6">
+                                    <div class="form-group">
+                                        <label class="form-label">Office number</label>
+                                        <input type="text" class="form-control" name="office_no" placeholder="Registered Office number" value="<?php echo $site_setting->office_no; ?>" >
+                                    </div>
+                                </div>                          
                                 <div class="col-md-6">
                                     <div class="form-group">
                                         <label class="form-label">Site Whatsapp No</label>
@@ -101,6 +127,7 @@
                                         <input type="text" class="form-control" name="pinterest_link" placeholder="PInterest Link" value="<?php echo $site_setting->pinterest_link; ?>">
                                     </div>
                                 </div> -->
+
                                 <div class="col-md-4">
                                     <div class="form-group">
                                         <?php if($site_setting->site_logo!='') { ?>

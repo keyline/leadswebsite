@@ -21,6 +21,16 @@ class Frontend extends BaseController
     }
 
 
+    private function findKeyBySlug($array, $slug)
+    {
+        foreach ($array as $key => $value) {
+            if (stripos($value, $slug) !== false) {
+                return $key;
+            }
+        }
+        return null; // Return null if no match is found
+    }
+
 
     private function getNewBlogs($limit = 0, $category_id = 0, $blogId = 0)
     {
@@ -329,6 +339,83 @@ class Frontend extends BaseController
         echo $this->front_layout($title, $page_name, $data);
     }
 
+
+
+
+    private function getMediaFiles($category_id = 0, $media_id = null)
+    {
+        // Initialize the join condition array
+        $join = [
+            [
+                'table' => 'media_file',              // The table to join
+                'table_master' => 'media',            // The main table
+                'field' => 'media_id',                // media_file.media_id
+                'field_table_master' => 'id',         // media.id
+                'type' => 'inner'
+            ]
+        ];
+
+        // Initialize conditions array
+        $conditions = ['media.published' => 1];
+
+        $returnType = 'array';
+
+        // Apply category filter if provided
+        if ($category_id) {
+            $conditions['media.category_id'] = $category_id; // Filter by category_id if given
+            $returnType = 'array';
+        }
+
+        // Apply media_id filter if provided
+        if ($media_id) {
+            $conditions['media.id'] = $media_id; // Filter by media.id if given
+            $returnType = 'row';
+        }
+
+        // Define the fields you want to select
+        $select = 'media.*, media_file.file, media_file.youtube_link';
+
+        // Define the order by field
+        $order_by = [['field' => 'media.added_on', 'type' => 'DESC']];
+
+        // Fetch the data using the common_model
+        $mediaFiles = $this->common_model->find_data(
+            'media',             // Table name
+            $returnType,             // Return type as array
+            $conditions,         // Conditions for filtering
+            $select,             // Select columns
+            $join,               // Join with categories and media_file
+            '',                  // No grouping
+            $order_by
+        );
+
+        // Return the result
+        return $mediaFiles;
+    }
+
+
+    public function media($slug)
+    {
+
+        $slug                       = htmlspecialchars($slug, ENT_QUOTES, 'UTF-8');
+
+        $data['category_id']        = $this->findKeyBySlug(MEDIA_CATEGORIES, $slug);
+
+        $data['title']              = !is_null($data['category_id']) ? MEDIA_CATEGORIES[$data['category_id']] : 'Media';
+
+        $this->common_model         = new CommonModel();
+
+        $postData['common_model']   = $this->common_model;
+
+        $page_name                  = 'media-list';
+
+        $data['mediaList']               = $this->getMediaFiles($data['category_id']);
+
+        echo $this->front_layout($data['title'], $page_name, $data);
+    }
+
+
+
     public function allied_services()
 
     {
@@ -494,54 +581,17 @@ class Frontend extends BaseController
 
     public function contact_us()
     {
+        $data                       = [];
 
-        if ($this->request->getMethod() === 'post') {
+        $title                      = 'Contact Us';
 
-            $postData = $this->request->getPost();
+        $this->common_model         = new CommonModel();
 
-            $rules = [
-                'name'    => 'required|min_length[3]|max_length[255]|alpha_space',
-                'number'  => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]',
-                'email'   => 'required|valid_email',
-                'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
-                'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                'page_name' => 'required',
-                'recaptcha_token' => 'required',
-                'g-recaptcha-response' => 'required',
-            ];
+        $postData['common_model']   = $this->common_model;
 
-            if (!$this->validate($rules)) {
-                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-                return $this->response->setStatusCode(200) // Bad Request
-                    ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
-            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+        $page_name                  = 'contact-us';
 
-                $this->common_model = new CommonModel();
-
-                $data = [
-                    'name' => $postData['name'],
-                    'email' => $postData['email'],
-                    'phone' => $postData['number'],
-                    'city' => $postData['city'],
-                    'comment' => $postData['message'],
-                    'organisation' => $postData['page_name'],
-                ];
-
-                $insert_id = $this->common_model->save_data('sms_contact_enquiry', $data);
-
-                if ($insert_id) {
-                    // return redirect()->back()->withInput()->with('success_message', 'Request sent successfully');
-
-                    return $this->response->setStatusCode(201) // Created
-                        ->setJSON(['status' => true, 'message' => 'Request sent successfully']);
-                }
-            } else {
-                return $this->response->setStatusCode(200) // Created
-                    ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
-
-                // return redirect()->back()->withInput()->with('error_message', 'reCAPTCHA verification failed. Please try again.');
-            }
-        }
+        echo $this->front_layout($title, $page_name, $data);
     }
 
 
@@ -1274,17 +1324,11 @@ class Frontend extends BaseController
     {
         $to = 'shubhasinha77@gmail.com';
         $toName = 'Shubha';
-        $subject = 'Here is the subject +++++++';
+        $subject = 'Here is the subject new';
         $body = 'This is the HTML message body <b>in bold!</b>';
 
-
         try {
-            // Attempt to send the email
-            if (SmtpMail::send($to, $toName, $subject, $body)) {
-                echo 'Message has been sent';
-            } else {
-                echo 'Message could not be sent';
-            }
+            return $this->send($to, $toName, $subject, $body);
         } catch (\Exception $e) {
             // Catch and handle any exceptions
             echo 'An error occurred while sending the email: ' . $e->getMessage();
