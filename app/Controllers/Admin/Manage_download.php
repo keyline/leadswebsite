@@ -120,11 +120,11 @@ class Manage_download extends BaseController
             $fieldName = 'image';
             if ($originalName != '') {
 
-                if ($data['row']->image != '') {
-                    unlink('uploads/testimonials/' . $data['row']->image);
+                if ($data['row']->file != '') {
+                    unlink('uploads/download/' . $data['row']->file);
                 }
 
-                $upload_array = $this->common_model->upload_single_file($fieldName, $originalName, 'testimonials', 'image');
+                $upload_array = $this->common_model->upload_single_file($fieldName, $originalName, 'download', 'pdf');
                 if ($upload_array['status']) {
                     $image = $upload_array['newFilename'];
                 } else {
@@ -132,24 +132,15 @@ class Manage_download extends BaseController
                     return redirect()->to(current_url());
                 }
             } else {
-                $image = $data['row']->image;
+                $image = $data['row']->file;
             }
 
             /* image upload */
             $postData   = [
                 'name'               => $this->request->getPost('name'),
-                'place_name'         => $this->request->getPost('place'),
-                'designation'        => $this->request->getPost('designation'),
-                'type'               => $this->request->getPost('type'),
-                'image'              => $image,
+                'file'              => $image,
             ];
-            if ($postData['type'] == 1)
-                $postData['comments'] = $this->request->getPost('comments');
-            else {
-                $postData['video_url'] = $this->matchYoutubeUrl($this->request->getPost('url'));
-                if (!$postData['video_url'])
-                    return redirect()->back()->with('error_message', 'Please provide a valid youtube link');
-            }
+         
 
             $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
             $this->session->setFlashdata('success_message', $this->data['module'] . ' updated successfully');

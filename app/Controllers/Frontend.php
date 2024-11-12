@@ -416,6 +416,25 @@ class Frontend extends BaseController
 
 
 
+
+    public function career()
+    {
+
+
+        $data['title']              = 'Career';
+
+        $this->common_model         = new CommonModel();
+
+        $postData['common_model']   = $this->common_model;
+
+        $page_name                  = 'career-list';
+
+        $data['vacancy']          = $this->common_model->find_data('sms_career', 'array', ['published' => 1]);
+   
+        echo $this->front_layout($data['title'], $page_name, $data);
+    }
+
+
     public function allied_services()
 
     {

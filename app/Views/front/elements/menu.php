@@ -7,10 +7,10 @@
             <div class="col-lg-9 col-md-8 col-sm-6 col-6">
                 <div class="head_top_right">
                     <ul class="head_social">
-                        <li><a href="#" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-                        <li><a href="#" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                        <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                        <li><a href="<?= $whatsapp_link ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                     </ul>
                 </div>
             </div>
@@ -50,21 +50,18 @@
                             ?>
                                 <li><a href="<?= base_url() ?>/media/<?= $mediaSlug ?>"><?= $media ?></a></li>
                             <?php }  ?>
-                            <!-- <li><a href="#">Electronic Media</a></li>
-                            <li><a href="#">Outdoor Media</a></li>
-                            <li><a href="#">Print Media</a></li>
-                            <li><a href="#">Press Release</a></li>
-                            <li><a href="#">AGM</a></li> -->
+
                         </ul>
                     </li>
                 </ul>
             </div>
             <div class="fullsreen_menu">
                 <ul>
-                    <li><a href="#">Download</a>
+                    <li><a href="" onclick="return false;">Download</a>
                         <ul>
-                            <li><a href="#">E-catalog Download</a></li>
-                            <li><a href="#">Price List</a></li>
+                            <?php foreach ($download as $key => $val) { ?>
+                                <li><a target="_blank" href="<?= base_url() ?>/uploads/download/<?= $val->file ?>"><?= $val->name ?></a></li>
+                            <?php }  ?>
                         </ul>
                     </li>
                     <li><a href="#">Become A Distributor</a></li>
@@ -72,8 +69,8 @@
                     <li><a href="#">Reach Us</a>
                         <ul>
                             <li><a href="#">Enquiry & Service Request</a></li>
-                            <li><a href="#">Career</a></li>
-                            <li><a href="<?=base_url()?>/contact">Contact Us</a></li>
+                            <li><a href="<?=base_url('/career')?>">Career</a></li>
+                            <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                         </ul>
                     </li>
                     <li><a href="#">After Sales Sevices</a>

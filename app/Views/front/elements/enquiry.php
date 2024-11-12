@@ -79,7 +79,6 @@
 
 <?= $this->section('scripts') ?>
 <script>
-
     // Handle reCAPTCHA callback
     function onSubmit(token) {
         // Set the token in the hidden input
@@ -131,5 +130,6 @@
         // Trigger reCAPTCHA validation
         grecaptcha.execute();
     });
+
 </script>
 <?= $this->endSection() ?>

@@ -13,7 +13,7 @@ if($row) {
     $career_cv                  = set_value('career_cv', '');
 }
 ?>
-<script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
+<!-- <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script> -->
 <div class="pcoded-content">
     <div class="page-header">
         <div class="page-block">
@@ -52,36 +52,25 @@ if($row) {
                 <div class="card-body">
                     <form id="validation-form123" action="" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="name">Name</label>
+                                    <label class="form-label" for="name">Post Name</label>
                                     <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $name; ?>" required="required">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="location">Email</label>
-                                    <input type="email" class="form-control" name="email" id="designation" placeholder="Email" value="<?php echo $email; ?>" required="required">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="experience">Experience</label>
-                                    <input type="text" class="form-control" name="experience" id="company_name" placeholder="Experience" value="<?php echo $experience; ?>" required="required">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="msg">Message</label>
-                                    <textarea class="form-control" name="msg" id="comments" placeholder="Message" required="required" rows="10"><?php echo $msg; ?></textarea>
-                                </div>
-                            </div>
+                            
                             <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="msg">Discription</label>
+                                    <textarea class="form-control summernote" name="msg" id="comments" placeholder="Message" required="required" rows="10"><?php echo $msg; ?></textarea>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="career_cv">Upload your CV</label>
                                     <div class="input-group mb-2">
                                       <?php if($career_cv!='') { ?>
-                                      <!-- <img src="?php echo base_url();?>/uploads/career/?php echo $career_cv; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  /> -->
+
                                       <a href="<?= base_url();?>/uploads/career/<?php echo $career_cv; ?>" target="blank" class="fas fa-eye" style='color:green'> View pdf</a>
                                       <?php } ?>
                                     </div>
@@ -96,7 +85,7 @@ if($row) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <button type="submit" class="btn  btn-primary">Submit</button>
                     </form>

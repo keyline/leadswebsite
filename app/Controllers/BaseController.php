@@ -94,7 +94,8 @@ class BaseController extends Controller
 		$data['phone_numbers']		= explode(',', $data['site_setting']->whatsapp_no);
 		$data['admin_mails']		= explode(',', $data['site_setting']->admin_email);
 		$data['whatsapp_link'] 	    = !empty($data['first_whatsapp_no']) ? "https://wa.me/" . trim($data['first_whatsapp_no']) . "?text=Hello!%20I'm%20excited%20to%20explore%20your%20offerings.%20Can%20we%20connect%20to%20discuss%20further?" : "";
-
+		$data['download'] 		    = $this->common_model->find_data('download', 'array');
+		
 		$data['metadetails'] 		= $this->common_model->find_data('metadetails', 'array');
 		$data['title'] 				= $title . '-' . $data['site_setting']->site_name;
 		$data['page_header'] 		= $title;

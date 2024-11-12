@@ -74,6 +74,8 @@ $routes->get('/media/(:any)', 'Frontend::media/$1');
 
 $routes->get('/contact', 'Frontend::contact_us');
 
+$routes->get('/career', 'Frontend::career');
+
 // $routes->post('api/contact-us', 'Frontend::contact_us');
 
 $routes->get('privacypolicy', 'Frontend::privacypolicy');

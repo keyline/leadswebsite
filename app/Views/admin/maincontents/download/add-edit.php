@@ -1,20 +1,8 @@
 <?php
 if ($row) {
-    // $name                       = $row->name;
-    // $place_name                 = $row->place_name;
-    // $comments                   = $row->comments;
-    // $image                      = $row->image;
-    // $designation                = $row->designation;
-    // $type                       = $row->type;
-    // $videoUrl                   = !is_null($row->video_url) ? 'https://www.youtube.com/watch?v=' . $row->video_url : '';
+    $name                       = $row->name;
 } else {
     $name                       = set_value('name', '');
-    $place_name                 = set_value('place_name', '');
-    $comments                   = set_value('comments', '');
-    $image                      = set_value('image', '');
-    $designation                = set_value('designation', '');
-    $type                       = set_value('type', '');
-    $videoUrl                   = set_value('video_url', '');
 }
 ?>
 <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
@@ -60,7 +48,7 @@ if ($row) {
                             <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="name">Name</label>
-                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" value="" required="required">
+                                    <input type="text" class="form-control" name="name" id="name" placeholder="Enter name" value="<?=$name?>" required="required">
                                     <?php if (session('errors.name')): ?>
                                         <div class="error text-danger"><?= esc(session('errors.name')) ?></div>
                                     <?php endif; ?>
@@ -68,26 +56,21 @@ if ($row) {
                             </div>
 
 
-
-
-
-
-
-
                             <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="image">File </label>
+                                    <label class="form-label" for="image">File</label>
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">File <small>Pdf</small></span>
+                                            <span class="input-group-text">File<small></small></span>
                                         </div>
                                         <div class="custom-file">
-                                            <input type="file" class="form-control" id="image" name="image">
+                                            <input type="file" class="form-control" id="image" name="image" accept="application/pdf" required="required">
                                         </div>
                                     </div>
                                 </div>
                             </div>
+
                         </div>
                         <button type="submit" class="btn  btn-primary">Submit</button>
                     </form>
@@ -99,7 +82,6 @@ if ($row) {
 
 <?= $this->section('scripts') ?>
 <script>
-    $(document).ready(function() {
-    })
+    $(document).ready(function() {})
 </script>
 <?= $this->endSection() ?>
