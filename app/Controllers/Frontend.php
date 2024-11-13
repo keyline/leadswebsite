@@ -259,6 +259,52 @@ class Frontend extends BaseController
         echo $this->front_layout($title, $page_name, $data);
     }
 
+    public function product($category)
+    {
+
+        $title                      = 'Product';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'product-list';
+        $data['productCat']         = $this->common_model->find_data('product_category', 'row', ['slug' => $category]);
+        // pr($data['productCat'] );
+        
+        $offset = $this->request->getPost('offset') ?? 0;
+        $limit = 4; // Number of products per batch
+        $data['product'] = $this->common_model->find_data('product', 'array', ['published!=' => 3, 'product_category' => $data['productCat']->id], '', '', '', '', $limit, $offset);        
+
+        foreach ($data['product'] as &$product) {
+            $product->others_images = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $product->id]);
+            // pr($product);// pr($product->others_images);
+        }        
+        // Uncomment to check the results
+        
+        // Return products in JSON format if AJAX request
+        if ($this->request->isAJAX()) {            
+            //  pr(json_encode($data['product']));
+            return json_encode($data['product']);
+        }    
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function product_details($slug)
+    {
+
+        $title                      = 'Product';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'product-details';
+        $data['product']         = $this->common_model->find_data('product', 'row', ['slug' => $slug]);
+        $data['productCat']         = $this->common_model->find_data('product_category', 'row', ['id' => $data['product']->product_category]);
+        //   pr($data['product'] );
+        $data['others_images'] = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $data['product']->id]);
+        //  pr($data['others_images'] );        
+                 
+        echo $this->front_layout($title, $page_name, $data);
+    }
+    
+
+
     public function loadMoreBlog()
     {
         $page = $this->request->getGet('page');
@@ -292,7 +338,7 @@ class Frontend extends BaseController
                     </a>
                 </div>
             </div>
-<?php }
+        <?php }
 
         // Get the contents of the buffer and clean it
         $html = ob_get_clean();
