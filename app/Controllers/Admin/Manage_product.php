@@ -57,7 +57,7 @@ class Manage_product extends BaseController
             for ($j = 0; $j < count($bulkData['draw']); $j++) {
                 $id = $bulkData['draw'][$j];
                 $postData = array(
-                    'status' => 3
+                    'published' => 3
                 );
                 $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
                 // echo $this->db->getLastQuery();die;
@@ -264,7 +264,7 @@ class Manage_product extends BaseController
     public function confirm_delete($id)
     {
         $postData = array(
-            'status' => 3
+            'published' => 3
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' deleted successfully');
@@ -273,7 +273,7 @@ class Manage_product extends BaseController
     public function deactive($id)
     {
         $postData = array(
-            'status' => 0
+            'published' => 0
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' deactivated successfully');
@@ -282,7 +282,7 @@ class Manage_product extends BaseController
     public function active($id)
     {
         $postData = array(
-            'status' => 1
+            'published' => 1
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' activated successfully');
