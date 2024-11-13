@@ -129,45 +129,51 @@
             <!-- Modal Body -->
             <div class="modal-body">
                 <!-- Form content goes here as described before -->
-                <form id="jobApply">
+                <form id="jobApply" enctype="multipart/form-data">
                     <div class="form-group">
                         <label>First Name:</label>
                         <input type="text" class="form-control" name="fname" placeholder="First Name">
-
+                        <p class="text-danger error" id="fname-error"></p>
                     </div>
                     <div class="form-group">
                         <label>Last Name:</label>
                         <input type="text" class="form-control" name="lname" placeholder="Last Name">
+                        <p class="text-danger error" id="lname-error"></p>
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
                         <input type="email" class="form-control" name="email" placeholder="Email">
+                        <p class="text-danger error" id="email-error"></p>
                     </div>
                     <div class="form-group">
                         <label>Phone:</label>
                         <input type="tel" class="form-control" name="phone" placeholder="Phone">
+                        <p class="text-danger error" id="phone-error"></p>
                     </div>
                     <div class="form-group">
                         <label>Educational Qualification:</label>
                         <input type="text" class="form-control" name="qualification" placeholder="Educational Qualification">
+                        <p class="text-danger error" id="qualification-error"></p>
                     </div>
                     <div class="form-group">
                         <label>Years of Experience:</label>
-                        <input type="number" class="form-control" name="experience" placeholder="Years of Experience">
+                        <input type="text" class="form-control" name="experience" placeholder="Years of Experience">
+                        <p class="text-danger error" id="experience-error"></p>
                     </div>
                     <div class="form-group">
                         <label>Attach your latest CV:</label>
-                        <input type="file" class="form-control-file" name="file" accept="application/pdf">
+                        <input type="file" class="form-control-file" name="file" accept="application/pdf" required>
+                        <p class="text-danger error" id="file-error"></p>
                     </div>
 
                     <input type="hidden" id="job" name="job" value="">
-                    <!-- <input type="hidden" name="recaptcha_token" id="recaptcha_token"> -->
+                    <input type="hidden" name="recaptcha_token" id="recaptcha_token">
 
-                    <button type="submit" class="btn btn-primary" style="background-color: #ed1c24;" data-callback='onSubmit'>SUBMIT</button>
+                    <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="<?= SITE_KEY ?>"  style="background-color: #ed1c24;" data-callback='onSubmit'>SUBMIT</button>
                 </form>
             </div>
             <!-- Modal Footer -->
-            <!-- class="g-recaptcha" data-sitekey="<?= SITE_KEY ?>" -->
+    
             <!-- <div class="modal-footer">
                
             </div> -->
@@ -199,6 +205,7 @@
 <script>
     $(document).ready(function() {
         $(".apply").on('click', function() {
+            $(".error").text('');
             const job_id = $(this).data('id');
             const name = $(this).data('name');
             $(".jobName").text(name);
@@ -207,21 +214,13 @@
             $("#applyModal").modal('show');
         });
 
-        // $('#jobApply').on('submit', function(event) {
-        //     alert("click");
-        // });
-
-
-
-
 
         // form submit 
 
         // Handle reCAPTCHA callback
         function onSubmit(token) {
-
             // Set the token in the hidden input
-            // $('#recaptcha_token').val(token);
+            $('#recaptcha_token').val(token);
 
             // Trigger AJAX form submission
             submitForm();
@@ -229,32 +228,69 @@
 
         // Submit the form via AJAX
         function submitForm() {
+            var formData = new FormData($("#jobApply")[0]);
+
+            var file = formData.get('file');
+
+
+            if (file) {
+
+                var fileSize = file.size;
+
+                var fileSizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Size in MB
+
+                // console.log('File Size (MB):', fileSizeInMB);
+
+
+                var maxSizeInMB = 5; // Example: 5 MB max size
+                if (fileSizeInMB > maxSizeInMB) {
+                    showAlert({
+                        title: 'File is too large. Maximum size is ' + maxSizeInMB + ' MB.',
+                        icon: "error"
+                    });
+                    return; // Stop the form submission
+                }
+            }
 
             $.ajax({
                 url: "api/apply-job",
                 type: "POST",
-                data: $('#jobApply').serialize(),
+                data: formData, //$('#jobApply').serialize(),
+                processData: false,
+                contentType: false,
                 success: function(response) {
                     if (response.status) {
                         // Show success message and reset form
                         showAlert({
-                            text: response.message,
+                            title: response.message,
                             icon: "success"
                         });
                         $('#jobApply')[0].reset(); // Clear the form
-
+                        $("#applyModal").modal('hide');
                     } else {
-                        showAlert({
-                            text: response.message,
-                            icon: "error"
-                        });
+                        if (response.errors) {
+                            // Loop through each error and display it in the corresponding element if it exists
+                            for (const [field, message] of Object.entries(response.errors)) {
+                                const errorElement = document.getElementById(`${field}-error`);
+                                if (errorElement && message) {
+                                    errorElement.textContent = message;
+                                }
+                            }
+
+                        } else {
+                            showAlert({
+                                title: response.message,
+                                icon: "error"
+                            });
+                        }
+
                     }
-                    // grecaptcha.reset(); // Reset the reCAPTCHA widget
+                    grecaptcha.reset(); // Reset the reCAPTCHA widget
                 },
                 error: function(xhr, status, error) {
                     // Show error message
                     showAlert({
-                        text: "An error occurred. Please try again.",
+                        title: "An error occurred. Please try again.",
                         icon: "error",
                         timer: 2000
                     });
@@ -266,9 +302,9 @@
         // Attach event listener to form submission button
         $('#jobApply').on('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
-            submitForm();
+            // submitForm();
             // Trigger reCAPTCHA validation
-            // grecaptcha.execute();
+            grecaptcha.execute();
         });
 
 

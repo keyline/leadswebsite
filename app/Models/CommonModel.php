@@ -98,12 +98,13 @@ class CommonModel extends Model
         $builder = $this->db->table($table);
         if ($id == '') {
             $builder->insert($postdata);
-            // return $this->db->getLastQuery();
+            // pr($this->db->getLastQuery());
             return $this->db->insertID();
         } else {
             $builder->where($field, $id);
+            // pr($this->db->getLastQuery());
             return $builder->update($postdata);
-            //  return $this->db->getLastQuery();
+    
             // return $this->db->affectedRows();
         }
     }

@@ -746,7 +746,7 @@
         function showAlert({
             position = "center",
             icon = "success",
-            title = "Data saved",
+            title = "",
             showConfirmButton = false,
             timer = 1500
         }) {

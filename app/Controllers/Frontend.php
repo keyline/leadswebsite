@@ -668,43 +668,86 @@ class Frontend extends BaseController
 
             $postData = $this->request->getPost();
 
-        
+
             $rules = [
-                'fname'    => 'required||regex_match[/^(?!.*<script.*?>).*$/i]',
-                'lname'  => 'required||regex_match[/^(?!.*<script.*?>).*$/i]',
-                'email'   => 'required|valid_email',
-                'phone'    => 'required|numeric|regex_match[/^[0-9]+$/]',
-                'qualification' => 'required|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                'experience' => 'required||regex_match[/^(?!.*<script.*?>).*$/i]',
-                'job'=>'required',
-                // 'recaptcha_token' => 'required',
-                // 'g-recaptcha-response' => 'required',
+                'fname' => [
+                    'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'First Name'
+                ],
+                'lname' => [
+                    'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Last Name'
+                ],
+                'email' => [
+                    'rules' => 'required|valid_email',
+                    'label' => 'Email Address'
+                ],
+                'phone' => [
+                    'rules' => 'required|numeric|regex_match[/^[0-9]+$/]',
+                    'label' => 'Phone Number'
+                ],
+                'qualification' => [
+                    'rules' => 'required|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Qualification'
+                ],
+                'experience' => [
+                    'rules' => 'regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Experience'
+                ],
+                'job' => [
+                    'rules' => 'required',
+                    'label' => 'Job Position'
+                ],
+                // 'file' => [
+                //     'rules' => 'required',
+                //     'label' => 'CV'
+                // ],
+                'recaptcha_token' => 'required',
+                'g-recaptcha-response' => 'required',
             ];
 
             if (!$this->validate($rules)) {
-                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
                 return $this->response->setStatusCode(200) // Bad Request
                     ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
-                    // $this->verifyRecaptcha($_POST['recaptcha_token'])
-                } else if (true) {
+            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+                /* pdf upload */
+                $file = $this->request->getFile('file');
+                $originalName = $file->getClientName();
+                $fileMimeType = $file->getClientMimeType();
+                $fieldName = 'file';
+                if (($fileMimeType == 'application/pdf') && $originalName != '') {
+                    $upload_array = $this->common_model->upload_single_file($fieldName, $originalName, 'applicantCv', 'pdf');
+                    if ($upload_array['status']) {
+                        $applicantCv = $upload_array['newFilename'];
+                    } else {
+                        return $this->response->setStatusCode(200)
+                            ->setJSON(['status' => false, 'message' => $upload_array['message']]);
+                    }
+                } else {
+                    return $this->response->setStatusCode(200) // Created
+                        ->setJSON(['status' => false, 'message' => 'Please upload a pdf file']);
+                }
+
+                /* pdf upload */
 
                 $this->common_model = new CommonModel();
 
                 $data = [
-                    'fname' => $postData['fname'],
-                    'lname' => $postData['lname'],
+                    'first_name' => $postData['fname'],
+                    'last_name' => $postData['lname'],
                     'email' => $postData['email'],
                     'phone' => $postData['phone'],
                     'qualification' => $postData['qualification'],
                     'experience' => $postData['experience'],
-                    'job_id' => $postData['job_id'],
+                    'job_id' => $postData['job'],
+                    'cv_file' => $applicantCv,
                 ];
 
                 $insert_id = $this->common_model->save_data('job_applicant', $data);
 
                 if ($insert_id) {
                     return $this->response->setStatusCode(201) // Created
-                        ->setJSON(['status' => true, 'message' => 'Request sent successfully']);
+                        ->setJSON(['status' => true, 'message' => 'Apply successfully']);
                 }
             } else {
                 return $this->response->setStatusCode(200) // Created
