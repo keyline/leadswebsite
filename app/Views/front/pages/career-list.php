@@ -269,6 +269,7 @@
                         $("#applyModal").modal('hide');
                     } else {
                         if (response.errors) {
+                           console.log(response.errors);
                             // Loop through each error and display it in the corresponding element if it exists
                             for (const [field, message] of Object.entries(response.errors)) {
                                 const errorElement = document.getElementById(`${field}-error`);
