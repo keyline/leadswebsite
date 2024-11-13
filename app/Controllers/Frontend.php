@@ -430,7 +430,7 @@ class Frontend extends BaseController
         $page_name                  = 'career-list';
 
         $data['vacancy']          = $this->common_model->find_data('sms_career', 'array', ['published' => 1]);
-   
+
         echo $this->front_layout($data['title'], $page_name, $data);
     }
 
@@ -613,6 +613,105 @@ class Frontend extends BaseController
         echo $this->front_layout($title, $page_name, $data);
     }
 
+    public function enquiry()
+    {
+
+        if ($this->request->getMethod() === 'post') {
+
+            $postData = $this->request->getPost();
+
+            $rules = [
+                'name'    => 'required|min_length[3]|max_length[255]|alpha_space',
+                'number'  => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]',
+                'email'   => 'required|valid_email',
+                'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
+                'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                'page_name' => 'required',
+                'recaptcha_token' => 'required',
+                'g-recaptcha-response' => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+                return $this->response->setStatusCode(200) // Bad Request
+                    ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
+            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+
+                $this->common_model = new CommonModel();
+
+                $data = [
+                    'name' => $postData['name'],
+                    'email' => $postData['email'],
+                    'phone' => $postData['number'],
+                    'city' => $postData['city'],
+                    'comment' => $postData['message'],
+                    'organisation' => $postData['page_name'],
+                ];
+
+                $insert_id = $this->common_model->save_data('sms_contact_enquiry', $data);
+
+                if ($insert_id) {
+                    return $this->response->setStatusCode(201) // Created
+                        ->setJSON(['status' => true, 'message' => 'Request sent successfully']);
+                }
+            } else {
+                return $this->response->setStatusCode(200) // Created
+                    ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
+            }
+        }
+    }
+
+
+    public function job_apply()
+    {
+        if ($this->request->getMethod() === 'post') {
+
+            $postData = $this->request->getPost();
+
+        
+            $rules = [
+                'fname'    => 'required||regex_match[/^(?!.*<script.*?>).*$/i]',
+                'lname'  => 'required||regex_match[/^(?!.*<script.*?>).*$/i]',
+                'email'   => 'required|valid_email',
+                'phone'    => 'required|numeric|regex_match[/^[0-9]+$/]',
+                'qualification' => 'required|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                'experience' => 'required||regex_match[/^(?!.*<script.*?>).*$/i]',
+                'job'=>'required',
+                // 'recaptcha_token' => 'required',
+                // 'g-recaptcha-response' => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+                return $this->response->setStatusCode(200) // Bad Request
+                    ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
+                    // $this->verifyRecaptcha($_POST['recaptcha_token'])
+                } else if (true) {
+
+                $this->common_model = new CommonModel();
+
+                $data = [
+                    'fname' => $postData['fname'],
+                    'lname' => $postData['lname'],
+                    'email' => $postData['email'],
+                    'phone' => $postData['phone'],
+                    'qualification' => $postData['qualification'],
+                    'experience' => $postData['experience'],
+                    'job_id' => $postData['job_id'],
+                ];
+
+                $insert_id = $this->common_model->save_data('job_applicant', $data);
+
+                if ($insert_id) {
+                    return $this->response->setStatusCode(201) // Created
+                        ->setJSON(['status' => true, 'message' => 'Request sent successfully']);
+                }
+            } else {
+                return $this->response->setStatusCode(200) // Created
+                    ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
+            }
+        }
+    }
 
 
     public function promos_details($id)

@@ -132,38 +132,38 @@
                 <form id="jobApply">
                     <div class="form-group">
                         <label>First Name:</label>
-                        <input type="text" class="form-control" placeholder="First Name" required>
+                        <input type="text" class="form-control" name="fname" placeholder="First Name">
 
                     </div>
                     <div class="form-group">
                         <label>Last Name:</label>
-                        <input type="text" class="form-control" placeholder="Last Name" required>
+                        <input type="text" class="form-control" name="lname" placeholder="Last Name">
                     </div>
                     <div class="form-group">
                         <label>Email:</label>
-                        <input type="email" class="form-control" placeholder="Email" required>
+                        <input type="email" class="form-control" name="email" placeholder="Email">
                     </div>
                     <div class="form-group">
                         <label>Phone:</label>
-                        <input type="tel" class="form-control" placeholder="Phone" required>
+                        <input type="tel" class="form-control" name="phone" placeholder="Phone">
                     </div>
                     <div class="form-group">
                         <label>Educational Qualification:</label>
-                        <input type="text" class="form-control" placeholder="Educational Qualification" required>
+                        <input type="text" class="form-control" name="qualification" placeholder="Educational Qualification">
                     </div>
                     <div class="form-group">
                         <label>Years of Experience:</label>
-                        <input type="number" class="form-control" placeholder="Years of Experience" required>
+                        <input type="number" class="form-control" name="experience" placeholder="Years of Experience">
                     </div>
                     <div class="form-group">
                         <label>Attach your latest CV:</label>
-                        <input type="file" class="form-control-file" accept="application/pdf" required>
+                        <input type="file" class="form-control-file" name="file" accept="application/pdf">
                     </div>
 
-                    <input type="hidden" id="job" name="job" value="" required>
+                    <input type="hidden" id="job" name="job" value="">
                     <!-- <input type="hidden" name="recaptcha_token" id="recaptcha_token"> -->
-                    <!-- data-callback='onSubmit' -->
-                    <button type="button" class="btn btn-primary" style="background-color: #ed1c24;">SUBMIT</button>
+
+                    <button type="submit" class="btn btn-primary" style="background-color: #ed1c24;" data-callback='onSubmit'>SUBMIT</button>
                 </form>
             </div>
             <!-- Modal Footer -->
@@ -207,12 +207,19 @@
             $("#applyModal").modal('show');
         });
 
+        // $('#jobApply').on('submit', function(event) {
+        //     alert("click");
+        // });
+
+
+
 
 
         // form submit 
 
         // Handle reCAPTCHA callback
         function onSubmit(token) {
+
             // Set the token in the hidden input
             // $('#recaptcha_token').val(token);
 
@@ -222,22 +229,23 @@
 
         // Submit the form via AJAX
         function submitForm() {
+
             $.ajax({
-                url: "api/contact-us", // Replace with your server URL
+                url: "api/apply-job",
                 type: "POST",
                 data: $('#jobApply').serialize(),
                 success: function(response) {
                     if (response.status) {
                         // Show success message and reset form
                         showAlert({
-                            title: response.message,
+                            text: response.message,
                             icon: "success"
                         });
                         $('#jobApply')[0].reset(); // Clear the form
 
                     } else {
                         showAlert({
-                            title: response.message,
+                            text: response.message,
                             icon: "error"
                         });
                     }
@@ -246,7 +254,7 @@
                 error: function(xhr, status, error) {
                     // Show error message
                     showAlert({
-                        title: "An error occurred. Please try again.",
+                        text: "An error occurred. Please try again.",
                         icon: "error",
                         timer: 2000
                     });
@@ -258,7 +266,7 @@
         // Attach event listener to form submission button
         $('#jobApply').on('submit', function(event) {
             event.preventDefault(); // Prevent default form submission
-            alert("wow");
+            submitForm();
             // Trigger reCAPTCHA validation
             // grecaptcha.execute();
         });

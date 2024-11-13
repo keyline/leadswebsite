@@ -76,7 +76,10 @@ $routes->get('/contact', 'Frontend::contact_us');
 
 $routes->get('/career', 'Frontend::career');
 
-// $routes->post('api/contact-us', 'Frontend::contact_us');
+$routes->post('api/contact-us', 'Frontend::enquiry');
+
+$routes->post('api/apply-job', 'Frontend::job_apply');
+
 
 $routes->get('privacypolicy', 'Frontend::privacypolicy');
 
