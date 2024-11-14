@@ -116,63 +116,7 @@ if($row) {
                                                 <input type="text" name="content_description[]" class="form-control" placeholder="Specification Description" required>
                                                 <button type="button" class="btn btn-primary add-description-row">+</button>
                                             </div>
-                                        </div>                                       
-                                    <!-- <div class="row">
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label" for="air_flow">Air Flow</label>
-                                                <input type="text" class="form-control" name="air_flow" id="air_flow" placeholder="Product Title" value="<?php echo $air_flow; ?>">
-                                            </div>                                   
-                                        </div>  
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label" for="generation">Generation</label>
-                                                <input type="text" class="form-control" name="generation" id="generation" placeholder="Product Title" value="<?php echo $generation; ?>">
-                                            </div> 
-                                        </div>   
-                                    </div>   
-                                    <div class="row">  
-                                        <div class="col-md-6">                                                             
-                                            <div class="form-group">
-                                                <label class="form-label" for="motor_power">Motor Power</label>
-                                                <input type="text" class="form-control" name="motor_power" id="motor_power" placeholder="Product Title" value="<?php echo $motor_power; ?>">
-                                            </div>
-                                        </div>     
-                                        <div class="col-md-6">                                 
-                                            <div class="form-group">
-                                                <label class="form-label" for="speed">Speed</label>
-                                                <input type="text" class="form-control" name="speed" id="speed" placeholder="Product Title" value="<?php echo $speed; ?>">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">                                   
-                                            <div class="form-group">
-                                                <label class="form-label" for="lamp">Lamp</label>
-                                                <input type="text" class="form-control" name="lamp" id="lamp" placeholder="Product Title" value="<?php echo $lamp; ?>">
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-6">                                  
-                                            <div class="form-group">
-                                                <label class="form-label" for="noise_level">Noise Level</label>
-                                                <input type="text" class="form-control" name="noise_level" id="noise_level" placeholder="Product Title" value="<?php echo $noise_level; ?>">
-                                            </div> 
-                                        </div>
-                                    </div>
-                                    <div class="row">
-                                        <div class="col-md-6">                                        
-                                            <div class="form-group">
-                                                <label class="form-label" for="cabinet_hood">Cabinet Hood</label>
-                                                <input type="text" class="form-control" name="cabinet_hood" id="cabinet_hood" placeholder="Product Title" value="<?php echo $cabinet_hood; ?>">
-                                            </div> 
-                                        </div>
-                                        <div class="col-md-6">
-                                            <div class="form-group">
-                                                <label class="form-label" for="dimension">Dimension</label>
-                                                <input type="text" class="form-control" name="dimension" id="dimension" placeholder="Product Title" value="<?php echo $dimension; ?>">
-                                            </div>  
-                                        </div>
-                                    </div>  -->
+                                        </div>                                                                           
                                 </div>                                                                   
                             </div>                                                                                                                                                       
                             <div class="col-md-6">
@@ -204,11 +148,7 @@ if($row) {
                                                 <input type="number" name="position[]" class="form-control" placeholder="Position" >
                                                 <button type="button" class="btn btn-primary add-image-row">+</button>
                                             </div>
-                                        </div>
-                                        <!-- <div class="custom-file">
-                                            <input type="file" name="others_image[]" class="form-control" id="others_image" multiple required>
-                                            <small class="text-info">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed</small><br>                                            
-                                        </div> -->
+                                        </div>                                        
                                         <div class="image-preview" id="imagePreview"></div> 
                                     </div>
                                 </div>                                
