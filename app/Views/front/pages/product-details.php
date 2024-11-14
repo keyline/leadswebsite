@@ -123,8 +123,7 @@
                                     <img src="<?= base_url('public/') ?>/assets/img/isa.webp" alt="" class="img-fluid">
                                     <?php } ?>
                                 </div>     
-                                <?php } ?>                                                                                                                                                                    
-                                <div class="gradt_download"><a href="" target="_blank"><i class="fa-solid fa-file-pdf"></i> Download</a></div>
+                                <?php } ?>                                                                                                                                                                                                    
                             </div>
                         </div>
                     </div>
