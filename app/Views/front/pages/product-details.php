@@ -1,0 +1,189 @@
+<?php $db = \Config\Database::connect();?>
+<section class="inner_banner inner_floting_box_banner">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-12">
+                <div class="inner_floting_box">
+                    <div class="about_more_box">
+                        <div class="mission_tabs">
+                            <img src="<?= base_url('public/') ?>/assets/img/chimney-icon.webp" alt="" class="img-fluid">
+                            <h4><?= $productCat->name?></h4>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ?php pr($product); ?> -->
+<!-- product listing section start -->
+        <section class="product_details">
+            <div class="container">
+                <div class="row">
+                    <div class="col-lg-5  col-md-12 mobile_order_left">
+                        <div class="product_dtl_info">
+                            <h2><?php  echo $product->slug; ?> <?php if($product->is_new == 1){ ?><a href="#" class="new_badge">New<?=$product->slug?></a><?php }?> </h2>
+                        </div>
+                        <div class="product_dtl_left">
+                            <!-- Swiper -->
+                            <div class="product_main_img">
+                                <div style="--swiper-navigation-color: #fff; --swiper-pagination-color: #fff"
+                                class="swiper mySwiper2">
+                                <div class="swiper-wrapper">
+                                    <?php foreach($others_images as $others_image) {?>
+                                    <div class="swiper-slide">
+                                        <img src="<?=base_url('/uploads/product/'.$others_image->image_file)?>" class="img-fluid" />
+                                    </div>
+                                    <?php } ?>                                   
+                                </div>
+                            </div>
+                            </div>
+                            <div class="product_thumb_box">
+                                <div class="row  align-items-center">
+                                    <div class="col-lg-8 product_thumb_mob col-md-12">
+                                        <div thumbsSlider="" class="swiper mySwiper">
+                                            <div class="swiper-wrapper">
+                                                <?php foreach($others_images as $others_image) {?>
+                                                    <div class="swiper-slide">
+                                                        <img src="<?=base_url('/uploads/product/'.$others_image->image_file)?>" class="img-fluid" />
+                                                    </div>
+                                                <?php } ?>                                                
+                                            </div>
+                                            <!-- <div class="swiper-button-next"></div>
+                                            <div class="swiper-button-prev"></div> -->
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-4 col-md-12">
+                                        <div class="head_top_right">
+                                            <h4>Share</h4>
+                                            <ul class="head_social">
+                                                <li><a href="https://www.facebook.com/sharer.php?u=<?=base_url()?>/product-details/<?=$product->slug?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                                <li><a href="https://twitter.com/intent/tweet?url=<?=base_url()?>/product-details/<?=$product->slug?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                                <!-- <li><a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a></li> -->
+                                                <li><a href="https://wa.me/?text=<?=base_url()?>/product-details/<?=$product->slug?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-7 col-md-12 mobile_order_right">
+                        <div class="product_details_right">
+                            <div class="product_dtl_info">
+                            <h2><?=$product->product_title; ?> <?php if($product->is_new == 1){ ?><a href="#" class="new_badge">New</a><?php }?> </h2>
+                                
+                                <h5>Specifications:</h5>
+                               
+                                <ul class="specify_list">
+                                <?php 
+                                $content_title  = json_decode($product->content_title);
+                                $content_description  = json_decode($product->content_description);
+                                for($i = 1; $i <= count($content_title); $i++) {?>
+                                    <li><span class="specfy_name"><?=$content_title[$i-1]?> :</span> <span> <?=$content_description[$i-1]?></span></li> 
+                                    <?php } ?> 
+                                    <?php if(!empty($product->regular_price)){ ?>                                  
+                                    <li><span class="specfy_name">Regular Price :</span> <span> <?=$product->regular_price?></span></li> 
+                                    <?php }?>
+                                    <?php if(!empty($product->sale_price)){ ?>                                  
+                                    <li><span class="specfy_name">Sale Price :</span> <span> <?=$product->sale_price?></span></li> 
+                                    <?php }?>
+                                </ul>
+                            </div>
+                            <div class="product_dtl_keyfeature">
+                                <div class="keyfaatu_line"><h3><span>Key Feature:</span></h3></div>                                
+                                <ul class="keyfeature_list">
+                                    <?php $key_feature = (json_decode($product->key_feature));
+                                        foreach($key_feature as $key){
+                                            $sql1 = "SELECT * FROM `key_feature` WHERE `id` = '$key' and `published` != '3'";
+                                            $keyFeatures = $db->query($sql1)->getResult();
+                                            //  pr($keyFeatures);  
+                                            foreach($keyFeatures as $key_features)   {                          
+                                    ?>
+                                    <li>
+                                        <div class="keyfeat_img"><img src="<?=base_url('/uploads/key_feature/'.$key_features->key_feature_icon)?>" alt="icon"></div>
+                                        <div class="keyfet_inner">
+                                            <h4><?= $key_features->key_feature_title?>:</h4>
+                                            <p><?= $key_features->key_feature_description?></p>
+                                        </div>
+                                    </li>
+                                    <?php } }?>                                    
+                                </ul>
+                                
+                            </div>
+                            <div class="prod_garaty">                                
+                                <?php foreach(json_decode($product->warrenty_section) as $warrenty_section) { ?> 
+                                <div class="gradt_icon">
+                                    <?php if($warrenty_section == "warrenty") {  ?>
+                                    <img src="<?= base_url('public/') ?>/assets/img/warenty.webp" alt="" class="img-fluid">
+                                    <?php } else if($warrenty_section == "motion_sensor") {?>   
+                                    <img src="<?= base_url('public/') ?>/assets/img/hand.webp" alt="" class="img-fluid">
+                                    <?php } else if($warrenty_section == "isa_technology") {?>   
+                                    <img src="<?= base_url('public/') ?>/assets/img/isa.webp" alt="" class="img-fluid">
+                                    <?php } ?>
+                                </div>     
+                                <?php } ?>                                                                                                                                                                    
+                                <div class="gradt_download"><a href="" target="_blank"><i class="fa-solid fa-file-pdf"></i> Download</a></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    <!-- product listing section end -->  
+
+
+
+  <?= $this->section('scripts') ?>
+  <script>
+      $(document).ready(function() {
+         
+
+          var a = new StickySidebar('#sticky-sidebar-demo', {
+              topSpacing: 25,
+              containerSelector: '.blogdetails_item',
+              innerWrapperSelector: '.sidebar__inner'
+          });
+
+          var a = new StickySidebar('#sticky-sidebar-cateogy', {
+              topSpacing: 25,
+              containerSelector: '.blogdetails_item',
+              innerWrapperSelector: '.sidebar__inner'
+          });
+
+
+
+          // Count the number of items
+          var itemCount = $("#blogdetails-recent .item").length;
+          $("#blogdetails-recent").owlCarousel({
+              loop: itemCount > 4,
+              margin: 20,
+              dots: false,
+              nav: false,
+              autoplay: false,
+              autoplayTimeout: 4000,
+              autoplayHoverPause: true,
+              animateIn: 'fadeIn',
+              animateOut: 'fadeOut',
+              navText: ["<i class='zmdi zmdi-arrow-left'></i>", "<i class='zmdi zmdi-arrow-right'></i>"],
+              responsive: {
+                  0: {
+                      items: 1,
+                  },
+                  600: {
+                      items: 2,
+                  },
+                  750: {
+                      items: 2,
+                  },
+                  1000: {
+                      items: 3,
+                  },
+                  1200: {
+                      items: 4,
+                  }
+              }
+          });
+      });
+  </script>
+  <?= $this->endSection() ?>

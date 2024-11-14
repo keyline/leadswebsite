@@ -49,8 +49,9 @@ if($row) {
                                     <label class="form-label" for="others_image">Others Image</label>                                    
                                     <div class="row">
                                         <?php if($others_image!='') { ?>
-                                        <div class="col-md-3">
+                                        <div class="col-md-3">                                        
                                             <img src="<?php echo base_url();?>/uploads/product/<?php echo $others_image; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />                                            
+                                            <input type="number" name="positions" value="<?= $row->position; ?>" class="position-input form-control">
                                         </div>
                                         <?php } ?>                                                                                                                                                      
                                     </div>

@@ -1,8 +1,28 @@
+<style>
+    .position-circle {
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+</style>
+
 <?php
 if($row) {
     $product_category                  = $row->product_category;  
     $product_title                     = $row->product_title;  
     $air_flow                          = $row->air_flow;
+    $content_description                       = json_decode($row->content_description);
+    // pr(count($content_description));
+    $content_title                       = json_decode($row->content_title);
+    $regular_price                     = $row->regular_price;
+    $sale_price                        = $row->sale_price;
     $generation                        = $row->generation;
     $motor_power                       = $row->motor_power;
     $speed                             = $row->speed;
@@ -18,6 +38,9 @@ if($row) {
 } else {
     $product_category                  = set_value('product_category', '');
     $product_title                     = set_value('product_title', '');
+    $description                       = set_value('description', '');
+    $regular_price                       = set_value('regular_price', '');
+    $sale_price                       = set_value('sale_price', '');
     $air_flow                          = set_value('air_flow', '');
     $generation                        = set_value('generation', '');
     $motor_power                       = set_value('motor_power', '');
@@ -74,7 +97,7 @@ if($row) {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="product_category">Product category</label>
-                                    <select class="js-example-basic-single form-control" id="product_category" name="product_category">
+                                    <select class="js-example-basic-single form-control" id="product_category" name="product_category" required>
                                         <option value="" selected="selected">Select Product Category</option>
                                          <?php                                          
                                          if($productCats){ $i=1; foreach ($productCats as $row) {?>
@@ -90,10 +113,28 @@ if($row) {
                                     <input type="text" class="form-control" name="product_title" id="product_title" placeholder="Product Title" value="<?php echo $product_title; ?>" required="required">
                                 </div>
                             </div> 
-                            <div class="col-md-12">
+                            <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="product_description">Product Specifications</label>                                    
-                                    <div class="row">
+                                    <label class="form-label" for="product_description">Product Specifications</label> 
+                                            <?php 
+                                            if(!empty($content_title)){
+                                            for($i = 1; $i <= count($content_title); $i++) {?>
+                                                <div>
+                                                    <div class="specification-row">
+                                                        <input type="text" name="content_title[]" value="<?php if(isset($content_title[$i-1]) && $content_title[$i-1] != ''){ echo $content_title[$i-1]; } ?>" class="form-control" placeholder="Specification Title" required>
+                                                        <input type="text" name="content_description[]" value="<?php if(isset($content_description[$i-1]) && $content_description[$i-1] != ''){ echo $content_description[$i-1]; } ?>" class="form-control" placeholder="Specification Description" required>
+                                                        <!-- <button type="button" class="btn btn-primary add-description-row">+</button> -->
+                                                    </div>
+                                                </div>  
+                                            <?php }} ?>  
+                                        <div id="specification-container">
+                                            <div class="specification-row">
+                                                <input type="text" name="content_title[]" class="form-control" placeholder="Specification Title" required>
+                                                <input type="text" name="content_description[]" class="form-control" placeholder="Specification Description" required>
+                                                <button type="button" class="btn btn-primary add-description-row">+</button>
+                                            </div>
+                                        </div>                                       
+                                    <!-- <div class="row">
                                         <div class="col-md-6">
                                             <div class="form-group">
                                                 <label class="form-label" for="air_flow">Air Flow</label>
@@ -148,21 +189,10 @@ if($row) {
                                                 <input type="text" class="form-control" name="dimension" id="dimension" placeholder="Product Title" value="<?php echo $dimension; ?>">
                                             </div>  
                                         </div>
-                                    </div> 
+                                    </div>  -->
                                 </div>                                                                   
-                            </div>                            
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="warrenty" class="form-label">Warrenty Section</label><br>
-                                    <input type="checkbox" id="warrenty" name="warrenty_section[]" value="warrenty" <?= !empty($warrenty_section) && in_array('warrenty', $warrenty_section) ? 'checked' : '' ?>>
-                                    <label for="warrenty">Warrenty</label>
-                                    <input type="checkbox" id="motion_sensor" name="warrenty_section[]" value="motion_sensor" <?= !empty($warrenty_section) && in_array('motion_sensor', $warrenty_section) ? 'checked' : '' ?>>
-                                    <label for="motion_sensor">Motion Sensor</label>
-                                    <input type="checkbox" id="isa_technology" name="warrenty_section[]" value="isa_technology" <?= !empty($warrenty_section) && in_array('isa_technology', $warrenty_section) ? 'checked' : '' ?>>
-                                    <label for="isa_technology">ISA Technology</label>
-                                </div>
-                            </div>                            
-                            <div class="col-md-6">
+                            </div>                                                                                                   
+                            <!-- <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="services_image">Product Image</label>                                    
                                     <div class="row">
@@ -185,25 +215,18 @@ if($row) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div>                                 -->
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label for="Key Feature" class="form-label">Key Feature</label><br>
-                                    <?php                                          
-                                         if($key_feature){ $i=1; foreach ($key_feature as $row) {
-                                            $checked = in_array($row->id, $key_feature_id) ? 'checked' : ''; ?>
-                                         <input type="checkbox" id="key_feature" name="key_feature[]" value="<?=$row->id; ?>" <?=$checked; ?>> <?=$row->key_feature_title;?>
-                                    <?php }} ?>                                        
-                                </div>
-                            </div>        
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="others_image">Others Image</label>                                    
+                                    <label class="form-label" for="others_image">Product Images</label>                                    
                                     <div class="row">
                                         <?php if($others_image!='') { foreach($others_image as $image) {?>
                                         <div class="col-md-3">
-                                            <img src="<?php echo base_url();?>/uploads/product/<?php echo $image->image_file; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
-                                            <p class="mt-2">
+                                            <img src="<?php echo base_url();?>/uploads/product/<?php echo $image->image_file; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />                                            
+                                            <div class="position-circle">
+                                                <?php echo $image->position; ?>
+                                            </div>
+                                            <p class="mt-2">                                                    
                                                     <a href="<?php echo base_url(); ?>/admin/manage_product/edit_image/<?php echo $image->image_id; ?>" class="btn btn-primary btn-sm" title="Edit Image"><i class="fa fa-edit"></i> Edit</a>
                                                     <a href="<?php echo base_url(); ?>/admin/manage_product/delete_image/<?php echo $image->image_id; ?>" class="btn btn-danger btn-sm" title="Delete Image" onclick="return confirm('Do You Want To Delete This Image');"><i class="fa fa-trash"></i> Delete</a>
                                             </p>
@@ -214,16 +237,60 @@ if($row) {
 
                                     <div class="input-group mb-3">
                                         <div class="input-group-prepend">
-                                            <span class="input-group-text">Others Image</span>
+                                            <span class="input-group-text">Product Images</span>
                                         </div>
-                                        <div class="custom-file">
-                                            <input type="file" name="others_image[]" class="form-control" id="others_image" multiple>
+                                        <div id="image-upload-container">
+                                            <div class="image-upload-row">
+                                                <input type="file" name="others_image[]" class="form-control" >
+                                                <input type="number" name="position[]" class="form-control" placeholder="Position" >
+                                                <button type="button" class="btn btn-primary add-image-row">+</button>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="custom-file">
+                                            <input type="file" name="others_image[]" class="form-control" id="others_image" multiple required>
                                             <small class="text-info">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed</small><br>                                            
-                                        </div>
+                                        </div> -->
                                         <div class="image-preview" id="imagePreview"></div> 
                                     </div>
                                 </div>                                
                             </div> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Key Feature" class="form-label">Key Feature</label><br>
+                                    <?php                                          
+                                         if($key_feature){ $i=1; foreach ($key_feature as $row) {
+                                            $checked = in_array($row->id, $key_feature_id) ? 'checked' : ''; ?>
+                                         <input type="checkbox" id="key_feature" name="key_feature[]" value="<?=$row->id; ?>" <?=$checked; ?> required> <?=$row->key_feature_title;?>
+                                    <?php }} ?>                                        
+                                </div>
+                            </div>    
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="warrenty" class="form-label">Warranty Section</label><br>
+                                    <input type="checkbox" id="warrenty" name="warrenty_section[]" value="warrenty" <?= !empty($warrenty_section) && in_array('warrenty', $warrenty_section) ? 'checked' : '' ?> required>
+                                    <label for="warrenty">Warranty</label>
+                                    
+                                    <input type="checkbox" id="motion_sensor" name="warrenty_section[]" value="motion_sensor" <?= !empty($warrenty_section) && in_array('motion_sensor', $warrenty_section) ? 'checked' : '' ?>>
+                                    <label for="motion_sensor">Motion Sensor</label>
+                                    
+                                    <input type="checkbox" id="isa_technology" name="warrenty_section[]" value="isa_technology" <?= !empty($warrenty_section) && in_array('isa_technology', $warrenty_section) ? 'checked' : '' ?>>
+                                    <label for="isa_technology">ISA Technology</label>
+                                    
+                                    <p id="warranty_error" style="color: red; display: none;">Please select at least one option.</p>
+                                </div>  
+                            </div>    
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="regular_price">Regular Price</label>
+                                    <input type="text" class="form-control" name="regular_price" id="regular_price" placeholder="Regular Price" value="<?php echo $regular_price; ?>" required="required">
+                                </div>
+                            </div> 
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="sale_price">Sale Price</label>
+                                    <input type="text" class="form-control" name="sale_price" id="sale_price" placeholder="Sale Price" value="<?php echo $sale_price; ?>" required="required">
+                                </div>
+                            </div>    
                             <div class="col-md-6">
                             <label for="is_new" class="col-md-2 col-lg-2 col-form-label">Is New</label>
                             <div class="col-md-10 col-lg-10">
@@ -263,4 +330,52 @@ if($row) {
             }
         }
     });
+</script>
+<!-- <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const checkboxes = document.querySelectorAll('input[name="warrenty_section[]"]');
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        
+        if (!isChecked) {
+            event.preventDefault();  // Stop form submission
+            document.getElementById('warranty_error').style.display = 'block';
+        } else {
+            document.getElementById('warranty_error').style.display = 'none';
+        }
+    });
+</script> -->
+<script>
+document.querySelector('.add-image-row').addEventListener('click', function () {
+    const row = document.createElement('div');
+    row.className = 'image-upload-row';
+    row.innerHTML = `
+        <input type="file" name="others_image[]" class="form-control">
+        <input type="number" name="position[]" class="form-control" placeholder="Position">
+        <button type="button" class="btn btn-danger remove-image-row">-</button>
+    `;
+    document.getElementById('image-upload-container').appendChild(row);
+});
+
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('remove-image-row')) {
+        e.target.parentNode.remove();
+    }
+});
+
+document.querySelector('.add-description-row').addEventListener('click', function () {
+    const row = document.createElement('div');
+    row.className = 'specification-row';
+    row.innerHTML = `
+        <input type="text" name="content_title[]" class="form-control" placeholder="Specification Title" required>
+        <input type="text" name="content_description[]" class="form-control" placeholder="Specification Description" required>
+        <button type="button" class="btn btn-danger remove-specification-row">-</button>
+    `;
+    document.getElementById('specification-container').appendChild(row);
+});
+
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('remove-specification-row')) {
+        e.target.parentNode.remove();
+    }
+});
 </script>

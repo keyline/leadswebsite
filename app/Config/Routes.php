@@ -65,8 +65,10 @@ $routes->get('/', 'Frontend::index');
 $routes->get('/about', 'Frontend::about');
 
 $routes->get('/blog', 'Frontend::blog');
-
 $routes->get('api/load-blogs', 'Frontend::loadMoreBlog');
+$routes->get('/product/(:any)', 'Frontend::product/$1');
+$routes->get('/product-details/(:any)', 'Frontend::product_details/$1');
+$routes->get('api/load_more_products', 'Frontend::load_more_products');
 
 $routes->get('/blog-details/(:any)', 'Frontend::blog_details/$1');
 
