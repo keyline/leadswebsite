@@ -233,7 +233,11 @@ $db = \Config\Database::connect();
                                                             <div class="product_info">                                                           
                                                                 <img src="<?=base_url('/uploads/product/'.$others_image->image_file)?>" alt="" class="img-fluid">
                                                                 <h4><?=$product->product_title?></h4>
-                                                                <p>Air Flow : <?=$product->air_flow?></p>                                                            
+                                                                <?php 
+                                                                $content_title        = json_decode($row->content_title);
+                                                                $content_description  = json_decode($row->content_description);
+                                                                ?>
+                                                                <p><?=$content_title[0]?> : <?=$content_description[0]?></p>                                                            
                                                             </div>
                                                         </div>  
                                                         <?php } ?>                                                     
