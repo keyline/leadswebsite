@@ -212,7 +212,9 @@ $db = \Config\Database::connect();
                                 <div class="swiper productswiper">
                                     <div class="swiper-wrapper">
                                     <?php foreach($products as $product){  ?>
+                                        
                                         <div class="swiper-slide">
+                                            <a href="<?= base_url('product-details')?>/<?= $product->slug?>">
                                             <div class="product_item">
                                                 <div class="badge-product-sale">
                                                     <?php if($product->is_new == 1) {?>
@@ -254,7 +256,9 @@ $db = \Config\Database::connect();
                                                     </ul>
                                                 </div>
                                             </div>
+                                            </a>
                                         </div>
+                                        
                                     <?php } ?>
                                     </div>
                                     <div class="navegiation_position">
