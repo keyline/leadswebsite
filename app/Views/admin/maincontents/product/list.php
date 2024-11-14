@@ -40,8 +40,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>                                   
-                                    <th>Product Title</th>                                    
-                                    <th>Product Image</th>
+                                    <th>Product Title</th>                                                                        
                                     <th>Product Description</th>
                                     <th>Action</th>
                                 </tr>
@@ -51,12 +50,7 @@
                                 ?>
                                 <tr>
                                     <td><?php echo $i++; ?></td>                                                                                                        
-                                    <td><?php echo $row->product_title; ?></td>                                    
-                                    <td>
-                                        <?php if($row->product_image!='') { ?>
-                                          <img src="<?=base_url('/uploads/product/'.$row->product_image)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
-                                        <?php } ?>                                        
-                                    </td>
+                                    <td><?php echo $row->product_title; ?></td>                                                                        
                                     <td><?php echo $row->air_flow; ?></td>
                                     
                                     <td>
