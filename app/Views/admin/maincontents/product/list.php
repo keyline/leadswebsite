@@ -40,8 +40,7 @@
                             <thead>
                                 <tr>
                                     <th>#</th>                                   
-                                    <th>Product Title</th>                                                                        
-                                    <th>Product Description</th>
+                                    <th>Product Title</th>                                                                                                            
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -50,8 +49,7 @@
                                 ?>
                                 <tr>
                                     <td><?php echo $i++; ?></td>                                                                                                        
-                                    <td><?php echo $row->product_title; ?></td>                                                                        
-                                    <td><?php echo $row->air_flow; ?></td>
+                                    <td><?php echo $row->product_title; ?></td>                                                                                                            
                                     
                                     <td>
                                         <?php $primary_key = $moduleDetail['primary_key']; ?>
