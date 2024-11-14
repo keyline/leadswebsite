@@ -58,8 +58,8 @@
                                                 <img src="<?=base_url('/uploads/product/'.$others_image->image_file)?>" alt="" class="img-fluid">
                                                 <h4><?=$product_list->product_title?></h4>
                                                 <?php 
-                                                    $content_title        = json_decode($product->content_title);
-                                                    $content_description  = json_decode($product->content_description);
+                                                    $content_title        = json_decode($product_list->content_title);
+                                                    $content_description  = json_decode($product_list->content_description);
                                                     ?>
                                                     <p><?=$content_title[0]?> : <?=$content_description[0]?></p>                                                             
                                             </div>
