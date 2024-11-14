@@ -16,41 +16,26 @@
 <?php
 if($row) {
     $product_category                  = $row->product_category;  
-    $product_title                     = $row->product_title;  
-    $air_flow                          = $row->air_flow;
+    $product_title                     = $row->product_title;      
     $content_description                       = json_decode($row->content_description);
     // pr(count($content_description));
     $content_title                       = json_decode($row->content_title);
     $regular_price                     = $row->regular_price;
-    $sale_price                        = $row->sale_price;
-    $generation                        = $row->generation;
-    $motor_power                       = $row->motor_power;
-    $speed                             = $row->speed;
-    $lamp                              = $row->lamp;
-    $noise_level                       = $row->noise_level;
-    $cabinet_hood                      = $row->cabinet_hood;
-    $dimension                         = $row->dimension;
+    $sale_price                        = $row->sale_price;    
     $warrenty_section                  = json_decode($row->warrenty_section);
     $key_feature_id                    = json_decode($row->key_feature);   
     $is_new                            = $row->is_new;
     // $others_image                      = $row->image_file;
 } else {
     $product_category                  = set_value('product_category', '');
-    $product_title                     = set_value('product_title', '');
-    $description                       = set_value('description', '');
+    $product_title                     = set_value('product_title', '');    
     $regular_price                       = set_value('regular_price', '');
     $sale_price                       = set_value('sale_price', '');
-    $air_flow                          = set_value('air_flow', '');
-    $generation                        = set_value('generation', '');
-    $motor_power                       = set_value('motor_power', '');
-    $speed                             = set_value('speed', '');
-    $lamp                              = set_value('lamp', '');
-    $cabinet_hood                      = set_value('cabinet_hood', '');
-    $noise_level                       = set_value('noise_level', '');
-    $dimension                         = set_value('dimension', '');        
     $others_image = '';
     $key_feature_id = [];
     $warrenty_section = [];
+    $content_title = [];
+    $content_description = [];
 }
 ?>
 <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
