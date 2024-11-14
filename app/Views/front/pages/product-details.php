@@ -22,7 +22,7 @@
                 <div class="row">
                     <div class="col-lg-5  col-md-12 mobile_order_left">
                         <div class="product_dtl_info">
-                            <h2><?php  echo $product->slug; ?> <?php if($product->is_new == 1){ ?><a href="#" class="new_badge">New<?=$product->slug?></a><?php }?> </h2>
+                            <h2><?php  echo $product->product_title; ?> <?php if($product->is_new == 1){ ?><a href="#" class="new_badge">New</a><?php }?> </h2>
                         </div>
                         <div class="product_dtl_left">
                             <!-- Swiper -->
