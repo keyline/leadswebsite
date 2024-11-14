@@ -288,7 +288,7 @@ if($row) {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="sale_price">Sale Price</label>
-                                    <input type="text" class="form-control" name="sale_price" id="sale_price" placeholder="Sale Price" value="<?php echo $sale_price; ?>" required="required">
+                                    <input type="text" class="form-control" name="sale_price" id="sale_price" placeholder="Sale Price" value="<?php echo $sale_price; ?>">
                                 </div>
                             </div>    
                             <div class="col-md-6">
