@@ -79,6 +79,7 @@
                                 <?php 
                                 $content_title  = json_decode($product->content_title);
                                 $content_description  = json_decode($product->content_description);
+                                if(!empty($content_title)){
                                 for($i = 1; $i <= count($content_title); $i++) {?>
                                     <li><span class="specfy_name"><?=$content_title[$i-1]?> :</span> <span> <?=$content_description[$i-1]?></span></li> 
                                     <?php } ?> 
@@ -87,7 +88,7 @@
                                     <?php }?>
                                     <?php if(!empty($product->sale_price)){ ?>                                  
                                     <li><span class="specfy_name">Sale Price :</span> <span> <?=$product->sale_price?></span></li> 
-                                    <?php }?>
+                                    <?php } }?>
                                 </ul>
                             </div>
                             <div class="product_dtl_keyfeature">
