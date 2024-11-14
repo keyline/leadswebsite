@@ -32,7 +32,6 @@ if($row) {
     $dimension                         = $row->dimension;
     $warrenty_section                  = json_decode($row->warrenty_section);
     $key_feature_id                    = json_decode($row->key_feature);   
-    $product_image                     = $row->product_image;
     $is_new                            = $row->is_new;
     // $others_image                      = $row->image_file;
 } else {
@@ -48,8 +47,7 @@ if($row) {
     $lamp                              = set_value('lamp', '');
     $cabinet_hood                      = set_value('cabinet_hood', '');
     $noise_level                       = set_value('noise_level', '');
-    $dimension                         = set_value('dimension', '');    
-    $product_image                     = set_value('product_image', '');
+    $dimension                         = set_value('dimension', '');        
     $others_image = '';
     $key_feature_id = [];
     $warrenty_section = [];
@@ -191,31 +189,7 @@ if($row) {
                                         </div>
                                     </div>  -->
                                 </div>                                                                   
-                            </div>                                                                                                   
-                            <!-- <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="services_image">Product Image</label>                                    
-                                    <div class="row">
-                                        <?php if($product_image!='') { ?>
-                                        <div class="col-md-3">
-                                            <img src="<?php echo base_url();?>/uploads/product/<?php echo $product_image; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
-                                        </div>
-                                        <?php } ?>                                        
-                                    </div>
-                                    
-
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Product Image</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" class="form-control" id="product_image" name="product_image" <?php if($action == 'Add'){?>required<?php }?>>
-                                            <small class="text-info">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed</small><br>
-                                            
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>                                 -->
+                            </div>                                                                                                                                                       
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label class="form-label" for="others_image">Product Images</label>                                    
