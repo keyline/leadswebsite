@@ -901,8 +901,7 @@ class Frontend extends BaseController
                 $this->session->setFlashdata('errors', $this->validator->getErrors());
                 // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 
-                // $this->verifyRecaptcha($_POST['recaptcha_token'])
-            } else if (true) {
+            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
                 $this->common_model = new CommonModel();
 
                 $formData = [

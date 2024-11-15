@@ -47,7 +47,7 @@
                                 <input type="hidden" name="page_name" value="<?= service('uri')->getPath() ?>">
                                 <input type="hidden" name="recaptcha_token" id="recaptcha_token">
                                 <div class="col-sm-6">
-                                    <button type="submit" class="g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit'>submit <img src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt="" class="img-fluid long-arrow"></button>
+                                    <button type="submit" class="g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit2'>submit <img src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt="" class="img-fluid long-arrow"></button>
                                 </div>
                             </div>
                         </form>
@@ -80,16 +80,16 @@
 <?= $this->section('scripts') ?>
 <script>
     // Handle reCAPTCHA callback
-    function onSubmit(token) {
+    function onSubmit2(token) {
         // Set the token in the hidden input
         $('#recaptcha_token').val(token);
 
         // Trigger AJAX form submission
-        submitForm();
+        submitForm2();
     }
 
     // Submit the form via AJAX
-    function submitForm() {
+    function submitForm2() {
         $.ajax({
             url: "api/contact-us", // Replace with your server URL
             type: "POST",
