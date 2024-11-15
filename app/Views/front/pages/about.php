@@ -67,15 +67,15 @@
                         </div>
                     </div>
                     <div class="about_more_box">
-                        <a href="#">
+                        
                             <div class="mission_tabs">
-                                <p class="hypne">Mission & Vision</p>
+                                <!-- <p class="hypne"></p> -->
                                 <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                    <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Mission & Vision</a>
                                     <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Our Presence</a>
                                     <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificates</a>
                                 </div>
                             </div>
-                        </a>
                     </div>
                 </div>
             </div>

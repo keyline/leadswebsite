@@ -1451,6 +1451,10 @@ body.abrido .hide_notshow_normal {
     border: 1px solid #afafaf;
     border-radius: 10px;
     overflow: hidden;
+    padding: 25px;
+}
+.product_thumb_box .swiper-slide {
+    padding: 15px;
 }
 .product_thumb_box .swiper-slide{
     border: 1px solid #afafaf;
@@ -1521,14 +1525,23 @@ body.abrido .hide_notshow_normal {
 .specify_list li {
     display: flex;
     font-size: 20px;
-    padding-bottom: 5px;
+    padding-bottom: 10px;
     color: #999;
+    line-height: 1.25;
 }
 .specify_list li span.specfy_name {
-    width: 25%;
+    /* width: 25%; */
     font-size: 18px;
     color: #838282;
     font-weight: 600;
+    flex: 0 0 250px;
+}
+.specify_list li span.regular_price {
+    font-weight: 600;
+    color: #000;
+}
+.specify_list li span.regular_price_name {
+    color: #000 !important;
 }
 .product_dtl_keyfeature {
     margin-top: 40px;
@@ -2365,3 +2378,101 @@ ul.blog_meta li i {
 
 
 /* ********|| Blog Details ENDS ||******** */
+
+.vacancy-box h2.content-title {
+    text-align: left;
+}
+.vacancy-box .content-description {
+    text-align: left;
+    font-size: 14px;
+}
+.vacancy-app-btn a.apply {
+    text-decoration: none;
+    background: var(--primaryColor);
+    color: #fff;
+    padding: 8px 20px 6px;
+    border-radius: 8px;
+    display: inline-block;
+    text-transform: uppercase;
+    line-height: 1.25;
+}
+.vacancy-app-btn {
+    margin-top: 15px;
+}
+.vacancy-app-btn a.apply:hover {
+    background: #000;
+    color: #fff;
+}
+.job-list-item {
+    display: flex;
+    justify-content: space-between;
+    background: #f8f9fa;
+    margin-bottom: 20px;
+    padding: 40px;
+    border-radius: 15px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    flex-wrap: wrap;
+}
+.job-list-item .job-info.job-list-item-col {
+    flex: 1 1 40%;
+    padding-right: 15px;
+    -webkit-box-flex: 1;
+    -ms-flex: 1;
+}
+.job-apply.job-list-item-col {
+    flex: 0 0 200px;
+    text-align: right;
+    -webkit-box-flex: 0;
+}
+.job-list-item .job-info.job-list-item-col h3.job-title {
+    color: #263859;
+    font-size: 18px;
+    font-weight: 600;
+}
+span.office-briefcase {
+    margin-right: 15px;
+    color: #1ca4d5;
+}
+.office-location {
+    color: #8b8686;
+}
+.job-apply.job-list-item-col .deadline {
+    display: block;
+    color: #1e626e;
+}
+.job-apply.job-list-item-col a.button {
+    background: #ed1c24;
+    color: #fff;
+    text-decoration: none;
+    padding: 12px 30px;
+    display: inline-block;
+    border-radius: 50px;
+    margin-bottom: 10px;
+}
+.job-apply.job-list-item-col a.button:hover{
+    background: #444; 
+}
+#applyModal .modal-header {
+    background: var(--primaryColor);
+    color: #fff;
+}
+#applyModal .modal-header button.btn-close {
+    background-color: #fff;
+    opacity: 1;
+    border-radius: 50px;
+    background-size: 14px !important;
+}
+#applyModal .modal-body .form-control {
+    margin-bottom: 18px;
+    height: 45px;
+    border-radius: 10px;
+    line-height: 1.25;
+}
+#applyModal .modal-body button.btn.btn-primary {
+    margin-top: 20px;
+    width: 100%;
+    border-radius: 18px;
+    padding: 10px 10px 6px;
+    font-size: 18px;
+}

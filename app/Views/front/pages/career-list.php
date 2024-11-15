@@ -86,12 +86,30 @@
                 <?php if (count($vacancy)) {
                     foreach ($vacancy as $job) { ?>
                         <div class="col-md-12 mb-4">
-                            <div class="content-box">
+                            <div class="job-list-item">
+                                <div class="job-info job-list-item-col">
+                                    <h3 class="job-title">Customer Service Representative / Customer Support</h3>
+                                    <p class="meta job-list-info">
+                                        <span class="office-briefcase job-list-info-block">
+                                            <i class="fa-solid fa-briefcase"></i> No of vacancies - 2 
+                                        </span>
+                                        
+                                        <span class="office-location job-list-info-block">
+                                            <i class="fa-solid fa-location-dot"></i><span>Anywhere</span>
+                                        </span>
+                                    </p>
+                                </div>
+                                <div class="job-apply job-list-item-col">
+                                    <a href="#" class="button" target="_blank">Apply Now</a>
+                                    <span class="deadline deadline"><i class="fa-solid fa-calendar-days"></i> Deadline: 01 Jan, 2030                                                            </span>
+                                </div>
+                            </div>
+                            <div class="content-box vacancy-box">
                                 <h2 class="content-title"><?= $job->name ?></h2>
-                                <p class="content-description">
+                                <div class="content-description">
                                     <?= $job->msg ?>
-                                </p> <br>
-                                <span><a class="point apply" data-name='<?= $job->name ?>' data-id='<?= $job->id ?>'><big>Apply here</big></a></span>
+                                </div> 
+                                <div class="vacancy-app-btn"><a class="point apply" data-name='<?= $job->name ?>' data-id='<?= $job->id ?>'>Apply here</a></div>
                             </div>
                         </div>
                     <?php }
@@ -122,7 +140,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title" id="applyModalLabel">Apply here for <br> <small class="jobName"></small></h5>
+                <h5 class="modal-title" id="applyModalLabel">Apply here for  <small class="jobName"></small></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Modal Body -->
@@ -130,37 +148,37 @@
                 <!-- Form content goes here as described before -->
                 <form id="jobApply" enctype="multipart/form-data">
                     <div class="form-group">
-                        <label>First Name:</label>
+                        <!-- <label>First Name:</label> -->
                         <input type="text" class="form-control" name="fname" placeholder="First Name">
                         <p class="text-danger error" id="fname-error"></p>
                     </div>
                     <div class="form-group">
-                        <label>Last Name:</label>
+                        <!-- <label>Last Name:</label> -->
                         <input type="text" class="form-control" name="lname" placeholder="Last Name">
                         <p class="text-danger error" id="lname-error"></p>
                     </div>
                     <div class="form-group">
-                        <label>Email:</label>
+                        <!-- <label>Email:</label> -->
                         <input type="email" class="form-control" name="email" placeholder="Email">
                         <p class="text-danger error" id="email-error"></p>
                     </div>
                     <div class="form-group">
-                        <label>Phone:</label>
+                        <!-- <label>Phone:</label> -->
                         <input type="tel" class="form-control" name="phone" placeholder="Phone">
                         <p class="text-danger error" id="phone-error"></p>
                     </div>
                     <div class="form-group">
-                        <label>Educational Qualification:</label>
+                        <!-- <label>Educational Qualification:</label> -->
                         <input type="text" class="form-control" name="qualification" placeholder="Educational Qualification">
                         <p class="text-danger error" id="qualification-error"></p>
                     </div>
                     <div class="form-group">
-                        <label>Years of Experience:</label>
+                        <!-- <label>Years of Experience:</label> -->
                         <input type="text" class="form-control" name="experience" placeholder="Years of Experience">
                         <p class="text-danger error" id="experience-error"></p>
                     </div>
                     <div class="form-group">
-                        <label>Attach your latest CV:</label>
+                        <label>Attach your latest CV:</label><br>
                         <input type="file" class="form-control-file" name="file" accept="application/pdf" required>
                         <p class="text-danger error" id="file-error"></p>
                     </div>
