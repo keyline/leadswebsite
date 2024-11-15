@@ -162,8 +162,9 @@
                         </div>
 
                         <div class="col-12">
+                            <!-- g-recaptcha -->
                             <input type="hidden" name="recaptcha_token" id="recaptcha_token">
-                            <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit'>Submit</button>
+                            <button class="btn btn-primary g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit1'>Submit</button>
                         </div>
 
                     </form>
@@ -191,13 +192,17 @@
 <?= $this->section('scripts') ?>
 
 <script>
-    // Handle reCAPTCHA callback
-    function onSubmit(token) {
-        // Set the token in the hidden input
-        $('#recaptcha_token').val(token);
+    // Handle reCAPTCHA callback token
+    // (function() {
+        function onSubmit1() {
+            alert("test++++++");
+            
+            // Set the token in the hidden input
+            $('#recaptcha_token').val(token);
 
-        $(this).submit();
-    }
+            $(this).closest('form').submit();
+        }
+    // })();
 </script>
 
 <?= $this->endSection() ?>

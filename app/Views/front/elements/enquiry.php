@@ -10,13 +10,13 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Name" aria-label="First name" name="name" value="<?= old('name') ?>">
                                     <?php if (session('errors.name')): ?>
-                                        <div class="error text-danger"><?= esc(session('errors.name')) ?></div>
+                                        <!-- <div class="error text-danger"><?= esc(session('errors.name')) ?></div> -->
                                     <?php endif; ?>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Mobile No" aria-label="Mobile No" name="number" value="<?= old('number') ?>">
                                     <?php if (session('errors.number')): ?>
-                                        <div class="error text-danger"><?= esc(session('errors.number')) ?></div>
+                                        <!-- <div class="error text-danger"><?= esc(session('errors.number')) ?></div> -->
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -24,14 +24,14 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="City" aria-label="City" name="city" value="<?= old('city') ?>">
                                     <?php if (session('errors.city')): ?>
-                                        <div class="error text-danger"><?= esc(session('errors.city')) ?></div>
+                                        <!-- <div class="error text-danger"><?= esc(session('errors.city')) ?></div> -->
                                     <?php endif; ?>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="email" class="form-control" placeholder="Email" aria-label="Email" name="email" value="<?= old('email') ?>">
                                     <?php if (session('errors.email')): ?>
-                                        <div class=" error text-danger"><?= esc(session('errors.email')) ?>
-                                        </div>
+                                        <!-- <div class=" error text-danger"><?= esc(session('errors.email')) ?>
+                                        </div> -->
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -39,7 +39,7 @@
                                 <div class="col-sm-12">
                                     <textarea name="message" id="" placeholder="Message"><?= old('message') ?></textarea>
                                     <?php if (session('errors.message')): ?>
-                                        <div class="error text-danger"><?= esc(session('errors.message')) ?></div>
+                                        <!-- <div class="error text-danger"><?= esc(session('errors.message')) ?></div> -->
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -79,9 +79,9 @@
 
 <?= $this->section('scripts') ?>
 <script>
+    // (function(){
     // Handle reCAPTCHA callback
     function onSubmit2(token) {
-        alert("test");
         // Set the token in the hidden input
         $('#recaptcha_token2').val(token);
 
@@ -131,5 +131,7 @@
         // Trigger reCAPTCHA validation
         grecaptcha.execute();
     });
+
+    // })();
 </script>
 <?= $this->endSection() ?>

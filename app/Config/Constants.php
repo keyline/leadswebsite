@@ -103,7 +103,7 @@ $configs = [
         'BASEURL' => 'https://leadswebsite.test/',
         'USERNAME' => 'root',
         'PASSWORD' => '',
-        'DATABASE' => 'keyline1_leadsdev',
+        'DATABASE' => 'keyline_leads',
     ],
     'localhost' => [
         'BASEURL' => 'https://localhost/leadswebsite/',
