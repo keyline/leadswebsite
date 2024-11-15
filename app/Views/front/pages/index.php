@@ -194,6 +194,12 @@ $db = \Config\Database::connect();
             <div class="row mt-4 mt-sm-5">
                 <div class="col-12">
                     <div class="home_product_tab_content_box" data-aos="fade-down" data-aos-duration="1000">
+                        <?php 
+                            // Determine the active category
+                            $activeCategory = $product_category[$key]; // Assuming the first category is active 
+                            // pr($activeCategory);
+                            // die;
+                        ?>
                         <div class="tab-content" id="pills-tabContent">
                             <?php foreach($product_category as $key => $row) { 
                                 $productcatID = $row->id;
@@ -206,7 +212,9 @@ $db = \Config\Database::connect();
                                 <div class="swiper productswiper">
                                     <div class="swiper-wrapper">
                                     <?php foreach($products as $product){  ?>
+                                        
                                         <div class="swiper-slide">
+                                            <a href="<?= base_url('product-details')?>/<?= $product->slug?>">
                                             <div class="product_item">
                                                 <div class="badge-product-sale">
                                                     <?php if($product->is_new == 1) {?>
@@ -225,7 +233,11 @@ $db = \Config\Database::connect();
                                                             <div class="product_info">                                                           
                                                                 <img src="<?=base_url('/uploads/product/'.$others_image->image_file)?>" alt="" class="img-fluid">
                                                                 <h4><?=$product->product_title?></h4>
-                                                                <p>Air Flow : <?=$product->air_flow?></p>                                                            
+                                                                <?php 
+                                                                $content_title        = json_decode($product->content_title);
+                                                                $content_description  = json_decode($product->content_description);
+                                                                ?>
+                                                                <p><?=$content_title[0]?> : <?=$content_description[0]?></p>                                                            
                                                             </div>
                                                         </div>  
                                                         <?php } ?>                                                     
@@ -248,7 +260,9 @@ $db = \Config\Database::connect();
                                                     </ul>
                                                 </div>
                                             </div>
+                                            </a>
                                         </div>
+                                        
                                     <?php } ?>
                                     </div>
                                     <div class="navegiation_position">
@@ -257,12 +271,14 @@ $db = \Config\Database::connect();
                                         <div class="swiper-pagination"></div>
                                     </div>
                                 </div>
-                            </div>
+                                <div class="view_all_box mt-5 text-end">
+                                    <a href="<?= base_url('product')?>/<?= $row->slug?>">View all <?= $row->name;?></a>
+                                </div>
+                            </div>                            
+                            
                             <?php } ?>
                         </div>
-                        <div class="view_all_box mt-5 text-end">
-                            <a href="#">View all Chimney</a>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
