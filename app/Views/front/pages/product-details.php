@@ -84,7 +84,7 @@
                                     <li><span class="specfy_name"><?=$content_title[$i-1]?> :</span> <span> <?=$content_description[$i-1]?></span></li> 
                                     <?php } ?> 
                                     <?php if(!empty($product->regular_price)){ ?>                                  
-                                    <li><span class="specfy_name">Regular Price :</span> <span> <?=$product->regular_price?></span></li> 
+                                    <li><span class="specfy_name regular_price_name">Price :</span> <span class="regular_price"> <?=$product->regular_price?></span></li> 
                                     <?php }?>
                                     <?php if(!empty($product->sale_price)){ ?>                                  
                                     <li><span class="specfy_name">Sale Price :</span> <span> <?=$product->sale_price?></span></li> 
