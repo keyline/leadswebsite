@@ -69,7 +69,16 @@ class Manage_enquire extends BaseController
         $data                       = [];
 
         $data['rows']                = $this->data['model']->getEnquires();
-       
+
+        foreach ($data['rows'] as $key => &$row) {
+            $product_name = '';
+            if ($row->special_enquiry != '') {
+                $product = $this->common_model->find_data('product', 'row', ['id' => $row->special_enquiry], ['product_title']);
+                $product_name =  $product->product_title;
+            }
+            $row->product_name = $product_name;
+        }
+
         echo $this->layout_after_login($title, $page_name, $data);
     }
 

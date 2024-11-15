@@ -877,11 +877,68 @@ class Frontend extends BaseController
             }
         }
 
-
-
         echo $this->front_layout($title, $page_name, $data);
     }
 
+
+    public function amc_submit()
+    {
+        if ($this->request->getMethod() === 'post') {
+
+            $postData = $this->request->getPost();
+
+            $rules = [
+                'name' => [
+                    'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Name'
+                ],
+                'email' => [
+                    'rules' => 'required|valid_email',
+                    'label' => 'Email'
+                ],
+                'product_id' => [
+                    'rules' => 'required',
+                    'label' => 'Product'
+                ],
+                'comments' => [
+                    'rules' => 'required|permit_empty|max_length[1000]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Comments'
+                ],
+            ];
+
+            if (!$this->validate($rules)) {
+                return $this->response->setStatusCode(200) // Bad Request
+                    ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
+                
+            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+
+                $this->common_model = new CommonModel();
+
+                $formData = [
+                    'name'           => $postData['name'],
+                    'email'          => $postData['email'],
+                    'special_enquiry' => $postData['product_id'],
+                    'comment'        => $postData['comments'],
+                    'enquiry_type'   => 'ENQUIRY'
+                ];
+
+                $insert_id = $this->common_model->save_data('sms_contact_enquiry', $formData);
+
+                if ($insert_id) {
+
+                    // $body = view('Views/front/mail_template/jobapply-templete', $formData);
+
+                    // $this->sendToAdmin('Job apply', $body, 'admin', 'Leadsindia');
+
+                    return $this->response->setStatusCode(201) // Created
+                        ->setJSON(['status' => true, 'message' => 'Request send successfully']);
+                }
+            } else {
+                return $this->response->setStatusCode(200) // Created
+                    ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
+            }
+        }
+    }
 
 
     public function get_products()

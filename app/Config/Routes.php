@@ -80,7 +80,9 @@ $routes->get('/career', 'Frontend::career');
 
 $routes->match(['get', 'post'], '/service', 'Frontend::service_request');
 
-$routes->match(['get', 'post'], '/amc', 'Frontend::amc_request');
+$routes->get('/amc', 'Frontend::amc_request');
+
+$routes->post('api/amc-request', 'Frontend::amc_submit');
 
 $routes->post('api/get-products', 'Frontend::get_products');
 

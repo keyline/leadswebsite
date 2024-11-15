@@ -45,6 +45,7 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email & Number</th>
+                                    <th>Product</th>
                                     <th>massage </th>
                                     <th>Enquire Date</th>
                                     <!-- <th>Action</th> -->
@@ -61,6 +62,7 @@
                                             <td><?= $i++; ?></td>
                                             <td><small><?= $row->name ?></small></td>
                                             <td> <small><?= $row->email; ?> <br> <?= $row->phone; ?></small> </td>
+                                            <td> <small><?= $row->product_name; ?></small> </td>
                                             <td> <small><?= $row->comment; ?></small> </td>
                                             <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
 
