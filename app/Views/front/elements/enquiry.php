@@ -45,7 +45,7 @@
                             </div>
                             <div class="row">
                                 <input type="hidden" name="page_name" value="<?= service('uri')->getPath() ?>">
-                                <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+                                <input type="hidden" name="recaptcha_token" id="recaptcha_token2">
                                 <div class="col-sm-6">
                                     <button type="submit" class="g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit2'>submit <img src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt="" class="img-fluid long-arrow"></button>
                                 </div>
@@ -82,7 +82,7 @@
     // Handle reCAPTCHA callback
     function onSubmit2(token) {
         // Set the token in the hidden input
-        $('#recaptcha_token').val(token);
+        $('#recaptcha_token2').val(token);
 
         // Trigger AJAX form submission
         submitForm2();
