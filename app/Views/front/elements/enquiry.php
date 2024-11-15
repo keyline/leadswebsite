@@ -81,6 +81,7 @@
 <script>
     // Handle reCAPTCHA callback
     function onSubmit2(token) {
+        alert("test");
         // Set the token in the hidden input
         $('#recaptcha_token2').val(token);
 
@@ -130,6 +131,5 @@
         // Trigger reCAPTCHA validation
         grecaptcha.execute();
     });
-
 </script>
 <?= $this->endSection() ?>
