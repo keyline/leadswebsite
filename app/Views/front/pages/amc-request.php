@@ -143,8 +143,8 @@
                         <p class="text-danger error" id="comments-error"></p>
                     </div>
 
-                    <input type="hidden" name="recaptcha_token" id="recaptcha_token">
-                    <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="<?= SITE_KEY ?>" style="background-color: #ed1c24;" data-callback='onSubmit'>SUBMIT</button>
+                    <input type="hidden" name="recaptcha_token" id="recaptcha_token3">
+                    <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="<?= SITE_KEY ?>" style="background-color: #ed1c24;" data-callback='onSubmit3'>SUBMIT</button>
                 </form>
             </div>
             <!-- Modal Footer -->
@@ -189,93 +189,84 @@
     }
 
 
-    $(document).ready(function() {
-        loadProduct();
+    // form submit 
 
-        $(".product_parent").on('click', function() {
-            let product_id = $(this).data('id');
+    // Handle reCAPTCHA callback
+    function onSubmit3(token) {
+        // Set the token in the hidden input
+        $('#recaptcha_token3').val(token);
 
-            loadProduct(product_id);
-        });
-
-
-        // form submit 
-
-
-        // Handle reCAPTCHA callback
-        function onSubmit(token) {
-            // Set the token in the hidden input
-            $('#recaptcha_token').val(token);
-
-            // Trigger AJAX form submission
-            submitForm();
-        }
+        // Trigger AJAX form submission
+        submitForm3();
+    }
 
 
-        // Submit the form via AJAX
-        function submitForm() {
-            var formData = new FormData($("#jobApply")[0]);
+    // Submit the form via AJAX
+    function submitForm3() {
+        var formData = new FormData($("#jobApply")[0]);
 
-            $.ajax({
-                url: "api/amc-request",
-                type: "POST",
-                data: formData, //$('#jobApply').serialize(),
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status) {
-                        // Show success message and reset form
-                        showAlert({
-                            title: response.message,
-                            icon: "success"
-                        });
-                        $('#jobApply')[0].reset(); // Clear the form
-                        $("#applyModal").modal('hide');
-                    } else {
-                        if (response.errors) {
-                            // Loop through each error and display it in the corresponding element if it exists
-                            for (const [field, message] of Object.entries(response.errors)) {
-                                const errorElement = document.getElementById(`${field}-error`);
-                                if (errorElement && message) {
-                                    errorElement.textContent = message;
-                                }
+        $.ajax({
+            url: "api/amc-request",
+            type: "POST",
+            data: formData, //$('#jobApply').serialize(),
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.status) {
+                    // Show success message and reset form
+                    showAlert({
+                        title: response.message,
+                        icon: "success"
+                    });
+                    $('#jobApply')[0].reset(); // Clear the form
+                    $("#applyModal").modal('hide');
+                } else {
+                    if (response.errors) {
+                        // Loop through each error and display it in the corresponding element if it exists
+                        for (const [field, message] of Object.entries(response.errors)) {
+                            const errorElement = document.getElementById(`${field}-error`);
+                            if (errorElement && message) {
+                                errorElement.textContent = message;
                             }
-
-                        } else {
-                            showAlert({
-                                title: response.message,
-                                icon: "error"
-                            });
                         }
 
+                    } else {
+                        showAlert({
+                            title: response.message,
+                            icon: "error"
+                        });
                     }
-                    grecaptcha.reset(); // Reset the reCAPTCHA widget
-                },
-                error: function(xhr, status, error) {
-                    // Show error message
-                    showAlert({
-                        title: "An error occurred. Please try again.",
-                        icon: "error",
-                        timer: 2000
-                    });
-                    console.error(error); // Log the error for debugging
+
                 }
-            });
-        }
-
-        // Attach event listener to form submission button
-        $('#jobApply').on('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-        
-            // Trigger reCAPTCHA validation
-            grecaptcha.execute();
+                grecaptcha.reset(); // Reset the reCAPTCHA widget
+            },
+            error: function(xhr, status, error) {
+                // Show error message
+                showAlert({
+                    title: "An error occurred. Please try again.",
+                    icon: "error",
+                    timer: 2000
+                });
+                console.error(error); // Log the error for debugging
+            }
         });
+    }
+
+    // Attach event listener to form submission button
+    $('#jobApply').on('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Trigger reCAPTCHA validation
+        grecaptcha.execute();
+    });
 
 
 
-
-
-
+    $(document).ready(function() {
+        $(".product_parent").on('click', function() {
+            let product_id = $(this).data('id');
+            loadProduct(product_id);
+        });
     })
 </script>
 

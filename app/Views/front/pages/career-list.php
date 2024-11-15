@@ -168,11 +168,11 @@
                     <input type="hidden" id="job" name="job" value="">
                     <input type="hidden" name="recaptcha_token" id="recaptcha_token">
 
-                    <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="<?= SITE_KEY ?>"  style="background-color: #ed1c24;" data-callback='onSubmit'>SUBMIT</button>
+                    <button type="submit" class="btn btn-primary g-recaptcha" data-sitekey="<?= SITE_KEY ?>" style="background-color: #ed1c24;" data-callback='onSubmit'>SUBMIT</button>
                 </form>
             </div>
             <!-- Modal Footer -->
-    
+
             <!-- <div class="modal-footer">
                
             </div> -->
@@ -202,6 +202,100 @@
 
 <?= $this->section('scripts') ?>
 <script>
+    // form submit 
+
+    // Handle reCAPTCHA callback
+    function onSubmit(token) {
+        // Set the token in the hidden input
+        $('#recaptcha_token').val(token);
+
+        // Trigger AJAX form submission
+        submitForm();
+    }
+
+    // Submit the form via AJAX
+    function submitForm() {
+        var formData = new FormData($("#jobApply")[0]);
+
+        var file = formData.get('file');
+
+
+        if (file) {
+
+            var fileSize = file.size;
+
+            var fileSizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Size in MB
+
+            // console.log('File Size (MB):', fileSizeInMB);
+
+
+            var maxSizeInMB = 5; // Example: 5 MB max size
+            if (fileSizeInMB > maxSizeInMB) {
+                showAlert({
+                    title: 'File is too large. Maximum size is ' + maxSizeInMB + ' MB.',
+                    icon: "error"
+                });
+                return; // Stop the form submission
+            }
+        }
+
+        $.ajax({
+            url: "api/apply-job",
+            type: "POST",
+            data: formData, //$('#jobApply').serialize(),
+            processData: false,
+            contentType: false,
+            success: function(response) {
+                if (response.status) {
+                    // Show success message and reset form
+                    showAlert({
+                        title: response.message,
+                        icon: "success"
+                    });
+                    $('#jobApply')[0].reset(); // Clear the form
+                    $("#applyModal").modal('hide');
+                } else {
+                    if (response.errors) {
+                        // Loop through each error and display it in the corresponding element if it exists
+                        for (const [field, message] of Object.entries(response.errors)) {
+                            const errorElement = document.getElementById(`${field}-error`);
+                            if (errorElement && message) {
+                                errorElement.textContent = message;
+                            }
+                        }
+
+                    } else {
+                        showAlert({
+                            title: response.message,
+                            icon: "error"
+                        });
+                    }
+
+                }
+                grecaptcha.reset(); // Reset the reCAPTCHA widget
+            },
+            error: function(xhr, status, error) {
+                // Show error message
+                showAlert({
+                    title: "An error occurred. Please try again.",
+                    icon: "error",
+                    timer: 2000
+                });
+                console.error(error); // Log the error for debugging
+            }
+        });
+    }
+
+    // Attach event listener to form submission button
+    $('#jobApply').on('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+        // submitForm();
+        // Trigger reCAPTCHA validation
+        grecaptcha.execute();
+    });
+
+
+
     $(document).ready(function() {
         $(".apply").on('click', function() {
             $(".error").text('');
@@ -212,101 +306,6 @@
 
             $("#applyModal").modal('show');
         });
-
-
-        // form submit 
-
-        // Handle reCAPTCHA callback
-        function onSubmit(token) {
-            // Set the token in the hidden input
-            $('#recaptcha_token').val(token);
-
-            // Trigger AJAX form submission
-            submitForm();
-        }
-
-        // Submit the form via AJAX
-        function submitForm() {
-            var formData = new FormData($("#jobApply")[0]);
-
-            var file = formData.get('file');
-
-
-            if (file) {
-
-                var fileSize = file.size;
-
-                var fileSizeInMB = (fileSize / (1024 * 1024)).toFixed(2); // Size in MB
-
-                // console.log('File Size (MB):', fileSizeInMB);
-
-
-                var maxSizeInMB = 5; // Example: 5 MB max size
-                if (fileSizeInMB > maxSizeInMB) {
-                    showAlert({
-                        title: 'File is too large. Maximum size is ' + maxSizeInMB + ' MB.',
-                        icon: "error"
-                    });
-                    return; // Stop the form submission
-                }
-            }
-
-            $.ajax({
-                url: "api/apply-job",
-                type: "POST",
-                data: formData, //$('#jobApply').serialize(),
-                processData: false,
-                contentType: false,
-                success: function(response) {
-                    if (response.status) {
-                        // Show success message and reset form
-                        showAlert({
-                            title: response.message,
-                            icon: "success"
-                        });
-                        $('#jobApply')[0].reset(); // Clear the form
-                        $("#applyModal").modal('hide');
-                    } else {
-                        if (response.errors) {
-                            // Loop through each error and display it in the corresponding element if it exists
-                            for (const [field, message] of Object.entries(response.errors)) {
-                                const errorElement = document.getElementById(`${field}-error`);
-                                if (errorElement && message) {
-                                    errorElement.textContent = message;
-                                }
-                            }
-
-                        } else {
-                            showAlert({
-                                title: response.message,
-                                icon: "error"
-                            });
-                        }
-
-                    }
-                    grecaptcha.reset(); // Reset the reCAPTCHA widget
-                },
-                error: function(xhr, status, error) {
-                    // Show error message
-                    showAlert({
-                        title: "An error occurred. Please try again.",
-                        icon: "error",
-                        timer: 2000
-                    });
-                    console.error(error); // Log the error for debugging
-                }
-            });
-        }
-
-        // Attach event listener to form submission button
-        $('#jobApply').on('submit', function(event) {
-            event.preventDefault(); // Prevent default form submission
-            // submitForm();
-            // Trigger reCAPTCHA validation
-            grecaptcha.execute();
-        });
-
-
     });
 </script>
 <?= $this->endSection() ?>
