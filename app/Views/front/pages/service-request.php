@@ -47,7 +47,7 @@
             <div class="col-md-12">
                 <div class="form_style">
 
-                    <form class="row g-3" action="" method="post">
+                    <form id="service_request" class="row g-3" action="" method="post">
 
                         <div class="col-md-6">
                             <label for="input1" class="form-label">Name &nbsp;<span class="text-danger">*</span></label>
@@ -193,17 +193,13 @@
 
 <script>
     // Handle reCAPTCHA callback token
-    // (function() {
+
     function onSubmit1(token) {
-
-        console.log('token : ' + token);
-
         // Set the token in the hidden input
         $('#recaptcha_token').val(token);
 
-        $(this).closest('form').submit();
+        $('#service_request').submit();
     }
-    // })();
 </script>
 
 <?= $this->endSection() ?>
