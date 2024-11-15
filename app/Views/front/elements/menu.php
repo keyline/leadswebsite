@@ -22,7 +22,7 @@
             <div class="fullsreen_menu">
                 <ul>
                     <li><a href="<?= base_url() ?>">Home</a></li>
-                    <li><a href="#">Produst Registration</a></li>
+                    <!-- <li><a href="#">Produst Registration</a></li> -->
                     <li class="deskrewad_img"><img src="<?= base_url('public/assets/') ?>/img/desktop_rewardoffer.png" alt="logo"></li>
                 </ul>
             </div>
@@ -75,7 +75,7 @@
                     </li>
                     <li><a href="#">After Sales Sevices</a>
                         <ul>
-                            <li><a href="<?=base_url('/amc')?>">AMC</a></li>
+                            <li><a href="<?= base_url('/amc') ?>">AMC</a></li>
                             <!-- <li><a href="#">Service Policy</a></li> -->
                             <?php foreach ($contents as $key => $page) { ?>
                                 <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
@@ -93,7 +93,7 @@
     <div id="cssmenu">
         <ul class="menu-show">
             <li><a href="#">Home</a></li>
-            <li><a href="#">Produst Registration</a></li>
+            <!-- <li><a href="#">Produst Registration</a></li> -->
             <li><a href="#">About Us</a>
                 <ul>
                     <li><a href="#">Mission & Vision</a></li>
