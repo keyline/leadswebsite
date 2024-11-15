@@ -196,7 +196,7 @@
         // Set the token in the hidden input
         $('#recaptcha_token').val(token);
 
-        $(this).closest('form').submit();
+        $(this).submit();
     }
 </script>
 
