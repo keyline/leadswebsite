@@ -32,7 +32,7 @@
                     <?php } ?>
                     <h5>
                         <!-- <a href="<?php /* echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; */ ?>/add" class="btn btn-success">Add <?php /* echo $moduleDetail['module']; */ ?></a> -->
-                        <a target="_blank" href="<?= base_url() . '/admin/manage_enquire/download_csv' ?>" class="btn btn-success">Export</a>
+                        <!-- <a target="_blank" href="<?= base_url() . '/admin/manage_enquire/download_csv' ?>" class="btn btn-success">Export</a> -->
 
                     </h5>
                 </div>
@@ -45,8 +45,10 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email & Number</th>
-                                    <th>massage </th>
-                                    <th>Enquire Date</th>
+                                    <th>Qualification </th>
+                                    <th>Experience</th>
+                                    <th>CV</th>
+                                    <th>apply Date</th>
                                     <!-- <th>Action</th> -->
                                 </tr>
                             </thead>
@@ -56,13 +58,21 @@
                                 if ($rows) {
                                     $i = 1;
                                     foreach ($rows as $row) {
+
                                 ?>
                                         <tr>
                                             <td><?= $i++; ?></td>
-                                            <td><small><?= $row->name ?></small></td>
+                                            <td><small><?= $row->first_name ?> <?= $row->last_name ?></small></td>
                                             <td> <small><?= $row->email; ?> <br> <?= $row->phone; ?></small> </td>
-                                            <td> <small><?= $row->comment; ?></small> </td>
-                                            <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
+                                            <td> <small><?= $row->qualification; ?></small> </td>
+                                            <td><small><?= $row->experience ?? '' ?></small></td>
+                                            <td>
+                                                <a target="_blank" href="<?= base_url('/uploads/applicantCv/') . '/' . $row->cv_file ?>">
+                                                    <i class="feather icon-file-text"></i>
+
+                                                </a>
+                                            </td>
+                                            <td><small><?= date('jS M Y', strtotime($row->added_on));  ?></small></td>
 
                                         </tr>
                                 <?php }

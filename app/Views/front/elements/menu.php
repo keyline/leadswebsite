@@ -68,21 +68,27 @@
                     <li><a href="<?= base_url() ?>/blog">Blog</a></li>
                     <li><a href="#">Reach Us</a>
                         <ul>
-                            <li><a href="#">Enquiry & Service Request</a></li>
-                            <li><a href="<?=base_url('/career')?>">Career</a></li>
+                            <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
+                            <li><a href="<?= base_url('/career') ?>">Career</a></li>
                             <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                         </ul>
                     </li>
                     <li><a href="#">After Sales Sevices</a>
                         <ul>
-                            <li><a href="#">AMC</a></li>
-                            <li><a href="#">Service Policy</a></li>
+                            <li><a href="<?=base_url('/amc')?>">AMC</a></li>
+                            <!-- <li><a href="#">Service Policy</a></li> -->
+                            <?php foreach ($contents as $key => $page) { ?>
+                                <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
+                            <?php }  ?>
                         </ul>
                     </li>
                 </ul>
             </div>
         </div>
     </div>
+
+
+    <!-- MOBILE MENU -->
 
     <div id="cssmenu">
         <ul class="menu-show">
@@ -130,7 +136,10 @@
             <li><a href="#">After Sales Sevices</a>
                 <ul>
                     <li><a href="#">AMC</a></li>
-                    <li><a href="#">Service Policy</a></li>
+                    <!-- <li><a href="#">Service Policy</a></li> -->
+                    <?php foreach ($contents as $key => $page) { ?>
+                        <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
+                    <?php }  ?>
                 </ul>
             </li>
         </ul>

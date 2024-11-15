@@ -20,6 +20,27 @@ class Frontend extends BaseController
         $this->emailService = new EmailService();
     }
 
+    private function getCategoryNamesByIds($mainArray, $idArray)
+    {
+
+        $names = [];
+
+        // Loop through each id in the idArray
+        foreach ($idArray as $id) {
+            // Search for the object with the matching id in the mainArray
+            foreach ($mainArray as $item) {
+                if ($item->id == $id) {
+                    // Add the name to the names array
+                    $names[] = $item->name;
+                    break; // Stop looping once the id is found
+                }
+            }
+        }
+
+        // Return the array of names
+        return $names;
+    }
+
 
     private function findKeyBySlug($array, $slug)
     {
@@ -415,6 +436,23 @@ class Frontend extends BaseController
     }
 
 
+    public function page($slug)
+    {
+
+        $slug                       = htmlspecialchars($slug, ENT_QUOTES, 'UTF-8');
+
+        $data['content']            = $this->common_model->find_data('content_page', 'row', ['slug' => $slug]);
+
+        $data['title']              = $data['content']->title;
+
+        $this->common_model         = new CommonModel();
+
+        $postData['common_model']   = $this->common_model;
+
+        $page_name                  = 'content-page';
+
+        echo $this->front_layout($data['title'], $page_name, $data);
+    }
 
 
     public function career()
@@ -454,22 +492,7 @@ class Frontend extends BaseController
 
 
 
-    public function corporate_travel()
 
-    {
-
-        $data                       = [];
-
-        $title                      = 'Corporate Travel';
-
-        $this->common_model         = new CommonModel();
-
-        $postData['common_model']   = $this->common_model;
-
-        $page_name                  = 'corporate-travel';
-
-        echo $this->front_layout($title, $page_name, $data);
-    }
 
     public function privacypolicy()
 
@@ -490,113 +513,6 @@ class Frontend extends BaseController
 
 
 
-    public function holiday_package()
-
-    {
-
-        $data                       = [];
-
-        $title                      = 'Holiday Package';
-
-        $this->common_model         = new CommonModel();
-
-        $postData['common_model']   = $this->common_model;
-
-        $page_name                  = 'holiday-package';
-
-        $condition = ['published' => 1, 'category_id !=' => 3];
-
-        $orderBy[0] = ['field' => 'created_at', 'type' => 'DESC'];
-
-        $packageDtl = $this->common_model->find_data('package', 'array', $condition, '*', '', '', $orderBy);
-
-
-
-        foreach ($packageDtl as $pkg) {
-
-            $additionalImg = [];
-
-            $additional_images = json_decode($pkg->additional_images_titles);
-
-            /* add img path for additional images */
-
-            foreach ($additional_images as $images)
-
-                $additionalImg[] = base_url() . '/uploads/package/' . $images;
-
-
-
-            $data['packages'][] = [
-
-                'package_id'          => $pkg->id,
-
-                'package_name'        => $pkg->package_name,
-
-                'feature_img'         => base_url() . '/uploads/package/' . $pkg->feature_image,
-
-                'banner_image'        => base_url() . '/uploads/package/' . $pkg->banner_image,
-
-                'day_night'           => $pkg->day_night,
-
-                'person'              => $pkg->person,
-
-                'price'               => number_format($pkg->package_price),
-
-                'heading_one'         => $pkg->description_heading,
-
-                'heading_two'         => $pkg->description2_heading,
-
-                'heading_one_points'  => json_decode($pkg->description_points),
-
-                'heading_two_points'  => json_decode($pkg->description2_points),
-
-                'additional_img_title' => $additionalImg,
-
-                'country_name'        => $pkg->country_name,
-
-            ];
-        }
-
-        echo $this->front_layout($title, $page_name, $data);
-    }
-
-
-
-    public function luxury()
-
-    {
-
-        $data                       = [];
-
-        $title                      = 'Luxury';
-
-        $this->common_model         = new CommonModel();
-
-        $postData['common_model']   = $this->common_model;
-
-        $page_name                  = 'luxury';
-
-        echo $this->front_layout($title, $page_name, $data);
-    }
-
-
-
-    public function mice()
-
-    {
-
-        $data                       = [];
-
-        $title                      = 'Mice';
-
-        $this->common_model         = new CommonModel();
-
-        $postData['common_model']   = $this->common_model;
-
-        $page_name                  = 'mice';
-
-        echo $this->front_layout($title, $page_name, $data);
-    }
 
     public function contact_us()
     {
@@ -746,6 +662,11 @@ class Frontend extends BaseController
                 $insert_id = $this->common_model->save_data('job_applicant', $data);
 
                 if ($insert_id) {
+
+                    $body = view('Views/front/mail_template/jobapply-templete', $data);
+
+                    $this->sendToAdmin('Job apply', $body, 'admin', 'Leadsindia');
+
                     return $this->response->setStatusCode(201) // Created
                         ->setJSON(['status' => true, 'message' => 'Apply successfully']);
                 }
@@ -756,6 +677,230 @@ class Frontend extends BaseController
         }
     }
 
+
+
+    public function service_request()
+    {
+
+        $data                       = [];
+
+        $title                      = 'Service Request';
+
+        $this->common_model         = new CommonModel();
+
+        $postData['common_model']   = $this->common_model;
+
+        $page_name                  = 'service-request';
+
+        $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1]);
+
+
+        if ($this->request->getMethod() === 'post') {
+
+            $postData = $this->request->getPost();
+
+
+            $rules = [
+                'name' => [
+                    'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Name'
+                ],
+                'address' => [
+                    'rules' => 'required|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Address'
+                ],
+                'landmark' => [
+                    'rules' => 'permit_empty|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Landmark'
+                ],
+                'district' => [
+                    'rules' => 'max_length[100]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'District'
+                ],
+                'state' => [
+                    'rules' => 'max_length[100]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'State'
+                ],
+                'phone' => [
+                    'rules' => 'required|numeric|regex_match[/^[0-9]{10,15}$/]',
+                    'label' => 'Phone Number'
+                ],
+                'product_category_id' => [
+                    'rules' => 'required',
+                    'label' => 'Product Category'
+                ],
+                'model_name' => [
+                    'rules' => 'required|min_length[2]|max_length[100]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Model Name'
+                ],
+                'serial_no' => [
+                    'rules' => 'required|permit_empty|regex_match[/^[\w\-]+$/]',
+                    'label' => 'Serial Number'
+                ],
+                'installation_date' => [
+                    'rules' => 'required|valid_date[Y-m-d]',
+                    'label' => 'Installation Date'
+                ],
+                'purchase_date' => [
+                    'rules' => 'required|valid_date[Y-m-d]',
+                    'label' => 'Purchase Date'
+                ],
+                'dealer_name' => [
+                    'rules' => 'permit_empty|min_length[2]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Dealer Name'
+                ],
+                'dealer_phone' => [
+                    'rules' => 'permit_empty|numeric|regex_match[/^[0-9]{10,15}$/]',
+                    'label' => 'Dealer Phone Number'
+                ],
+                'work_as' => [
+                    'rules' => 'permit_empty',
+                    'label' => 'Work As'
+                ],
+                'comments' => [
+                    'rules' => 'permit_empty|max_length[1000]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Comments'
+                ],
+            ];
+
+
+            if (!$this->validate($rules)) {
+                $this->session->setFlashdata('errors', $this->validator->getErrors());
+                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+                $this->common_model = new CommonModel();
+
+                $formData = [
+                    'name' => $postData['name'],
+                    'address' => $postData['address'],
+                    'landmark' => $postData['landmark'],
+                    'district' => $postData['district'],
+                    'state' => $postData['state'],
+                    'phone' => $postData['phone'],
+                    'product_id' => json_encode($postData['product_category_id']),
+                    'model_name' => $postData['model_name'],
+                    'serial_no' => $postData['serial_no'],
+                    'installation_date' => $postData['installation_date'],
+                    'purchase_date' => $postData['purchase_date'],
+                    'dealer_name' => $postData['dealer_name'],
+                    'dealer_phone' => $postData['dealer_phone'],
+                    'comments' => $postData['comments'],
+                    'interested' => $postData['work_as'] ?? '',
+                ];
+
+                $insert_id = $this->common_model->save_data('service_request', $formData);
+
+                if ($insert_id) {
+
+                    $formData['products'] = $this->getCategoryNamesByIds($data['productCategory'], $postData['product_category_id']);
+
+                    $body = view('Views/front/mail_template/equerry-templete', $formData);
+
+                    $this->sendToAdmin('Service Request', $body, 'service', 'Leadsindia');
+
+                    $this->session->setFlashdata('success_message', 'Request send successfully');
+                }
+            } else {
+                $this->session->setFlashdata('error_message', 'reCAPTCHA verification failed. Please try again.');
+            }
+        }
+
+
+
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+
+    public function amc_request()
+    {
+
+        $data                       = [];
+
+        $title                      = 'AMC Request';
+
+        $this->common_model         = new CommonModel();
+
+        $postData['common_model']   = $this->common_model;
+
+        $page_name                  = 'amc-request';
+
+        $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1]);
+
+
+        if ($this->request->getMethod() === 'post') {
+
+            $postData = $this->request->getPost();
+
+            $rules = [
+                'name' => [
+                    'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Name'
+                ],
+                'email' => [
+                    'rules' => 'required|valid_email',
+                    'label' => 'Email'
+                ],
+                'product_id' => [
+                    'rules' => 'required',
+                    'label' => 'Product'
+                ],
+                'comments' => [
+                    'rules' => 'permit_empty|max_length[1000]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Comments'
+                ],
+            ];
+
+
+            if (!$this->validate($rules)) {
+                $this->session->setFlashdata('errors', $this->validator->getErrors());
+                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+
+                // $this->verifyRecaptcha($_POST['recaptcha_token'])
+            } else if (true) {
+                $this->common_model = new CommonModel();
+
+                $formData = [
+                    'name'           => $postData['name'],
+                    'email'          => $postData['email'],
+                    'special_enquiry' => $postData['product_id'],
+                    'comment'        => $postData['comments'],
+                    'enquiry_type'   => 'ENQUIRY'
+                ];
+
+                $insert_id = $this->common_model->save_data('sms_contact_enquiry', $formData);
+
+                if ($insert_id) {
+                    $this->session->setFlashdata('success_message', 'Request send successfully');
+                }
+            } else {
+                $this->session->setFlashdata('error_message', 'reCAPTCHA verification failed. Please try again.');
+            }
+        }
+
+
+
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+
+
+    public function get_products()
+    {
+        $postData = $this->request->getPost();
+        $products = [];
+
+        if ($postData['product_id'] != '') {
+            $products    = $this->common_model->find_data('product', 'array', ['product_category' => $postData['product_id']], ['id', 'product_title']);
+        }
+        // Prepare the response
+        return $this->response->setJSON([
+            'status' => true,
+            'product' => $products
+        ]);
+    }
+
+
+    // _________________________________________ end __________________________________________
 
     public function promos_details($id)
 
@@ -1480,6 +1625,30 @@ class Frontend extends BaseController
 
 
     //_________________________________________________________________________________
+
+
+    private  function sendToAdmin($subject = '', $body = '', $sendTo = 'admin', $toName = 'Admin')
+    {
+        $this->common_model         = new CommonModel();
+
+        $select_columns = ['service_email', 'site_email', 'admin_email'];
+
+        $data['email'] = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1], $select_columns);
+        $send_email = $sendTo == 'admin' ? $data['email']->admin_email : $data['email']->service_email;
+
+        try {
+            return $this->send($send_email, $toName, $subject, $body);
+        } catch (\Exception $e) {
+            // Catch and handle any exceptions
+            error_log('An error occurred while sending the email: ' . $e->getMessage());
+            return false;
+        }
+    }
+
+
+
+
+
 
     public function mailTest()
     {

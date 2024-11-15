@@ -32,7 +32,7 @@
                     <?php } ?>
                     <h5>
                         <!-- <a href="<?php /* echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; */ ?>/add" class="btn btn-success">Add <?php /* echo $moduleDetail['module']; */ ?></a> -->
-                        <a target="_blank" href="<?= base_url() . '/admin/manage_enquire/download_csv' ?>" class="btn btn-success">Export</a>
+                        <!-- <a target="_blank" href="<?= base_url() . '/admin/manage_enquire/download_csv' ?>" class="btn btn-success">Export</a> -->
 
                     </h5>
                 </div>
@@ -44,10 +44,19 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Email & Number</th>
-                                    <th>massage </th>
-                                    <th>Enquire Date</th>
-                                    <!-- <th>Action</th> -->
+                                    <th>address</th>
+                                    <th>phone </th>
+                                    <th>products</th>
+                                    <th>model</th>
+                                    <th>serial No</th>
+                                    <th>Installation date</th>
+                                    <th>Purchase date</th>
+                                    <th>Dealer name</th>
+                                    <th>Dealer phone</th>
+                                    <th>Massage</th>
+                                    <th>Interested</th>
+                                    <th>Request date</th>
+
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,9 +69,25 @@
                                         <tr>
                                             <td><?= $i++; ?></td>
                                             <td><small><?= $row->name ?></small></td>
-                                            <td> <small><?= $row->email; ?> <br> <?= $row->phone; ?></small> </td>
-                                            <td> <small><?= $row->comment; ?></small> </td>
-                                            <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
+                                            <td>
+                                                <small><?= $row->address; ?>
+                                                    <br> <?= $row->landmark ?? ''; ?>
+                                                    <br> <?= $row->district ?? ''; ?>
+                                                    <br> <?= $row->state ?? ''; ?>
+                                                </small>
+                                            </td>
+                                            <td> <small><?= $row->phone; ?></small> </td>
+                                            <td> <small><?= $row->products; ?></small> </td>
+                                            <td><small><?= $row->model_name ?></small></td>
+                                            <td><small><?= $row->serial_no ?></small></td>
+                                            <td><small><?= date('jS M Y', strtotime($row->installation_date)); ?></small></td>
+                                            <td><small><?= date('jS M Y', strtotime($row->purchase_date)); ?> </small></td>
+                                            <td><small><?= $row->dealer_name ?? '' ?></small></td>
+                                            <td><small><?= $row->dealer_phone ?? '' ?></small></td>
+                                            <td><small><?= $row->comments ?? '' ?></small></td>
+                                            <td><small><?= $row->interested ?? '' ?></small></td>
+
+                                            <td><small><?= date('jS M Y', strtotime($row->added_on));  ?></small></td>
 
                                         </tr>
                                 <?php }

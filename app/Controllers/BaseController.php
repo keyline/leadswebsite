@@ -107,12 +107,13 @@ class BaseController extends Controller
 		$data['accreditations']     = $this->common_model->find_data('accreditations', 'array', ['published' => 1]);
 		/** testimonials & accreditations **/
 		$orderBy[0] 				= ['field' => 'id', 'type' => 'DESC'];
+		$data['contents']           = $this->common_model->find_data('content_page', 'array', ['published' => 1], '', '', '', $orderBy);
 		$data['blogs']              = $this->common_model->find_data('blogs', 'array', ['status' => 1], '', '', '', $orderBy);
 		$data['clients']            = $this->common_model->find_data('sms_client', 'array', ['published' => 1]);
 		$data['testimonials']       = $this->common_model->find_data('sms_testimonials', 'array', ['published' => 1]);
 		$data['commodities']        = $this->common_model->find_data('commodities', 'array', ['published' => 1]);
 		$data['countries']        	= $this->common_model->find_data('sms_countries', 'array', ['published' => 1]);
-		// pr($data['countries']);
+		
 
 
 		$data['head'] 				= view('front/elements/head', $data);

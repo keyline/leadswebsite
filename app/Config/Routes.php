@@ -72,14 +72,21 @@ $routes->get('/blog-details/(:any)', 'Frontend::blog_details/$1');
 
 $routes->get('/media/(:any)', 'Frontend::media/$1');
 
+$routes->get('/page/(:any)', 'Frontend::page/$1');
+
 $routes->get('/contact', 'Frontend::contact_us');
 
 $routes->get('/career', 'Frontend::career');
 
+$routes->match(['get', 'post'], '/service', 'Frontend::service_request');
+
+$routes->match(['get', 'post'], '/amc', 'Frontend::amc_request');
+
+$routes->post('api/get-products', 'Frontend::get_products');
+
 $routes->post('api/contact-us', 'Frontend::enquiry');
 
 $routes->post('api/apply-job', 'Frontend::job_apply');
-
 
 $routes->get('privacypolicy', 'Frontend::privacypolicy');
 

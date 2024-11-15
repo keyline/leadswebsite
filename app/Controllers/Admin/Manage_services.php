@@ -14,7 +14,7 @@ use DB;
 
 
 
-class Manage_applicants extends BaseController
+class Manage_services extends BaseController
 
 {
 
@@ -25,7 +25,6 @@ class Manage_applicants extends BaseController
 
 
     public function __construct()
-
     {
 
         $session = \Config\Services::session();
@@ -44,11 +43,11 @@ class Manage_applicants extends BaseController
 
             'session'       => $session,
 
-            'module'        => 'Applicants',
+            'module'        => 'Services Request',
 
-            'controller'    => 'manage_applicants',
+            'controller'    => 'manage_services',
 
-            'table_name'    => 'job_applicant',
+            'table_name'    => 'service_request',
 
             'primary_key'   => 'id'
 
@@ -57,37 +56,25 @@ class Manage_applicants extends BaseController
 
 
 
-    private function getApplicants()
+    private function getCategoryNamesByIds($mainArray, $idArray)
     {
-        $join = [
-            [
-                'table' => 'sms_career',
-                'table_master' => 'job_applicant',
-                'field' => 'id',
-                'field_table_master' => 'job_id',
-                'type' => 'inner'
-            ]
-        ];
 
-        // Set conditions to filter by blog ID and status
-        $conditions = ['job_applicant.status' => 1];
-        $select = 'job_applicant.*, sms_career.name AS job_name';
-        $orderBy[0] = ['field' => 'id', 'type' => 'DESC'];
-        $limit = ''; // Limit to 1 entry
+        $names = [];
 
-        // Retrieve the blog by ID
-        $applicants = $this->common_model->find_data(
-            'job_applicant',             // Table name
-            'array',               // Return type as a single row
-            $conditions,        // Conditions to filter blogs
-            $select,            // Select columns
-            $join,              // Join with blog_category table
-            '',                 // No grouping
-            $orderBy,          // No ordering
-        );
+        // Loop through each id in the idArray
+        foreach ($idArray as $id) {
+            // Search for the object with the matching id in the mainArray
+            foreach ($mainArray as $item) {
+                if ($item->id == $id) {
+                    // Add the name to the names array
+                    $names[] = $item->name;
+                    break; // Stop looping once the id is found
+                }
+            }
+        }
 
-        // Return the result
-        return $applicants; // This will return a single blog row or null if not found
+        // Return the array of names
+        return $names;
     }
 
 
@@ -95,17 +82,20 @@ class Manage_applicants extends BaseController
 
     public function index()
     {
-
         $data['moduleDetail']       = $this->data;
-
         $title                      = 'Manage ' . $this->data['module'];
-
-        $page_name                  = 'jobapplicant/list';
-
+        $page_name                  = 'service_request/list';
         $data                       = [];
+        $orderBy[0]                 = ['field' => 'id', 'type' => 'DESC'];
+        $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1]);
+        $data['rows']               = $this->common_model->find_data('service_request', 'array', '', '*', '', '', $orderBy);
 
-        $data['rows']                = $this->getApplicants();
-       
+
+        foreach ($data['rows'] as &$row) {
+            $products =  implode(' , ', $this->getCategoryNamesByIds($data['productCategory'], json_decode($row->product_id)));
+            $row->products = $products;
+        }
+
         echo $this->layout_after_login($title, $page_name, $data);
     }
 

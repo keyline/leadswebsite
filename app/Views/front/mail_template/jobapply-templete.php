@@ -63,21 +63,22 @@
 
 <body>
     <div class="container">
-        <h1>Service Request from <?= htmlspecialchars($name) ?></h1>
+        <h1>job apply by <?= htmlspecialchars($name) ?></h1>
         <img class="destination-image" src="https://leadsdev.keylines.net.in/public/assets/img/logo.png" alt="Destination Image">
-        <p>Hello Leadsindia,</p>
+        <p>Hello admin,</p>
+        <p>You have received a new job application request! A candidate has expressed interest in the position you posted. </p>
+        <p>Please take a moment to review their application and proceed with the next steps in the hiring process. </p>
         <br>
-        <p><?= $comments ?></p>
 
-        <br>
+
         <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
             <tr>
                 <td><strong>Name:</strong></td>
-                <td><?= htmlspecialchars($name) ?></td>
+                <td><?= htmlspecialchars($first_name) ?> <?= htmlspecialchars($last_name) ?></td>
             </tr>
             <tr>
-                <td><strong>Address:</strong></td>
-                <td><?= htmlspecialchars($address) ?></td>
+                <td><strong>Email:</strong></td>
+                <td><?= htmlspecialchars($email) ?></td>
             </tr>
 
             <tr>
@@ -85,29 +86,13 @@
                 <td><?= htmlspecialchars($phone) ?></td>
             </tr>
             <tr>
-                <td><strong>Products:</strong></td>
-                <td><?= implode(", ", $products) ?></td>
-            </tr>
-            <tr>
-                <td><strong>Model Name:</strong></td>
-                <td><?= htmlspecialchars($model_name) ?></td>
-            </tr>
-            <tr>
-                <td><strong>Serial No:</strong></td>
-                <td><?= htmlspecialchars($serial_no) ?></td>
-            </tr>
-            <tr>
-                <td><strong>Installation Date:</strong></td>
-                <td><?= (new DateTime(htmlspecialchars($installation_date)))->format('jS M Y') ?></td>
-            </tr>
-            <tr>
-                <td><strong>Purchase Date:</strong></td>
-                <td><?= (new DateTime(htmlspecialchars($purchase_date)))->format('jS M Y') ?></td>
+                <td><strong>Qualification:</strong></td>
+                <td><?= htmlspecialchars($qualification) ?></td>
             </tr>
 
         </table>
 
-        <p class="footer">Best regards,<br><?= htmlspecialchars($name) ?></p>
+        <p class="footer">Best regards,<br> Leadsindia Team </p>
     </div>
 </body>
 

@@ -7,7 +7,7 @@ if($row) {
     $description    = set_value('description', '');
 }
 ?>
-<script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
+<!-- <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script> -->
 <div class="pcoded-content">
         <div class="page-header">
             <div class="page-block">
@@ -15,7 +15,7 @@ if($row) {
                     <div class="col-md-12">
                         <div class="page-header-title">
                             <h5 class="m-b-10"><?php echo $page_header; ?></h5>
-                            <h5 class="m-b-10"><a href="<?php echo base_url('admin/'); ?>/<?php echo $moduleDetail['controller']; ?>/manage_image" target="_blank">Upload Images</a></h5>
+                            <!-- <h5 class="m-b-10"><a href="<?php echo base_url('admin/'); ?>/<?php echo $moduleDetail['controller']; ?>/manage_image" target="_blank">Upload Images</a></h5> -->
                         </div>
                         <ul class="breadcrumb">
                             <li class="breadcrumb-item"><a href="<?php echo base_url('admin/'); ?>/user"><i class="feather icon-home"></i></a></li>
@@ -56,7 +56,7 @@ if($row) {
                                 <div class="col-md-12">
                                     <div class="form-group">
                                         <label class="form-label" for="description">Description</label>
-                                        <textarea class="form-control ckeditor" name="description" id="description" placeholder="Description" required="required"><?php echo $description; ?></textarea>
+                                        <textarea class="form-control summernote" name="description" id="description" placeholder="Description" required="required"><?php echo $description; ?></textarea>
                                     </div>
                                 </div>
                             </div>
