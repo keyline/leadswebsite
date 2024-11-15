@@ -194,14 +194,15 @@
 <script>
     // Handle reCAPTCHA callback token
     // (function() {
-        function onSubmit1() {
-            alert("test++++++");
-            
-            // Set the token in the hidden input
-            $('#recaptcha_token').val(token);
+    function onSubmit1(token) {
 
-            $(this).closest('form').submit();
-        }
+        console.log('token : ' + token);
+
+        // Set the token in the hidden input
+        $('#recaptcha_token').val(token);
+
+        $(this).closest('form').submit();
+    }
     // })();
 </script>
 
