@@ -46,7 +46,7 @@
                     <li class="nav-item pcoded-hasmenu">
                         <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Master</span></a>
                         <ul class="pcoded-submenu">
-                            <li><a href="<?= base_url('admin/manage_key_feature/') ?>">Key Features</a></li>                    
+                            <li><a href="<?= base_url('admin/manage_key_feature/') ?>">Key Features</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -58,14 +58,16 @@
                     <li><a href="<?= base_url('admin/manage_key_feature/') ?>">Key Features</a></li>
                 </ul>
             </li>
+            -->
 
+            <!-- Career -->
             <li class="nav-item pcoded-hasmenu">
-                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Career Management</span></a>
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Career Manage</span></a>
                 <ul class="pcoded-submenu">
                     <li><a href="<?= base_url('admin/Manage_career/') ?>">Career</a></li>
                     <li><a href="<?= base_url('admin/Manage_applicants') ?>">Applicants</a></li>
                 </ul>
-            </li> -->
+            </li>
 
             <!-- Testimonial -->
             <li class="nav-item"><a href="<?php echo base_url('admin/manage_testimonial'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Testimonial</span></a></li>
@@ -77,12 +79,12 @@
             <li class="nav-item"><a href="<?php echo base_url('admin/Manage_services'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Service Request</span></a></li>
 
 
-    <!-- Service Request -->
-    <li class="nav-item"><a href="<?php echo base_url('admin/Manage_content_page'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Content pages</span></a></li>
+            <!-- Service Request -->
+            <li class="nav-item"><a href="<?php echo base_url('admin/Manage_content_page'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Content pages</span></a></li>
 
 
 
-            
+
             <li class="nav-item pcoded-hasmenu">&nbsp;</li>
         </ul>
     </div>

@@ -401,7 +401,7 @@ class Frontend extends BaseController
 
         $data['relatedBlogs']         = $this->getNewBlogs(0, $data['blog']->blog_category, $data['blog']->id);
 
-        $data['contents']           = !is_null($data['blog']) ? $this->common_model->find_data('blog_contents', 'array', ['blog_id' => $data['blog']->id]) : [];
+        $data['blog_contents']           = !is_null($data['blog']) ? $this->common_model->find_data('blog_contents', 'array', ['blog_id' => $data['blog']->id]) : [];
 
         echo $this->front_layout($title, $page_name, $data);
     }

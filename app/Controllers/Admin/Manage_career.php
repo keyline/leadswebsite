@@ -63,11 +63,11 @@ class Manage_career extends BaseController
             // }
             /* pdf upload */
             $postData   = array(
-                'name'                => $this->request->getPost('name'),
+                'name'             => $this->request->getPost('name'),
                 // 'email'         => $this->request->getPost('email'),
-                // 'experience'        => $this->request->getPost('experience'),
-                'msg'            => $this->request->getPost('msg'),
-                // 'career_cv'               => $career_cv,
+                'vacancies'        => $this->request->getPost('vacancies'),
+                'msg'              => $this->request->getPost('msg'),
+                'location'         => $this->request->getPost('location'),
             );
             //pr($postData, false);
             $record     = $this->data['model']->save_data($this->data['table_name'], $postData, '', $this->data['primary_key']);
@@ -112,11 +112,11 @@ class Manage_career extends BaseController
             // }
             /* pdf upload */
             $postData = array(
-                'name'                => $this->request->getPost('name'),
-                // 'email'               => $this->request->getPost('email'),
-                // 'experience'          => $this->request->getPost('experience'),
-                'msg'                 => $this->request->getPost('msg'),
-                // 'career_cv'           => $career_cv,
+                'name'             => $this->request->getPost('name'),
+                // 'email'         => $this->request->getPost('email'),
+                'vacancies'        => $this->request->getPost('vacancies'),
+                'msg'              => $this->request->getPost('msg'),
+                'location'         => $this->request->getPost('location'),
                 'updated_at'          => date('Y-m-d h:i:s')
             );
             $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
@@ -153,6 +153,3 @@ class Manage_career extends BaseController
         return redirect()->to('/admin/' . $this->data['controller']);
     }
 }
-
-
-

@@ -41,8 +41,8 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <!-- <th>Email</th>
-                                    <th>Experience</th> -->
+                                    <th>Vacancies</th>
+                                    <th>Location</th>
                                     <th>Discription</th>
                                     <!-- <th>CV</th> -->
                                     <th>Action</th>
@@ -53,8 +53,8 @@
                                 <tr>
                                     <td><?php echo $i++; ?></td>
                                     <td><?php echo $row->name; ?></td>
-                                    <!-- <td><?php echo $row->email; ?></td> -->
-                                    <!-- <td><?php echo $row->experience; ?></td> -->
+                                    <td><?php echo $row->vacancies; ?></td>
+                                    <td><?php echo $row->location; ?></td>
                                     <td><?php echo wordwrap($row->msg,40,"<br>\n"); ?></td>
                                     <!-- <td>
                                         <?php /* if($row->career_cv!='') { ?>

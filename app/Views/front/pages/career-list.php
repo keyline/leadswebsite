@@ -4,7 +4,7 @@
         cursor: pointer;
     }
 
-    .modal-header {
+    /* .modal-header {
         border-bottom: none;
     }
 
@@ -26,36 +26,36 @@
 
     .btn-primary:hover {
         background-color: #333;
-    }
+    } */
 
 
 
 
     /* Individual content-box styling */
-    .content-box {
+    /* .content-box {
         background-color: #f8f9fa;
         padding: 20px;
         border: 1px solid #ddd;
         border-radius: 8px;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
         text-align: center;
-    }
+    } */
 
     /* Title styling */
-    .content-title {
+    /* .content-title {
         font-size: 24px;
         font-weight: bold;
         color: #333;
         margin-bottom: 10px;
-    }
+    } */
 
     /* Description styling */
-    .content-description {
+    /* .content-description {
         font-size: 16px;
         color: #555;
         line-height: 1.6;
         margin: 0;
-    }
+    } */
 </style>
 <?= $this->endSection() ?>
 
@@ -84,33 +84,35 @@
         <div class="row justify-content-center" id="view_content">
             <div class="row">
                 <?php if (count($vacancy)) {
-                    foreach ($vacancy as $job) { ?>
+                    foreach ($vacancy as $job) {
+                ?>
                         <div class="col-md-12 mb-4">
                             <div class="job-list-item">
                                 <div class="job-info job-list-item-col">
-                                    <h3 class="job-title">Customer Service Representative / Customer Support</h3>
+                                    <h3 class="job-title"><?= $job->name ?></h3>
                                     <p class="meta job-list-info">
                                         <span class="office-briefcase job-list-info-block">
-                                            <i class="fa-solid fa-briefcase"></i> No of vacancies - 2 
+                                            <i class="fa-solid fa-briefcase"></i> No of vacancies - <?= $job->vacancies ?>
                                         </span>
-                                        
+
                                         <span class="office-location job-list-info-block">
-                                            <i class="fa-solid fa-location-dot"></i><span>Anywhere</span>
+                                            <i class="fa-solid fa-location-dot"></i><span><?= $job->location ?></span>
                                         </span>
                                     </p>
                                 </div>
                                 <div class="job-apply job-list-item-col">
-                                    <a href="#" class="button" target="_blank">Apply Now</a>
-                                    <span class="deadline deadline"><i class="fa-solid fa-calendar-days"></i> Deadline: 01 Jan, 2030                                                            </span>
+                                    <a href="#" class="button apply" data-id='<?= $job->id ?>' data-name='<?= $job->name ?>'>Apply Now</a>
+                                    <span class="deadline deadline"><i class="fa-solid fa-calendar-days"></i> Job posted: <?= date('d M, Y', strtotime($job->created_at)); ?> </span>
                                 </div>
                             </div>
-                            <div class="content-box vacancy-box">
+
+                            <!-- <div class="content-box vacancy-box">
                                 <h2 class="content-title"><?= $job->name ?></h2>
                                 <div class="content-description">
                                     <?= $job->msg ?>
-                                </div> 
+                                </div>
                                 <div class="vacancy-app-btn"><a class="point apply" data-name='<?= $job->name ?>' data-id='<?= $job->id ?>'>Apply here</a></div>
-                            </div>
+                            </div> -->
                         </div>
                     <?php }
                 } else { ?>
@@ -140,7 +142,7 @@
         <div class="modal-content">
             <!-- Modal Header -->
             <div class="modal-header">
-                <h5 class="modal-title" id="applyModalLabel">Apply here for  <small class="jobName"></small></h5>
+                <h5 class="modal-title" id="applyModalLabel">Apply here for <small class="jobName"></small></h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
             </div>
             <!-- Modal Body -->

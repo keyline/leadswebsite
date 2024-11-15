@@ -6,8 +6,9 @@
                   <div id="sticky-sidebar-demo" class="sidebar fixed-sidebar">
                       <h5 class="nav-title">Table of contents</h5>
 
-                      <?php if (count($contents)):
-                            foreach ($contents as $content): ?>
+                      <?php if (count($blog_contents)):
+                            foreach ($blog_contents as $content):
+                        ?>
                               <a class="anchor_links_nav_health_guides" href="#h-<?= strtolower($content->table_of_content_slug) ?>"> <?= ucfirst($content->table_of_content) ?> </a>
                       <?php
                             endforeach;
@@ -39,8 +40,8 @@
                           <div id="links-box" class="blogdetial_infomation">
                               <?= $blog->description ?>
                               <!-- ++++++++++++++++++++++++++++++++++ -->
-                              <?php if (count($contents)):
-                                    foreach ($contents as $content):
+                              <?php if (count($blog_contents)):
+                                    foreach ($blog_contents as $content):
                                         $summary_text = !empty(trim($content->summary)) ?
                                             '<div class="medical-disclaimer disclaimer-copy">
                                                             <h4>Summary</h4>
@@ -183,7 +184,7 @@
   <?= $this->section('scripts') ?>
   <script>
       $(document).ready(function() {
-         
+
 
           var a = new StickySidebar('#sticky-sidebar-demo', {
               topSpacing: 25,
