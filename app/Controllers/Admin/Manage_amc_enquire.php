@@ -14,7 +14,7 @@ use DB;
 
 
 
-class Manage_enquire extends BaseController
+class Manage_amc_enquire extends BaseController
 
 {
 
@@ -44,9 +44,9 @@ class Manage_enquire extends BaseController
 
             'session'       => $session,
 
-            'module'        => 'Enquire',
+            'module'        => 'AMC Enquire',
 
-            'controller'    => 'manage_enquire',
+            'controller'    => 'manage_amc_enquire',
 
             'table_name'    => 'sms_contact_enquiry',
 
@@ -85,6 +85,7 @@ class Manage_enquire extends BaseController
 
 
     public function download_csv()
+
     {
 
         $data['moduleDetail']       = $this->data;
@@ -94,7 +95,16 @@ class Manage_enquire extends BaseController
         $order_by[0]                = ['field' => 'created_at', 'type' => 'DESC'];
 
         $data['rows']               = $this->data['model']->getEnquires();
-     
+
+        foreach ($data['rows'] as $key => &$row) {
+            $product_name = '';
+            if ($row->special_enquiry != '') {
+                $product = $this->common_model->find_data('product', 'row', ['id' => $row->special_enquiry], ['product_title']);
+                $product_name =  $product->product_title;
+            }
+            $row->product_name = $product_name;
+        }
+
         return view('admin/maincontents/pledge_taken-enquiry/enquiry_export', $data);
     }
 

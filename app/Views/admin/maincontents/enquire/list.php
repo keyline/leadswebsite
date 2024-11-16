@@ -1,3 +1,6 @@
+<?php
+$isAMC = ($moduleDetail['controller'] == 'manage_amc_enquire');
+?>
 <div class="pcoded-content">
     <div class="page-header">
         <div class="page-block">
@@ -45,7 +48,9 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email & Number</th>
-                                    <th>Product</th>
+                                    <?php if ($isAMC) { ?>
+                                        <th>Product</th>
+                                    <?php } ?>
                                     <th>massage </th>
                                     <th>Enquire Date</th>
                                     <!-- <th>Action</th> -->
@@ -62,7 +67,9 @@
                                             <td><?= $i++; ?></td>
                                             <td><small><?= $row->name ?></small></td>
                                             <td> <small><?= $row->email; ?> <br> <?= $row->phone; ?></small> </td>
-                                            <td> <small><?= $row->product_name; ?></small> </td>
+                                            <?php if ($isAMC) { ?>
+                                                <td> <small><?= $row->product_name; ?></small> </td>
+                                            <?php } ?>
                                             <td> <small><?= $row->comment; ?></small> </td>
                                             <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
 

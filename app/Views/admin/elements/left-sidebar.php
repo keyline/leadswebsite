@@ -7,8 +7,21 @@
             <li class="nav-item"><a href="<?php echo base_url('admin/manage_metadetails'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-hash"></i></span><span class="pcoded-mtext">Meta Details</span></a></li>
             <!-- Clients -->
             <li class="nav-item"><a href="<?php echo base_url('admin/Manage_client'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Client</span></a></li>
+
+            <!-- <li class="nav-item"><a href="<?php echo base_url('admin/manage_enquire'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">Enquiry</span></a></li> -->
+
+
+
             <!-- Enquire List -->
-            <li class="nav-item"><a href="<?php echo base_url('admin/manage_enquire'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">Enquiry</span></a></li>
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Enquiry Manage</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_enquire/') ?>">Enquiry</a></li>
+                    <li><a href="<?= base_url('admin/Manage_services') ?>">Service</a></li>
+                    <li><a href="<?= base_url('admin/Manage_amc_enquire') ?>">AMC Enquiry</a></li>
+                </ul>
+            </li>
+
 
             <!-- about -->
             <li class="nav-item pcoded-hasmenu">
@@ -76,7 +89,7 @@
             <li class="nav-item"><a href="<?php echo base_url('admin/Manage_download'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Download</span></a></li>
 
             <!-- Service Request -->
-            <li class="nav-item"><a href="<?php echo base_url('admin/Manage_services'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Service Request</span></a></li>
+            <!-- <li class="nav-item"><a href="<?php echo base_url('admin/Manage_services'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Service Request</span></a></li> -->
 
 
             <!-- Service Request -->
