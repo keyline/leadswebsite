@@ -35,7 +35,7 @@
                             <li><a href="<?= base_url() ?>/about"">Certificates</a></li>
                         </ul>
                     </li>
-                    <li><a href=" #">Products</a>
+                    <li><a href="#">Products</a>
                                 <ul>
                                     <?php foreach ($product_menu as $key => $category) { ?>
                                         <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
@@ -43,7 +43,7 @@
                                 </ul>
                             </li>
 
-                            <li><a href="" onclick="return false;">Media</a>
+                            <li><a href="#" onclick="return false;">Media</a>
                                 <ul>
                                     <?php foreach (MEDIA_CATEGORIES as $key => $media) {
                                         $mediaSlug = strtolower(explode(" ", $media)[0]);
@@ -57,7 +57,7 @@
             </div>
             <div class="fullsreen_menu">
                 <ul>
-                    <li><a href="" onclick="return false;">Download</a>
+                    <li><a href="#" onclick="return false;">Download</a>
                         <ul>
                             <?php foreach ($download as $key => $val) { ?>
                                 <li><a target="_blank" href="<?= base_url() ?>/uploads/download/<?= $val->file ?>"><?= $val->name ?></a></li>

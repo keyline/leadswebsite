@@ -96,7 +96,7 @@
                                         </span>
 
                                         <span class="office-location job-list-info-block">
-                                            <i class="fa-solid fa-location-dot"></i><span><?= $job->location ?></span>
+                                            <i class="fa-solid fa-location-dot"></i><span> &nbsp;<?= $job->location ?></span>
                                         </span>
                                     </p>
                                 </div>
