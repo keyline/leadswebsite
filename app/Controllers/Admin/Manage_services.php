@@ -109,11 +109,18 @@ class Manage_services extends BaseController
 
         $title                      = 'Enquiry Export';
 
-        $order_by[0]                = ['field' => 'created_at', 'type' => 'DESC'];
+        $order_by[0]                = ['field' => 'added_on', 'type' => 'DESC'];
 
-        $data['rows']               = $this->data['model']->getEnquires();
+        $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1]);
+        $data['rows']               = $this->common_model->find_data('service_request', 'array', '', '*', '', '', $order_by);
 
-        return view('admin/maincontents/pledge_taken-enquiry/enquiry_export', $data);
+
+        foreach ($data['rows'] as &$row) {
+            $products =  implode(' , ', $this->getCategoryNamesByIds($data['productCategory'], json_decode($row->product_id)));
+            $row->products = $products;
+        }
+
+        return view('admin/maincontents/pledge_taken-enquiry/service_export', $data);
     }
 
 

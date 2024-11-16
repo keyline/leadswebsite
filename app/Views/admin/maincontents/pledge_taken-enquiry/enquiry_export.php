@@ -30,7 +30,7 @@ header("Content-Disposition: attachment;Filename=Enquiry_Report-" . date('ymd') 
                         <td> <small><?= $row->product_name; ?></small> </td>
                     <?php } */?>
                     <td> <small><?= $row->comment; ?></small> </td>
-                    <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
+                    <td><small><?= date('d-m-y', strtotime($row->created_at));  ?></small></td>
 
 
                 </tr>

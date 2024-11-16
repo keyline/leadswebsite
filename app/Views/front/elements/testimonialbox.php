@@ -133,20 +133,11 @@
                                             </div>
 
                                         <?php } elseif ($tesMoRow->type == 2) { ?>
-                                            <!-- <div class="swiper-slide">
-                                                <div class="testiminial-info ps-4">
-                                                    <img src="<?= base_url('uploads/') ?>/testimonials/<?= $tesMoRow->image ?>" alt="" class="img-fluid testimonial-img">
-                                                    <iframe width="100%" height="300" src="https://www.youtube.com/embed/<?= $tesMoRow->video_url ?>?si=xyqH8VeqKopfdb3e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                                                    <h5><?= $tesMoRow->name ?></h5>
-                                                    <p><?= $tesMoRow->designation ?>, <?= $tesMoRow->place_name ?>.</p>
-                                                </div>
-                                            </div> -->
-
-
+                                           
                                             <div class="item">
                                                 <img src="<?= base_url('uploads/') ?>/testimonials/<?= $tesMoRow->image ?>" alt="" class="img-fluid testimonial-img">
                                                 <div class="flex-video">
-                                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $tesMoRow->video_url ?>?enablejsapi=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-presentation"></iframe>
+                                                    <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $tesMoRow->video_url ?>?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-presentation"></iframe>
                                                 </div>
                                                 <h5><?= $tesMoRow->name ?></h5>
                                                 <p><?= $tesMoRow->designation ?>, <?= $tesMoRow->place_name ?>.</p>

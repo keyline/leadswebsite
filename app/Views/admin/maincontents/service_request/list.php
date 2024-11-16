@@ -32,7 +32,7 @@
                     <?php } ?>
                     <h5>
                         <!-- <a href="<?php /* echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; */ ?>/add" class="btn btn-success">Add <?php /* echo $moduleDetail['module']; */ ?></a> -->
-                        <!-- <a target="_blank" href="<?= base_url() . '/admin/manage_enquire/download_csv' ?>" class="btn btn-success">Export</a> -->
+                        <a target="_blank" href="<?= base_url() . '/admin/manage_services/download_csv' ?>" class="btn btn-success">Export</a>
 
                     </h5>
                 </div>
