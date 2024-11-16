@@ -2,7 +2,7 @@
     <div class="container-fluid">
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
-                <div class="headlogo"><a class="navbar-brand" href="#"><img src="<?= base_url('public/assets/img/') ?>/logo.png" alt="logo"></a></div>
+                <div class="headlogo"><a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url('public/assets/img/') ?>/logo.png" alt="logo"></a></div>
             </div>
             <div class="col-lg-9 col-md-8 col-sm-6 col-6">
                 <div class="head_top_right">
@@ -30,30 +30,30 @@
                 <ul>
                     <li><a href="<?= base_url() ?>/about">About Us</a>
                         <ul>
-                            <li><a href="#">Mission & Vision</a></li>
-                            <li><a href="#">Our Presence</a></li>
-                            <li><a href="#">Certificates</a></li>
+                            <li><a href="<?= base_url() ?>/about"">Mission & Vision</a></li>
+                            <li><a href=" <?= base_url() ?>/about"">Our Presence</a></li>
+                            <li><a href="<?= base_url() ?>/about"">Certificates</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">Products</a>
-                        <ul>
-                            <li><a href="#">Kitchen Chimney</a></li>
-                            <li><a href="#">RO Water Purifier</a></li>
-                            <li><a href="#">Cook Tops and Hob Tops</a></li>
-                            <li><a href="#">Water Treatment Plant</a></li>
-                        </ul>
-                    </li>
-                    <li><a href="" onclick="return false;">Media</a>
-                        <ul>
-                            <?php foreach (MEDIA_CATEGORIES as $key => $media) {
-                                $mediaSlug = strtolower(explode(" ", $media)[0]);
-                            ?>
-                                <li><a href="<?= base_url() ?>/media/<?= $mediaSlug ?>"><?= $media ?></a></li>
-                            <?php }  ?>
+                    <li><a href=" #">Products</a>
+                                <ul>
+                                    <?php foreach ($product_menu as $key => $category) { ?>
+                                        <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
+                                    <?php }  ?>
+                                </ul>
+                            </li>
 
+                            <li><a href="" onclick="return false;">Media</a>
+                                <ul>
+                                    <?php foreach (MEDIA_CATEGORIES as $key => $media) {
+                                        $mediaSlug = strtolower(explode(" ", $media)[0]);
+                                    ?>
+                                        <li><a href="<?= base_url() ?>/media/<?= $mediaSlug ?>"><?= $media ?></a></li>
+                                    <?php }  ?>
+
+                                </ul>
+                            </li>
                         </ul>
-                    </li>
-                </ul>
             </div>
             <div class="fullsreen_menu">
                 <ul>
@@ -92,50 +92,57 @@
 
     <div id="cssmenu">
         <ul class="menu-show">
-            <li><a href="#">Home</a></li>
+            <li><a href="<?= base_url() ?>">Home</a></li>
             <!-- <li><a href="#">Produst Registration</a></li> -->
-            <li><a href="#">About Us</a>
+            <li><a href="<?= base_url() ?>/about">About Us</a>
                 <ul>
-                    <li><a href="#">Mission & Vision</a></li>
-                    <li><a href="#">Our Presence</a></li>
-                    <li><a href="#">Certificates</a></li>
+                    <li><a href="<?= base_url() ?>/about">Mission & Vision</a></li>
+                    <li><a href="<?= base_url() ?>/about">Our Presence</a></li>
+                    <li><a href="<?= base_url() ?>/about">Certificates</a></li>
                 </ul>
             </li>
             <li><a href="#">Products</a>
                 <ul>
-                    <li><a href="#">Kitchen Chimney</a></li>
+                    <?php foreach ($product_menu as $key => $category) { ?>
+                        <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
+                    <?php } ?>
+                    <!-- <li><a href="#">Kitchen Chimney</a></li>
                     <li><a href="#">RO Water Purifier</a></li>
                     <li><a href="#">Cook Tops and Hob Tops</a></li>
-                    <li><a href="#">Water Treatment Plant</a></li>
+                    <li><a href="#">Water Treatment Plant</a></li> -->
                 </ul>
             </li>
             <li><a href="#">Media</a>
                 <ul>
-                    <li><a href="#">Electronic Media</a></li>
-                    <li><a href="#">Outdoor Media</a></li>
-                    <li><a href="#">Print Media</a></li>
-                    <li><a href="#">Press Release</a></li>
-                    <li><a href="#">AGM</a></li>
+                    <?php foreach (MEDIA_CATEGORIES as $key => $media) {
+                        $mediaSlug = strtolower(explode(" ", $media)[0]);
+                    ?>
+                        <li><a href="<?= base_url() ?>/media/<?= $mediaSlug ?>"><?= $media ?></a></li>
+                    <?php }  ?>
+                   
                 </ul>
             </li>
             <li><a href="#">Download</a>
                 <ul>
-                    <li><a href="#">E-catalog Download</a></li>
-                    <li><a href="#">Price List</a></li>
+              
+
+                    <?php foreach ($download as $key => $val) { ?>
+                        <li><a target="_blank" href="<?= base_url() ?>/uploads/download/<?= $val->file ?>"><?= $val->name ?></a></li>
+                    <?php }  ?>
                 </ul>
             </li>
             <li><a href="#">Become A Distributor</a></li>
-            <li><a href="#">Blog</a></li>
+            <li><a href="<?= base_url() ?>/blog">Blog</a></li>
             <li><a href="#">Reach Us</a>
                 <ul>
-                    <li><a href="#">Enquiry & Service Request</a></li>
-                    <li><a href="#">Career</a></li>
-                    <li><a href="#">Contact Us</a></li>
+                    <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
+                    <li><a href="<?= base_url('/career') ?>">Career</a></li>
+                    <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                 </ul>
             </li>
             <li><a href="#">After Sales Sevices</a>
                 <ul>
-                    <li><a href="#">AMC</a></li>
+                    <li><a href="<?= base_url('/amc') ?>">AMC</a></li>
                     <!-- <li><a href="#">Service Policy</a></li> -->
                     <?php foreach ($contents as $key => $page) { ?>
                         <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
