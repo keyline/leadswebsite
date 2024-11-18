@@ -11,6 +11,7 @@
     </div>
 </section>
 <!-- inner page banner end -->
+
 <!-- mission section start -->
 <section class="mission_section">
     <div class="container">
@@ -48,6 +49,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- presence -->
+                                <div class="tab-pane fade" id="v-pills-presence" role="tabpanel" aria-labelledby="v-pills-presence-tab" tabindex="0">
+                                    <div class="mission_info">
+
+                                        <div class="feature_plan mission_text mt-4">
+                                            <h4>Presence</h4>
+                                            <?= $setting->presence_text  ?? '' ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- presence -->
 
                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
                                     <div class="row justify-content-end">
@@ -67,15 +79,15 @@
                         </div>
                     </div>
                     <div class="about_more_box">
-                        
-                            <div class="mission_tabs">
-                                <!-- <p class="hypne"></p> -->
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Mission & Vision</a>
-                                    <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Our Presence</a>
-                                    <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificates</a>
-                                </div>
+
+                        <div class="mission_tabs">
+                            <!-- <p class="hypne"></p> -->
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Mission & Vision</a>
+                                <a class="nav-link" id="v-pills-presence-tab" data-bs-toggle="pill" data-bs-target="#v-pills-presence" type="button" role="tab" aria-controls="v-pills-presence" aria-selected="false">Our Presence</a>
+                                <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificates</a>
                             </div>
+                        </div>
                     </div>
                 </div>
             </div>
