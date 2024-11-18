@@ -30,9 +30,9 @@
                 <ul>
                     <li><a href="<?= base_url() ?>/about">About Us</a>
                         <ul>
-                            <li><a href="<?= base_url() ?>/about"">Mission & Vision</a></li>
-                            <li><a href=" <?= base_url() ?>/about"">Our Presence</a></li>
-                            <li><a href="<?= base_url() ?>/about"">Certificates</a></li>
+                            <li><a href="<?= base_url() ?>/about">Mission & Vision</a></li>
+                            <li><a href=" <?= base_url() ?>/about">Our Presence</a></li>
+                            <li><a href="<?= base_url() ?>/about">Certificates</a></li>
                         </ul>
                     </li>
                     <li><a href="#">Products</a>

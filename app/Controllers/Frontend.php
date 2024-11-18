@@ -266,7 +266,7 @@ class Frontend extends BaseController
 
         $page_name                  = 'about';
 
-        $data['certificates']          = $this->common_model->find_data('certificate_images', 'array');
+        $data['certificates']          = $this->common_model->find_data('certificate_images', 'array',['published' => 1]);
         $data['setting']          = $this->common_model->find_data('about_setting', 'row');
 
         echo $this->front_layout($title, $page_name, $data);
