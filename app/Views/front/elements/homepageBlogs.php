@@ -37,7 +37,7 @@
                         </div>
                     </div>
                     <div class="about_more_box">
-                        <a href="#">
+                        <a href="<?= base_url('blog') ?>">
                             <p>LATEST</p>
                             <h4>Blogs</h4>
                         </a>
