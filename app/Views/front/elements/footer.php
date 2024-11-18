@@ -24,12 +24,12 @@
                 <h4>Quick Links:</h4>
                 <ul>
                     <li><a href="<?= base_url() ?>">Home</a></li>
-                    <li><a href="<?= base_url() ?>/about"">About Us</a></li>
-                    <li><a href=" #">Products</a></li>
+                    <li><a href="<?= base_url() ?>/about">About Us</a></li>
+                    <!-- <li><a href="?= base_url() ?>/product">Products</a></li> -->
                     <li><a href="#">Media</a></li>
                     <li><a href="#">Download</a></li>
                     <li><a href="j#">Become A Distributor</a></li>
-                    <li><a href="<?= base_url() ?>/blog"">Blog</a></li>
+                    <li><a href="<?= base_url() ?>/blog">Blog</a></li>
                     <li><a href=" #">Reach Us</a></li>
                 </ul>
             </div>
