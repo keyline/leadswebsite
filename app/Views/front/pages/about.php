@@ -110,21 +110,26 @@
 <?= $enquiry ?>
 <!-- home enquiry end -->
 
-<script>
-        $(function(){
-            
-            $('.thumbnail').viewbox();
-            $('.thumbnail-2').viewbox({fullscreenButton: true});
 
-            (function(){
-                var vb = $('.popup-link').viewbox();
-                $('.popup-open-button').click(function(){
-                    vb.trigger('viewbox.open');
-                });
-                $('.close-button').click(function(){
-                    vb.trigger('viewbox.close');
-                });
-            })();
-            
+
+<?= $this->section('scripts') ?>
+<script>
+    $(function() {
+        $('.thumbnail').viewbox();
+        $('.thumbnail-2').viewbox({
+            fullscreenButton: true
         });
-    </script>
+
+        (function() {
+            var vb = $('.popup-link').viewbox();
+            $('.popup-open-button').click(function() {
+                vb.trigger('viewbox.open');
+            });
+            $('.close-button').click(function() {
+                vb.trigger('viewbox.close');
+            });
+        })();
+
+    });
+</script>
+<?= $this->endSection() ?>
