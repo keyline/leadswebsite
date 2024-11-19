@@ -365,6 +365,10 @@ body.abrido .hide_notshow_normal {
 #cssmenu.small-screen #menu-button{
     display: none;
 }
+span.without_melink {
+    color: #fff;
+    font-size: 24px;
+}
 
 /* ********|| NAV BAR ENDS ||******** */
 
@@ -1379,7 +1383,7 @@ body.abrido .hide_notshow_normal {
 .mission_tabs .nav-link.active{
     background: transparent;
     padding: 10px 0;
-    color: #640004;
+    color: #fff;
 }
 .mission_text h4{
     color: #ed1c24;
@@ -1400,6 +1404,11 @@ body.abrido .hide_notshow_normal {
     border: 1px solid #0275f6;
     border-radius: 10px
 } 
+.feature_plan.mission_text p {
+    font-size: 16px;
+    padding-bottom: 13px;
+    color: #000;
+}
 /* product listing page css */
 .inner_floting_box_banner{
     margin-bottom: 124px;
@@ -2475,4 +2484,19 @@ span.office-briefcase {
     border-radius: 18px;
     padding: 10px 10px 6px;
     font-size: 18px;
+}
+
+.service_policy_section .accordion-button {
+    font-weight: 600;
+    font-size: 18px;
+}
+.service_policy_section .accordion-button:not(.collapsed) {
+    background: #ed1c24;
+    color: #fff;
+}
+.service_policy_section .accordion-button:not(.collapsed)::after {
+    filter: brightness(0) saturate(100%) invert(100%) sepia(3%) saturate(7439%) hue-rotate(201deg) brightness(109%) contrast(101%);
+}
+.service_policy_section .accordion-button:focus{
+    box-shadow:none !important;
 }

@@ -67,7 +67,9 @@
                                             <ul class="client-logo-list">
                                                 <?php foreach ($certificates as $certificate): ?>
                                                     <li>
-                                                        <img src="<?= base_url('uploads/') ?>/certificate/<?= $certificate->image_data ?>" alt="" class="img-fluid">
+                                                        <a href="<?= base_url('uploads/') ?>/certificate/<?= $certificate->image_data ?>" class="thumbnail" title="">
+                                                            <img src="<?= base_url('uploads/') ?>/certificate/<?= $certificate->image_data ?>" alt="" class="img-fluid">
+                                                        </a>
                                                     </li>
                                                 <?php endforeach; ?>
                                             </ul>
@@ -107,3 +109,22 @@
 <!-- home enquiry start -->
 <?= $enquiry ?>
 <!-- home enquiry end -->
+
+<script>
+        $(function(){
+            
+            $('.thumbnail').viewbox();
+            $('.thumbnail-2').viewbox({fullscreenButton: true});
+
+            (function(){
+                var vb = $('.popup-link').viewbox();
+                $('.popup-open-button').click(function(){
+                    vb.trigger('viewbox.open');
+                });
+                $('.close-button').click(function(){
+                    vb.trigger('viewbox.close');
+                });
+            })();
+            
+        });
+    </script>

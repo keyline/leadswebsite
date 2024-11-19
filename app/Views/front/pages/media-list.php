@@ -68,10 +68,12 @@
                     } else {
                         // image 
                         ?>
-                        <div class="col-6 col-md-3">
+                        <div class="col-6 col-md-4">
+                            <div class="media_innerbox">
                             <a href="<?= base_url('uploads/') ?>/media/<?= $media->file ?>" class="thumbnail" title="">
                                 <img src="<?= base_url('uploads/') ?>/media/<?= $media->file ?>" alt="" class="img-fluid">
                             </a>
+                        </div>
                         </div>
                     <?php } ?>
 
