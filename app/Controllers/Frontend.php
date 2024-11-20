@@ -871,7 +871,6 @@ class Frontend extends BaseController
 
         $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1]);
 
-
         if ($this->request->getMethod() === 'post') {
 
             $postData = $this->request->getPost();

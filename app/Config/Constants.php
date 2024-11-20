@@ -109,7 +109,7 @@ $configs = [
         'BASEURL' => 'https://localhost/leadswebsite/',
         'USERNAME' => 'root',
         'PASSWORD' => '',
-        'DATABASE' => 'keyline_leadindia'
+        'DATABASE' => 'keyline_leads'
     ],
     'live' => [
         'BASEURL' => 'https://leadsdev.keylines.net.in/',
@@ -120,7 +120,7 @@ $configs = [
 ];
 
 // Determine the current user (this can be done based on session, environment variable, etc.)
-$currentUser = 'localhost'; // For example, 'localhost' is logged in
+$currentUser = 'live'; // For example, 'localhost' is logged in
 
 // Set configuration based on the current user
 define('BASEURL', $configs[$currentUser]['BASEURL']);
@@ -138,4 +138,12 @@ define('MEDIA_CATEGORIES', [
     3 => "Print Media",
     4 => "Press Release",
     5 => "AGM"
+]);
+
+// amc banner
+define('AMC_BANNER', [
+    1 => "AMC_Cook_Tops.jpg",
+    2 => "AMC_Water_Purifier.jpg",
+    3 => "AMC_Chimni.jpg",
+    4 => "AMC_Water_Treatment_Plant.jpg"
 ]);

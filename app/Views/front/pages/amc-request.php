@@ -71,7 +71,7 @@
                         <div class="blog_list_item">
 
                             <div class="blogitem_img">
-                                <img src="https://leadsdev.keylines.net.in/uploads/blogs/1731388090173022251346f387dd12.jpg" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
+                                <img src="<?= base_url('public/') ?>/assets/img/<?= AMC_BANNER[$category->id] ?>" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
                             </div>
 
                             <div class="blogitem_detials">
