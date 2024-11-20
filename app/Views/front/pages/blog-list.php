@@ -60,66 +60,7 @@
             <?php endforeach;
             endif; ?>
 
-            <!-- <div class="col-md-4">
-                <div class="blog_list_item">
-                    <a href="#">
-                        <div class="blogitem_img">
-                            <img src="<?= base_url('public/') ?>/assets/img/blog_img.jpg" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
-                        </div>
-                        <div class="blogitem_detials">
-                            <ul class="blogitem_cat">
-                                <li>Career Counselling</li>
-                            </ul>
-                            <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                <span class="ps-2">Oct 21, 2024</span> | <span class="ps-2">Admin</span> | <span class="pe-2">05:05 PM</span>
-                            </p>
-                            <h3>Professional Career Counseling: Advancing in Your Career</h3>
-                            <p class="shortdes">Professional career counseling plays a crucial role in advancing careers by offering guidance in skill development, decision-making, and personal growth...</p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="blog_list_item">
-                    <a href="#">
-                        <div class="blogitem_img">
-                            <img src="<?= base_url('public/') ?>/assets/img/blog_img.jpg" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
-                        </div>
-                        <div class="blogitem_detials">
-                            <ul class="blogitem_cat">
-                                <li>Career Counselling</li>
-                            </ul>
-                            <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                <span class="ps-2">Oct 21, 2024</span> | <span class="ps-2">Admin</span> | <span class="pe-2">05:05 PM</span>
-                            </p>
-                            <h3>Professional Career Counseling: Advancing in Your Career</h3>
-                            <p class="shortdes">Professional career counseling plays a crucial role in advancing careers by offering guidance in skill development, decision-making, and personal growth...</p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="blog_list_item">
-                    <a href="#">
-                        <div class="blogitem_img">
-                            <img src="<?= base_url('public/') ?>/assets/img/blog_img.jpg" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
-                        </div>
-                        <div class="blogitem_detials">
-                            <ul class="blogitem_cat">
-                                <li>Career Counselling</li>
-                            </ul>
-                            <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                <span class="ps-2">Oct 21, 2024</span> | <span class="ps-2">Admin</span> | <span class="pe-2">05:05 PM</span>
-                            </p>
-                            <h3>Professional Career Counseling: Advancing in Your Career</h3>
-                            <p class="shortdes">Professional career counseling plays a crucial role in advancing careers by offering guidance in skill development, decision-making, and personal growth...</p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </a>
-                </div>
-            </div> -->
+       
         </div>
         <button id="load_more_btn" style="float: right;background-color:#ed1c24;border: tomato;" class="btn btn-primary">Load More</button>
         <div id="loading" style="display: none;text-align: center;">
