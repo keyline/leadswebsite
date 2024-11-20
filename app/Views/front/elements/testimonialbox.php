@@ -135,12 +135,19 @@
                                         <?php } elseif ($tesMoRow->type == 2) { ?>
                                            
                                             <div class="item">
-                                                <img src="<?= base_url('uploads/') ?>/testimonials/<?= $tesMoRow->image ?>" alt="" class="img-fluid testimonial-img">
+                                                <div class="video_infotop">
+                                                    <div class="video_infotop_cliimg"><img src="<?= base_url('uploads/') ?>/testimonials/<?= $tesMoRow->image ?>" alt="" class="img-fluid testimonial-img"></div>
+                                                    <div class="video_infotop_data">
+                                                        <h5><?= $tesMoRow->name ?></h5>
+                                                        <p><?= $tesMoRow->designation ?>, <?= $tesMoRow->place_name ?>.</p>
+                                                    </div>
+                                                </div>
+                                                
                                                 <div class="flex-video">
                                                     <iframe width="560" height="315" src="https://www.youtube.com/embed/<?= $tesMoRow->video_url ?>?rel=0&modestbranding=1&autohide=1&showinfo=0&controls=1" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen sandbox="allow-same-origin allow-scripts allow-presentation"></iframe>
                                                 </div>
-                                                <h5><?= $tesMoRow->name ?></h5>
-                                                <p><?= $tesMoRow->designation ?>, <?= $tesMoRow->place_name ?>.</p>
+                                                
+                                                
                                             </div>
 
 

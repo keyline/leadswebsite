@@ -13,7 +13,9 @@
                                             <div class="home-blog-info">
                                                 <div class="row">
                                                     <div class="col-md-8">
+                                                        <div class="homeblog_imgsize">
                                                         <img src="<?= base_url('uploads/') ?>/blogs/<?= $blog->image ?>" alt="" class="img-fluid">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <h4> <?= $blog->title ?> <a href="<?php echo base_url('blog-details/' . $blog->slug); ?>" class="blog-read-more">Read More</a></h4>

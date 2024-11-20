@@ -101,7 +101,7 @@
                     <li><a href="<?= base_url() ?>/about">Certificates</a></li>
                 </ul>
             </li>
-            <li><a href="#">Products</a>
+            <li><span class="without_melink">Products</span>
                 <ul>
                     <?php foreach ($product_menu as $key => $category) { ?>
                         <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
