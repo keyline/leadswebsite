@@ -121,8 +121,8 @@
                                               <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
                                                   <span class="ps-2"><?= (new DateTime($relatedBlog->created_at))->format('M j, Y') ?></span> | <span class="pe-2"><?= $relatedBlog->category_name  ?></span> | <span class="ps-2"><?= $relatedBlog->post_by ?></span>
                                               </p>
-                                              <h3><?= $relatedBlog->title ?></h3>
-                                              <p class="shortdes"> <?= truncateText($relatedBlog->short_description); ?> <span class="u-text-primary">read more</span></p>
+                                              <h3><?= truncateText($relatedBlog->title,50) ?></h3>
+                                              <p class="shortdes"> <?= truncateText($relatedBlog->short_description,70); ?> <span class="u-text-primary">read more</span></p>
                                           </div>
                                       </a>
                                   </div>
@@ -184,8 +184,6 @@
   <?= $this->section('scripts') ?>
   <script>
       $(document).ready(function() {
-
-
           var a = new StickySidebar('#sticky-sidebar-demo', {
               topSpacing: 25,
               containerSelector: '.blogdetails_item',

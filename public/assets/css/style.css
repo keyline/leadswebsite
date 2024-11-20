@@ -2253,8 +2253,17 @@ ul.blogitem_cat li {
 .blog_list_item:hover .blogitem_img img {
     transform: scale(1.1);
 }
+#blogdetails-recent .blogitem_img {
+    height: 200px;
+    overflow: hidden;
+  }
 /* ********|| blog ENDS ||******** */
-
+.amcrequest_section .blogitem_detials ul.blogitem_cat li {
+    font-size: 20px;
+  }
+  .amcrequest_section .blogitem_detials ul.blogitem_cat {
+    padding-bottom: 0;
+  }
 
 
 /* ********|| Blog Details Start ||******** */

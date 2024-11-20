@@ -36,28 +36,32 @@
                         </ul>
                     </li>
                     <li><span class="without_melink">Products</span>
-                                <ul>
-                                    <?php foreach ($product_menu as $key => $category) { ?>
-                                        <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
-                                    <?php }  ?>
-                                </ul>
-                            </li>
-
-                            <li><a href="#" onclick="return false;">Media</a>
-                                <ul>
-                                    <?php foreach (MEDIA_CATEGORIES as $key => $media) {
-                                        $mediaSlug = strtolower(explode(" ", $media)[0]);
-                                    ?>
-                                        <li><a href="<?= base_url() ?>/media/<?= $mediaSlug ?>"><?= $media ?></a></li>
-                                    <?php }  ?>
-
-                                </ul>
-                            </li>
+                        <ul>
+                            <?php foreach ($product_menu as $key => $category) { ?>
+                                <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
+                            <?php }  ?>
                         </ul>
+                    </li>
+
+                    <li>
+                        <span class="without_melink">Media</span>
+
+                        <ul>
+                            <?php foreach (MEDIA_CATEGORIES as $key => $media) {
+                                $mediaSlug = strtolower(explode(" ", $media)[0]);
+                            ?>
+                                <li><a href="<?= base_url() ?>/media/<?= $mediaSlug ?>"><?= $media ?></a></li>
+                            <?php }  ?>
+
+                        </ul>
+                    </li>
+                </ul>
             </div>
             <div class="fullsreen_menu">
                 <ul>
-                    <li><a href="#" onclick="return false;">Download</a>
+                    <li>
+                        <span class="without_melink">Download</span>
+
                         <ul>
                             <?php foreach ($download as $key => $val) { ?>
                                 <li><a target="_blank" href="<?= base_url() ?>/uploads/download/<?= $val->file ?>"><?= $val->name ?></a></li>
@@ -66,14 +70,17 @@
                     </li>
                     <li><a href="#">Become A Distributor</a></li>
                     <li><a href="<?= base_url() ?>/blog">Blog</a></li>
-                    <li><a href="#">Reach Us</a>
+                    <li>
+                        <span class="without_melink">Reach Us</span>
+
                         <ul>
                             <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
                             <li><a href="<?= base_url('/career') ?>">Career</a></li>
                             <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                         </ul>
                     </li>
-                    <li><a href="#">After Sales Sevices</a>
+                    <li>
+                        <span class="without_melink">After Sales Sevices</span>
                         <ul>
                             <li><a href="<?= base_url('/amc') ?>">AMC</a></li>
                             <!-- <li><a href="#">Service Policy</a></li> -->
@@ -101,7 +108,8 @@
                     <li><a href="<?= base_url() ?>/about">Certificates</a></li>
                 </ul>
             </li>
-            <li><span class="without_melink">Products</span>
+            <li>
+                <span class="without_melink">Products</span>
                 <ul>
                     <?php foreach ($product_menu as $key => $category) { ?>
                         <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
@@ -112,19 +120,24 @@
                     <li><a href="#">Water Treatment Plant</a></li> -->
                 </ul>
             </li>
-            <li><a href="#">Media</a>
+            <li>
+                <!-- <a href="#">Media</a> -->
+                
+                <span class="without_melink">Media</span>
                 <ul>
                     <?php foreach (MEDIA_CATEGORIES as $key => $media) {
                         $mediaSlug = strtolower(explode(" ", $media)[0]);
                     ?>
                         <li><a href="<?= base_url() ?>/media/<?= $mediaSlug ?>"><?= $media ?></a></li>
                     <?php }  ?>
-                   
+
                 </ul>
             </li>
-            <li><a href="#">Download</a>
+            <li>
+                <!-- <a href="#">Download</a> -->
+                <span class="without_melink">Download</span>
                 <ul>
-              
+
 
                     <?php foreach ($download as $key => $val) { ?>
                         <li><a target="_blank" href="<?= base_url() ?>/uploads/download/<?= $val->file ?>"><?= $val->name ?></a></li>
@@ -133,14 +146,18 @@
             </li>
             <li><a href="#">Become A Distributor</a></li>
             <li><a href="<?= base_url() ?>/blog">Blog</a></li>
-            <li><a href="#">Reach Us</a>
+            <li>
+                <!-- <a href="#">Reach Us</a> -->
+                <span class="without_melink">Reach Us</span>
                 <ul>
                     <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
                     <li><a href="<?= base_url('/career') ?>">Career</a></li>
                     <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                 </ul>
             </li>
-            <li><a href="#">After Sales Sevices</a>
+            <li>
+                <!-- <a href="#">After Sales Sevices</a> -->
+                <span class="without_melink">After Sales Sevices</span>
                 <ul>
                     <li><a href="<?= base_url('/amc') ?>">AMC</a></li>
                     <!-- <li><a href="#">Service Policy</a></li> -->

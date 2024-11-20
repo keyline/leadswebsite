@@ -11,13 +11,13 @@
 
 <body>
 
-    <nav id="nav-main" class="">
+    <nav id="nav-main" class="<?= ($page_header == 'Blog Details') ? 'blogdetail_head' : '' ?>">
         <?= $menu ?>
     </nav>
 
     <!------------|| NAV BAR STARTS ||------------>
 
-    <header class="header">
+    <header class="header <?= ($page_header == 'Blog Details') ? 'blogdetails_header' : '' ?>">
 
         <?= $header ?>
 
@@ -248,7 +248,7 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
-   
+
 
     <script>
         // jQuery(function() {
@@ -270,7 +270,6 @@
         //     });
 
         // });
-        
     </script>
 
     <script type="text/javascript" src="<?= base_url('material/assets/js/jquery.captcha.basic.min.js') ?>"></script>
