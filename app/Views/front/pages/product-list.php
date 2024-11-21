@@ -257,9 +257,9 @@
                 //  console.log(response); // Check the raw response from the server                
                 const products = JSON.parse(response);
                 // console.log(products); 
-                $length = count(products);
+                $length = products.length;
                 console.log(length);
-                if ($length > 0) {                    
+                if (products.length > 0) {                    
                     console.log("exsist product") ;
                     let productHtml = '';
                     products.forEach(product => {
