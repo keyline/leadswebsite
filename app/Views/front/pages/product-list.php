@@ -259,7 +259,7 @@
                 // console.log(products); 
                 $length = count(products);
                 console.log(length);
-                if (products.length > 0) {                    
+                if ($length > 0) {                    
                     console.log("exsist product") ;
                     let productHtml = '';
                     products.forEach(product => {
