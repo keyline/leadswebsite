@@ -320,7 +320,7 @@
                     
                 }
 
-                // $('#loading').hide();
+                $('#loading').hide();
             },
             error: function () {
                 alert('Could not load more products');
