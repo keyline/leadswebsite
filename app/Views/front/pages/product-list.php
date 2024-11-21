@@ -259,6 +259,8 @@
                 // console.log(products); 
                 
                 if (products.length > 0) {
+                    $length = products.length;
+                    console.log(length);
                     let productHtml = '';
                     products.forEach(product => {
                         // console.log(product.warrenty_section);
@@ -274,12 +276,14 @@
                                         
                         product.others_images.forEach(image => {
                             //  console.log(image);
+                            const contentTitle = JSON.parse(product.content_title);
+                            const contentDescription = JSON.parse(product.content_description);
                             productHtml += `
                                 <div class="swiper-slide">
                                     <div class="product_info">
                                         <img src="<?= base_url('/uploads/product/') ?>/${image.image_file}" alt="" class="img-fluid">
                                         <h4>${product.product_title}</h4>
-                                        <p>Air Flow: ${product.air_flow}</p>
+                                        <p>${contentTitle[0]} : ${contentDescription[0]}</p>
                                     </div>
                                 </div>`;
                         });
