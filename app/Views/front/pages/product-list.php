@@ -257,10 +257,10 @@
                 //  console.log(response); // Check the raw response from the server                
                 const products = JSON.parse(response);
                 // console.log(products); 
-                
-                if (products.length > 0) {
-                    $length = products.length;
-                    console.log(length);
+                $length = products.length;
+                console.log(length);
+                if (products.length > 0) {                    
+                    console.log("exsist product") ;
                     let productHtml = '';
                     products.forEach(product => {
                         // console.log(product.warrenty_section);
@@ -312,6 +312,7 @@
                     offset += products.length; // Update offset
 
                 } else {
+                    console.log("no product") ;
                     $('#load_more_btn').hide(); // Hide button if no more products
                 }
 
