@@ -261,6 +261,14 @@ document.addEventListener('click', function (e) {
     }
 });
 
+function updateIndices() {
+    const rows = document.querySelectorAll('#specification-container .specification-row');
+    rows.forEach((row, index) => {
+        row.querySelector('input[name="content_title[]"]').name = `content_title[${index}]`;
+        row.querySelector('input[name="content_description[]"]').name = `content_description[${index}]`;
+    });
+}
+
 document.querySelector('.add-description-row').addEventListener('click', function () {
     const row = document.createElement('div');
     row.className = 'specification-row';
@@ -270,11 +278,14 @@ document.querySelector('.add-description-row').addEventListener('click', functio
         <button type="button" class="btn btn-danger remove-specification-row">-</button>
     `;
     document.getElementById('specification-container').appendChild(row);
+    updateIndices();
 });
 
 document.addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('remove-specification-row')) {
         e.target.parentNode.remove();
+        updateIndices();
     }
 });
+
 </script>
