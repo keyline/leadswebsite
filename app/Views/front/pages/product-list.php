@@ -311,14 +311,16 @@
                     $('#product_list').append(productHtml);
                     offset += products.length; // Update offset
 
-                } else {
-                    alert('NO more products to show');
+                } else {                    
                     $('#loading').hide();
                     $('#load_more_btn').hide(); // Hide button if no more products
+                    if ($('#no_more_products').length === 0) {
+                    $('#product_list').after('<p id="no_more_products" class="text-center">No more products to load.</p>');
+                }
                     
                 }
 
-                $('#loading').hide();
+                // $('#loading').hide();
             },
             error: function () {
                 alert('Could not load more products');
