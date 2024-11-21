@@ -211,7 +211,7 @@
                     $('#loading').hide();
                     $('#load_more_btn').hide(); // Hide button if no more products
                     if ($('#no_more_products').length === 0) {
-                    $('#product_list').after('<p id="no_more_products" style="background-color:#ed1c24;border: tomato;" class="text-center">No more products to load.</p>');
+                    $('#product_list').after('<p id="no_more_products" class="text-center">No more products to load.</p>');
                 }
                     
                 }
