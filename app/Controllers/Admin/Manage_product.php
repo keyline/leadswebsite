@@ -191,7 +191,7 @@ class Manage_product extends BaseController
                     'key_feature'               => json_encode($postData['key_feature']), 
                     'is_new'                    => $postData['is_new'],       
                 ];
-                    // pr($fields1);
+                     pr($fields1);
                  $this->data['model']->save_data($this->data['table_name'], $fields1, $id, $this->data['primary_key']);
                 
                 
