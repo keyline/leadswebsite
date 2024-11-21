@@ -176,7 +176,8 @@ class Manage_product extends BaseController
                 //     }
                 // } else {                    
                 //     $image = $data['row']->product_image;
-                // }                                                               
+                // }              
+                pr($postData['content_title']);
 
             // Data processing and insertion if validation passed            
                 $fields1 = [
