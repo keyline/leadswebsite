@@ -177,7 +177,7 @@ class Manage_product extends BaseController
                 // } else {                    
                 //     $image = $data['row']->product_image;
                 // }              
-                // pr($postData['content_title']);
+                pr($postData['content_title']);
                 $content_title = json_encode($postData['content_title']);
 
             // Data processing and insertion if validation passed            
@@ -187,7 +187,7 @@ class Manage_product extends BaseController
                     'slug'                      => $slug,
                     'regular_price'             => $postData['regular_price'],
                     'sale_price'                => $postData['sale_price'],
-                    'content_title'             => array_values(array_filter($content_title, fn($value) => !empty($value))),                   
+                    'content_title'             => json_encode(array_values(array_filter($postData['content_title'], fn($value) => !empty($value)))),                   
                     'content_description'       => json_encode($postData['content_description']),                   
                     'warrenty_section'          => json_encode($postData['warrenty_section']), 
                     'key_feature'               => json_encode($postData['key_feature']), 
