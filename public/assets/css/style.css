@@ -807,6 +807,15 @@ span.without_melink {
     width: 165px;
     justify-content: space-between;
 }
+.home_product_tab_content_box .navegiation_position {
+    position: absolute;
+    bottom: 38px;
+    right: 0;
+    display: flex;
+    flex-direction: row-reverse;
+    width: 165px;
+    justify-content: space-between;
+}
 .navegiation_position .swiper-button-next:after, .navegiation_position .swiper-button-prev:after{
     font-size: 20px;
 }
