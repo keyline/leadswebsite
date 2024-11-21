@@ -312,8 +312,10 @@
                     offset += products.length; // Update offset
 
                 } else {
-                    console.log("no product") ;
+                    alert('NO more products to show');
+                    $('#loading').hide();
                     $('#load_more_btn').hide(); // Hide button if no more products
+                    
                 }
 
                 $('#loading').hide();
