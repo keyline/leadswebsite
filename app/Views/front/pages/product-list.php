@@ -143,86 +143,92 @@
     const limit = 4; // Number of products per batch
 
     $('#load_more_btn').on('click', function () {
-        $('#loading').show();
+    $('#loading').show();
 
-        $.ajax({
-            url: '<?= base_url('Frontend/product/' . $productCat->slug) ?>',
-            type: 'POST',
-            data: { offset: offset },
-            success: function (response) {
-                //  console.log(response); // Check the raw response from the server                
-                const products = JSON.parse(response);
-                // console.log(products); 
-                let length = products.length;
-                console.log(length);
-                if (length > 0) {                    
-                    console.log("exsist product") ;
-                    let productHtml = '';
-                    products.forEach(product => {
-                        // console.log(product.warrenty_section);
-                        productHtml += `
-                            <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
+    $.ajax({
+        url: '<?= base_url('Frontend/product/' . $productCat->slug) ?>',
+        type: 'POST',
+        data: { offset: offset },
+        success: function (response) {
+            const products = JSON.parse(response);
+            let length = products.length;
+
+            if (length > 0) {
+                let productHtml = '';
+                products.forEach(product => {
+                    productHtml += `
+                        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
                             <a href="<?= base_url('product-details')?>/${product.slug}">
                                 <div class="product_item">
                                     <div class="badge-product-sale">
                                         ${product.is_new == 1 ? `<span class="ribbon-v"><p>new</p></span>` : ''}
                                     </div>
-                                    <div class="swiper productimgswiper" id="mySwiperId">
+                                    <div class="swiper productimgswiper">
                                         <div class="swiper-wrapper">`;
-                                        
-                        product.others_images.forEach(image => {
-                            //  console.log(image);
-                            const contentTitle = JSON.parse(product.content_title);
-                            const contentDescription = JSON.parse(product.content_description);
-                            productHtml += `
-                                <div class="swiper-slide">
-                                    <div class="product_info">
-                                        <img src="<?= base_url('/uploads/product/') ?>/${image.image_file}" alt="" class="img-fluid">
-                                        <h4>${product.product_title}</h4>
-                                        <p>${contentTitle[0]} : ${contentDescription[0]}</p>
-                                    </div>
-                                </div>`;
-                        });
-
-                        productHtml += `</div><div class="swiper-pagination"></div></div>`;
-
-                        productHtml += `<div class="other_info_box">
-                            <ul class="d-flex justify-content-center">`;
-                            product.warrenty_section = JSON.parse(product.warrenty_section); 
-                            // console.log(product.warrenty_section);                           
-                        product.warrenty_section.forEach(warranty => {
-                            //  console.log(warranty);
-                            if (warranty == 'warrenty') {
-                                productHtml += `<li><img src="<?= base_url('public/assets/img/warenty.webp') ?>" alt="" class="img-fluid"></li>`;
-                            } else if (warranty == 'motion_sensor') {
-                                productHtml += `<li><img src="<?= base_url('public/assets/img/hand.webp') ?>" alt="" class="img-fluid"></li>`;
-                            } else if (warranty == 'isa_technology') {
-                                productHtml += `<li><img src="<?= base_url('public/assets/img/isa.webp') ?>" alt="" class="img-fluid"></li>`;
-                            }
-                        });
-
-                        productHtml += `</ul></div></div></a></div>`;
-                    });
                     
-                    $('#product_list').append(productHtml);
-                    offset += products.length; // Update offset
+                    product.others_images.forEach(image => {
+                        const contentTitle = JSON.parse(product.content_title);
+                        const contentDescription = JSON.parse(product.content_description);
+                        productHtml += `
+                            <div class="swiper-slide">
+                                <div class="product_info">
+                                    <img src="<?= base_url('/uploads/product/') ?>/${image.image_file}" alt="" class="img-fluid">
+                                    <h4>${product.product_title}</h4>
+                                    <p>${contentTitle[0]} : ${contentDescription[0]}</p>
+                                </div>
+                            </div>`;
+                    });
 
-                } else {                    
-                    $('#loading').hide();
-                    $('#load_more_btn').hide(); // Hide button if no more products
-                    if ($('#no_more_products').length === 0) {
+                    productHtml += `</div><div class="swiper-pagination"></div></div>`;
+                    productHtml += `<div class="other_info_box">
+                        <ul class="d-flex justify-content-center">`;
+                    
+                    product.warrenty_section = JSON.parse(product.warrenty_section); 
+                    product.warrenty_section.forEach(warranty => {
+                        if (warranty == 'warrenty') {
+                            productHtml += `<li><img src="<?= base_url('public/assets/img/warenty.webp') ?>" alt="" class="img-fluid"></li>`;
+                        } else if (warranty == 'motion_sensor') {
+                            productHtml += `<li><img src="<?= base_url('public/assets/img/hand.webp') ?>" alt="" class="img-fluid"></li>`;
+                        } else if (warranty == 'isa_technology') {
+                            productHtml += `<li><img src="<?= base_url('public/assets/img/isa.webp') ?>" alt="" class="img-fluid"></li>`;
+                        }
+                    });
+
+                    productHtml += `</ul></div></div></a></div>`;
+                });
+
+                $('#product_list').append(productHtml);
+                offset += products.length;
+
+                // Update Swiper after new slides are added
+                setTimeout(() => {
+                    const swiperInstance = new Swiper('.productimgswiper', {
+                        slidesPerView: 1,
+                        spaceBetween: 10,
+                        pagination: {
+                            el: '.swiper-pagination',
+                            clickable: true,
+                        },
+                    });
+                    swiperInstance.update();
+                }, 0);
+
+                $('#loading').hide();
+
+            } else {
+                $('#loading').hide();
+                $('#load_more_btn').hide();
+                if ($('#no_more_products').length === 0) {
                     $('#product_list').after('<p id="no_more_products" class="text-center">No more products to load.</p>');
                 }
-                    
-                }
-
-                $('#loading').hide();
-            },
-            error: function () {
-                alert('Could not load more products');
-                $('#loading').hide();
             }
-        });
+        },
+        error: function () {
+            alert('Could not load more products');
+            $('#loading').hide();
+        }
     });
+});
+
 </script>
 <?= $this->endSection() ?>
