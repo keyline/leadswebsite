@@ -630,7 +630,7 @@ class Frontend extends BaseController
 
             $postData = $this->request->getPost();
 
-        
+
             $rules = [
                 'fname' => [
                     'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
@@ -1738,7 +1738,6 @@ class Frontend extends BaseController
         try {
             return $this->send($send_email, $toName, $subject, $body);
         } catch (\Exception $e) {
-            pr($e->getMessage());
             // Catch and handle any exceptions
             error_log('An error occurred while sending the email: ' . $e->getMessage());
             return false;

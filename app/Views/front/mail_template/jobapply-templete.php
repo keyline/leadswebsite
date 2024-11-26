@@ -63,7 +63,7 @@
 
 <body>
     <div class="container">
-        <h1>job apply by <?= htmlspecialchars($name) ?></h1>
+        <h1>job apply by <?= htmlspecialchars($first_name) ?> <?= htmlspecialchars($last_name) ?></h1>
         <img class="destination-image" src="https://leadsdev.keylines.net.in/public/assets/img/logo.png" alt="Destination Image">
         <p>Hello admin,</p>
         <p>You have received a new job application request! A candidate has expressed interest in the position you posted. </p>
