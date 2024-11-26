@@ -629,10 +629,8 @@ class Frontend extends BaseController
         if ($this->request->getMethod() === 'post') {
 
             $postData = $this->request->getPost();
-            
-            return $this->response->setStatusCode(200) // Created
-                ->setJSON($postData);
 
+        
             $rules = [
                 'fname' => [
                     'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
@@ -1740,6 +1738,7 @@ class Frontend extends BaseController
         try {
             return $this->send($send_email, $toName, $subject, $body);
         } catch (\Exception $e) {
+            pr($e->getMessage());
             // Catch and handle any exceptions
             error_log('An error occurred while sending the email: ' . $e->getMessage());
             return false;
