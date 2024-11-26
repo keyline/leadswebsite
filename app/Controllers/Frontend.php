@@ -266,7 +266,7 @@ class Frontend extends BaseController
 
         $page_name                  = 'about';
 
-        $data['certificates']          = $this->common_model->find_data('certificate_images', 'array',['published' => 1]);
+        $data['certificates']          = $this->common_model->find_data('certificate_images', 'array', ['published' => 1]);
         $data['setting']          = $this->common_model->find_data('about_setting', 'row');
 
         echo $this->front_layout($title, $page_name, $data);
@@ -361,8 +361,8 @@ class Frontend extends BaseController
                             <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
                                 <span class="ps-2"><?= (new \DateTime($blog->created_at))->format('M j, Y') ?></span> | <span class="ps-2"><?= $blog->post_by ?></span> | <span class="pe-2"><?= (new \DateTime($blog->created_at))->format('h.m A') ?></span>
                             </p>
-                            <h3><?= truncateText($blog->title,50) ?></h3>
-                            <p class="shortdes"><?= truncateText($blog->short_description,70) ?></p>
+                            <h3><?= truncateText($blog->title, 50) ?></h3>
+                            <p class="shortdes"><?= truncateText($blog->short_description, 70) ?></p>
                             <a href="<?= base_url('blog-details/' . $blog->slug); ?>">Read More</a>
                         </div>
                     </a>
@@ -629,7 +629,9 @@ class Frontend extends BaseController
         if ($this->request->getMethod() === 'post') {
 
             $postData = $this->request->getPost();
-
+            
+            return $this->response->setStatusCode(200) // Created
+                ->setJSON($postData);
 
             $rules = [
                 'fname' => [
