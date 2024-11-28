@@ -26,7 +26,7 @@ $db = \Config\Database::connect();
                                                 <p class="animated fadeInRight delay-4"><span>Chimney</span> for Smart
                                                     People</p>
                                                 <div class="home_banner_btn_holder animated fadeInUp delay-5">
-                                                    <a href="<?=base_url('/product/kitchen-chimney')?>" class="home_banner_btn">View All <img
+                                                    <a href="<?= base_url('/product/kitchen-chimney') ?>" class="home_banner_btn">View All <img
                                                             src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt=""
                                                             class="img-fluid long-arrow"></a>
                                                 </div>
@@ -53,7 +53,7 @@ $db = \Config\Database::connect();
                                                 <h2 class="animated fadeInRight delay-3"><span>India's</span>No. 1</h2>
                                                 <p class="animated fadeInRight delay-4"><span>First</span> Ai Integrated <span>Kitchen Chimney</span></p>
                                                 <div class="home_banner_btn_holder animated fadeInUp delay-5">
-                                                    <a href="<?=base_url('/product/kitchen-chimney')?>" class="home_banner_btn">View All <img
+                                                    <a href="<?= base_url('/product/kitchen-chimney') ?>" class="home_banner_btn">View All <img
                                                             src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt=""
                                                             class="img-fluid long-arrow"></a>
                                                 </div>
@@ -79,7 +79,7 @@ $db = \Config\Database::connect();
                                                 <h2 class="animated fadeInLeft delay-3">Pure Water, Pure Life –</h2>
                                                 <p class="animated fadeInRight delay-4">Drink Safe, Live Healthy</p>
                                                 <div class="home_banner_btn_holder animated fadeInUp delay-5">
-                                                    <a href="<?=base_url('/product/ro-water-purifier')?>" class="home_banner_btn">View All <img
+                                                    <a href="<?= base_url('/product/ro-water-purifier') ?>" class="home_banner_btn">View All <img
                                                             src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt=""
                                                             class="img-fluid long-arrow"></a>
                                                 </div>
@@ -104,7 +104,7 @@ $db = \Config\Database::connect();
                                                 <h2 class="animated fadeInRight delay-3">Effortless Cooking,<br>Elegant Design</h2>
                                                 <p class="animated fadeInRight delay-4">Upgrade Your Cook Top!</p>
                                                 <div class="home_banner_btn_holder animated fadeInUp delay-5">
-                                                    <a href="<?=base_url('/product/cook-tops-hob-tops')?>" class="home_banner_btn">View All <img
+                                                    <a href="<?= base_url('/product/cook-tops-hob-tops') ?>" class="home_banner_btn">View All <img
                                                             src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt=""
                                                             class="img-fluid long-arrow"></a>
                                                 </div>
@@ -210,7 +210,7 @@ $db = \Config\Database::connect();
                     <div class="tab-content" id="pills-tabContent">
                         <?php foreach ($product_category as $key => $row) {
                             $productcatID = $row->id;
-                            $sql = "SELECT * FROM `product` WHERE `product_category` = '$productcatID' and `published` != '3' LIMIT 5";
+                            $sql = "SELECT * FROM `product` WHERE `product_category` = '$productcatID' and `published` = '1' LIMIT 5";
                             $products = $db->query($sql)->getResult();
                         ?>
                             <div class="tab-pane fade <?= $key == 0 ? 'show active' : '' ?>" id="<?= $row->id ?>" role="tabpanel"
@@ -233,7 +233,7 @@ $db = \Config\Database::connect();
                                                         <div class="swiper productimgswiper" id="mySwiperId">
                                                             <div class="swiper-wrapper">
                                                                 <?php $productID = $product->id;
-                                                                $sql1 = "SELECT * FROM `product_others_image` WHERE `product_id` = '$productID' and `published` != '3'";
+                                                                $sql1 = "SELECT * FROM `product_others_image` WHERE `product_id` = '$productID' and `published` = '1'";
                                                                 $others_images = $db->query($sql1)->getResult();
                                                                 foreach ($others_images as $others_image) { ?>
                                                                     <div class="swiper-slide">
