@@ -68,7 +68,7 @@
                             <?php }  ?>
                         </ul>
                     </li>
-                    <li><a href="#">Become A Distributor</a></li>
+                    <li><a href="/distributor">Become A Distributor</a></li>
                     <li><a href="<?= base_url() ?>/blog">Blog</a></li>
                     <li>
                         <span class="without_melink">Reach Us</span>
