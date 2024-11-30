@@ -17,6 +17,7 @@
                 <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Enquiry Manage</span></a>
                 <ul class="pcoded-submenu">
                     <li><a href="<?= base_url('admin/manage_enquire/') ?>">Enquiry</a></li>
+                    <li><a href="<?= base_url('admin/Manage_distributor_enquire/') ?>">Distributor Enquiry</a></li>
                     <li><a href="<?= base_url('admin/Manage_services') ?>">Service</a></li>
                     <li><a href="<?= base_url('admin/Manage_amc_enquire') ?>">AMC Enquiry</a></li>
                 </ul>
