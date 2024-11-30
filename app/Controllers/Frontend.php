@@ -258,7 +258,7 @@ class Frontend extends BaseController
     public function about()
     {
 
-        $title                      = 'Home';
+        $title                      = 'About';
 
         $this->common_model         = new CommonModel();
 
@@ -272,6 +272,35 @@ class Frontend extends BaseController
         echo $this->front_layout($title, $page_name, $data);
     }
 
+    public function distributor()
+    {
+
+        $title                      = 'Become A Distributor';
+
+        $this->common_model         = new CommonModel();
+
+        $postData['common_model']   = $this->common_model;
+
+        $page_name                  = 'become_a_distributor';        
+        $data['setting']          = $this->common_model->find_data('about_setting', 'row');
+
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function returnPolicy()
+    {
+
+        $title                      = 'Return Policy';
+
+        $this->common_model         = new CommonModel();
+
+        $postData['common_model']   = $this->common_model;
+
+        $page_name                  = 'return_policy';        
+        $data['setting']          = $this->common_model->find_data('about_setting', 'row');
+
+        echo $this->front_layout($title, $page_name, $data);
+    }
 
     public function blog()
     {

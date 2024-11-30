@@ -63,6 +63,8 @@ $routes->setAutoRoute(true);
 $routes->get('/', 'Frontend::index');
 
 $routes->get('/about', 'Frontend::about');
+$routes->get('/distributor', 'Frontend::distributor');
+$routes->get('/return-policy', 'Frontend::returnPolicy');
 
 $routes->get('/blog', 'Frontend::blog');
 $routes->get('api/load-blogs', 'Frontend::loadMoreBlog');
