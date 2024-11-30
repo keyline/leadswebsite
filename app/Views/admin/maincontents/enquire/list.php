@@ -1,5 +1,6 @@
 <?php
 $isAMC = ($moduleDetail['controller'] == 'manage_amc_enquire');
+pr($moduleDetail['controller']);
 ?>
 <div class="pcoded-content">
     <div class="page-header">
