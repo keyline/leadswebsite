@@ -283,18 +283,24 @@ class Frontend extends BaseController
 
         $page_name                  = 'become_a_distributor';        
         // $data['setting']          = $this->common_model->find_data('about_setting', 'row');
-        $data = [];
+        $data = [];        
+
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+    public function distributorenquiry()
+    {
+
         if ($this->request->getMethod() === 'post') {
 
             $postData = $this->request->getPost();
 
             $rules = [
                 'name'    => 'required|min_length[3]|max_length[255]|alpha_space',
-                'business_name'    => 'required',
-                'phone_number'  => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]',
+                'number'  => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]',
                 'email'   => 'required|valid_email',
-                // 'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
-                // 'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*>).*$/i]',
+                'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
+                'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*?>).*$/i]',
                 'page_name' => 'required',
                 'recaptcha_token' => 'required',
                 'g-recaptcha-response' => 'required',
@@ -311,14 +317,11 @@ class Frontend extends BaseController
                 $data = [
                     'name' => $postData['name'],
                     'email' => $postData['email'],
-                    'phone' => $postData['phone_number'],
+                    'phone' => $postData['number'],
                     'city' => $postData['city'],
-                    'business_name' => $postData['business_name'],
-                    'product_interest' => $postData['product_interest'],
                     'comment' => $postData['message'],
                     'organisation' => $postData['page_name'],
                 ];
-                 pr($data);
 
                 $insert_id = $this->common_model->save_data('sms_contact_enquiry', $data);
 
@@ -331,8 +334,6 @@ class Frontend extends BaseController
                     ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
             }
         }
-
-        echo $this->front_layout($title, $page_name, $data);
     }
 
     public function returnPolicy()
