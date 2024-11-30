@@ -318,7 +318,7 @@ class Frontend extends BaseController
                     'comment' => $postData['message'],
                     'organisation' => $postData['page_name'],
                 ];
-                // pr($data);
+                 pr($data);
 
                 $insert_id = $this->common_model->save_data('sms_contact_enquiry', $data);
 
