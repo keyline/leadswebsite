@@ -19,7 +19,10 @@
     .headlogo img {
         max-width: 100%;
     }
-
+}
+@media screen and (max-width: 1199px) {
+    .distruibute_logo{width: 28%;}
+    .distruibute_logo_form{width: 70%;}
 }
 @media (min-width: 992px) and (max-width: 1199px) {
 .full_desktop_menu {
@@ -160,6 +163,19 @@ body.abrido a#burger {
 }
 /*.mobile_order_left{order: 2;}*/
 .mobile_order_right .product_dtl_info{display: none;}
+.features-section.distributor-features .feature-icon-list li:first-child, 
+.features-section.distributor-features .feature-icon-list li:last-child {
+    width: 33.33%;
+}
+.distruibute_logo{
+    padding: 28px;
+}
+.distruibute_logo h4 {
+    font-size: 18px;
+}
+.distruibute_logo p {
+    font-size: 13px;
+}
 }
 
 @media screen and (min-width: 769px) {
@@ -245,6 +261,10 @@ body.abrido a#burger {
     -webkit-box-flex: 0;
     margin-top: 15px;
 }
+.features-section.distributor-features .feature-icon-list li:first-child, 
+.features-section.distributor-features .feature-icon-list li:last-child {
+    width: 50%;
+}
 }
 
 
@@ -314,6 +334,28 @@ body.abrido a#burger {
 }
 .specify_list li{flex-wrap: wrap;}
 .specify_list li span.specfy_name{width: 100%;}
+.features-section.distributor-features .feature-icon-list li:first-child, 
+.features-section.distributor-features .feature-icon-list li:last-child {
+    width: 100%;
+}
+.features-section.distributor-features .feature-icon-list li {
+    border-right: none;
+    padding: 0 0;
+}
+.distruibute_logo {
+    width: 100%;
+    margin-right: 0;
+    margin-bottom: 30px;
+    max-width: 300px;
+    margin-top: 25px;
+}
+.distruibute_logo_form {
+    width: 100%;
+    padding: 50px;
+}
+.distruibute_logo_section{
+    flex-wrap: wrap;
+}
 }
 
 
