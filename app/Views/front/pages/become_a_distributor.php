@@ -24,29 +24,29 @@
                         <h5>Leading Kitchen Solutions for Dealers & Distributors!</h5>
 
                         <div class="distruibute_inner-form">
-                            <form>
+                            <form class="enquiry_form" method="post">
                                 <div class="row">
                                     <div class="col-md-12 col-lg-6">
-                                        <input type="text" class="form-control" placeholder="Name" aria-label="First name">
+                                        <input type="text" name="name" class="form-control" placeholder="Name" aria-label="First name" required>
                                     </div>
                                     <div class="col-md-12 col-lg-6">
-                                        <input type="text" class="form-control" placeholder="Business Name" aria-label="Business name">
+                                        <input type="text" name="business_name" class="form-control" placeholder="Business Name" aria-label="Business name" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-lg-6">
-                                        <input type="email" class="form-control" placeholder="Email" aria-label="Email">
+                                        <input type="email" name="email" class="form-control" placeholder="Email" aria-label="Email" required>
                                     </div>
                                     <div class="col-md-12 col-lg-6">
-                                        <input type="text" class="form-control" placeholder="Phone Number" aria-label="Phone Number">
+                                        <input type="text" name="phone_number" class="form-control" placeholder="Phone Number" aria-label="Phone Number" required>
                                     </div>
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-lg-6">
-                                        <input type="text" class="form-control" placeholder="Region/City" aria-label="Region/City">
+                                        <input type="text" name="city" class="form-control" placeholder="Region/City" aria-label="Region/City">
                                     </div>
                                     <div class="col-md-12 col-lg-6">
-                                        <select class="form-select" aria-label="Default select example">
+                                        <select class="form-select" name="product_interest" aria-label="Default select example">
                                             <option selected>Product Interest</option>
                                             <option value="1">One</option>
                                             <option value="2">Two</option>
@@ -56,13 +56,15 @@
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12">
-                                        <textarea class="form-control" placeholder="Message" id="exampleFormControlTextarea1" rows="3"></textarea>
+                                        <textarea class="form-control" name="message" placeholder="Message" id="exampleFormControlTextarea1" rows="3"></textarea>
                                     </div>
                                     
                                 </div>
                                 <div class="row">
                                     <div class="col-md-12 col-lg-6">
-                                        <button type="submit" >submit <img src="https://localhost/leadswebsite/public/assets/img/arrow-long-red.png" alt="" class="img-fluid long-arrow"></button>
+                                        <input type="hidden" name="page_name" value="<?= service('uri')->getPath() ?>">
+                                        <input type="hidden" name="recaptcha_token" id="recaptcha_token2">
+                                        <button type="submit" class="g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit2' >submit <img src="https://localhost/leadswebsite/public/assets/img/arrow-long-red.png" alt="" class="img-fluid long-arrow"></button>
                                     </div>
                                 </div>
                             </form>
@@ -74,6 +76,7 @@
     </div>
 </section>
 <!-- mission section end -->
+
 
 
 
@@ -161,5 +164,61 @@
         })();
 
     });
+</script>
+<script>
+    // (function(){
+    // Handle reCAPTCHA callback
+    function onSubmit2(token) {
+        // Set the token in the hidden input
+        $('#recaptcha_token2').val(token);
+
+        // Trigger AJAX form submission
+        submitForm2();
+    }
+
+    // Submit the form via AJAX
+    function submitForm2() {
+        $.ajax({
+            url: "api/distributor", // Replace with your server URL
+            type: "POST",
+            data: $('.enquiry_form').serialize(),
+            success: function(response) {
+                if (response.status) {
+                    // Show success message and reset form
+                    showAlert({
+                        title: response.message,
+                        icon: "success"
+                    });
+                    $('.enquiry_form')[0].reset(); // Clear the form
+
+                } else {
+                    showAlert({
+                        title: response.message,
+                        icon: "error"
+                    });
+                }
+                grecaptcha.reset(); // Reset the reCAPTCHA widget
+            },
+            error: function(xhr, status, error) {
+                // Show error message
+                showAlert({
+                    title: "An error occurred. Please try again.",
+                    icon: "error",
+                    timer: 2000
+                });
+                console.error(error); // Log the error for debugging
+            }
+        });
+    }
+
+    // Attach event listener to form submission button
+    $('.enquiry_form').on('submit', function(event) {
+        event.preventDefault(); // Prevent default form submission
+
+        // Trigger reCAPTCHA validation
+        grecaptcha.execute();
+    });
+
+    // })();
 </script>
 <?= $this->endSection() ?>
