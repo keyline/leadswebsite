@@ -91,6 +91,7 @@ $routes->post('api/amc-request', 'Frontend::amc_submit');
 $routes->post('api/get-products', 'Frontend::get_products');
 
 $routes->post('api/contact-us', 'Frontend::enquiry');
+$routes->post('api/distributor-enquiry', 'Frontend::distributorenquiry');
 
 $routes->post('api/apply-job', 'Frontend::job_apply');
 

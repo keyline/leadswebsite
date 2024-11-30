@@ -179,7 +179,7 @@
     // Submit the form via AJAX
     function submitForm2() {
         $.ajax({
-            url: "api/distributorenquiry", // Replace with your server URL
+            url: "api/distributor-enquiry", // Replace with your server URL
             type: "POST",
             data: $('.enquiry_form').serialize(),
             success: function(response) {
