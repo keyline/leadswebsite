@@ -28,7 +28,7 @@
                     <!-- <li><a href="?= base_url() ?>/product">Products</a></li> -->
                     <li><a href="#">Media</a></li>
                     <li><a href="#">Download</a></li>
-                    <li><a href="/distributor">Become A Distributor</a></li>
+                    <li><a href="<?= base_url() ?>/distributor">Become A Distributor</a></li>
                     <li><a href="<?= base_url() ?>/blog">Blog</a></li>
                     <li><a href=" #">Reach Us</a></li>
                 </ul>

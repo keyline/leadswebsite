@@ -282,7 +282,55 @@ class Frontend extends BaseController
         $postData['common_model']   = $this->common_model;
 
         $page_name                  = 'become_a_distributor';        
-        $data['setting']          = $this->common_model->find_data('about_setting', 'row');
+        // $data['setting']          = $this->common_model->find_data('about_setting', 'row');
+        $data = [];
+        if ($this->request->getMethod() === 'post') {
+
+            $postData = $this->request->getPost();
+
+            $rules = [
+                'name'    => 'required|min_length[3]|max_length[255]|alpha_space',
+                'business_name'    => 'required',
+                'phone_number'  => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]',
+                'email'   => 'required|valid_email',
+                // 'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
+                // 'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*>).*$/i]',
+                'page_name' => 'required',
+                'recaptcha_token' => 'required',
+                'g-recaptcha-response' => 'required',
+            ];
+
+            if (!$this->validate($rules)) {
+                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+                return $this->response->setStatusCode(200) // Bad Request
+                    ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
+            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+
+                $this->common_model = new CommonModel();
+
+                $data = [
+                    'name' => $postData['name'],
+                    'email' => $postData['email'],
+                    'phone' => $postData['phone_number'],
+                    'city' => $postData['city'],
+                    'business_name' => $postData['business_name'],
+                    'product_interest' => $postData['product_interest'],
+                    'comment' => $postData['message'],
+                    'organisation' => $postData['page_name'],
+                ];
+                // pr($data);
+
+                $insert_id = $this->common_model->save_data('sms_contact_enquiry', $data);
+
+                if ($insert_id) {
+                    return $this->response->setStatusCode(201) // Created
+                        ->setJSON(['status' => true, 'message' => 'Request sent successfully']);
+                }
+            } else {
+                return $this->response->setStatusCode(200) // Created
+                    ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
+            }
+        }
 
         echo $this->front_layout($title, $page_name, $data);
     }
@@ -324,16 +372,14 @@ class Frontend extends BaseController
         $this->common_model         = new CommonModel();
         $postData['common_model']   = $this->common_model;
         $page_name                  = 'product-list';
-        $data['productCat']         = $this->common_model->find_data('product_category', 'row', ['slug' => $category]);
-        // pr($data['productCat'] );
+        $data['productCat']         = $this->common_model->find_data('product_category', 'row', ['slug' => $category]);    
 
         $offset = $this->request->getPost('offset') ?? 0;
-        $limit = 4; // Number of products per batch
+        $limit = 4; 
         $data['product'] = $this->common_model->find_data('product', 'array', ['published' => 1, 'product_category' => $data['productCat']->id], '', '', '', '', $limit, $offset);
 
         foreach ($data['product'] as &$product) {
-            $product->others_images = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $product->id]);
-            // pr($product);// pr($product->others_images);
+            $product->others_images = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $product->id]);            
         }
         // Uncomment to check the results
 
