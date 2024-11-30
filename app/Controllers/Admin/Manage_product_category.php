@@ -61,10 +61,46 @@ class Manage_product_category extends BaseController
         $data['row'] = [];
 
         if ($this->request->getMethod() == 'post') {
+            
+            // Icon File upload check if validation passed           
+                $file = $this->request->getFile('icon');
+                if ($file && $file->isValid()) {
+                    $uploadArray = $this->common_model->upload_single_file('icon', $file->getClientName(), 'product', 'image');
+                    if (!$uploadArray['status']) {                        
+                        $errorMessage = $uploadArray['message'];
+                        return redirect()->back()->withInput()->with('error_message', $errorMessage);
+                    } else {
+                        $icon = $uploadArray['newFilename'];
+                    }
+                } else {                    
+                    $errorMessage = 'Please upload an image';
+                    return redirect()->back()->withInput()->with('error_message', $errorMessage);
+                }                                                               
+
+            // Data processing and insertion if validation passed
+
+            // Banner File upload check if validation passed           
+                $file = $this->request->getFile('banner');
+                if ($file && $file->isValid()) {
+                    $uploadArray = $this->common_model->upload_single_file('banner', $file->getClientName(), 'product', 'image');
+                    if (!$uploadArray['status']) {                        
+                        $errorMessage = $uploadArray['message'];
+                        return redirect()->back()->withInput()->with('error_message', $errorMessage);
+                    } else {
+                        $banner = $uploadArray['newFilename'];
+                    }
+                } else {                    
+                    $errorMessage = 'Please upload an image';
+                    return redirect()->back()->withInput()->with('error_message', $errorMessage);
+                }                                                               
+
+            // Data processing and insertion if validation passed
 
             $postData   = array(
                 'name'                => $this->request->getPost('name'),
-                'slug'                => clean($this->request->getPost('name'))
+                'slug'                => clean($this->request->getPost('name')),
+                'icon'                => $icon,
+                'banner'              => $banner
             );
             $record     = $this->data['model']->save_data($this->data['table_name'], $postData, '', $this->data['primary_key']);
             $this->session->setFlashdata('success_message', $this->data['module'] . ' inserted successfully');
@@ -83,9 +119,42 @@ class Manage_product_category extends BaseController
         $data['row']                = $this->data['model']->find_data($this->data['table_name'], 'row', $conditions);
 
         if ($this->request->getMethod() == 'post') {
+            // Icon File upload check if validation passed           
+                $file = $this->request->getFile('icon');
+                if ($file && $file->isValid()) {
+                    $uploadArray = $this->common_model->upload_single_file('icon', $file->getClientName(), 'product', 'image');
+                    if (!$uploadArray['status']) {                        
+                        $errorMessage = $uploadArray['message'];
+                        return redirect()->back()->withInput()->with('error_message', $errorMessage);
+                    } else {
+                        $icon = $uploadArray['newFilename'];
+                    }
+                } else {                    
+                        $icon = $data['row']->icon;
+                }                                                                  
+
+            // Data processing and insertion if validation passed
+
+            // Banner File upload check if validation passed           
+                $file = $this->request->getFile('banner');
+                if ($file && $file->isValid()) {
+                    $uploadArray = $this->common_model->upload_single_file('banner', $file->getClientName(), 'product', 'image');
+                    if (!$uploadArray['status']) {                        
+                        $errorMessage = $uploadArray['message'];
+                        return redirect()->back()->withInput()->with('error_message', $errorMessage);
+                    } else {
+                        $banner = $uploadArray['newFilename'];
+                    }
+                } else {                    
+                    $banner = $data['row']->banner;
+                }                                                               
+
+            // Data processing and insertion if validation passed
             $postData   = array(
                 'name'                => $this->request->getPost('name'),
                 'slug'                => clean($this->request->getPost('name')),
+                'icon'                => $icon,
+                'banner'              => $banner,
                 'updated_at'          => date('Y-m-d h:i:s')
             );
             $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
