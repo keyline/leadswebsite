@@ -1,6 +1,6 @@
 <?php
 $isAMC = ($moduleDetail['controller'] == 'manage_amc_enquire');
-pr($moduleDetail['controller']);
+// pr($moduleDetail['controller']);
 ?>
 <div class="pcoded-content">
     <div class="page-header">
@@ -36,7 +36,7 @@ pr($moduleDetail['controller']);
                     <?php } ?>
                     <h5>
                         <!-- <a href="<?php /* echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; */ ?>/add" class="btn btn-success">Add <?php /* echo $moduleDetail['module']; */ ?></a> -->
-                        <a target="_blank" href="<?= base_url() . '/admin/manage_enquire/download_csv' ?>" class="btn btn-success">Export</a>
+                        <a target="_blank" href="<?= base_url() . '/admin/' . $moduleDetail['controller'] . '/download_csv' ?>" class="btn btn-success">Export</a>
 
                     </h5>
                 </div>
