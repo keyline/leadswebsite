@@ -48,9 +48,9 @@
                                     <div class="col-md-12 col-lg-6">
                                         <select class="form-select" name="product_interest" aria-label="Default select example">
                                             <option selected>Product Interest</option>
-                                            <option value="1">One</option>
-                                            <option value="2">Two</option>
-                                            <option value="3">Three</option>
+                                            <option value="One">One</option>
+                                            <option value="Two">Two</option>
+                                            <option value="Three">Three</option>
                                         </select>
                                     </div>
                                 </div>
