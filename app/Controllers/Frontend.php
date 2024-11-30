@@ -297,10 +297,10 @@ class Frontend extends BaseController
 
             $rules = [
                 'name'    => 'required|min_length[3]|max_length[255]|alpha_space',
-                'number'  => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]',
+                'phone_number'  => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]',
                 'email'   => 'required|valid_email',
-                'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
-                'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                // 'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
+                // 'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*>).*$/i]',
                 'page_name' => 'required',
                 'recaptcha_token' => 'required',
                 'g-recaptcha-response' => 'required',
@@ -317,8 +317,10 @@ class Frontend extends BaseController
                 $data = [
                     'name' => $postData['name'],
                     'email' => $postData['email'],
-                    'phone' => $postData['number'],
+                    'phone' => $postData['phone_number'],
                     'city' => $postData['city'],
+                    'business_name' => $postData['business_name'],
+                    'product_interest' => $postData['product_interest'],
                     'comment' => $postData['message'],
                     'organisation' => $postData['page_name'],
                 ];
