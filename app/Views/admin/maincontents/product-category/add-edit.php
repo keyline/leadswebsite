@@ -2,8 +2,12 @@
 
 if ($row) {
     $name                      = $row->name;
+    $icon          = $row->icon;
+    $banner          = $row->banner;
 } else {
     $name                      = '';
+    $icon          = set_value('icon', '');
+    $banner          = set_value('banner', '');
 }
 
 ?>
@@ -50,6 +54,44 @@ if ($row) {
                                 <div class="form-group">
                                     <label class="form-label" for="name">Category Name</label>
                                     <input type="text" class="form-control" name="name" id="name" placeholder="Category Name" value="<?php echo $name; ?>" required="required">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="icon">Product Icon <span class="text-danger">*</span></label>
+                                    <div class="input-group mb-2">
+                                        <?php if ($icon != '') { ?>
+                                            <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $icon; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
+                                        <?php } ?>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Product Icon</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control" id="icon" name="icon" <?php if ($action == 'Add') { ?>required<?php } ?>>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="banner">Product Banner <span class="text-danger">*</span></label>
+                                    <div class="input-group mb-2">
+                                        <?php if ($banner != '') { ?>
+                                            <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $banner; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
+                                        <?php } ?>
+                                    </div>
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Product Banner</span>
+                                        </div>
+                                        <div class="custom-file">
+                                            <input type="file" class="form-control" id="banner" name="banner" <?php if ($action == 'Add') { ?>required<?php } ?>>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

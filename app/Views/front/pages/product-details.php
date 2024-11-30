@@ -6,7 +6,12 @@
                 <div class="inner_floting_box">
                     <div class="about_more_box">
                         <div class="mission_tabs">
+                        <?php if ($productCat->icon != '') { ?>
+                            <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->icon; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
+                        <?php } else { ?>
                             <img src="<?= base_url('public/') ?>/assets/img/chimney-icon.webp" alt="" class="img-fluid">
+                      <?php  } ?>
+                            
                             <h4><?= $productCat->name?></h4>
                         </div>
                     </div>
@@ -131,7 +136,77 @@
             </div>
         </section>
     <!-- product listing section end -->  
-
+    <section class="product_related">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="title"><h3>View Similar Products</h3></div>
+                </div>
+                <div class="col-md-12">                   
+                    <div class="swiper productrelated">
+                        <div class="swiper-wrapper">
+                        <?php foreach ($relatedProduct as $relatedProducts) {  ?>
+                            <div class="swiper-slide">
+                                <a href="<?= base_url('product-details') ?>/<?= $relatedProducts->slug ?>">
+                                    <div class="product_item">
+                                        <div class="badge-product-sale">
+                                            <?php if ($relatedProducts->is_new == 1) { ?>
+                                                <span class="ribbon-v">
+                                                    <p>new</p>
+                                                </span>
+                                            <?php } ?>
+                                        </div>
+                                        <div class="swiper productimgswiper" id="mySwiperId">
+                                            <div class="swiper-wrapper">
+                                                <?php $productID = $relatedProducts->id;
+                                                $sql1 = "SELECT * FROM `product_others_image` WHERE `product_id` = '$productID' and `published` = '1'";
+                                                $others_images = $db->query($sql1)->getResult();
+                                                foreach ($others_images as $others_image) { ?>
+                                                    <div class="swiper-slide">
+                                                        <div class="product_info">                                                            
+                                                            <img src="<?= base_url('/uploads/product/' . $others_image->image_file) ?>" alt="" class="img-fluid">
+                                                            <h4><?= $relatedProducts->product_title ?></h4>
+                                                            <?php
+                                                            $content_title        = json_decode($relatedProducts->content_title);
+                                                            $content_description  = json_decode($relatedProducts->content_description);
+                                                            ?>
+                                                            <p><?= $content_title[0] ?> : <?= $content_description[0] ?></p>
+                                                        </div>
+                                                    </div> 
+                                                <?php } ?>                                               
+                                            </div>
+                                            <div class="swiper-pagination"></div>
+                                        </div>
+                                        <div class="other_info_box">
+                                            <ul class="d-flex justify-content-center">
+                                                <?php foreach (json_decode($relatedProducts->warrenty_section) as $warrenty_section) { ?>
+                                                    <li>
+                                                        <?php if ($warrenty_section == "warrenty") {  ?>
+                                                            <img src="<?= base_url('public/') ?>/assets/img/warenty.webp" alt="" class="img-fluid">
+                                                        <?php } else if ($warrenty_section == "motion_sensor") { ?>
+                                                            <img src="<?= base_url('public/') ?>/assets/img/hand.webp" alt="" class="img-fluid">
+                                                        <?php } else if ($warrenty_section == "isa_technology") { ?>
+                                                            <img src="<?= base_url('public/') ?>/assets/img/isa.webp" alt="" class="img-fluid">
+                                                        <?php } ?>
+                                                    </li>
+                                                <?php } ?>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </a>
+                            </div>
+                            <?php } ?>                            
+                        </div>
+                        <div class="navegiation_position">
+                            <div class="swiper-button-next"></div>
+                            <div class="swiper-button-prev"></div>
+                            <div class="swiper-pagination"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
 
 
   <?= $this->section('scripts') ?>
@@ -186,4 +261,59 @@
           });
       });
   </script>
+  <script>
+        var swiper = new Swiper(".productrelated", {
+            loop: true,
+            spaceBetween: 25,
+            slidesPerView: 4,
+            rewind: true,
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            },
+            breakpoints: {
+                320: {
+                    slidesPerView: 1,
+                    spaceBetween: 20,
+                },
+                575: {
+                    slidesPerView: 2,
+                },
+                768: {
+                    slidesPerView: 2,
+                },
+                1024: {
+                    slidesPerView: 3,
+                },
+                1400: {
+                    slidesPerView: 4,
+                },
+            }
+        });
+        
+    </script>
+    <script>
+        // first product image slider
+        var swiper = new Swiper(".productimgswiper", {
+            loop: true,
+            spaceBetween: 0,
+            
+            pagination: {
+                el: ".swiper-pagination",
+                clickable: true,
+            }
+        });
+        
+        // swiper.autoplay.stop(), mySwiperId.addEventListener("mouseover", (function() {
+        // swiper.autoplay.start()
+        
+        // })), mySwiperId.addEventListener("mouseout", (function() {
+        // swiper.autoplay.stop()
+        // }));
+        
+    </script>
   <?= $this->endSection() ?>

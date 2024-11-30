@@ -20,7 +20,11 @@
                 <div class="inner_floting_box">
                     <div class="about_more_box">
                         <div class="mission_tabs">
+                        <?php if ($productCat->icon != '') { ?>
+                            <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->icon; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
+                        <?php } else { ?>
                             <img src="<?= base_url('public/') ?>/assets/img/chimney-icon.webp" alt="" class="img-fluid">
+                      <?php  } ?>
                             <h4><?= $productCat->name?></h4>
                         </div>
                     </div>

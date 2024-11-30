@@ -47,6 +47,8 @@
                                         </th>
                                         <th>#</th>
                                         <th>Category Name</th>
+                                        <th>Category Icon</th>
+                                        <th>Category Banner</th>
                                         <th>Action</th>
                                     </tr>
                                 </thead>
@@ -58,6 +60,16 @@
                                         </td>
                                         <td><?php echo $i++; ?></td>
                                         <td><?php echo $row->name; ?></td>
+                                        <td>
+                                            <?php if($row->icon!='') { ?>
+                                            <img src="<?=base_url('/uploads/product/'.$row->icon)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
+                                            <?php } ?>                                        
+                                        </td>
+                                        <td>
+                                            <?php if($row->banner!='') { ?>
+                                            <img src="<?=base_url('/uploads/product/'.$row->banner)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
+                                            <?php } ?>                                        
+                                        </td>
                                         <td>
                                             <?php $primary_key = $moduleDetail['primary_key']; ?>
                                             <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/edit/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-primary" title="Edit"><i class="feather icon-edit"></i></a>
