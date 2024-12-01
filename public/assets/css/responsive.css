@@ -19,6 +19,11 @@
     .headlogo img {
         max-width: 100%;
     }
+    .inner_banner_distributor {
+        background: url(../img/distub_banner.jpg) no-repeat;
+        background-position: center;
+        background-size: cover;
+    }
 }
 @media screen and (max-width: 1199px) {
     .distruibute_logo{width: 28%;}
@@ -265,6 +270,9 @@ body.abrido a#burger {
 .features-section.distributor-features .feature-icon-list li:last-child {
     width: 50%;
 }
+.inner_banner_distributor {
+    padding: 75px 0;
+}
 }
 
 
@@ -336,18 +344,26 @@ body.abrido a#burger {
 .specify_list li span.specfy_name{width: 100%;}
 .features-section.distributor-features .feature-icon-list li:first-child, 
 .features-section.distributor-features .feature-icon-list li:last-child {
-    width: 100%;
+    width: 50%;
 }
 .features-section.distributor-features .feature-icon-list li {
     border-right: none;
     padding: 0 0;
+    width: 50%;
 }
+.distributor-features .feature-item h5{ font-size: 15px;}
+.distributor-features .feature-item p{font-size: 12px;}
 .distruibute_logo {
     width: 100%;
     margin-right: 0;
     margin-bottom: 30px;
     max-width: 300px;
     margin-top: 25px;
+}
+.distruibute23lgo {
+    max-width: 50%;
+    text-align: center;
+    margin: 0 auto;
 }
 .distruibute_logo_form {
     width: 100%;
@@ -361,7 +377,7 @@ body.abrido a#burger {
 
 /*SMALL MOBILE VERSION*/
 @media screen and (max-width: 480px) {
-ul.head_social{display: flex;}    
+ul.head_social{display: none;}    
 .home_banner_slider_holder3 .home_slider_info .home_silder_imginner .home_banner_slider_product {
     max-width: 50%;
 }

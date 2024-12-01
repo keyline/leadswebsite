@@ -180,7 +180,7 @@
     $(".owl-videotestmorial").owlCarousel({
         loop: true,
         items: 1,
-        margin: 0,
+        margin: 10,
         nav: false,
         dots: true,
         autoHeight: true,

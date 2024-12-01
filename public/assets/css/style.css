@@ -998,6 +998,9 @@ span.without_melink {
     background-size: cover;
     background-attachment: fixed;
 }
+.home_testimonial_section .flex-video iframe {
+    width: 100%;
+}
 /* home_testimonial_section css */
 .home_testimonial_section .about_more_box{
     left: -4%;
@@ -2654,7 +2657,7 @@ span.office-briefcase {
 .distruibute_logo_form .distruibute_inner-form {
     padding-top: 25px;
 }
-.distruibute_logo_form .distruibute_inner-form input, .distruibute_logo_form .distruibute_inner-form select {
+.distruibute_logo_form .distruibute_inner-form input {
     background: none;
     border-radius: 0;
     margin-bottom: 15px;
@@ -2666,6 +2669,22 @@ span.office-briefcase {
     font-style: italic;
     border-bottom-color: #fff;
     height: 45px;
+}
+.distruibute_logo_form .distruibute_inner-form select {
+    background: none;
+    border-radius: 0;
+    margin-bottom: 15px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    padding-left: 0;
+    font-style: italic;
+    border-bottom-color: #fff;
+    height: 45px;
+    color: #fff;
+}
+.distruibute_logo_form .distruibute_inner-form option{
+    color: #000;
 }
 .distruibute_logo_form .distruibute_inner-form textarea {
     background: none;
@@ -2679,10 +2698,12 @@ span.office-briefcase {
     font-style: italic;
     border-bottom-color: #fff;
 }
-.distruibute_logo_form .distruibute_inner-form .form-control:focus{
+.distruibute_logo_form .distruibute_inner-form .form-control:focus,
+.distruibute_logo_form .distruibute_inner-form .form-select:focus{
     box-shadow:none;
 }
-.distruibute_logo_form .distruibute_inner-form .form-control::placeholder{
+.distruibute_logo_form .distruibute_inner-form .form-control::placeholder,
+.distruibute_logo_form .distruibute_inner-form .form-select::placeholder{
     color: #fff;
 }
 .distruibute_logo h4 {
