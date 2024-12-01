@@ -396,5 +396,5 @@ ul.head_social{display: none;}
 }
 }
 @media screen and (max-width: 360px) {
-    
+    .diskeyfe_downbtn a{font-size: 12px;}
 }
