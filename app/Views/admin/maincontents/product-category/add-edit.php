@@ -94,6 +94,14 @@ if ($row) {
                                     </div>
                                 </div>
                             </div>
+                            <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="sort">Sort Number</label>
+                                    <input type="text" class="form-control" name="sort" id="sort" placeholder="Category sort" value="<?php echo $sort; ?>" required="required">
+                                </div>
+                            </div>
+                        </div>
                         </div>
                         <button type="submit" class="btn  btn-primary">Submit</button>
                     </form>

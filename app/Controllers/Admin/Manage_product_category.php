@@ -32,7 +32,7 @@ class Manage_product_category extends BaseController
         $data['moduleDetail']       = $this->data;
         $title                      = 'Manage ' . $this->data['module'];
         $page_name                  = 'product-category/list';
-        $order_by[0]                = array('field' => $this->data['primary_key'], 'type' => 'desc');
+        $order_by[0]                = array('field' => 'sort', 'type' => 'asc');
         $data['rows']               = $this->data['model']->find_data($this->data['table_name'], 'array', ['published!=' => 3], '', '', '', $order_by);
 
         if ($this->request->getMethod() == 'post') {
@@ -100,7 +100,8 @@ class Manage_product_category extends BaseController
                 'name'                => $this->request->getPost('name'),
                 'slug'                => clean($this->request->getPost('name')),
                 'icon'                => $icon,
-                'banner'              => $banner
+                'banner'              => $banner,
+                'sort'                => $this->request->getPost('sort')
             );
             $record     = $this->data['model']->save_data($this->data['table_name'], $postData, '', $this->data['primary_key']);
             $this->session->setFlashdata('success_message', $this->data['module'] . ' inserted successfully');
@@ -155,6 +156,7 @@ class Manage_product_category extends BaseController
                 'slug'                => clean($this->request->getPost('name')),
                 'icon'                => $icon,
                 'banner'              => $banner,
+                'sort'                => $this->request->getPost('sort'),
                 'updated_at'          => date('Y-m-d h:i:s')
             );
             $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
