@@ -22,6 +22,24 @@ foreach ($metadetails as $key => $meta) :
 <?php }
 endforeach;
 ?>
+        <title>Leads Overseas - Leads</title>
+        <meta name="description" content="Leads Overseas Pvt. Ltd. 
+
+LEADS is the Brand Name of Leads Overseas Pvt. Ltd. AN ISO 9001:2008 Certified company, established in 2002. Company has gained excellent reputation within a very short period.
+
+We Presently importing kitchen appliances from Malaysia and Manufactured Domestic and commercial water purification system with reputed High quality">
+        <meta name="keywords" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="https://leadsindia.net/wp-content/uploads/2019/09/favicon.png">
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:title" content="Leads Overseas - Leads">
+        <meta property="og:description" content="Leads Overseas Pvt. Ltd. 
+
+LEADS is the Brand Name of Leads Overseas Pvt. Ltd. AN ISO 9001:2008 Certified company, established in 2002. Company has gained excellent reputation within a very short period.
+
+We Presently importing kitchen appliances from Malaysia and Manufactured Domestic and commercial water purification system with reputed High quality">
+        <meta property="og:url" content="https://leadsdev.keylines.net.in/">
 <!-- Favicon icon -->
 <link rel="icon" href="<?php echo base_url(); ?>/uploads/<?php echo $site_setting->site_favicon; ?>" type="image/x-icon">
 <!-- Bootstrap CSS -->
