@@ -50,7 +50,7 @@
                                             <option selected>Product Interest</option>
                                             <?php foreach($productcat as $category)
                                             {?>
-                                                <option value="<?=$productcat->id?>"><?=$productcat->name?></option>
+                                                <option value="<?=$category->id?>"><?=$category->name?></option>
                                             <?php } ?>                                            
                                         </select>
                                     </div>
