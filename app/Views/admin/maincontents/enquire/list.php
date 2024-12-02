@@ -67,9 +67,9 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
                                     <?php if ($isAMC) { ?>
                                         <th>Product</th>
                                     <?php } ?>
-                                    <!-- ?php if ($isDistributorEnquiry) { ?>
+                                    <?php if ($isDistributorEnquiry) { ?>
                                         <th>Product Interest</th>
-                                    ?php } ?> -->
+                                    <?php } ?>
                                     <th>massage </th>
                                     <th>Enquire Date</th>
                                     <!-- <th>Action</th> -->
@@ -89,12 +89,12 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
                                             <?php if ($isAMC) { ?>
                                                 <td> <small><?= $row->product_name; ?></small> </td>
                                             <?php } ?>
-                                            <!-- ?php if ($isDistributorEnquiry) {
+                                            <?php if ($isDistributorEnquiry) {
                                                 $productcat_id = $row->product_interest;
                                                 $sql = "SELECT * FROM `product_category` WHERE product_category.`id` = '$productcat_id'";                                                
                                                 $category = $db->query($sql)->getResult();      ?>
-                                                <td> <small>?= $category->name; ?></small> </td>
-                                            ?php } ?> -->
+                                                <td> <small><?= $category->name; ?></small> </td>
+                                            <?php } ?>
                                             <td> <small><?= $row->comment; ?></small> </td>
                                             <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
 
