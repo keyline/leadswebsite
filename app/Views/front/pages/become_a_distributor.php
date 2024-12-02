@@ -48,9 +48,10 @@
                                     <div class="col-md-12 col-lg-6">
                                         <select class="form-select" name="product_interest" aria-label="Default select example">
                                             <option selected>Product Interest</option>
-                                            <option value="One">One</option>
-                                            <option value="Two">Two</option>
-                                            <option value="Three">Three</option>
+                                            <?php foreach($productcat as $category)
+                                            {?>
+                                                <option value="<?=$productcat->id?>"><?=$productcat->name?></option>
+                                            <?php } ?>                                            
                                         </select>
                                     </div>
                                 </div>
