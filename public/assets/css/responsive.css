@@ -181,6 +181,11 @@ body.abrido a#burger {
 .distruibute_logo p {
     font-size: 13px;
 }
+.text-line{font-size: 5rem !important;}
+#home-section-4 iframe {
+    width: 80%;
+    min-height: auto;
+}
 }
 
 @media screen and (min-width: 769px) {
@@ -192,8 +197,16 @@ body.abrido a#burger {
 @media (min-width: 768px) and (max-width: 991px) {
     
 }
+@media screen and (min-width: 768px) {
+/* .hideon_desktop{display: none;} */
+}
 /*MOBILE VERSION*/
 @media screen and (max-width: 767px) {
+/* .hideon_tab{display: none !important;} */
+.home_video iframe {
+    width: 80%;
+    min-height: 100%;
+}
 .footer_left {
     align-items: center;
 }
@@ -272,6 +285,9 @@ body.abrido a#burger {
 }
 .inner_banner_distributor {
     padding: 75px 0;
+}
+.hideon_tab{
+
 }
 }
 
