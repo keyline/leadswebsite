@@ -30,8 +30,7 @@ header("Content-Disposition: attachment;Filename=Enquiry_Report-" . date('ymd') 
                         $productcat_id = $row->product_interest;
                         $apikey1 = array_search($productcat_id, array_column($productcat, 'id')) ;                                                
                             ?>
-                        <td> <small><?=$productcat[$apikey1]->name?></small> </td>
-                    <?php } ?>                  
+                        <td> <small><?=$productcat[$apikey1]->name?></small> </td>                    
                     <td> <small><?= $row->comment; ?></small> </td>
                     <td><small><?= date('d-m-y', strtotime($row->created_at));  ?></small></td>
                 </tr>
