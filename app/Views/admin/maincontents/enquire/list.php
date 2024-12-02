@@ -57,9 +57,9 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
                                     <?php if ($isAMC) { ?>
                                         <th>Product</th>
                                     <?php } ?>
-                                    <!-- ?php if ($isDistributorEnquiry) { ?>
+                                    <?php if ($isDistributorEnquiry) { ?>
                                         <th>Product Interest</th>
-                                    ?php } ?> -->
+                                    <?php } ?>
                                     <th>massage </th>
                                     <th>Enquire Date</th>
                                     <!-- <th>Action</th> -->
@@ -69,6 +69,7 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
                                 <?php
 
                                 if ($rows) {
+                                    echo $apikey1 = array_search(2, array_column($productcat, 'id')) ; die;
                                     $i = 1;
                                     foreach ($rows as $row) {
                                 ?>
@@ -81,7 +82,7 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
                                             <?php } ?>
                                             <?php if ($isDistributorEnquiry) {
                                                 $productcat_id = $row->product_interest;
-                                                echo $apikey1 = array_search($productcat_id, array_column($productcat, 'id')) ; die;
+                                                
                                                  ?>
                                                 <td> <small></small> </td>
                                             <?php } ?>
