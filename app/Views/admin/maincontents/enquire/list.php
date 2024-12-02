@@ -68,10 +68,7 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
                             <tbody>
                                 <?php
 
-                                if ($rows) {                                    
-                                    echo $apikey1 = array_search(2, array_column($productcat, 'id')) ;
-                                    // pr($productcat);
-                                    echo $productcat[$apikey1]->name;
+                                if ($rows) {                                                                        
                                     $i = 1;
                                     foreach ($rows as $row) {
                                 ?>
@@ -84,9 +81,9 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
                                             <?php } ?>
                                             <?php if ($isDistributorEnquiry) {
                                                 $productcat_id = $row->product_interest;
-                                                
+                                                $apikey1 = array_search($productcat_id, array_column($productcat, 'id')) ;                                                
                                                  ?>
-                                                <td> <small></small> </td>
+                                                <td> <small><?=$productcat[$apikey1]->name?></small> </td>
                                             <?php } ?>
                                             <td> <small><?= $row->comment; ?></small> </td>
                                             <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
