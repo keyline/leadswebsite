@@ -134,9 +134,8 @@
                     </li>
                 </ul>
             </div>
-            <div class="diskeyfe_downbtn pt-5 mt-5">
-            <?php pr($download);?>
-                <a href="<?= base_url() ?>/uploads/download/<?= $download->file ?>"><i class="fa-regular fa-file-pdf"></i> DOWNLOAD PRODUCT CATALOG</a>
+            <div class="diskeyfe_downbtn pt-5 mt-5">            
+                <a href="<?= base_url() ?>/uploads/download/<?= $file->file ?>"><i class="fa-regular fa-file-pdf"></i> DOWNLOAD PRODUCT CATALOG</a>
             </div>
         </div>
     </div>
