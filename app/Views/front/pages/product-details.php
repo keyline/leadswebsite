@@ -1,5 +1,10 @@
 <?php $db = \Config\Database::connect();?>
 <section class="inner_banner inner_floting_box_banner">
+    <?php if ($productCat->banner != '') { ?>
+        <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->banner; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
+    <?php } else { ?>
+        <img src="<?= base_url('public/') ?>/assets/img/about-inner-bg.webp" alt="" class="img-fluid">
+    <?php  } ?>    
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
@@ -27,7 +32,8 @@
                 <div class="row">
                     <div class="col-md-6">
                         <div class="backlistproduct">
-                            <button><a href="<?=base_url()?>/product/<?=$productCat->slug?>">Back to List</a></button>
+                        <button style="float: right;background-color:#ed1c24;border: tomato;" class="btn btn-primary"><a href="<?=base_url()?>/product/<?=$productCat->slug?>">Back to List</a></button>
+                            <!-- <button><a href="<?=base_url()?>/product/<?=$productCat->slug?>">Back to List</a></button> -->
                         </div>
                     </div>
                 </div>
