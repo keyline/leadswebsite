@@ -79,7 +79,8 @@ class Manage_distributor_enquire extends BaseController
 
         $order_by[0]                = ['field' => 'created_at', 'type' => 'DESC'];
 
-        $data['rows']           = $this->data['model']->find_data('sms_contact_enquiry', 'array', ['organisation' => 'distributor']);        
+        $data['rows']           = $this->data['model']->find_data('sms_contact_enquiry', 'array', ['organisation' => 'distributor']);   
+        $data['productcat']        = $this->data['model']->find_data('product_category', 'array', ['published!=' => 3]);        
      
         return view('admin/maincontents/enquire/distributor_enquiry_export', $data);
     }

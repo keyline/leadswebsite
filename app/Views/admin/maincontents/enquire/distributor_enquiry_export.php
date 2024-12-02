@@ -26,7 +26,12 @@ header("Content-Disposition: attachment;Filename=Enquiry_Report-" . date('ymd') 
                     <td><small><?= $row->business_name ?></small></td>
                     <td><small><?= $row->email; ?> <br> <?= $row->phone; ?></small> </td>
                     <td><small><?= $row->city ?></small></td>
-                    <td><small><?= $row->product_interest ?></small></td>                    
+                    <?php 
+                        $productcat_id = $row->product_interest;
+                        $apikey1 = array_search($productcat_id, array_column($productcat, 'id')) ;                                                
+                            ?>
+                        <td> <small><?=$productcat[$apikey1]->name?></small> </td>
+                    <?php } ?>                  
                     <td> <small><?= $row->comment; ?></small> </td>
                     <td><small><?= date('d-m-y', strtotime($row->created_at));  ?></small></td>
                 </tr>
