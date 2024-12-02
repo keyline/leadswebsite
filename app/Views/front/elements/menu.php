@@ -81,9 +81,7 @@
                     <li>
                         <span class="without_melink">After Sales Sevices</span>
                         <ul>
-                            <li><a href="<?= base_url('/amc') ?>">AMC</a></li>
-                            <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
-                            <li><a href="<?= base_url('/return-policy') ?>">Return policy</a></li>
+                            <li><a href="<?= base_url('/amc-policy') ?>">AMC</a></li>
                             <!-- <li><a href="#">Service Policy</a></li> -->
                             <?php foreach ($contents as $key => $page) { ?>
                                 <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
@@ -156,7 +154,7 @@
                 <!-- <a href="#">After Sales Sevices</a> -->
                 <span class="without_melink">After Sales Sevices</span>
                 <ul>
-                    <li><a href="<?= base_url('/amc') ?>">AMC</a></li>
+                    <li><a href="<?= base_url('/amc-policy') ?>">AMC</a></li>
                     <!-- <li><a href="#">Service Policy</a></li> -->
                     <?php foreach ($contents as $key => $page) { ?>
                         <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
