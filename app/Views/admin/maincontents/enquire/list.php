@@ -1,6 +1,8 @@
 <?php
 $isAMC = ($moduleDetail['controller'] == 'manage_amc_enquire');
 $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enquire');
+$db = \Config\Database::connect();
+
 // pr($moduleDetail['controller']);
 ?>
 <div class="pcoded-content">
