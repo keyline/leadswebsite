@@ -70,7 +70,7 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
 
                                 if ($rows) {                                    
                                     echo $apikey1 = array_search(2, array_column($productcat, 'id')) ;
-                                    pr($productcat);
+                                    // pr($productcat);
                                     echo $productcat[$apikey1]['name'];
                                     $i = 1;
                                     foreach ($rows as $row) {
