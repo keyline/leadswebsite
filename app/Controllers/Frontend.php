@@ -283,7 +283,8 @@ class Frontend extends BaseController
 
         $page_name                  = 'become_a_distributor';        
         // $data['setting']          = $this->common_model->find_data('about_setting', 'row');
-        $data = [];        
+        $data['productcat']         = $this->common_model->find_data('product_category', 'array', ['published!=' => 3]);        
+        pr($data['productcat']);    
 
         echo $this->front_layout($title, $page_name, $data);
     }
