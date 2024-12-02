@@ -64,7 +64,7 @@ class Manage_distributor_enquire extends BaseController
         $title                      = 'Manage ' . $this->data['module'];
         $page_name                  = 'enquire/list';        
         $data['rows']           = $this->data['model']->find_data('sms_contact_enquiry', 'array', ['organisation' => 'distributor']);        
-        pr($data['rows']);
+        $data['productcat']        = $this->data['model']->find_data('product_category', 'array', ['published!=' => 3]);   
         echo $this->layout_after_login($title, $page_name, $data);
     }
 

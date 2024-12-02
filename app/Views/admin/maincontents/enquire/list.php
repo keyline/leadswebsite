@@ -79,12 +79,12 @@ $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enqu
                                             <?php if ($isAMC) { ?>
                                                 <td> <small><?= $row->product_name; ?></small> </td>
                                             <?php } ?>
-                                            <!-- ?php if ($isDistributorEnquiry) {
+                                            <?php if ($isDistributorEnquiry) {
                                                 $productcat_id = $row->product_interest;
-                                                $sql = "SELECT * FROM `product_category` WHERE product_category.`id` = '$productcat_id'";                                                
-                                                $category = $db->query($sql)->getResult();      ?>
-                                                <td> <small>?= $category->name; ?></small> </td>
-                                            ?php } ?> -->
+                                                $apikey1 = array_search($productcat_id, array_column($productcat, 'id'));
+                                                pr($apikey1) ?>
+                                                <td> <small><?= $category->name; ?></small> </td>
+                                            <?php } ?>
                                             <td> <small><?= $row->comment; ?></small> </td>
                                             <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
 
