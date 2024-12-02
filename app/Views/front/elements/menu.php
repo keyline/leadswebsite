@@ -73,8 +73,7 @@
                     <li>
                         <span class="without_melink">Reach Us</span>
 
-                        <ul>
-                            <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
+                        <ul>                            
                             <li><a href="<?= base_url('/career') ?>">Career</a></li>
                             <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                         </ul>
@@ -87,6 +86,7 @@
                             <?php foreach ($contents as $key => $page) { ?>
                                 <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
                             <?php }  ?>
+                            <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -113,11 +113,7 @@
                 <ul>
                     <?php foreach ($product_menu as $key => $category) { ?>
                         <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
-                    <?php } ?>
-                    <!-- <li><a href="#">Kitchen Chimney</a></li>
-                    <li><a href="#">RO Water Purifier</a></li>
-                    <li><a href="#">Cook Tops and Hob Tops</a></li>
-                    <li><a href="#">Water Treatment Plant</a></li> -->
+                    <?php } ?>                    
                 </ul>
             </li>
             <li>
@@ -144,13 +140,12 @@
                     <?php }  ?>
                 </ul>
             </li>
-            <li><a href="#">Become A Distributor</a></li>
+            <li><a href="<?=base_url() ?>/distributor">Become A Distributor</a></li>
             <li><a href="<?= base_url() ?>/blog">Blog</a></li>
             <li>
                 <!-- <a href="#">Reach Us</a> -->
                 <span class="without_melink">Reach Us</span>
-                <ul>
-                    <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
+                <ul>                    
                     <li><a href="<?= base_url('/career') ?>">Career</a></li>
                     <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                 </ul>
@@ -164,6 +159,7 @@
                     <?php foreach ($contents as $key => $page) { ?>
                         <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
                     <?php }  ?>
+                    <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
                 </ul>
             </li>
         </ul>
