@@ -282,7 +282,7 @@ class Frontend extends BaseController
         $postData['common_model']   = $this->common_model;
 
         $page_name                  = 'become_a_distributor';                
-        $data['productcat']         = $this->common_model->find_data('product_category', 'array', ['published!=' => 3]);        
+        $data['productcat']         = $this->common_model->find_data('product_category', 'array', ['published' => 1]);        
         $data['file'] 		    = $this->common_model->find_data('download', 'row', ['name' => 'E-catalog Download']);         
         echo $this->front_layout($title, $page_name, $data);
     }
@@ -402,7 +402,7 @@ class Frontend extends BaseController
         $page_name                  = 'product-details';
         $data['product']         = $this->common_model->find_data('product', 'row', ['slug' => $slug]);                                
         $limit = 5; // Number of products per batch
-        $data['relatedProduct']  = $this->common_model->find_data('product', 'array', ['published!=' => 3, 'id!=' => $data['product']->id], '', '', '', '', $limit);        
+        $data['relatedProduct']  = $this->common_model->find_data('product', 'array', ['published' => 1, 'id!=' => $data['product']->id, 'product_category' => $data['product']->product_category], '', '', '', '', $limit);        
         $data['productCat']         = $this->common_model->find_data('product_category', 'row', ['id' => $data['product']->product_category]);
         //   pr($data['product'] );
         $data['others_images'] = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $data['product']->id]);
