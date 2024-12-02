@@ -1,14 +1,4 @@
 <?php
-// Load the constants file
-require_once APPPATH . 'Config/Constants.php';
-// Connect to the database
-$db = \Config\Database::connect([
-    'hostname' => BASEURL,
-    'username' => USERNAME,
-    'password' => PASSWORD,
-    'database' => DATABASE,
-    'DBDriver' => 'MySQLi', // Adjust the driver if needed
-]);
 $isAMC = ($moduleDetail['controller'] == 'manage_amc_enquire');
 $isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enquire');
 
