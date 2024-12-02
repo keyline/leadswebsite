@@ -23,7 +23,18 @@
 <!-- ?php pr($product); ?> -->
 <!-- product listing section start -->
         <section class="product_details">
-            <div class="container">
+            <div class="container">            
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="backlistproduct">
+                            <button><a href="<?=base_url()?>/product/<?=$productCat->slug?>">Back to List</a></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        <section class="product_details">
+            <div class="container">            
                 <div class="row">
                     <div class="col-lg-5  col-md-12 mobile_order_left">
                         <div class="product_dtl_info">
