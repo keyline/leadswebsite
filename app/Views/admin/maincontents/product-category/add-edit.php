@@ -4,10 +4,12 @@ if ($row) {
     $name                      = $row->name;
     $icon          = $row->icon;
     $banner          = $row->banner;
+    $sort          = $row->sort;
 } else {
     $name                      = '';
     $icon          = set_value('icon', '');
     $banner          = set_value('banner', '');
+    $sort          = set_value('sort', '');
 }
 
 ?>
