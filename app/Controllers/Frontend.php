@@ -184,7 +184,8 @@ class Frontend extends BaseController
         $postData['common_model']   = $this->common_model;
 
         $page_name                  = 'index';
-        $data['product_category']   = $this->common_model->find_data('product_category', 'array', ['published' => 1]);
+        $order_by[0]                = array('field' => 'sort', 'type' => 'asc');
+        $data['product_category']   = $this->common_model->find_data('product_category', 'array', ['published' => 1], '', '', '', $order_by);
         //  pr($data['product_category']);
 
         $data['blogs']              = $this->getNewBlogs(3);
