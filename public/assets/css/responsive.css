@@ -188,14 +188,8 @@ body.abrido a#burger {
     min-height: auto;
 }
 .head_roationlogo{display:none;}
-.specify_list li span.specfy_name {
-    position: relative;
-}
-.specify_list li span.spancolon {
-    position: absolute;
-    right: 0;
-    top: -1px;
-}
+
+
 }
 
 @media screen and (min-width: 769px) {
@@ -314,6 +308,14 @@ body.abrido a#burger {
     position: absolute;
     right: 0;
     top: 30px;
+}
+.product_details{padding: 40px 0 40px;}
+.product_related{padding: 40px 0 40px;}
+.product_related .title h3{font-size: 26px;text-align: center;}
+.product_related .navegiation_position {
+    right: auto;
+    left: 50%;
+    transform: translate(-50%, 0);
 }
 }
 
@@ -473,6 +475,7 @@ ul.head_social {
 .keyfeature_list li {
     margin-bottom: 10px;
 }
+.product_details_right .prod_garaty{justify-content: center;}
 }
 @media screen and (max-width: 360px) {
     .diskeyfe_downbtn a{font-size: 12px;}
