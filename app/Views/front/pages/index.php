@@ -211,7 +211,7 @@ $db = \Config\Database::connect();
                     <div class="tab-content" id="pills-tabContent">
                         <?php foreach ($product_category as $key => $row) {
                             $productcatID = $row->id;
-                            $sql = "SELECT * FROM `product` WHERE `product_category` = '$productcatID' and `published` = '1' LIMIT 5";
+                            $sql = "SELECT * FROM `product` WHERE `product_category` = '$productcatID' and `published` = '1' ORDER BY `regular_price` DESC LIMIT 5";
                             $products = $db->query($sql)->getResult();
                         ?>
                             <div class="tab-pane fade <?= $key == 0 ? 'show active' : '' ?>" id="<?= $row->id ?>" role="tabpanel"

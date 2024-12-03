@@ -383,7 +383,8 @@ class Frontend extends BaseController
 
         $offset = $this->request->getPost('offset') ?? 0;
         $limit = 4; 
-        $data['product'] = $this->common_model->find_data('product', 'array', ['published' => 1, 'product_category' => $data['productCat']->id], '', '', '', '', $limit, $offset);
+        $orderBy[0] = ['field' => 'regular_price', 'type' => 'DESC'];
+        $data['product'] = $this->common_model->find_data('product', 'array', ['published' => 1, 'product_category' => $data['productCat']->id], '', '', '', $orderBy, $limit, $offset,);
 
         foreach ($data['product'] as &$product) {
             $product->others_images = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $product->id]);            
