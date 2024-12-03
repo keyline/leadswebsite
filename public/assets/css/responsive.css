@@ -213,11 +213,13 @@ body.abrido a#burger {
 }
 .inner_banner.producttop_banner_section .about_more_box .productlist_bannericon h4 {
     margin-top: 0;
+    font-size: 18px;
 }
 .inner_banner.producttop_banner_section .about_more_box {
     top: 0 !important;
+    max-width: 150px;
 }
-
+.backlistproduct button.btn a{padding: 8px 20px 5px;}
 .footer_left {
     align-items: center;
 }
@@ -298,7 +300,11 @@ body.abrido a#burger {
     padding: 75px 0;
 }
 .hideon_tab{
-
+}
+.backlistproduct {
+    position: absolute;
+    right: 0;
+    top: 30px;
 }
 }
 
@@ -433,6 +439,7 @@ ul.head_social{display: none;}
 .home_banner_slider_holder4 .home_banner_slider_product {
     max-width: 90%;
 }
+.keyfeature_list li{width: 100%;}
 }
 @media screen and (max-width: 360px) {
     .diskeyfe_downbtn a{font-size: 12px;}

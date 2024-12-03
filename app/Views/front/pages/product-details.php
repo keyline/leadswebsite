@@ -20,6 +20,10 @@
                             <h4><?= $productCat->name?></h4>
                         </div>
                     </div>
+                    <div class="backlistproduct">
+                        <a href="<?=base_url()?>/product/<?=$productCat->slug?>"><i class="fa-solid fa-angles-left"></i> Back to Listing</a>
+                        <!-- <button><a href="<?=base_url()?>/product/<?=$productCat->slug?>">Back to List</a></button> -->
+                    </div>
                 </div>
             </div>
         </div>
@@ -31,10 +35,7 @@
             <div class="container">            
                 <div class="row">
                     <div class="col-md-12">
-                        <div class="backlistproduct">
-                        <button class="btn btn-primary"><a href="<?=base_url()?>/product/<?=$productCat->slug?>">Back to List</a></button>
-                            <!-- <button><a href="<?=base_url()?>/product/<?=$productCat->slug?>">Back to List</a></button> -->
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -94,7 +95,14 @@
                         <div class="product_details_right">
                             <div class="product_dtl_info">
                             <h2><?=$product->product_title; ?> <?php if($product->is_new == 1){ ?><a href="#" class="new_badge">New</a><?php }?> </h2>
-                                
+                                <div class="offerprice_top">
+                                    <h5>Offer Price: </h5>
+                                    <?php if(!empty($product->regular_price)){ ?>                                  
+                                    <div class="pricename_offer"> <span class="regular_price"><span style="padding-right: 5px;"><i class="fa-solid fa-indian-rupee-sign"></i></span><?=$product->regular_price?></span></div> 
+                                    <?php }?>
+                                </div>
+                            
+                                    
                                 <h5>Specifications:</h5>
                                
                                 <ul class="specify_list">
@@ -103,14 +111,11 @@
                                 $content_description  = json_decode($product->content_description);
                                 if(!empty($content_title)){
                                 for($i = 1; $i <= count($content_title); $i++) {?>
-                                    <li><span class="specfy_name"><?=$content_title[$i-1]?> :</span> <span> <?=$content_description[$i-1]?></span></li> 
-                                    <?php } ?> 
-                                    <?php if(!empty($product->regular_price)){ ?>                                  
-                                    <li><span class="specfy_name regular_price_name">Price :</span> <span class="regular_price"> <?=$product->regular_price?></span></li> 
-                                    <?php }?>
-                                    <?php if(!empty($product->sale_price)){ ?>                                  
-                                    <li><span class="specfy_name">Sale Price :</span> <span> <?=$product->sale_price?></span></li> 
-                                    <?php } }?>
+                                    <li><span class="specfy_name"><?=$content_title[$i-1]?> </span> <span class="spandesi_left"><span class="spancolon">:</span> <span class="spandesi_info"><?=$content_description[$i-1]?></span></span></li> 
+                                    <?php } ?>                                     
+                                    <!-- ?php if(!empty($product->sale_price)){ ?>                                   -->
+                                    <!-- <li><span class="specfy_name">Sale Price :</span> <span> ?=$product->sale_price?></span></li>  -->
+                                    <?php  }?>
                                 </ul>
                             </div>
                             <div class="product_dtl_keyfeature">
@@ -138,11 +143,11 @@
                                 <?php foreach(json_decode($product->warrenty_section) as $warrenty_section) { ?> 
                                 <div class="gradt_icon">
                                     <?php if($warrenty_section == "warrenty") {  ?>
-                                    <img src="<?= base_url('public/') ?>/assets/img/warenty.webp" alt="" class="img-fluid">
+                                    <img src="<?= base_url('public/') ?>/assets/img/warenty.svg" alt="" class="img-fluid">
                                     <?php } else if($warrenty_section == "motion_sensor") {?>   
-                                    <img src="<?= base_url('public/') ?>/assets/img/hand.webp" alt="" class="img-fluid">
+                                    <img src="<?= base_url('public/') ?>/assets/img/hand.svg" alt="" class="img-fluid">
                                     <?php } else if($warrenty_section == "isa_technology") {?>   
-                                    <img src="<?= base_url('public/') ?>/assets/img/isa.webp" alt="" class="img-fluid">
+                                    <img src="<?= base_url('public/') ?>/assets/img/isa.svg" alt="" class="img-fluid">
                                     <?php } ?>
                                 </div>     
                                 <?php } ?>                                                                                                                                                                                                    
