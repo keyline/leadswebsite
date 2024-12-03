@@ -80,6 +80,11 @@ header.header .head_top_right {
     z-index: auto;
 }
 .mobile_order_left .product_dtl_info{display: none;} 
+.amcpolicy_section .tabcontent_inner .amc-tabcontent_item{
+    min-height: 465px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;}
 }
 
 /*TAB VERSION*/
@@ -201,6 +206,10 @@ body.abrido a#burger {
 .home_banner_slider_holder4 .home_slider_inner{text-align: center;}
 .home_banner_slider_holder4 .home_slider_inner h2{font-size: 36px;}
 .home_banner_slider_holder4 .home_banner_btn_holder{text-align: center;}
+.head_social li a{
+    color: #777;
+    border: 2px solid #777;
+}
 }
 
 @media screen and (min-width: 769px) {
