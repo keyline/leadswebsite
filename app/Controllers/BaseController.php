@@ -113,7 +113,8 @@ class BaseController extends Controller
 		$data['testimonials']       = $this->common_model->find_data('sms_testimonials', 'array', ['published' => 1]);
 		$data['commodities']        = $this->common_model->find_data('commodities', 'array', ['published' => 1]);
 		$data['countries']        	= $this->common_model->find_data('sms_countries', 'array', ['published' => 1]);
-		$data['product_menu']   	= $this->common_model->find_data('product_category', 'array', ['published' => 1]);
+		$order_by[0]                = array('field' => 'sort', 'type' => 'asc');
+		$data['product_menu']   	= $this->common_model->find_data('product_category', 'array', ['published' => 1], '', '', '', $order_by);
 
 
 		$data['head'] 				= view('front/elements/head', $data);
