@@ -11,10 +11,10 @@ $db = \Config\Database::connect();
 
                         <!-- Kitchen Chimney -->
                         <div class="carousel-item active">
-                            <div class="home_banner_slider_holder">
+                            <div class="home_banner_slider_holder home_banner_slider_holder1">
                                 <div class="row vh-100">
                                     <div class="col-md-4 d-none d-md-block d-flex align-items-end ">
-                                        <img src="<?= base_url('public/') ?>/assets/img/home_model.webp" alt=""
+                                        <img src="<?= base_url('public/') ?>/assets/img/banner_new_lady1.png" alt=""
                                             class="img-fluid home_banner_model animated fadeInLeft delay-1">
                                     </div>
                                     <div class="col-md-8">
@@ -67,9 +67,9 @@ $db = \Config\Database::connect();
                         <!-- Pure Water -->
                         <div class="carousel-item">
                             <div class="home_banner_slider_holder home_banner_slider_holder3">
-                                <div class="row vh-100">
+                                <div class="row justify-content-center vh-100">
 
-                                    <div class="col-md-7">
+                                    <div class="col-lg-8 col-md-10">
                                         <div class="home_slider_info">
                                             <div class="home_silder_imginner">
                                                 <img src="<?= base_url('public/') ?>/assets/img/banner_3_product.png" alt=""
@@ -87,19 +87,23 @@ $db = \Config\Database::connect();
 
                                         </div>
                                     </div>
-                                    <div class="col-md-5 d-none d-md-block d-flex align-items-end ">
+                                    <!-- <div class="col-md-5 d-none d-md-block d-flex align-items-end ">
                                         <img src="<?= base_url('public/') ?>/assets/img/banner_3_human.png" alt=""
                                             class="img-fluid home_banner_model animated fadeInRight delay-1">
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
                         <!-- Cook Top -->
                         <div class="carousel-item">
                             <div class="home_banner_slider_holder home_banner_slider_holder4">
-                                <div class="row vh-100">
-                                    <div class="col-md-7">
+                                <div class="row justify-content-center align-items-center vh-100">
+                                    <div class="col-lg-10 col-md-10">
                                         <div class="home_slider_info">
+                                            <div class="home_silder_imginner">
+                                                <img src="<?= base_url('public/') ?>/assets/img/banner_4_product.png" alt=""
+                                                    class="img-fluid home_banner_slider_product animated fadeInDown delay-2">
+                                            </div>
                                             <div class="home_slider_inner">
                                                 <h2 class="animated fadeInRight delay-3">Effortless Cooking,<br>Elegant Design</h2>
                                                 <p class="animated fadeInRight delay-4">Upgrade Your Cook Top!</p>
@@ -109,18 +113,15 @@ $db = \Config\Database::connect();
                                                             class="img-fluid long-arrow"></a>
                                                 </div>
                                             </div>
-                                            <div class="home_silder_imginner">
-                                                <img src="<?= base_url('public/') ?>/assets/img/banner_4_product.png" alt=""
-                                                    class="img-fluid home_banner_slider_product animated fadeInDown delay-2">
-                                            </div>
+                                            
 
 
                                         </div>
                                     </div>
-                                    <div class="col-md-4 d-none d-md-block d-flex align-items-end ">
+                                    <!-- <div class="col-md-4 d-none d-md-block d-flex align-items-end ">
                                         <img src="<?= base_url('public/') ?>/assets/img/banner_4_human.png" alt=""
                                             class="img-fluid home_banner_model animated fadeInLeft delay-1">
-                                    </div>
+                                    </div> -->
                                 </div>
                             </div>
                         </div>
