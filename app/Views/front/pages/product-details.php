@@ -106,6 +106,7 @@
                                 <?php 
                                 $content_title  = json_decode($product->content_title);
                                 $content_description  = json_decode($product->content_description);
+                                Helper::pr($content_description);
                                 if(!empty($content_title)){
                                 for($i = 1; $i <= count($content_title); $i++) {?>
                                     <li><span class="specfy_name"><?=$content_title[$i-1]?> <span class="spancolon">:</span></span> <span class="spandesi_left"> <span class="spandesi_info"><?=$content_description[$i-1]?></span></span></li> 
