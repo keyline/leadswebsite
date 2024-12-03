@@ -159,7 +159,7 @@ if($row) {
                                     <?php                                          
                                          if($key_feature){ $i=1; foreach ($key_feature as $row) {
                                             $checked = in_array($row->id, $key_feature_id) ? 'checked' : ''; ?>
-                                         <input type="checkbox" id="key_feature" name="key_feature[]" value="<?=$row->id; ?>" <?=$checked; ?> required> <?=$row->key_feature_title;?>
+                                         <input type="checkbox" id="key_feature" name="key_feature[]" value="<?=$row->id; ?>" <?=$checked; ?>> <?=$row->key_feature_title;?>
                                     <?php }} ?>                                        
                                 </div>
                             </div>    
