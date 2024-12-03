@@ -134,8 +134,8 @@ ul.head_social {
     margin: 0 5px 0 0;
 }
 .head_social li a {
-    color: #717171;
-    border: 2px solid #717171;
+    color: #fff;
+    border: 2px solid #fff;
     height: 30px;
     display: inline-block;
     width: 30px;
@@ -1361,7 +1361,7 @@ span.without_melink {
 /* inner page banner section css */
 .inner_banner{
     padding: 240px 0 115px;
-    background: url(../img/about-inner-bg.webp) no-repeat center center;
+    background: url(../img/about-inner-bg-new.jpg) no-repeat center center;
     background-size: cover;
     border-bottom: 5px solid #ed1c24;
 }
