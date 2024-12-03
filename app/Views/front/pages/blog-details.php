@@ -66,6 +66,10 @@
                                   <li><a href="#" class="blogshare" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
                                   <li><a href="#" class="blogshare" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
                                   <li><a href="#" class="blogshare" target="_blank"><i class="fa-brands fa-pinterest-p"></i></a></li>
+                                  <li><a href="https://www.facebook.com/sharer.php?u=<?=base_url()?>/blog-details/<?=$blog->slug?>" class="blogshare" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                    <li><a href="https://twitter.com/intent/tweet?url=<?=base_url()?>/blog-details/<?=$blog->slug?>" class="blogshare" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                    <!-- <li><a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a></li> -->
+                                    <li><a href="https://wa.me/?text=<?=base_url()?>/blog-details/<?=$blog->slug?>" class="blogshare" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                               </ul>
                           </div>
                   </div>
