@@ -1610,12 +1610,13 @@ span.spandesi_left {
 }
 span.spancolon {
     padding-right: 5px;
+    float: right;
 }
 .specify_list li span.regular_price_name {
     color: #000 !important;
 }
 .product_dtl_keyfeature {
-    margin-top: 20px;
+    margin-top: 10px;
     border-top: 1px solid #606060;
     padding-top: 20px;
 }
@@ -1642,7 +1643,7 @@ ul.keyfeature_list {
 .keyfeature_list li {
     display: flex;
     width: 50%;
-    align-items: center;
+    align-items: flex-start;
     margin-bottom: 30px;
     padding-right: 20px;
 }
@@ -1668,7 +1669,7 @@ ul.keyfeature_list {
 }
 .keyfeature_list li .keyfet_inner p {
     font-size: 14px;
-    color: #999;
+    color: #3c3c3c;
 }
 .product_details_right .prod_garaty {
     display: flex;

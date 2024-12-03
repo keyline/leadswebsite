@@ -188,6 +188,14 @@ body.abrido a#burger {
     min-height: auto;
 }
 .head_roationlogo{display:none;}
+.specify_list li span.specfy_name {
+    position: relative;
+}
+.specify_list li span.spancolon {
+    position: absolute;
+    right: 0;
+    top: -1px;
+}
 }
 
 @media screen and (min-width: 769px) {
@@ -374,11 +382,12 @@ body.abrido a#burger {
     text-align: center;   
     font-size: 22px;
 }
-.specify_list li{flex-wrap: wrap;}
-.specify_list li span.specfy_name{width: auto;  flex: 0 0 auto;}
+/* .specify_list li{flex-wrap: wrap;} */
+/* .specify_list li span.specfy_name{width: auto;  flex: 0 0 auto;} */
 .specify_list li span.spancolon {
-    display: none;
+    /* display: none; */
 }
+
 span.spandesi_info {
     font-size: 15px;
 }
@@ -440,6 +449,12 @@ span.spandesi_info {
     border-top: 1px solid #7777;
     padding-top: 10px;
     margin-top: 10px;
+}
+ul.head_social {
+    align-items: center;
+    position: relative;
+    padding-right: 0;
+    justify-content: center;
 }
 .home_banner_slider_holder4 .home_slider_inner h2{
     font-size: 30px;

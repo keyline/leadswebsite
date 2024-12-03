@@ -96,9 +96,9 @@
                             <div class="product_dtl_info">
                             <h2><?=$product->product_title; ?> <?php if($product->is_new == 1){ ?><a href="#" class="new_badge">New</a><?php }?> </h2>
                                 <div class="offerprice_top">
-                                    <h5>Offer Price</h5>
+                                    <h5>Offer Price <span class="spancolon" style="font-weight: normal;">:</span></h5>
                                     <?php if(!empty($product->regular_price)){ ?>                                  
-                                    <div class="pricename_offer"><span class="spancolon" style="font-weight: normal;">:</span> <span class="regular_price"><span style="padding-right: 5px;font-size: 18px;"><i class="fa-solid fa-indian-rupee-sign"></i></span><?=$product->regular_price?></span></div> 
+                                    <div class="pricename_offer"> <span class="regular_price"><span style="padding-right: 5px;font-size: 18px;"><i class="fa-solid fa-indian-rupee-sign"></i></span><?=$product->regular_price?></span></div> 
                                     <?php }?>
                                 </div>                                                                
                                 <h5>Specifications:</h5>                               
@@ -108,7 +108,7 @@
                                 $content_description  = json_decode($product->content_description);
                                 if(!empty($content_title)){
                                 for($i = 1; $i <= count($content_title); $i++) {?>
-                                    <li><span class="specfy_name"><?=$content_title[$i-1]?> </span> <span class="spandesi_left"><span class="spancolon">:</span> <span class="spandesi_info"><?=$content_description[$i-1]?></span></span></li> 
+                                    <li><span class="specfy_name"><?=$content_title[$i-1]?> <span class="spancolon">:</span></span> <span class="spandesi_left"> <span class="spandesi_info"><?=$content_description[$i-1]?></span></span></li> 
                                     <?php } ?>                                     
                                     <!-- ?php if(!empty($product->sale_price)){ ?>                                   -->
                                     <!-- <li><span class="specfy_name">Sale Price :</span> <span> ?=$product->sale_price?></span></li>  -->
