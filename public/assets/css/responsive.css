@@ -317,6 +317,18 @@ body.abrido a#burger {
     left: 50%;
     transform: translate(-50%, 0);
 }
+.tabcontent_inner {
+    justify-content: center;
+    margin-top: 50px;
+    flex-wrap: wrap;
+}
+.amcpolicy_section .tabcontent_inner .amc-tabcontent_item {
+    width: 45%;
+    margin: 0 12px;
+}
+.amcpolicy_section .tabcontent_inner .amc-tabcontent_item:last-child {
+    margin-top: 40px;
+}
 }
 
 
@@ -435,6 +447,14 @@ span.spandesi_info {
     justify-content: center;
     margin-bottom: 10px;
 }
+.amcpolicy_section .tabcontent_inner .amc-tabcontent_item {
+    min-height: auto;
+    width: 100%;
+    margin: 20px 0;
+}
+.amcpolicy_section .tabcontent_inner .amc-tabcontent_item:last-child{
+    margin: 20px 0;
+}
 }
 
 
@@ -476,6 +496,17 @@ ul.head_social {
     margin-bottom: 10px;
 }
 .product_details_right .prod_garaty{justify-content: center;}
+.amc-bottomnote ul > li {
+    display: flex;
+    padding: 0;
+}
+.amc-bottomnote ul > li i {
+    padding-right: 12px;
+}
+.amc-bottomnote ul {
+    flex-wrap: wrap;
+    justify-content: flex-start;
+}
 }
 @media screen and (max-width: 360px) {
     .diskeyfe_downbtn a{font-size: 12px;}
