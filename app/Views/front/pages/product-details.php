@@ -1,4 +1,8 @@
-<?php $db = \Config\Database::connect();?>
+<?php
+
+use Faker\Extension\Helper;
+
+ $db = \Config\Database::connect();?>
 <section class="inner_banner inner_floting_box_banner producttop_banner_section">
     <?php if ($productCat->banner != '') { ?>
         <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->banner; ?>" class="img-responsive img-thumbnail producttop_banner_img" />
