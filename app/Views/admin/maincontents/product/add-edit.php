@@ -285,7 +285,9 @@ document.querySelector('.add-description-row').addEventListener('click', functio
             ['table', ['table']],
             ['insert', ['link', 'picture', 'video']],
             ['view', ['fullscreen', 'codeview', 'help']]
-        ]
+        ],
+        fontNames: ['Arial', 'Courier New', 'Poppins'], // Add Poppins font
+        lineHeights: ['1.0', '1.2', '1.4', '1.5', '1.8', '2.0', '3.0'], // Line height options
     });
 });
 
