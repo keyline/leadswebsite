@@ -105,8 +105,8 @@ class Manage_product extends BaseController
                     'sale_price'                => $postData['sale_price'],
                     'content_title'             => json_encode($postData['content_title']),                   
                     'content_description'       => json_encode($postData['content_description']),                   
-                    'warrenty_section'          => json_encode($postData['warrenty_section']), 
-                    'key_feature'               => json_encode($postData['key_feature']), 
+                    'warrenty_section'          => json_encode($postData['warrenty_section'] ?? []), 
+                    'key_feature'               => json_encode($postData['key_feature'] ?? []), 
                     'is_new'                    => $postData['is_new'],                    
                 ];
                     // pr($fields1);
@@ -189,8 +189,8 @@ class Manage_product extends BaseController
                     'sale_price'                => $postData['sale_price'],
                     'content_title'             => json_encode(array_values(array_filter($postData['content_title'], fn($value) => !empty($value)))),                   
                     'content_description'       => json_encode(array_values(array_filter($postData['content_description'], fn($value) => !empty($value)))),                   
-                    'warrenty_section'          => json_encode($postData['warrenty_section']), 
-                    'key_feature'               => json_encode($postData['key_feature']), 
+                    'warrenty_section'          => json_encode($postData['warrenty_section'] ?? []), 
+                    'key_feature'               => json_encode($postData['key_feature'] ?? []), 
                     'is_new'                    => $postData['is_new'],       
                 ];
                     //  pr($fields1);
