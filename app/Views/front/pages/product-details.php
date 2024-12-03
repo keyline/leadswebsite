@@ -100,11 +100,8 @@
                                     <?php if(!empty($product->regular_price)){ ?>                                  
                                     <div class="pricename_offer"><span class="spancolon" style="font-weight: normal;">:</span> <span class="regular_price"><span style="padding-right: 5px;font-size: 18px;"><i class="fa-solid fa-indian-rupee-sign"></i></span><?=$product->regular_price?></span></div> 
                                     <?php }?>
-                                </div>
-                            
-                                    
-                                <h5>Specifications:</h5>
-                               
+                                </div>                                                                
+                                <h5>Specifications:</h5>                               
                                 <ul class="specify_list">
                                 <?php 
                                 $content_title  = json_decode($product->content_title);
@@ -118,10 +115,12 @@
                                     <?php  }?>
                                 </ul>
                             </div>
+                            <?php $key_feature = (json_decode($product->key_feature));
+                                if(!empty($key_feature)){ ?>
                             <div class="product_dtl_keyfeature">
                                 <div class="keyfaatu_line"><h3><span>Key Feature:</span></h3></div>                                
                                 <ul class="keyfeature_list">
-                                    <?php $key_feature = (json_decode($product->key_feature));
+                                    <?php 
                                         foreach($key_feature as $key){
                                             $sql1 = "SELECT * FROM `key_feature` WHERE `id` = '$key' and `published` != '3'";
                                             $keyFeatures = $db->query($sql1)->getResult();
@@ -136,9 +135,9 @@
                                         </div>
                                     </li>
                                     <?php } }?>                                    
-                                </ul>
-                                
+                                </ul>                            
                             </div>
+                            <?php } ?>
                             <div class="prod_garaty">                                
                                 <?php foreach(json_decode($product->warrenty_section) as $warrenty_section) { ?> 
                                 <div class="gradt_icon">
