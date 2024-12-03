@@ -256,11 +256,11 @@ $db = \Config\Database::connect();
                                                                 <?php foreach (json_decode($product->warrenty_section) as $warrenty_section) { ?>
                                                                     <li>
                                                                         <?php if ($warrenty_section == "warrenty") {  ?>
-                                                                            <img src="<?= base_url('public/') ?>/assets/img/warenty.webp" alt="" class="img-fluid">
+                                                                            <img src="<?= base_url('public/') ?>/assets/img/warenty.svg" alt="" class="img-fluid">
                                                                         <?php } else if ($warrenty_section == "motion_sensor") { ?>
-                                                                            <img src="<?= base_url('public/') ?>/assets/img/hand.webp" alt="" class="img-fluid">
+                                                                            <img src="<?= base_url('public/') ?>/assets/img/hand.svg" alt="" class="img-fluid">
                                                                         <?php } else if ($warrenty_section == "isa_technology") { ?>
-                                                                            <img src="<?= base_url('public/') ?>/assets/img/isa.webp" alt="" class="img-fluid">
+                                                                            <img src="<?= base_url('public/') ?>/assets/img/isa.svg" alt="" class="img-fluid">
                                                                         <?php } ?>
                                                                     </li>
                                                                 <?php } ?>
