@@ -1571,14 +1571,14 @@ span.without_melink {
 }
 .product_details_right h5 {
     font-weight: 600;
-    font-size: 17px;
+    font-size: 20px;
     color: #3c3c3c;
     margin-bottom: 15px;
 }
 .product_details_right .offerprice_top h5 {
-    flex: 0 0 210px;
-    font-size: 18px;
-    font-weight: normal;
+    flex: 0 0 140px;
+    font-size: 17px;
+    font-weight: 600;
     margin-bottom: 0;
 }
 .product_details_right .offerprice_top .pricename_offer {
@@ -1625,7 +1625,7 @@ span.spancolon {
    /* border-bottom: 1px solid #000;  */
    /* line-height: 0.1em;
    margin: 10px 0 20px;  */
-   font-size: 18px;
+   font-size: 22px;
     font-weight: 600;
 } 
 .product_listing a, .productrelated a {
