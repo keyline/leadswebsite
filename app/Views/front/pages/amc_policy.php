@@ -61,7 +61,7 @@
                                     <li>Emergency breakdown support (within 48 hours)</li>
                                 </ul>
                             </div>
-                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                            <div class="amcbuy_btn"><a href="https://rzp.io/rzp/VUchw7N" target="_blank">Buy Now</a></div>
                         </div>
                         <div class="amc-tabcontent_item">
                             <div class="nameyear">2</div>
@@ -77,7 +77,7 @@
                                     <li>Priority support with emergency breakdown response (within 24 hours)</li>
                                 </ul>
                             </div>
-                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                            <div class="amcbuy_btn"><a href="https://rzp.io/rzp/GRkOo6E5" target="_blank">Buy Now</a></div>
                         </div>
                         <div class="amc-tabcontent_item">
                             <div class="nameyear">3</div>
@@ -93,7 +93,7 @@
                                     <li>Priority support with emergency breakdown response (within 24 hours)</li>
                                 </ul>
                             </div>
-                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                            <div class="amcbuy_btn"><a href="https://rzp.io/rzp/Y6nkUWj1" target="_blank">Buy Now</a></div>
                         </div>
                     </div>
                     <div class="amc-bottomnote">
@@ -116,7 +116,7 @@
                             <li><i class="fa-solid fa-check"></i> The company reserves the right to make changes to the package terms and pricing with prior notice.</li>
                             <li><i class="fa-solid fa-check"></i>An AMC (Annual Maintenance Contract) for Kitchen Chimney can only be viable in areas where exists company's sales and service network.</li>
                         </ul>
-                        <p><strong>Note: </strong> For more information or to sign up for an AMC plan, contact our customer care at 1800-212-1200 or visit www.leadsindia.net.</p>
+                        <p><strong>Note: </strong> For more information or to sign up for an AMC plan, contact our customer care at <a href="tel:1800-212-1200">1800-212-1200</a> or visit <a href="www.leadsindia.net">www.leadsindia.net</a></p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="purifier" role="tabpanel" aria-labelledby="amc-purifier">
@@ -136,7 +136,7 @@
                                     <li>Emergency breakdown support (within 48 hours)</li>
                                 </ul>
                             </div>
-                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                            <div class="amcbuy_btn"><a href="https://rzp.io/rzp/A28boO0Q" target="_blank">Buy Now</a></div>
                         </div>
                         <div class="amc-tabcontent_item">
                             <div class="nameyear">2</div>
@@ -152,7 +152,7 @@
                                     <li>Priority support with emergency breakdown response (within 48 hours)</li>
                                 </ul>
                             </div>
-                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                            <div class="amcbuy_btn"><a href="https://rzp.io/rzp/Wz3sWGQ" target="_blank">Buy Now</a></div>
                         </div>
                         <div class="amc-tabcontent_item">
                             <div class="nameyear">3</div>
@@ -168,7 +168,7 @@
                                     <li>Priority support with emergency breakdown response (within 48 hours)</li>
                                 </ul>
                             </div>
-                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                            <div class="amcbuy_btn"><a href="https://rzp.io/rzp/LUw8pi0X" target="_blank">Buy Now</a></div>
                         </div>
                     </div>
                     <div class="amc-bottomnote">
@@ -191,7 +191,7 @@
                             <li><i class="fa-solid fa-check"></i> The company reserves the right to make changes to the package terms and pricing with prior notice.</li>
                             <li><i class="fa-solid fa-check"></i>An AMC (Annual Maintenance Contract) for Ro Water Purifier can only be viable in areas where exists company's sales and service network.</li>
                         </ul>
-                        <p><strong>Note: </strong> For more information or to sign up for an AMC plan, contact our customer care at 1800-212-1200 or visit www.leadsindia.net.</p>
+                        <p><strong>Note: </strong> For more information or to sign up for an AMC plan, contact our customer care at <a href="tel:1800-212-1200">1800-212-1200</a> or visit <a href="www.leadsindia.net">www.leadsindia.net</a>.</p>
                     </div>
                 </div>
                 </div>
