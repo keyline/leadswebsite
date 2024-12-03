@@ -1491,6 +1491,11 @@ span.without_melink {
     padding: 40px 0 115px;
     position: relative;
 }
+.spandesi_info> ul {
+    list-style: disc;
+    list-style-position: outside;
+    padding-left: 15px;
+}
 .product_main_img{
     border: 1px solid #afafaf;
     border-radius: 10px;
