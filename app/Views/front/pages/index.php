@@ -335,22 +335,27 @@ $db = \Config\Database::connect();
 <!-- feature icon section end -->
 
 <!-- video section start -->
-<section class="home_video">
+<section class="section-vid hideon_tab" id="home-section-4">
+    <div class="text-line">Where</div>
+    <div class="text-line">Technology</div>
+    <div class="text-line">Meets</div>
+    <div class="text-line">Style</div>
+    <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/Vw7FQ4FaRKc?si=029kv4bemvaYcHFG" 
+                title="YouTube video player" 
+                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                allowfullscreen>
+        </iframe>
+    </div>
+</section>
+<!-- <section class="home_video hideon_desktop ">
     <div class="home_debo_video">
         <iframe width="560" height="315" src="https://www.youtube.com/embed/Vw7FQ4FaRKc?si=029kv4bemvaYcHFG" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
     </div>
-    <!-- <div id="video_section">
-            <div class="video_text">
-                <h2 class="where">Where</h2>
-                <h2 class="technology">Technology</h2>
-                <h2 class="meets">Meets</h2>
-                <h2 class="style">Style</h2>
-                <div class="video_holder">
-                    <iframe width="100%" height="400" src="https://www.youtube.com/embed/Vw7FQ4FaRKc?si=xyqH8VeqKopfdb3e" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                </div>
-            </div>
-        </div> -->
-</section>
+</section> -->
+<style>
+body{overflow-x: hidden;}
+</style>
 <!-- video section end -->
 <!-- testimonias start section -->
 
@@ -377,4 +382,47 @@ $db = \Config\Database::connect();
 
     });
 </script>
+<script>
+    // Register ScrollTrigger
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Select text lines and video container
+    const lines = document.querySelectorAll(".text-line");
+    const videoContainer = document.querySelector(".video-container");
+
+    // Create GSAP timeline
+    const timeline = gsap.timeline({
+      scrollTrigger: {
+        trigger: "#home-section-4", // Trigger on section-4
+        start: "top top", // Start when section-4 reaches the top
+        end: "+=400%", // Scroll space to handle animations
+        scrub: true, // Smooth scroll effect
+        pin: true, // Pin the section during animation
+      },
+    });
+
+    // Animate each line one by one with zoom effect
+    lines.forEach((line, index) => {
+      timeline.to(line, {
+        opacity: 1, // Fade in
+        scale: 1, // Zoom to normal size
+        duration: 1.5,
+        ease: "power3.out",
+      }, index * 2) // Delay the start of each line
+      .to(line, {
+        opacity: 0, // Fade out as the next line starts to appear
+        scale: 1.2, // Slight zoom-out as it fades away
+        duration: 1,
+        ease: "power3.in",
+      }, index * 2 + 1); // Overlap fade-out with the next line fade-in
+    });
+
+    // Animate video fade-in after the last line
+    timeline.to(videoContainer, {
+      opacity: 1,
+      scale: 1, // Zoom to normal size
+      duration: 1.5,
+      ease: "power3.out",
+    });
+  </script>
 <?= $this->endSection() ?>

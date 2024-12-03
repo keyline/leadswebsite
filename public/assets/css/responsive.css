@@ -181,6 +181,12 @@ body.abrido a#burger {
 .distruibute_logo p {
     font-size: 13px;
 }
+.text-line{font-size: 5rem !important;}
+#home-section-4 iframe {
+    width: 80%;
+    min-height: auto;
+}
+.head_roationlogo{display:none;}
 }
 
 @media screen and (min-width: 769px) {
@@ -192,8 +198,26 @@ body.abrido a#burger {
 @media (min-width: 768px) and (max-width: 991px) {
     
 }
+@media screen and (min-width: 768px) {
+/* .hideon_desktop{display: none;} */
+}
 /*MOBILE VERSION*/
 @media screen and (max-width: 767px) {
+/* .hideon_tab{display: none !important;} */
+.home_video iframe {
+    width: 80%;
+    min-height: 100%;
+}
+.inner_banner.producttop_banner_section .about_more_box .productlist_bannericon img {
+    display: none;
+}
+.inner_banner.producttop_banner_section .about_more_box .productlist_bannericon h4 {
+    margin-top: 0;
+}
+.inner_banner.producttop_banner_section .about_more_box {
+    top: 0 !important;
+}
+
 .footer_left {
     align-items: center;
 }
@@ -272,6 +296,9 @@ body.abrido a#burger {
 }
 .inner_banner_distributor {
     padding: 75px 0;
+}
+.hideon_tab{
+
 }
 }
 
@@ -371,6 +398,18 @@ body.abrido a#burger {
 }
 .distruibute_logo_section{
     flex-wrap: wrap;
+}
+.amcpolicy_section #amctab li {
+    width: 100%;
+}
+.amcpolicy_section #amctab button{margin-right: 0; width: 100%;}
+.amcpolicy_section #amctab button .amc_tabtop {
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px;
+    color: #fff;
+    justify-content: center;
+    margin-bottom: 10px;
 }
 }
 

@@ -340,16 +340,20 @@ class Frontend extends BaseController
 
     public function returnPolicy()
     {
-
         $title                      = 'Return Policy';
-
         $this->common_model         = new CommonModel();
-
         $postData['common_model']   = $this->common_model;
-
         $page_name                  = 'return_policy';        
         $data['setting']          = $this->common_model->find_data('about_setting', 'row');
-
+        echo $this->front_layout($title, $page_name, $data);
+    }
+    public function amcPolicy()
+    {
+        $title                      = 'AMC Policy';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'amc_policy';        
+        $data          = [];
         echo $this->front_layout($title, $page_name, $data);
     }
 

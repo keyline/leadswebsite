@@ -3,6 +3,7 @@
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                 <div class="headlogo"><a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url('public/assets/img/') ?>/logo.png" alt="logo"></a></div>
+                
             </div>
             <div class="col-lg-9 col-md-8 col-sm-6 col-6">
                 <div class="head_top_right">
@@ -81,9 +82,7 @@
                     <li>
                         <span class="without_melink">After Sales Sevices</span>
                         <ul>
-                            <li><a href="<?= base_url('/amc') ?>">AMC</a></li>
-                            <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
-                            <li><a href="<?= base_url('/return-policy') ?>">Return policy</a></li>
+                            <li><a href="<?= base_url('/amc-policy') ?>">AMC</a></li>
                             <!-- <li><a href="#">Service Policy</a></li> -->
                             <?php foreach ($contents as $key => $page) { ?>
                                 <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
@@ -156,7 +155,7 @@
                 <!-- <a href="#">After Sales Sevices</a> -->
                 <span class="without_melink">After Sales Sevices</span>
                 <ul>
-                    <li><a href="<?= base_url('/amc') ?>">AMC</a></li>
+                    <li><a href="<?= base_url('/amc-policy') ?>">AMC</a></li>
                     <!-- <li><a href="#">Service Policy</a></li> -->
                     <?php foreach ($contents as $key => $page) { ?>
                         <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>

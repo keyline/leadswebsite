@@ -13,18 +13,18 @@
 
 <!-- inner page banner start -->
 
-<section class="inner_banner inner_floting_box_banner">
+<section class="inner_banner inner_floting_box_banner producttop_banner_section">
 <?php if ($productCat->banner != '') { ?>
-        <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->banner; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
+        <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->banner; ?>" class="img-responsive producttop_banner_img img-thumbnail"  />
     <?php } else { ?>
-        <img src="<?= base_url('public/') ?>/assets/img/about-inner-bg.webp" alt="" class="img-fluid">
+        <img src="<?= base_url('public/') ?>/assets/img/about-inner-bg.webp" alt="" class="img-fluid producttop_banner_img">
     <?php  } ?>  
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
                 <div class="inner_floting_box">
                     <div class="about_more_box">
-                        <div class="mission_tabs">
+                        <div class="mission_tabs productlist_bannericon">
                         <?php if ($productCat->icon != '') { ?>
                             <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->icon; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
                         <?php } else { ?>
