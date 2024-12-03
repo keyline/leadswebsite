@@ -45,7 +45,7 @@
                 <div class="row">
                     <div class="col-lg-5  col-md-12 mobile_order_left">
                         <div class="product_dtl_info">
-                            <h2><?php  echo $product->product_title; ?> <?php if($product->is_new == 1){ ?><a href="#" class="new_badge">New</a><?php }?> </h2>
+                            <h2><?php  echo $product->product_title; ?> <?php if($product->is_new == 1){ ?><span class="new_badge">New</span><?php }?> </h2>
                         </div>
                         <div class="product_dtl_left">
                             <!-- Swiper -->
@@ -94,7 +94,7 @@
                     <div class="col-lg-7 col-md-12 mobile_order_right">
                         <div class="product_details_right">
                             <div class="product_dtl_info">
-                            <h2><?=$product->product_title; ?> <?php if($product->is_new == 1){ ?><a href="#" class="new_badge">New</a><?php }?> </h2>
+                            <h2><?=$product->product_title; ?> <?php if($product->is_new == 1){ ?><span class="new_badge">New</span><?php }?> </h2>
                                 <div class="offerprice_top">
                                     <h5>Offer Price <span class="spancolon" style="font-weight: normal;">:</span></h5>
                                     <?php if(!empty($product->regular_price)){ ?>                                  

@@ -471,7 +471,7 @@ ul.head_social {
 }
 .keyfeature_list li{width: 100%;}
 .keyfeature_list li {
-    margin-bottom: 5px;
+    margin-bottom: 10px;
 }
 }
 @media screen and (max-width: 360px) {
