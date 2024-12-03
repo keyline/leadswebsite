@@ -106,6 +106,16 @@
                             <li><i class="fa-solid fa-check"></i> Easy upgrade to higher packages.</li>
                         </ul>
                     </div>
+                    <div class="amc-bottomterms">
+                        <h4>Terms and Conditions:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> The AMC does not cover physical damage caused by negligence or improper handling.</li>
+                            <li><i class="fa-solid fa-check"></i> Free replacements are limited to Switch and lamp.</li>
+                            <li><i class="fa-solid fa-check"></i> Regular health checks to prevent unexpected breakdowns.</li>
+                            <li><i class="fa-solid fa-check"></i> No labor charges for services covered under AMC.</li>
+                            <li><i class="fa-solid fa-check"></i> Easy upgrade to higher packages.</li>
+                        </ul>
+                    </div>
                 </div>
                 <div class="tab-pane fade" id="purifier" role="tabpanel" aria-labelledby="amc-purifier">
                     <div class="tabcontent_inner">
