@@ -1626,7 +1626,9 @@ span.spancolon {
    font-size: 18px;
     font-weight: 600;
 } 
-
+.product_listing a {
+    text-decoration: none;
+}
 .keyfaatu_line h3 span { 
     background:#fff; 
     padding:0 10px 0 0; 
