@@ -212,7 +212,7 @@ if ($row) {
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="meta_Keyword">Summary <span class="text-danger">*</span></label>
+                                                <label class="form-label" for="meta_Keyword">Summary <span class="text-danger"></span></label>
                                                 <textarea class="form-control" name="summary[]" placeholder=""  rows="2"><?= $content->summary ?></textarea>
                                             </div>
                                         </div>

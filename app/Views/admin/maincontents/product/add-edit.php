@@ -105,7 +105,8 @@ if($row) {
                                                 <div>
                                                     <div class="specification-row">
                                                         <input type="text" name="content_title[]" value="<?php if(isset($content_title[$i-1]) && $content_title[$i-1] != ''){ echo $content_title[$i-1]; } ?>" class="form-control" placeholder="Specification Title" required>
-                                                        <input type="text" name="content_description[]" value="<?php if(isset($content_description[$i-1]) && $content_description[$i-1] != ''){ echo $content_description[$i-1]; } ?>" class="form-control" placeholder="Specification Description" required>
+                                                        <textarea class="form-control summernote" name="content_description[]" placeholder="Specification Description" required="required" rows="5"><?php if(isset($content_description[$i-1]) && $content_description[$i-1] != ''){ echo $content_description[$i-1]; } ?></textarea>
+                                                        <!-- <input type="text" name="content_description[]" value="?php if(isset($content_description[$i-1]) && $content_description[$i-1] != ''){ echo $content_description[$i-1]; } ?>" class="form-control" placeholder="Specification Description" required> -->
                                                         <!-- <button type="button" class="btn btn-primary add-description-row">+</button> -->
                                                     </div>
                                                 </div>  
@@ -113,7 +114,8 @@ if($row) {
                                         <div id="specification-container">
                                             <div class="specification-row">
                                                 <input type="text" name="content_title[]" class="form-control" placeholder="Specification Title" required>
-                                                <input type="text" name="content_description[]" class="form-control" placeholder="Specification Description" required>
+                                                <textarea class="form-control summernote" name="content_description[]" placeholder="Specification Description" required="required" rows="5"></textarea>
+                                                <!-- <input type="text" name="content_description[]" class="form-control"  required> -->
                                                 <button type="button" class="btn btn-primary add-description-row">+</button>
                                             </div>
                                         </div>                                                                           
@@ -266,7 +268,7 @@ document.querySelector('.add-description-row').addEventListener('click', functio
     row.className = 'specification-row';
     row.innerHTML = `
         <input type="text" name="content_title[]" class="form-control" placeholder="Specification Title" required>
-        <input type="text" name="content_description[]" class="form-control" placeholder="Specification Description" required>
+        <textarea class="form-control summernote" name="content_description[]" placeholder="Specification Description" required="required" rows="5"></textarea>        
         <button type="button" class="btn btn-danger remove-specification-row">-</button>
     `;
     document.getElementById('specification-container').appendChild(row);
