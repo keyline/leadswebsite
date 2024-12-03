@@ -166,7 +166,7 @@ if($row) {
                             <div class="col-md-6">
                                 <div class="form-group">
                                     <label for="warrenty" class="form-label">Warranty Section</label><br>
-                                    <input type="checkbox" id="warrenty" name="warrenty_section[]" value="warrenty" <?= !empty($warrenty_section) && in_array('warrenty', $warrenty_section) ? 'checked' : '' ?> required>
+                                    <input type="checkbox" id="warrenty" name="warrenty_section[]" value="warrenty" <?= !empty($warrenty_section) && in_array('warrenty', $warrenty_section) ? 'checked' : '' ?>>
                                     <label for="warrenty">Warranty</label>
                                     
                                     <input type="checkbox" id="motion_sensor" name="warrenty_section[]" value="motion_sensor" <?= !empty($warrenty_section) && in_array('motion_sensor', $warrenty_section) ? 'checked' : '' ?>>
