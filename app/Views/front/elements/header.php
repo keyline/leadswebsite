@@ -4,6 +4,7 @@
     <div class="row align-items-center">
         <div class="col-lg-3 col-md-4 col-sm-6 col-6">
             <div class="headlogo"><a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url('public/assets/img/') ?>/logo.png" alt="logo"></a></div>
+            <?php echo $page_header; die;?>
             <div class="head_roationlogo"><img src="<?= base_url('public/assets/img/') ?>/header_logo_rotation.png" alt="logo"></div>
         </div>
         <div class="col-lg-9 col-md-8 col-sm-6 col-6">
