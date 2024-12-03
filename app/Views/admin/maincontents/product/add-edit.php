@@ -272,7 +272,23 @@ document.querySelector('.add-description-row').addEventListener('click', functio
         <button type="button" class="btn btn-danger remove-specification-row">-</button>
     `;
     document.getElementById('specification-container').appendChild(row);
+
+    // Reinitialize Summernote for the new textarea
+    $('.summernote').summernote({
+        height: 150, // Set editor height
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ]
+    });
 });
+
 
 document.addEventListener('click', function (e) {
     if (e.target && e.target.classList.contains('remove-specification-row')) {
