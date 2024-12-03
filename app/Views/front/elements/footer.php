@@ -10,10 +10,15 @@
                 <div class="footer_subsocial">
                     <div class="footer_social">
                         <ul>
+                            <?php if(!empty ($site_setting->facebook_link)){ ?>
                             <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                            <? } if(!empty ($site_setting->twitter_link)) { ?>
                             <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                            <?php } if(!empty ($site_setting->youtube_link)) { ?>
                             <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                            <?php } if(!empty ($whatsapp_link)) { ?>
                             <li><a href="<?= $whatsapp_link ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                            <?php } ?>
                         </ul>
                     </div>
                 </div>
