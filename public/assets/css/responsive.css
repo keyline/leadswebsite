@@ -167,7 +167,8 @@ body.abrido a#burger {
     margin-top: 30px;
 }
 /*.mobile_order_left{order: 2;}*/
-.mobile_order_right .product_dtl_info{display: none;}
+.mobile_order_right .product_dtl_info{}
+.mobile_order_right .product_dtl_info > h2{display: none;}
 .features-section.distributor-features .feature-icon-list li:first-child, 
 .features-section.distributor-features .feature-icon-list li:last-child {
     width: 33.33%;
@@ -374,7 +375,13 @@ body.abrido a#burger {
     font-size: 22px;
 }
 .specify_list li{flex-wrap: wrap;}
-.specify_list li span.specfy_name{width: 100%;}
+.specify_list li span.specfy_name{width: auto;  flex: 0 0 auto;}
+.specify_list li span.spancolon {
+    display: none;
+}
+span.spandesi_info {
+    font-size: 15px;
+}
 .features-section.distributor-features .feature-icon-list li:first-child, 
 .features-section.distributor-features .feature-icon-list li:last-child {
     width: 50%;
