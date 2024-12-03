@@ -3085,8 +3085,9 @@ span.office-briefcase {
 }
 .amc-topnote {
     margin: 0 auto;
-    width: 700px;
+    max-width: 700px;
     text-align: center;
+    width: 100%;
 }
 .amc-bottomnote ul {
     display: flex;
@@ -3114,4 +3115,22 @@ span.office-briefcase {
 .blogdetials_innerpart h2 {
     font-size: 21px;
     color: var(--primaryColor);
+}
+.amc-bottomterms {
+    padding-top: 20px;
+}
+.amc-bottomterms h4 {
+    font-size: 16px;
+    color: var(--primaryColor);
+    text-decoration: underline;
+}
+.amc-bottomterms li {
+    font-size: 13px;
+}
+.amc-bottomterms p {
+    padding-top: 10px;
+    font-size: 14px;
+}
+.productlist_bannericon img {
+    filter: invert(100);
 }
