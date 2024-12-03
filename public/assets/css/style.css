@@ -2405,7 +2405,7 @@ ul.blog_meta li i {
     padding-top: 60px;
 }
 .blogdetial_infomation p {
-    font-size: 18px;
+    font-size: 16px;
     margin-bottom: 1rem;
     color: #757575;
 }
@@ -3096,4 +3096,13 @@ span.office-briefcase {
 }
 .amcpolicy_section #amctab button .amc_tabtop .amc_tabimg {
     margin-right: 10px;
+}
+.blogdetials_innerpart h1 {
+    font-size: 24px;
+    font-weight: 600;
+    color: var(--primaryColor);
+}
+.blogdetials_innerpart h2 {
+    font-size: 21px;
+    color: var(--primaryColor);
 }
