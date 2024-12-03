@@ -4,7 +4,7 @@
         <div class="row justify-content-center">
             <div class="col-md-9">
                 <div class="inner_banner_info">
-                    <h4> Return Policy </h4>
+                    <h4>  </h4>
                 </div>
             </div>
         </div>
@@ -13,33 +13,123 @@
 <!-- inner page banner end -->
 
 <!-- mission section start -->
-<section class="returnpolicy_section">
+<section class="amcpolicy_section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12">
-                <h3>Leads Return Policy</h3>
-                <p>Thank you for choosing Leads products! We are committed to delivering superior quality and exceptional service. In the rare instance that you are not entirely satisfied with your purchase, our assurance policy is designed to give you peace of mind.</p>
-                <h5>Our Satisfaction Guarantee</h5>
-                <p>At Leads, your satisfaction is our priority. If our product does not meet your expectations in terms of performance or quality, we are here to help.</p>
-                <h5>Return Policy Highlights</h5>
-                <p><strong>Eligible for Return:</strong> Products can be returned within 15 days from the date of purchase.</p>
-                <p><strong>No Questions Asked:</strong> If you are unsatisfied with the product or its functionality, you may initiate a return without providing any reason.</p>
-                <p><strong>Full Refund:</strong> Upon receipt of the returned product, we will issue a full refund of the purchase amount.</p>
-                <p><strong>Hassle-Free Process:</strong> Our customer support team is ready to assist you with the return process.</p>
-                <h5>Terms & Conditions:</h5>
-                <p>The product must be returned in its original condition, including packaging and accessories.
-                </p>
-                <p>Refunds will be processed within 7-10 business days after receiving the returned product.</p>
-                <p>This assurance is valid for products purchased directly from Leads or authorized dealers.</p>
-                <p>Return shipping charges, if applicable, are non-refundable unless the product is defective.</p>
-                <h5>Return Process:</h5>
-                <ul>
-                    <li>Contact our Customer Support at <a href="tel:1800-212-1200">1800-212-1200</a> or via email at <a href="mailto:sales@leadsindia.net">sales@leadsindia.net</a> to initiate your return.</li>
-                    <li>Our team will provide detailed instructions on how to return or hand over the product.</li>
-                    <li>Upon receipt and inspection of the product, we will process your refund promptly.</li>
+                <ul class="nav nav-tabs" id="amctab" role="tablist">
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link active" id="amc-chimney" data-bs-toggle="tab" data-bs-target="#chimney" type="button" role="tab" aria-controls="chimney" aria-selected="true">
+                            <div class="amc_tabtop">
+                                <div class="amc_tabimg">
+                                    <img src="https://leadsdev.keylines.net.in/uploads/product/1732998106chimney-icon.webp" class="img-fluid">
+                                </div>
+                                <div class="amc_tabimg">
+                                    Chimney AMC Packages
+                                </div>
+                            </div>
+                        </button>
+                    </li>
+                    <li class="nav-item" role="presentation">
+                        <button class="nav-link" id="amc-purifier" data-bs-toggle="tab" data-bs-target="#purifier" type="button" role="tab" aria-controls="purifier" aria-selected="false">
+                            <div class="amc_tabtop">
+                                <div class="amc_tabimg">
+                                    <img src="<?= base_url('public/') ?>/assets/img/waterpurifiy_icon.png" alt="" class="img-fluid">
+                                </div>
+                                <div class="amc_tabimg">
+                                Water Purifier AMC Packages
+                                </div>
+                            </div>
+                        </button>
+                    </li>
                 </ul>
-                <p>We greatly value your business and remain committed to ensuring your complete satisfaction.</p>
-                <p><strong>Leads Assurance Team</strong></p>
+                <div class="tab-content" id="myTabContent">
+                <div class="tab-pane fade show active" id="chimney" role="tabpanel" aria-labelledby="amc-chimney">
+                    <div class="amc-topnote">Ensure your kitchen chimney performs at its best with our comprehensive AMC plans, tailored to meet your maintenance needs. All AMC packages include the use of original Leads spare parts, ensuring quality, reliability, and longevity.</div>
+                    <div class="tabcontent_inner">
+                        <div class="amc-tabcontent_item">
+                            <div class="nameyear">1</div>
+                            <div class="amc_content_list">
+                                <div class="amccost_price"><sup>Rs:</sup>3499</div>
+                                <div class="amccost_month">12 months</div>
+
+                                <h4>Service Inclusions:</h4>
+                                <ul class="service_list">
+                                    <li>2 Free Services (General Maintenance)</li>
+                                    <li>Free replacement of Spare Parts (once per year)</li>
+                                    <li>10% Discount on spare parts and repairs</li>
+                                    <li>Emergency breakdown support (within 48 hours)</li>
+                                </ul>
+                            </div>
+                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                        </div>
+                        <div class="amc-tabcontent_item">
+                            <div class="nameyear">2</div>
+                            <div class="amc_content_list">
+                                <div class="amccost_price"><sup>Rs:</sup>6499</div>
+                                <div class="amccost_month">24 months</div>
+
+                                <h4>Service Inclusions:</h4>
+                                <ul class="service_list">
+                                    <li>4 Free Services (General Maintenance)</li>
+                                    <li>Free replacement of Spare parts (twice during the AMC period)</li>
+                                    <li>15% Discount on spare parts and repairs</li>
+                                    <li>Priority support with emergency breakdown response (within 24 hours)</li>
+                                </ul>
+                            </div>
+                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                        </div>
+                        <div class="amc-tabcontent_item">
+                            <div class="nameyear">3</div>
+                            <div class="amc_content_list">
+                                <div class="amccost_price"><sup>Rs:</sup>8999</div>
+                                <div class="amccost_month">36 months</div>
+
+                                <h4>Service Inclusions:</h4>
+                                <ul class="service_list">
+                                    <li>6 Free Services (General Maintenance)</li>
+                                    <li>Free replacement of Spare parts (twice every year)</li>
+                                    <li>20% Discount on spare parts and repairs</li>
+                                    <li>Priority support with emergency breakdown response (within 24 hours)</li>
+                                </ul>
+                            </div>
+                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                        </div>
+                    </div>
+                    <div class="amc-bottomnote">
+                        <h4>Additional Benefits Across All Plans:</h4>
+                        <ul>
+                            <li><i class="fa-solid fa-check"></i> Use of original Leads spare parts for enhanced performance and durability.</li>
+                            <li><i class="fa-solid fa-check"></i> Free cleaning and servicing as per the plan schedule.</li>
+                            <li><i class="fa-solid fa-check"></i> Regular health checks to prevent unexpected breakdowns.</li>
+                            <li><i class="fa-solid fa-check"></i> No labor charges for services covered under AMC.</li>
+                            <li><i class="fa-solid fa-check"></i> Easy upgrade to higher packages.</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="tab-pane fade" id="purifier" role="tabpanel" aria-labelledby="amc-purifier">
+                    <div class="tabcontent_inner">
+                        <div class="amc-tabcontent_item">
+                            <div class="nameyear">1</div>
+                            <div class="amc_content_list">
+                                <div class="amccost_price"><sup>Rs:</sup>8999</div>
+                                <div class="amccost_month">36 months</div>
+
+                                <h4>Service Inclusions:</h4>
+                                <ul class="service_list">
+                                    <li>6 Free Services (General Maintenance)</li>
+                                    <li>Free replacement of Spare parts (twice every year)</li>
+                                    <li>20% Discount on spare parts and repairs</li>
+                                    <li>Priority support with emergency breakdown response (within 24 hours)</li>
+                                </ul>
+                            </div>
+                            <div class="amcbuy_btn"><a href="#" target="_blank">Buy Now</a></div>
+                        </div>
+                        
+                        
+                    </div>
+                </div>
+                </div>
             </div>
         </div>
     </div>

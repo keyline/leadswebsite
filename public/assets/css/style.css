@@ -2835,3 +2835,205 @@ span.office-briefcase {
     background: #ed1c24;
     top: 3px;
 }
+.head_roationlogo {
+    position: absolute;
+    z-index: 9;
+    top: 12px;
+    left: 262px;
+}
+.head_roationlogo img{
+    width: 80px;
+    animation-name: rotate;
+    animation: rotate 3s infinite linear;
+    transform-style: preserve-3d;
+}
+@keyframes rotate {
+    0% { transform: rotateY(0deg); }
+    100% { transform: rotateY(360deg); }
+}
+.productlist_bannericon img{
+    background: none;
+    border:none;
+}
+.inner_banner.producttop_banner_section {
+    background: none;
+    height: 100%;
+    object-fit: cover;
+    padding: 0;
+}
+.inner_banner.producttop_banner_section img.producttop_banner_img {
+    width: 100%;
+    height: 100%;
+    background: none;
+    object-fit: cover;
+    border: none;
+    padding: 0;
+    border-radius: 0;
+}
+.inner_banner.producttop_banner_section .about_more_box {
+    top: -135px !important;
+}
+.backlistproduct button.btn {
+    float: right;
+    background: none;
+    border: none;
+    padding: 0;
+}
+.backlistproduct button.btn a {
+    background: var(--primaryColor);
+    color: #fff;
+    text-decoration: none;
+    padding: 10px 20px;
+    display: inline-block;
+    border-radius: 33px;
+    font-size: 16px;
+}
+.backlistproduct button.btn a:hover {
+    background: #444;
+}
+.amcpolicy_section #amctab {
+    justify-content: center;
+    border: none;
+}
+.amcpolicy_section #amctab button {
+    margin-right: 10px;
+    padding: 0;
+    border: none;
+}
+.amcpolicy_section #amctab button .amc_tabtop {
+    display: flex;
+    align-items: center;
+}
+.amcpolicy_section #amctab button .amc_tabtop {
+    display: flex;
+    align-items: center;
+    background: #444;
+    border-radius: 10px 10px 0 0;
+    padding: 15px;
+    color: #fff;
+}
+.amcpolicy_section #amctab button.active .amc_tabtop{
+    background: #ed1c24;
+}
+.amcpolicy_section #amctab button .amc_tabtop .amc_tabimg img {
+    max-width: 50px;
+}
+.amcpolicy_section {
+    padding: 80px 0;
+    position: relative;
+}
+.amcpolicy_section .tab-content {
+    width: 100%;
+    margin: 0 auto;
+}
+.amcpolicy_section .tabcontent_inner .amc-tabcontent_item {
+    border: 2px solid #ed1c24;
+    padding: 65px 25px 25px;
+    min-height: 130px;
+    position: relative;
+    width: 30%;
+}
+.tabcontent_inner {
+    display: flex;
+    justify-content: space-between;
+    margin-top: 50px;
+}
+.amcpolicy_section .tabcontent_inner .amc-tabcontent_item ul li {
+    border-bottom: 1px solid #ddd;
+    padding: 6px 0;
+    font-size: 14px;
+}
+.amcpolicy_section .tabcontent_inner .amc-tabcontent_item ul li:last-child {
+    border-bottom: none;
+}
+.amc_content_list .amccost_price {
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    font-size: 50px;
+    line-height: 30px;
+    color: #ed1c24;
+}
+.amc_content_list .amccost_price sup {
+    font-size: 14px;
+}
+.amc_content_list .amccost_month {
+    font-size: 16px;
+    color: #444;
+    font-style: italic;
+    text-align: center;
+}
+.amc-tabcontent_item .nameyear {
+    background: #ed1c24;
+    display: inline-block;
+    position: absolute;
+    top: -28px;
+    left: 50%;
+    width: 50px;
+    transform: translate(-50%, 0);
+    text-align: center;
+    height: 50px;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 30px;
+    line-height: 53px;
+}
+.amc_content_list h4 {
+    padding-top: 20px;
+    font-size: 18px;
+    font-weight: 600;
+    color: #000;
+    text-align: center;
+}
+.amcbuy_btn {
+    text-align: center;
+    padding-top: 15px;
+}
+.amcbuy_btn a {
+    background: var(--primaryColor);
+    padding: 5px 10px 0px 10px;
+    display: inline-block;
+    border-radius: 50px;
+    color: #fff;
+    text-decoration: none;
+    width: 100%;
+    max-width: 250px;
+    font-size: 20px;
+    text-transform: uppercase;
+    line-height: 44px;
+}
+.amcbuy_btn a:hover {
+    background: #444;
+}
+.amc-bottomnote {
+    padding: 15px 0;
+}
+.amc-bottomnote h4 {
+    color: var(--primaryColor);
+    font-weight: 600;
+    font-size: 18px;
+    text-align: center;
+}
+.amc-topnote {
+    margin: 0 auto;
+    width: 700px;
+    text-align: center;
+}
+.amc-bottomnote ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+.amc-bottomnote li {
+    padding: 0 15px;
+}
+.amc-bottomnote i {
+    color: #59c328;
+}
+.amcpolicy_section .tab-content {
+    border: 1px solid #ddd;
+    padding: 15px;
+}
+.amcpolicy_section #amctab button .amc_tabtop .amc_tabimg {
+    margin-right: 10px;
+}
