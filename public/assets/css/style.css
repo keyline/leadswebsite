@@ -1486,7 +1486,8 @@ span.without_melink {
 }
 /* product_details page css */
 .product_details{
-    padding: 70px 0 115px;
+    padding: 40px 0 115px;
+    position: relative;
 }
 .product_main_img{
     border: 1px solid #afafaf;
@@ -1528,7 +1529,7 @@ span.without_melink {
     border: 2px solid #ed1c24;
     text-decoration: none;
     font-size: 15px;
-    padding: 6px 13px 5px 10px;
+    padding: 6px 13px 4px 10px;
     border-radius: 6px;
     line-height: 1.25;
     margin-left: 15px;
@@ -1549,8 +1550,8 @@ span.without_melink {
 .new_badge:after {
     border-color: rgba(213, 213, 213, 0);
     border-right-color: #fff;
-    border-width: 6px;
-    margin-top: -6px;
+    border-width: 7px;
+    margin-top: -7px;
 }
 .new_badge:before {
     border-color: rgba(237, 28, 36, 0);
@@ -1558,42 +1559,71 @@ span.without_melink {
     border-width: 8px;
     margin-top: -9px;
 }
+.offerprice_top {
+    display: flex;
+    border-bottom: 1px solid #606060;
+    align-items: center;
+    padding-bottom: 5px;
+    margin-bottom: 15px;
+    color: #000;
+}
 .product_details_right h5 {
     font-weight: 600;
-    font-size: 20px;
+    font-size: 17px;
+    color: #3c3c3c;
     margin-bottom: 15px;
+}
+.product_details_right .offerprice_top h5 {
+    flex: 0 0 210px;
+    font-size: 18px;
+    font-weight: normal;
+    margin-bottom: 0;
+}
+.product_details_right .offerprice_top .pricename_offer {
+    font-size: 22px;
+    font-weight: 600;
 }
 .specify_list li {
     display: flex;
-    font-size: 20px;
+    font-size: 16px;
     padding-bottom: 10px;
     color: #999;
     line-height: 1.25;
 }
 .specify_list li span.specfy_name {
     /* width: 25%; */
-    font-size: 18px;
-    color: #838282;
+    font-size: 16px;
+    color: #3c3c3c;
     font-weight: 600;
-    flex: 0 0 250px;
+    flex: 0 0 210px;
 }
 .specify_list li span.regular_price {
     font-weight: 600;
     color: #000;
 }
+span.spandesi_left {
+    display: flex;
+    color: #3c3c3c;
+    font-size: 17px;
+}
+span.spancolon {
+    padding-right: 5px;
+}
 .specify_list li span.regular_price_name {
     color: #000 !important;
 }
 .product_dtl_keyfeature {
-    margin-top: 40px;
+    margin-top: 20px;
+    border-top: 1px solid #606060;
+    padding-top: 20px;
 }
 .keyfaatu_line h3 {
    width: 100%; 
    text-align: left; 
-   border-bottom: 1px solid #000; 
-   line-height: 0.1em;
-   margin: 10px 0 20px; 
-   font-size: 20px;
+   /* border-bottom: 1px solid #000;  */
+   /* line-height: 0.1em;
+   margin: 10px 0 20px;  */
+   font-size: 18px;
     font-weight: 600;
 } 
 
@@ -1610,15 +1640,22 @@ ul.keyfeature_list {
     width: 50%;
     align-items: center;
     margin-bottom: 30px;
+    padding-right: 20px;
 }
 .keyfeature_list li .keyfet_inner {
     line-height: 1.25;
+    width: 80%;
 }
 .keyfeature_list li .keyfeat_img {
     padding-right: 10px;
+    width: 60px;
+    height: 60px;
 }
 .keyfeature_list li .keyfeat_img img {
-    max-width: 45px;
+    max-width: 100%;
+}
+.home_product_tab_content_box a {
+    text-decoration: none;
 }
 .keyfeature_list li .keyfet_inner h4 {
     font-size: 15px;
@@ -2860,6 +2897,7 @@ span.office-briefcase {
     height: 100%;
     object-fit: cover;
     padding: 0;
+    position: relative;
 }
 .inner_banner.producttop_banner_section img.producttop_banner_img {
     width: 100%;
@@ -2873,23 +2911,27 @@ span.office-briefcase {
 .inner_banner.producttop_banner_section .about_more_box {
     top: -135px !important;
 }
-.backlistproduct button.btn {
+.backlistproduct {
+    position: absolute;
+    right: 0;
+    top: 45px;
+}
+.backlistproduct {
     float: right;
     background: none;
     border: none;
     padding: 0;
 }
-.backlistproduct button.btn a {
-    background: var(--primaryColor);
-    color: #fff;
+.backlistproduct a {
+    color: var(--primaryColor);
     text-decoration: none;
-    padding: 10px 20px;
+    padding: 0 20px 0 0;
     display: inline-block;
     border-radius: 33px;
     font-size: 16px;
 }
-.backlistproduct button.btn a:hover {
-    background: #444;
+.backlistproduct a:hover {
+    color: #444;
 }
 .amcpolicy_section #amctab {
     justify-content: center;
