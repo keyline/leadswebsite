@@ -79,6 +79,7 @@
                     </li>
                     <li><a href="<?= base_url() ?>/distributor">Become A Distributor</a></li>
                     <li><a href="<?= base_url() ?>/blog">Blog</a></li>
+<<<<<<< HEAD
                     <li>
                         <span class="without_melink">Reach Us</span>
 
@@ -87,6 +88,9 @@
                             <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                         </ul>
                     </li>
+=======
+                    
+>>>>>>> zoom_effect
                     <li>
                         <span class="without_melink">After Sales Sevices</span>
                         <ul>
@@ -99,6 +103,14 @@
                                 <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
                             <?php }  ?>
 
+                        </ul>
+                    </li>
+                    <li>
+                        <span class="without_melink">Reach Us</span>
+
+                        <ul>                            
+                            <li><a href="<?= base_url('/career') ?>">Career</a></li>
+                            <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -154,6 +166,7 @@
             </li>
             <li><a href="<?= base_url() ?>/distributor">Become A Distributor</a></li>
             <li><a href="<?= base_url() ?>/blog">Blog</a></li>
+<<<<<<< HEAD
             <li>
                 <!-- <a href="#">Reach Us</a> -->
                 <span class="without_melink">Reach Us</span>
@@ -162,6 +175,9 @@
                     <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                 </ul>
             </li>
+=======
+            
+>>>>>>> zoom_effect
             <li>
                 <!-- <a href="#">After Sales Sevices</a> -->
                 <span class="without_melink">After Sales Sevices</span>
@@ -174,6 +190,14 @@
                     <?php foreach ($contents as $key => $page) { ?>
                         <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
                     <?php }  ?>
+                </ul>
+            </li>
+            <li>
+                <!-- <a href="#">Reach Us</a> -->
+                <span class="without_melink">Reach Us</span>
+                <ul>                    
+                    <li><a href="<?= base_url('/career') ?>">Career</a></li>
+                    <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                 </ul>
             </li>
         </ul>
