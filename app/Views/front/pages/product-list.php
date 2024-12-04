@@ -46,7 +46,7 @@
             <?php foreach ($product as $product_list):
             ?>                
                 <div class="col-xl-3 col-lg-4 col-md-6 col-sm-6">
-                    <a href="<?= base_url('product-details')?>/<?= $product_list->slug?>">
+                    <a href="<?= base_url('product-details')?>/<?= $product_list->slug?>" class="h-100 d-block">
                         <div class="product_item">
                             <div class="badge-product-sale">
                                 <?php if($product_list->is_new == 1) {?>
