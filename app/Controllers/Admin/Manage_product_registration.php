@@ -1,4 +1,5 @@
 <?php
+
 namespace App\Controllers\admin;
 
 use App\Controllers\BaseController;
@@ -9,25 +10,15 @@ use DB;
 
 
 
-class Manage_amc_enquire extends BaseController
-
+class Manage_product_registration extends BaseController
 {
-
-
-
     private $model;  //This can be accessed by all class methods
 
-
-
     public function __construct()
-
     {
-
         $session = \Config\Services::session();
 
-
         if (!$session->get('is_admin_login')) {
-
             header("Location:" . base_url() . '/Admin');
         }
 
@@ -39,11 +30,11 @@ class Manage_amc_enquire extends BaseController
 
             'session'       => $session,
 
-            'module'        => 'AMC Enquire',
+            'module'        => 'Product Registration',
 
-            'controller'    => 'manage_amc_enquire',
+            'controller'    => 'manage_product_registration',
 
-            'table_name'    => 'sms_contact_enquiry',
+            'table_name'    => 'product_registration',
 
             'primary_key'   => 'id'
 
@@ -59,48 +50,49 @@ class Manage_amc_enquire extends BaseController
 
         $title                      = 'Manage ' . $this->data['module'];
 
-        $page_name                  = 'enquire/list';
+        $page_name                  = 'enquire/registration-list';
 
-        // $data                       = [];
+        $order_by[0]                = ['field' => 'id', 'type' => 'DESC'];
 
-        $data['rows']                = $this->data['model']->getEnquires();
+        $data['rows']                = $this->common_model->find_data('product_registration', 'array', '', '', '', '', $order_by);
+
 
         foreach ($data['rows'] as $key => &$row) {
             $product_name = '';
-            if ($row->special_enquiry != '') {
-                $product = $this->common_model->find_data('product', 'row', ['id' => $row->special_enquiry], ['product_title']);
-                $product_name =  $product->product_title;
+            if (!is_null($row->product_type) && $row->product_type != '') {
+                $product = $this->common_model->find_data('product_category', 'row', ['id' => $row->product_type]);
+                $product_name =  $product->name;
             }
             $row->product_name = $product_name;
         }
-
+   
         echo $this->layout_after_login($title, $page_name, $data);
     }
 
 
 
     public function download_csv()
-
     {
 
         $data['moduleDetail']       = $this->data;
 
-        $title                      = 'Enquiry Export';
+        $title                      = 'Registration Export';
 
-        $order_by[0]                = ['field' => 'created_at', 'type' => 'DESC'];
+        $order_by[0]                = ['field' => 'id', 'type' => 'DESC'];
 
-        $data['rows']               = $this->data['model']->getEnquires();
+        $data['rows']                = $this->common_model->find_data('product_registration', 'array', '', '', '', '', $order_by);
+
 
         foreach ($data['rows'] as $key => &$row) {
             $product_name = '';
-            if ($row->special_enquiry != '') {
-                $product = $this->common_model->find_data('product', 'row', ['id' => $row->special_enquiry], ['product_title']);
-                $product_name =  $product->product_title;
+            if (!is_null($row->product_type) && $row->product_type != '') {
+                $product = $this->common_model->find_data('product_category', 'row', ['id' => $row->product_type]);
+                $product_name =  $product->name;
             }
             $row->product_name = $product_name;
         }
 
-        return view('admin/maincontents/pledge_taken-enquiry/enquiry_export', $data);
+        return view('admin/maincontents/pledge_taken-enquiry/registration_export', $data);
     }
 
 

@@ -85,6 +85,8 @@ $routes->get('/career', 'Frontend::career');
 
 $routes->match(['get', 'post'], '/service', 'Frontend::service_request');
 
+$routes->match(['get', 'post'], '/registration','Frontend::product_registration');
+
 $routes->get('/amc', 'Frontend::amc_request');
 
 $routes->post('api/amc-request', 'Frontend::amc_submit');
@@ -92,6 +94,7 @@ $routes->post('api/amc-request', 'Frontend::amc_submit');
 $routes->post('api/get-products', 'Frontend::get_products');
 
 $routes->post('api/contact-us', 'Frontend::enquiry');
+
 $routes->post('api/distributor-enquiry', 'Frontend::distributorenquiry');
 
 $routes->post('api/apply-job', 'Frontend::job_apply');
