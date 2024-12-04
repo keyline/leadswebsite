@@ -328,6 +328,25 @@ if ($row) {
                 x++; //Increment field counter
                 $(wrapper).append(fieldHTML); //Add field html
                 CKEDITOR.replace('meta_description' + x);
+
+
+                // Reinitialize Summernote for the new textarea
+                $('.summernote').summernote({
+                        height: 150, // Set editor height
+                        toolbar: [
+                            ['style', ['style']],
+                            ['font', ['bold', 'italic', 'underline', 'clear']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']]
+                        ],        
+                    });
+
+
+
             } else alert(`max ${maxField} blog content can be create`);
         });
 
@@ -337,6 +356,8 @@ if ($row) {
             $(this).parent('div').parent('div').remove(); //Remove field html
             x--; //Decrement field counter
         });
+
+        
     });
 </script>
 <?= $this->endSection() ?>

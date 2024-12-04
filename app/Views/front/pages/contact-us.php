@@ -94,7 +94,7 @@
 							<div class="cont_it_icon"><i class="fa-solid fa-envelope"></i></div>
 							<div class="cont_in_text"><strong>Please write us:</strong>
 								<!-- <a href="#">customerservice@leadsindia.net</a> -->
-								<a href="<?=$site_setting->service_email?>"><?=$site_setting->service_email?></a>
+								<a href="mailto:<?=$site_setting->service_email?>"><?=$site_setting->service_email?></a>
 							</div>
 						</div>
 

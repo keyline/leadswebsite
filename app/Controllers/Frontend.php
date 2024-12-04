@@ -1096,7 +1096,7 @@ class Frontend extends BaseController
 
         $page_name                  = 'product_registration';
 
-        $order_by = [['field' => 'name', 'type' => 'ASC']];
+        $order_by = [['field' => 'sort', 'type' => 'ASC']];
 
         $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1],'','','',$order_by);
 
