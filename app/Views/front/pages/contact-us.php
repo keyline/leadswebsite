@@ -48,7 +48,7 @@
 						</div>
 						<div class="cont_info_item">
 							<div class="cont_it_icon"><i class="fa-solid fa-globe"></i></div>
-							<div class="cont_in_text"><a href="#"><?= $site_setting->site_url ?></a></div>
+							<div class="cont_in_text"><a href="<?= $site_setting->site_url ?>"><?= $site_setting->site_url ?></a></div>
 						</div>
 						<div class="cont_info_item">
 							<div class="cont_it_icon"><i class="fa-solid fa-envelope"></i></div>
@@ -58,7 +58,7 @@
 								<?php if (count($admin_mails)) {
 									$totalNumbers = count($admin_mails);
 									foreach ($admin_mails as $index => $mail) { ?>
-										<a href="mailto:"> <?= $mail ?> </a>
+										<a href="mailto:<?= $mail ?>"> <?= $mail ?> </a>
 								<?php
 										if ($index < $totalNumbers - 1) {
 											echo ', '; // Add comma if it's not the last mail
@@ -83,18 +83,18 @@
 							<div class="cont_it_icon"><i class="fa-solid fa-mobile-screen-button"></i></div>
 							<div class="cont_in_text">
 								<!-- <a href="tel:">+91 95640 14111</a> -->
-								<a href="tel:"><?= $site_setting->office_no ?></a>
+								<a href="tel:<?= $site_setting->office_no ?>"><?= $site_setting->office_no ?></a>
 							</div>
 						</div>
 						<div class="cont_info_item">
 							<div class="cont_it_icon"><i class="fa-solid fa-globe"></i></div>
-							<div class="cont_in_text"><a href="#"><?= $site_setting->site_url ?></a></div>
+							<div class="cont_in_text"><a href="<?= $site_setting->site_url ?>"><?= $site_setting->site_url ?></a></div>
 						</div>
 						<div class="cont_info_item">
 							<div class="cont_it_icon"><i class="fa-solid fa-envelope"></i></div>
 							<div class="cont_in_text"><strong>Please write us:</strong>
 								<!-- <a href="#">customerservice@leadsindia.net</a> -->
-								<a href="#"><?=$site_setting->service_email?></a>
+								<a href="<?=$site_setting->service_email?>"><?=$site_setting->service_email?></a>
 							</div>
 						</div>
 

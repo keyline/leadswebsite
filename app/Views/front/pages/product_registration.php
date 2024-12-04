@@ -123,7 +123,7 @@
                         </div>
                         <div class="col-md-6">
                             <label for="date_of_purchase" class="form-label">Date of Purchase</label>
-                            <input type="date" class="form-control" id="date_of_purchase" name="date_of_purchase" value="<?= old('date_of_purchase') ?>">
+                            <input type="date" class="form-control" id="date_of_purchase" name="date_of_purchase" max="<?= date('Y-m-d') ?>" value="<?= old('date_of_purchase') ?>">
                             <p class="text-danger error" id="name-error"><?= session('errors.date_of_purchase') ?? '' ?></p>
                         </div>
                         <div class="col-md-6">

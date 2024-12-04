@@ -116,7 +116,7 @@
                             <li><i class="fa-solid fa-check"></i> The company reserves the right to make changes to the package terms and pricing with prior notice.</li>
                             <li><i class="fa-solid fa-check"></i>An AMC (Annual Maintenance Contract) for Kitchen Chimney can only be viable in areas where exists company's sales and service network.</li>
                         </ul>
-                        <p><strong>Note: </strong> For more information or to sign up for an AMC plan, contact our customer care at <a href="tel:1800-212-1200">1800-212-1200</a> or visit <a href="www.leadsindia.net">www.leadsindia.net</a></p>
+                        <p><strong>Note: </strong> For more information or to sign up for an AMC plan, contact our customer care at <a href="tel:1800-212-1200">1800-212-1200</a> or visit <a href="<?= $site_setting->site_url ?>">www.leadsindia.net</a></p>
                     </div>
                 </div>
                 <div class="tab-pane fade" id="purifier" role="tabpanel" aria-labelledby="amc-purifier">
@@ -191,7 +191,7 @@
                             <li><i class="fa-solid fa-check"></i> The company reserves the right to make changes to the package terms and pricing with prior notice.</li>
                             <li><i class="fa-solid fa-check"></i>An AMC (Annual Maintenance Contract) for Ro Water Purifier can only be viable in areas where exists company's sales and service network.</li>
                         </ul>
-                        <p><strong>Note: </strong> For more information or to sign up for an AMC plan, contact our customer care at <a href="tel:1800-212-1200">1800-212-1200</a> or visit <a href="www.leadsindia.net">www.leadsindia.net</a>.</p>
+                        <p><strong>Note: </strong> For more information or to sign up for an AMC plan, contact our customer care at <a href="tel:1800-212-1200">1800-212-1200</a> or visit <a href="<?= $site_setting->site_url ?>">www.leadsindia.net</a>.</p>
                     </div>
                 </div>
                 </div>
