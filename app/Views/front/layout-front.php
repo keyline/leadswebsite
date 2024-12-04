@@ -773,7 +773,6 @@
         }
     </script>
 
-
     <!-- [ page wise Scripts ] -->
     <?= $this->renderSection('scripts') ?>
 

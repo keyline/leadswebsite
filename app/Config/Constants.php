@@ -109,7 +109,7 @@ $configs = [
         'BASEURL' => 'http://localhost/leadswebsite/',
         'USERNAME' => 'root',
         'PASSWORD' => '',
-        'DATABASE' => 'keyline1_leadsdev'
+        'DATABASE' => 'keyline_leads'
     ],
     'live' => [
         'BASEURL' => 'https://leadsdev.keylines.net.in/',
