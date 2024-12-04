@@ -862,6 +862,11 @@ span.without_melink {
     color: #ed1c24;
     text-decoration: none;
 }
+.home_product_cat_icon{
+    width: 50px;
+    filter: brightness(0);
+    opacity: .9;
+}
 /* home_about_section css */
 .home_about_section{
     padding: 225px 0;
