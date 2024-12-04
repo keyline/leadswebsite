@@ -1361,7 +1361,10 @@ span.without_melink {
 /* inner page banner section css */
 .inner_banner{
     padding: 240px 0 115px;
-    background: url(../img/about-inner-bg-new.jpg) no-repeat center center;
+    background: linear-gradient(45deg,
+    transparent,
+    rgba(0, 0, 0, 0.30)), url(../img/about-inner-bg-new1.jpg) no-repeat center center;
+    
     background-size: cover;
     border-bottom: 5px solid #ed1c24;
 }
@@ -1830,8 +1833,15 @@ ul.keyfeature_list {
     box-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
 
-
-
+.fancybox-image,
+.f-thumbs__slide__button{
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.is-classic .is-nav-selected .f-thumbs__slide__button::after{
+    border: 1px solid #ed1c24;
+}
 
 
 

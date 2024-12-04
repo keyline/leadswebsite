@@ -65,6 +65,10 @@
     <script src="<?= base_url('public/assets/') ?>/owl/owl-min.js"></script>
     <script src="<?= base_url('public/assets/') ?>/js/menumaker.js"></script>
     <script src="<?= base_url('public/assets/') ?>/js/jquery.viewbox.min.js"></script>
+    <!-- lightbox js -->
+    <script src="<?= base_url('public/assets/') ?>/js/lightbox.min.js"></script>
+    <!-- <script src="?= base_url('public/assets/') ?>/js/fancybox.umd.js"></script> -->
+
     <script src="https://www.jquery-az.com/jquery/js/sticky-sidebar/sticky-sidebar.js"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -157,6 +161,16 @@
                 },
             }
         });
+    </script>
+    <script>
+        lightbox.option({
+        'disableScrolling': true,
+        })
+        // Fancybox.bind('[data-fancybox="gallery"]', {
+        // Thumbs : {
+        //   type: "classic"
+        // }
+        // }); 
     </script>
     <script>
         // first product image slider
