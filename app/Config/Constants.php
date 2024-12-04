@@ -106,7 +106,7 @@ $configs = [
         'DATABASE' => 'keyline_leads',
     ],
     'localhost' => [
-        'BASEURL' => 'https://localhost/leadswebsite/',
+        'BASEURL' => 'http://localhost/leadswebsite/',
         'USERNAME' => 'root',
         'PASSWORD' => '',
         'DATABASE' => 'keyline_leads'

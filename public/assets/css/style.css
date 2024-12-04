@@ -1830,8 +1830,15 @@ ul.keyfeature_list {
     box-shadow:0 1px 8px rgba(0,0,0,0.5);
 }
 
-
-
+.fancybox-image,
+.f-thumbs__slide__button{
+    background: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+}
+.is-classic .is-nav-selected .f-thumbs__slide__button::after{
+    border: 1px solid #ed1c24;
+}
 
 
 

@@ -67,6 +67,10 @@ We Presently importing kitchen appliances from Malaysia and Manufactured Domesti
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/easy-responsive-tabs.css " />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+<!-- lightbox css link -->
+<link rel="stylesheet" href="<?= base_url('public/assets/css/') ?>/lightbox.min.css">
+<!-- <link rel="stylesheet" href="?= base_url('public/assets/css/') ?>/fancybox.css"> -->
+
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/style.css">
 <link rel="stylesheet" href="<?= base_url('public/assets/css/') ?>/custom.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/responsive.css">

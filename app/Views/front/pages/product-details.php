@@ -56,7 +56,10 @@
                                 <div class="swiper-wrapper">
                                     <?php foreach($others_images as $others_image) {?>
                                     <div class="swiper-slide">
+                                    <a href="<?=base_url('/uploads/product/'.$others_image->image_file)?>" data-lightbox="product_light_">
                                         <img src="<?=base_url('/uploads/product/'.$others_image->image_file)?>" class="img-fluid" />
+                                    </a>
+                                        <!-- <img src="?=base_url('/uploads/product/'.$others_image->image_file)?>" class="img-fluid" /> -->
                                     </div>
                                     <?php } ?>                                   
                                 </div>
