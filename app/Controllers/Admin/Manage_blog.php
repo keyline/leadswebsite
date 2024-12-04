@@ -153,6 +153,7 @@ class Manage_blog extends BaseController
 
                 return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Inserted successfully');
             } catch (\Exception $e) {
+                pr($e->getMessage());
                 log_message('error', $e->getMessage()); // Log the error message
                 return redirect()->back()->withInput()->with('error_message', 'An unexpected error occurred');
             }
