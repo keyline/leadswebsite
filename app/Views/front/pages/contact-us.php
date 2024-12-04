@@ -37,7 +37,7 @@
 								<?php if (count($phone_numbers)) {
 									$totalNumbers = count($phone_numbers);
 									foreach ($phone_numbers as $index => $number) { ?>
-										<a href="tel:"> <?= $number ?> </a>
+										<a href="tel:".<?= $number ?>> <?= $number ?> </a>
 								<?php
 										if ($index < $totalNumbers - 1) {
 											echo ', '; // Add comma if it's not the last number
