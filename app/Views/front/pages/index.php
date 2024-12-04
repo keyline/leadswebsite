@@ -192,7 +192,7 @@ $db = \Config\Database::connect();
                                 <button class="nav-link <?= $key == 0 ? 'active' : '' ?>" id="<?= $row->id ?>-tab" data-bs-toggle="pill"
                                     data-bs-target="#<?= $row->id ?>" type="button" role="tab" aria-controls="<?= $row->id ?>"
                                     aria-selected="<?= $key == 0 ? 'true' : 'false' ?>">
-                                        <img src="<?= base_url('public/') ?>/assets/img/banner_icon1.png" class="img-fluid home_product_cat_icon" />
+                                        <img src="<?= base_url('/uploads/product/' . $row->icon) ?>" class="img-fluid home_product_cat_icon" />
                                         <p><?= $row->name; ?></p>
                                 </button>
                             </li>
