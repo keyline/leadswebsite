@@ -101,7 +101,7 @@
                             <div class="product_dtl_info">
                             <h2><?=$product->product_title; ?> <?php if($product->is_new == 1){ ?><span class="new_badge">New</span><?php }?> </h2>
                                 <div class="offerprice_top">
-                                    <h5>Offer Price <span class="spancolon" style="font-weight: normal;">:</span></h5>
+                                    <h5>MRP <span class="spancolon" style="font-weight: normal;">:</span></h5>
                                     <?php if(!empty($product->regular_price)){ ?>                                  
                                     <div class="pricename_offer"> <span class="regular_price"><span style="padding-right: 5px;font-size: 18px;"><i class="fa-solid fa-indian-rupee-sign"></i></span><?=$product->regular_price?></span></div> 
                                     <?php }?>
