@@ -11,9 +11,12 @@
         <div class="col-lg-9 col-md-8 col-sm-6 col-6">
             <div class="head_top_right">
                 <ul class="head_social">
-                    <?php if(!empty ($site_setting->facebook_link)){ ?>
+                    <?php
+            
+                    
+                    if(!empty ($site_setting->facebook_link)){ ?>
                     <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
-                    <? } if(!empty ($site_setting->twitter_link)) { ?>
+                    <?php } if(!empty ($site_setting->twitter_link)) { ?>
                     <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
                     <?php } if(!empty ($site_setting->youtube_link)) { ?>
                     <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>

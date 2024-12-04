@@ -174,7 +174,7 @@ class Frontend extends BaseController
 
     public function index()
     {
-        
+
         $data                       = [];
 
         $title                      = 'Home';
@@ -282,9 +282,9 @@ class Frontend extends BaseController
 
         $postData['common_model']   = $this->common_model;
 
-        $page_name                  = 'become_a_distributor';                
-        $data['productcat']         = $this->common_model->find_data('product_category', 'array', ['published' => 1]);        
-        $data['file'] 		    = $this->common_model->find_data('download', 'row', ['name' => 'E-catalog Download']);         
+        $page_name                  = 'become_a_distributor';
+        $data['productcat']         = $this->common_model->find_data('product_category', 'array', ['published' => 1]);
+        $data['file']             = $this->common_model->find_data('download', 'row', ['name' => 'E-catalog Download']);
         echo $this->front_layout($title, $page_name, $data);
     }
 
@@ -343,7 +343,7 @@ class Frontend extends BaseController
         $title                      = 'Return Policy';
         $this->common_model         = new CommonModel();
         $postData['common_model']   = $this->common_model;
-        $page_name                  = 'return_policy';        
+        $page_name                  = 'return_policy';
         $data['setting']          = $this->common_model->find_data('about_setting', 'row');
         echo $this->front_layout($title, $page_name, $data);
     }
@@ -352,7 +352,7 @@ class Frontend extends BaseController
         $title                      = 'AMC Policy';
         $this->common_model         = new CommonModel();
         $postData['common_model']   = $this->common_model;
-        $page_name                  = 'amc_policy';        
+        $page_name                  = 'amc_policy';
         $data          = [];
         echo $this->front_layout($title, $page_name, $data);
     }
@@ -379,15 +379,15 @@ class Frontend extends BaseController
         $this->common_model         = new CommonModel();
         $postData['common_model']   = $this->common_model;
         $page_name                  = 'product-list';
-        $data['productCat']         = $this->common_model->find_data('product_category', 'row', ['slug' => $category]);    
+        $data['productCat']         = $this->common_model->find_data('product_category', 'row', ['slug' => $category]);
 
         $offset = $this->request->getPost('offset') ?? 0;
-        $limit = 4; 
+        $limit = 4;
         $orderBy[0] = ['field' => 'regular_price', 'type' => 'DESC'];
         $data['product'] = $this->common_model->find_data('product', 'array', ['published' => 1, 'product_category' => $data['productCat']->id], '', '', '', $orderBy, $limit, $offset,);
 
         foreach ($data['product'] as &$product) {
-            $product->others_images = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $product->id]);            
+            $product->others_images = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $product->id]);
         }
         // Uncomment to check the results
 
@@ -406,9 +406,9 @@ class Frontend extends BaseController
         $this->common_model         = new CommonModel();
         $postData['common_model']   = $this->common_model;
         $page_name                  = 'product-details';
-        $data['product']         = $this->common_model->find_data('product', 'row', ['slug' => $slug]);                                
+        $data['product']         = $this->common_model->find_data('product', 'row', ['slug' => $slug]);
         $limit = 5; // Number of products per batch
-        $data['relatedProduct']  = $this->common_model->find_data('product', 'array', ['published' => 1, 'id!=' => $data['product']->id, 'product_category' => $data['product']->product_category], '', '', '', '', $limit);        
+        $data['relatedProduct']  = $this->common_model->find_data('product', 'array', ['published' => 1, 'id!=' => $data['product']->id, 'product_category' => $data['product']->product_category], '', '', '', '', $limit);
         $data['productCat']         = $this->common_model->find_data('product_category', 'row', ['id' => $data['product']->product_category]);
         //   pr($data['product'] );
         $data['others_images'] = $this->common_model->find_data('product_others_image', 'array', ['published!=' => 3, 'product_id' => $data['product']->id]);
@@ -1081,6 +1081,197 @@ class Frontend extends BaseController
             'product' => $products
         ]);
     }
+
+
+    public function product_registration()
+    {
+
+        $data                       = [];
+
+        $title                      = 'Product Registration';
+
+        $this->common_model         = new CommonModel();
+
+        $postData['common_model']   = $this->common_model;
+
+        $page_name                  = 'product_registration';
+
+        $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1]);
+
+
+        if ($this->request->getMethod() === 'post') {
+
+            $postData = $this->request->getPost();
+
+            $rule = [
+                'full_name' => [
+                    'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Name'
+                ],
+                'email_address' => [
+                    'rules' => 'required|valid_email|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Email'
+                ],
+                'phone_number' => [
+                    'rules' => 'required|numeric|regex_match[/^[0-9]{10,15}$/]',
+                    'label' => 'Phone Number'
+                ],
+                'street_address' => [
+                    'rules' => 'permit_empty|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Street Address'
+                ],
+                'city' => [
+                    'rules' => 'permit_empty|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'City'
+                ],
+                'state' => [
+                    'rules' => 'permit_empty|max_length[100]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'State'
+                ],
+                'zip_code' => [
+                    'rules' => 'permit_empty|min_length[6]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Zip code'
+                ],
+                'country' => [
+                    'rules' => 'permit_empty|min_length[2]|max_length[100]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Country'
+                ],
+                'product_type' => [
+                    'rules' => 'permit_empty',
+                    'label' => 'Product type'
+                ],
+                'model_number' => [
+                    'rules' => 'permit_empty',
+                    'label' => 'Model number'
+                ],
+                'serial_number' => [
+                    'rules' => 'required',
+                    'label' => 'Serial Number'
+                ],
+                'date_of_purchase' => [
+                    'rules' => 'permit_empty|valid_date[Y-m-d]',
+                    'label' => 'Purchase Date'
+                ],
+                'place_of_purchase' => [
+                    'rules' => 'permit_empty|min_length[2]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Dealer Name'
+                ],
+                'invoice_number' => [
+                    'rules' => 'permit_empty|min_length[2]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
+                    'label' => 'Invoice Number'
+                ],
+
+                'purchase_invoice' => [
+                    'rules' => 'max_size[purchase_invoice,1024]|mime_in[purchase_invoice,application/pdf,image/jpg,image/jpeg,image/png]',
+                    'label' => 'Purchase Invoice'
+                ],
+                'barcode_photo' => [
+                    'rules' => 'max_size[barcode_photo,1024]|mime_in[barcode_photo,image/jpg,image/jpeg,image/png]',
+                    'label' => 'Barcode Photo'
+                ]
+
+                // 'recaptcha_token' => [
+                //     'rules' => 'required',
+                //     'label' => 'Captcha token'
+                // ],
+            ];
+
+            if (!$this->validate($rule)) {
+                return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
+                // 
+            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+                $this->common_model = new CommonModel();
+                $purchase_invoice = $barcode_photo = null;
+
+                /* image upload */
+
+                $purchase_invoice =  $this->uploadFile('purchase_invoice', 'purchase_invoice');
+
+                $barcode_photo = $this->uploadFile('barcode_photo', 'barcode_photo');
+
+                /* image upload */
+
+                $formData = [
+                    'full_name' => $postData['full_name'],
+                    'email_address' => $postData['email_address'],
+                    'phone_number' => $postData['phone_number'],
+                    'street_address' => $postData['street_address'],
+                    'city' => $postData['city'],
+                    'state' => $postData['state'],
+                    'zip_code' => $postData['zip_code'],
+                    'country' => $postData['country'],
+                    'product_type' => $postData['product_type'],
+                    'model_number' => $postData['model_number'],
+                    'serial_number' => $postData['serial_number'],
+                    'date_of_purchase' => $postData['date_of_purchase'],
+                    'place_of_purchase' => $postData['place_of_purchase'],
+                    'invoice_number' => $postData['invoice_number'],
+                    'purchase_invoice_file' => $purchase_invoice,
+                    'barcode_photo_file' => $barcode_photo
+                ];
+
+                $insert_id = $this->common_model->save_data('product_registration', $formData);
+
+                if ($insert_id) {
+                    foreach ($data['productCategory'] as $item) {
+                        if ($item->id == $postData['product_type']) {
+                            $formData['products'] = $item->name;
+                            break;
+                        }
+                    }
+
+                    $body = view('Views/front/mail_template/registration-templete', $formData);
+
+                    $this->sendToAdmin('Registration Request', $body, 'service', 'Leadsindia');
+
+                    $this->session->setFlashdata('success_message', 'Request send successfully');
+                }
+            } else {
+                $this->session->setFlashdata('error_message', 'reCAPTCHA verification failed. Please try again.');
+            }
+        }
+
+        echo $this->front_layout($title, $page_name, $data);
+    }
+
+
+
+    private function uploadFile($fieldName, $folder)
+    {
+        // Get the uploaded file from the request dynamically using the provided field name
+        $file = $this->request->getFile($fieldName);
+
+        // Check if the file is valid (uploaded)
+        if ($file && $file->isValid() && !$file->hasMoved()) {
+            $originalName = $file->getClientName(); // Get the original name of the file
+
+            // Determine the file type based on the file's MIME type or extension
+            $fileType = 'image'; // Default to image
+            $mimeType = $file->getMimeType();
+
+            if ($mimeType === 'application/pdf' || strtolower($file->getExtension()) === 'pdf') {
+                $fileType = 'pdf'; // If the file is a PDF, set the type to pdf
+            }
+
+            // Call your custom method to handle file upload, passing dynamic parameters
+            $upload_array = $this->common_model->upload_single_file($fieldName, $originalName, $folder, $fileType);
+
+            if ($upload_array['status']) {
+                // File uploaded successfully, return the new file name
+                return $upload_array['newFilename'];
+            } else {
+                // Upload failed, set an error message in the session
+                $this->session->setFlashdata('error_message', $upload_array['message']);
+                return redirect()->to(current_url()); // Redirect back with error message
+            }
+        } else {
+            return null;
+            // If no file was uploaded or there's a problem with the file, set an error
+            // $this->session->setFlashdata('error_message', 'No file was uploaded or the file is invalid.');
+            // return redirect()->to(current_url()); // Redirect back with error message
+        }
+    }
+
 
 
     // _________________________________________ end __________________________________________

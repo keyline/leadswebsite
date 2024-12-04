@@ -103,13 +103,13 @@ $configs = [
         'BASEURL' => 'https://leadswebsite.test/',
         'USERNAME' => 'root',
         'PASSWORD' => '',
-        'DATABASE' => 'keyline_leads',
+        'DATABASE' => 'keyline1_leadsdev',
     ],
     'localhost' => [
         'BASEURL' => 'http://localhost/leadswebsite/',
         'USERNAME' => 'root',
         'PASSWORD' => '',
-        'DATABASE' => 'keyline_leads'
+        'DATABASE' => 'keyline1_leadsdev'
     ],
     'live' => [
         'BASEURL' => 'https://leadsdev.keylines.net.in/',
@@ -120,7 +120,7 @@ $configs = [
 ];
 
 // Determine the current user (this can be done based on session, environment variable, etc.)
-$currentUser = 'localhost'; // For example, 'localhost' is logged in
+$currentUser = 'live'; // For example, 'localhost' is logged in
 
 // Set configuration based on the current user
 define('BASEURL', $configs[$currentUser]['BASEURL']);

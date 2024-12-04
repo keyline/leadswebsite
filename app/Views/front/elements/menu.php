@@ -3,19 +3,22 @@
         <div class="row align-items-center">
             <div class="col-lg-3 col-md-4 col-sm-6 col-6">
                 <div class="headlogo"><a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url('public/assets/img/') ?>/logo.png" alt="logo"></a></div>
-                
+
             </div>
             <div class="col-lg-9 col-md-8 col-sm-6 col-6">
                 <div class="head_top_right">
                     <ul class="head_social">
-                        <?php if(!empty ($site_setting->facebook_link)){ ?>
-                        <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
-                        <? } if(!empty ($site_setting->twitter_link)) { ?>
-                        <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
-                        <?php } if(!empty ($site_setting->youtube_link)) { ?>
-                        <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
-                        <?php } if(!empty ($whatsapp_link)) { ?>
-                        <li><a href="<?= $whatsapp_link ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                        <?php if (!empty($site_setting->facebook_link)) { ?>
+                            <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <?php }
+                        if (!empty($site_setting->twitter_link)) { ?>
+                            <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <?php }
+                        if (!empty($site_setting->youtube_link)) { ?>
+                            <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                        <?php }
+                        if (!empty($whatsapp_link)) { ?>
+                            <li><a href="<?= $whatsapp_link ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                         <?php } ?>
                     </ul>
                 </div>
@@ -79,7 +82,7 @@
                     <li>
                         <span class="without_melink">Reach Us</span>
 
-                        <ul>                            
+                        <ul>
                             <li><a href="<?= base_url('/career') ?>">Career</a></li>
                             <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                         </ul>
@@ -89,12 +92,13 @@
                         <ul>
                             <li><a href="<?= base_url('/amc-policy') ?>">AMC</a></li>
                             <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
+                            <li><a href="<?= base_url('/registration') ?>">Product Registration</a></li>
                             <li><a href="<?= base_url('/return-policy') ?>">Return Policy</a></li>
                             <!-- <li><a href="#">Service Policy</a></li> -->
                             <?php foreach ($contents as $key => $page) { ?>
                                 <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
                             <?php }  ?>
-                            
+
                         </ul>
                     </li>
                 </ul>
@@ -121,12 +125,12 @@
                 <ul>
                     <?php foreach ($product_menu as $key => $category) { ?>
                         <li><a href="<?= base_url() ?>/product/<?= $category->slug ?>"><?= $category->name ?></a></li>
-                    <?php } ?>                    
+                    <?php } ?>
                 </ul>
             </li>
             <li>
                 <!-- <a href="#">Media</a> -->
-                
+
                 <span class="without_melink">Media</span>
                 <ul>
                     <?php foreach (MEDIA_CATEGORIES as $key => $media) {
@@ -148,12 +152,12 @@
                     <?php }  ?>
                 </ul>
             </li>
-            <li><a href="<?=base_url() ?>/distributor">Become A Distributor</a></li>
+            <li><a href="<?= base_url() ?>/distributor">Become A Distributor</a></li>
             <li><a href="<?= base_url() ?>/blog">Blog</a></li>
             <li>
                 <!-- <a href="#">Reach Us</a> -->
                 <span class="without_melink">Reach Us</span>
-                <ul>                    
+                <ul>
                     <li><a href="<?= base_url('/career') ?>">Career</a></li>
                     <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
                 </ul>
@@ -164,10 +168,12 @@
                 <ul>
                     <li><a href="<?= base_url('/amc-policy') ?>">AMC</a></li>
                     <!-- <li><a href="#">Service Policy</a></li> -->
+                    <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
+                    <li><a href="<?= base_url('/registration') ?>">Product Registration</a></li>
+                    <li><a href="<?= base_url('/return-policy') ?>">Return Policy</a></li>
                     <?php foreach ($contents as $key => $page) { ?>
                         <li><a href="<?= base_url() ?>/page/<?= $page->slug ?>"><?= $page->title ?></a></li>
                     <?php }  ?>
-                    <li><a href="<?= base_url('/service') ?>">Enquiry & Service Request</a></li>
                 </ul>
             </li>
         </ul>
