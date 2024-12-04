@@ -863,9 +863,11 @@ span.without_melink {
     text-decoration: none;
 }
 .home_product_cat_icon{
-    width: 50px;
-    filter: brightness(0);
-    opacity: .9;
+    width: 100%;
+    max-width: 50px;
+    /* filter: brightness(0); */
+    /* opacity: .9; */
+    height: 45px;
 }
 /* home_about_section css */
 .home_about_section{
