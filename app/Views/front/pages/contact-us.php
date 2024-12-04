@@ -19,9 +19,9 @@
 <section class="contact_section">
 	<div class="container">
 		<div class="row justify-content-center">
-			<div class="col-md-12">
+			<!-- <div class="col-md-12">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58916.47387804551!2d88.36018915820313!3d22.643361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8a1362e4125df%3A0x5c4bc4b5cd9f4737!2sLEADS%20OVERSEAS%20PVT%20LTD%20-%20MADHYAMGRAM%2C%20KOLKATA!5e0!3m2!1sen!2sin!4v1730718239387!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
-			</div>
+			</div> -->
 			<div class="col-md-6">
 				<div class="contact_innerbox">
 					<div class="cont_title">Head Office & Warehouse</div>
@@ -53,6 +53,7 @@
 						<div class="cont_info_item">
 							<div class="cont_it_icon"><i class="fa-solid fa-envelope"></i></div>
 							<div class="cont_in_text">
+								<strong>Please write us:</strong>
 								<!-- <a href="#">leadsindia.net@gmail.com</a>, <a href="#">info@leadsindia.net</a> -->
 								<?php if (count($admin_mails)) {
 									$totalNumbers = count($admin_mails);
@@ -67,6 +68,7 @@
 							</div>
 						</div>
 					</div>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58916.47387804551!2d88.36018915820313!3d22.643361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8a1362e4125df%3A0x5c4bc4b5cd9f4737!2sLEADS%20OVERSEAS%20PVT%20LTD%20-%20MADHYAMGRAM%2C%20KOLKATA!5e0!3m2!1sen!2sin!4v1730718239387!5m2!1sen!2sin" width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
 			<div class="col-md-6">
@@ -84,21 +86,26 @@
 								<a href="tel:"><?= $site_setting->office_no ?></a>
 							</div>
 						</div>
-
+						<div class="cont_info_item">
+							<div class="cont_it_icon"><i class="fa-solid fa-globe"></i></div>
+							<div class="cont_in_text"><a href="#"><?= $site_setting->site_url ?></a></div>
+						</div>
 						<div class="cont_info_item">
 							<div class="cont_it_icon"><i class="fa-solid fa-envelope"></i></div>
-							<div class="cont_in_text"><strong>Please write us for any Suggestion / complains at :</strong><br>
+							<div class="cont_in_text"><strong>Please write us:</strong>
 								<!-- <a href="#">customerservice@leadsindia.net</a> -->
 								<a href="#"><?=$site_setting->service_email?></a>
 							</div>
 						</div>
+
 					</div>
+					<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3563.2907698870054!2d88.4314098445253!3d26.735095712183888!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39e4410b4a93b637%3A0xff9c5aeb5b420f42!2sLeads%20Kitchen%20Chimney%20%26%20RO%20Water%20Purifier%20Siliguri!5e0!3m2!1sen!2sin!4v1733312053560!5m2!1sen!2sin" width="600" height="250" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
 				</div>
 			</div>
 
-			<div class="col-md-12">
+			<!-- <div class="col-md-12">
 				<a class="cont_btn" href="#home_enquiry">SEND ENQUIRY SERVICE REQUEST</a>
-			</div>
+			</div> -->
 		</div>
 	</div>
 </section>

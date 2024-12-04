@@ -27,7 +27,8 @@
 <section class="contact_section">
     <div class="container">
         <div class="row justify-content-center">
-            In Quality and after sale service: LEADS has a long experience in the field of Domestic water purifier & commercial water treatment plant as well as a strong setup also prepared to provide prompt and proper after sales service in kitchen chimneys and others home appliances section. We are very much conscious about quality, always prefer to use good companies components like ,PHILIPS, DOW,CSM, KEMFLOW, GADSON, and others reputed brand of INDIA and aboard. We have a highly skilled and qualified service engineer and development team. A highly motivated and technically sound service engineers are always ready to provide after sale service.
+        After-Sales Service,<br>
+        At Leads Overseas Pvt. Ltd., your satisfaction doesn’t end with your purchase. Our expert team ensures seamless installation, prompt maintenance, and reliable troubleshooting for all our products. With quick response times, skilled technicians, genuine spare parts, and comprehensive warranty support, we’re always ready to serve you. Experience hassle-free after-sales care with Leads—because your peace of mind is our top priority!
         </div>
         <br>
         <?php if ($session->getFlashdata('success_message')) { ?>
@@ -42,7 +43,7 @@
         <?php } ?>
         <br>
         <div class="row">
-            <div class="col-md-12">Dealership Enquiry</div>
+            <!-- <div class="col-md-12">Dealership Enquiry</div> -->
 
             <div class="col-md-12">
                 <div class="form_style">
@@ -128,13 +129,13 @@
                             <p class="text-danger error" id="dealer_name-error"><?= session('errors.dealer_name') ?? '' ?></p>
                         </div>
 
-                        <div class="col-md-6">
+                        <div class="col-md-12">
                             <label for="input15" class="form-label">Dealer Phone No</label>
                             <input type="text" class="form-control" name="dealer_phone" id="input15" value="<?= old('dealer_phone') ?>">
                             <p class="text-danger error" id="dealer_phone-error"><?= session('errors.dealer_phone') ?? '' ?></p>
                         </div>
 
-                        <div class="col-md-6">
+                        <!-- <div class="col-md-6">
                             <label class="form-label">I am Interested to Work as</label>
                             <div class="form-check">
                                 <input class="form-check-input" type="radio" name="work_as" id="input17" value="stockist" <?= old('work_as') == 'stockist' ? 'checked' : '' ?>>
@@ -153,7 +154,7 @@
                                 <label class="form-check-label" for="input20">Retailer</label>
                             </div>
                             <p class="text-danger error" id="work_as-error"><?= session('errors.work_as') ?? '' ?></p>
-                        </div>
+                        </div> -->
 
                         <div class="col-md-12">
                             <label for="input16" class="form-label">Comments</label>
