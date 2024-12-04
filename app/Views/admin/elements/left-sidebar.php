@@ -20,6 +20,7 @@
                     <li><a href="<?= base_url('admin/Manage_distributor_enquire/') ?>">Distributor Enquiry</a></li>
                     <li><a href="<?= base_url('admin/Manage_services') ?>">Service</a></li>
                     <li><a href="<?= base_url('admin/Manage_amc_enquire') ?>">AMC Enquiry</a></li>
+                    <li><a href="<?= base_url('admin/Manage_product_registration') ?>">Product Registrations</a></li>
                 </ul>
             </li>
 
