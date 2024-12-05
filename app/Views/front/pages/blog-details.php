@@ -28,9 +28,8 @@
 
                           <ul class="blog_meta">
                               <li><i class="fa-solid fa-user"></i> <?= $blog->post_by ?></li>
-                              <li><i class="fa-regular fa-calendar-days"></i><?= (new DateTime($blog->created_at))->format('F jS, Y') ?></li>
-                              <li><i class="fa-regular fa-clock"></i><?= (new DateTime($blog->created_at))->format('h.m A') ?></li>
-
+                              <li><i class="fa-regular fa-calendar-days"></i><?= (new DateTime($blog->content_date))->format('F jS, Y') ?></li>
+                              <li><i class="fa-regular fa-clock"></i><?= (new DateTime($blog->content_date))->format('h.m A') ?></li>
                           </ul>
 
                           <div class="blogdetails_fullimage">
@@ -123,7 +122,7 @@
                                           <div class="blogitem_detials">
 
                                               <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                                  <span class="ps-2"><?= (new DateTime($relatedBlog->created_at))->format('M j, Y') ?></span> | <span class="pe-2"><?= $relatedBlog->category_name  ?></span> | <span class="ps-2"><?= $relatedBlog->post_by ?></span>
+                                                  <span class="ps-2"><?= (new DateTime($relatedBlog->content_date))->format('M j, Y') ?></span> | <span class="pe-2"><?= $relatedBlog->category_name  ?></span> | <span class="ps-2"><?= $relatedBlog->post_by ?></span>
                                               </p>
                                               <h3><?= truncateText($relatedBlog->title,50) ?></h3>
                                               <p class="shortdes"> <?= truncateText($relatedBlog->short_description,70); ?> <span class="u-text-primary">read more</span></p>

@@ -48,7 +48,7 @@
                                         <li><?= $blog->category_name ?></li>
                                     </ul>
                                     <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                        <span class="ps-2"><?= (new DateTime($blog->created_at))->format('M j, Y') ?></span> | <span class="ps-2"><?= $blog->post_by ?></span> | <span class="pe-2"><?= (new DateTime($blog->created_at))->format('h.m A') ?></span>
+                                        <span class="ps-2"><?= (new DateTime($blog->content_date))->format('M j, Y') ?></span> | <span class="ps-2"><?= $blog->post_by ?></span> | <span class="pe-2"><?= (new DateTime($blog->created_at))->format('h.m A') ?></span>
                                     </p>
                                     <h3><?= truncateText($blog->title,50)?></h3>
                                     <p class="shortdes"><?= truncateText($blog->short_description,70); ?></p>

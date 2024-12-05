@@ -21,7 +21,7 @@
                                                 <h4> <?= $blog->title ?> <a href="<?php echo base_url('blog-details/' . $blog->slug); ?>" class="blog-read-more">Read More</a></h4>
                                                 <ul class="admin-info-list">
                                                     <li>By <a href="" onclick="event.preventDefault();"> <?= $blog->post_by ?> </a></li>
-                                                    <li> <?= (new DateTime($blog->created_at))->format('F jS, Y') ?> </li>
+                                                    <li> <?= (new DateTime($blog->content_date))->format('F jS, Y') ?> </li>
                                                     <li><a href="" onclick="event.preventDefault();"><?= $blog->category_name ?></a></li>
                                                 </ul>
                                             </div>
