@@ -255,6 +255,7 @@ $db = \Config\Database::connect();
                                                             </div>
                                                             <div class="swiper-pagination"></div>
                                                         </div>
+                                                        <?php if(count(json_decode($product->warrenty_section))){ ?>   
                                                         <div class="other_info_box">
                                                             <ul class="d-flex justify-content-center">
                                                                 <?php foreach (json_decode($product->warrenty_section) as $warrenty_section) { ?>
@@ -270,6 +271,7 @@ $db = \Config\Database::connect();
                                                                 <?php } ?>
                                                             </ul>
                                                         </div>
+                                                        <?php } ?>
                                                     </div>
                                                 </a>
                                             </div>
