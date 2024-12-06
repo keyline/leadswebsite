@@ -423,6 +423,11 @@ body.abrido a#burger {
     top: 0;
     text-align: center;
 }
+.home_banner_slider_holder3 .home_slider_info .home_silder_imginner,
+.home_banner_slider_holder2 .home_banner_slider_product,
+.home_banner_slider_holder4 .home_banner_slider_product{
+    width: 60%;
+}
 .home_banner_slider_holder3 .home_slider_info{
     margin-top: 20px;
 }

@@ -322,6 +322,7 @@ body.abrido .hide_notshow_normal {
 .full_menu_flex {
     display: flex;
     flex-wrap: wrap;
+    height: 100vh;
 }
 .full_menu_flex .fullsreen_menu {
     width: 33%;
