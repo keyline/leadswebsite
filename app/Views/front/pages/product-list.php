@@ -97,7 +97,9 @@
                 </div>                
             <?php endforeach;?>            
         </div>
+        <?php if(count($product) > 4) {?>
         <button id="load_more_btn" style="float: right;background-color:#ed1c24;border: tomato;" class="btn btn-primary">Load More</button>
+        <?php } ?>
         <div id="loading" style="display: none;text-align: center;">
 
             <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
