@@ -649,8 +649,7 @@ body.abrido .hide_notshow_normal {
 }
 .product_item img{
     margin: 10px 0 35px;
-    height: 150px;
-    object-fit: cover;
+    height: 160px;
 }
 .other_info_box{
     background: #efefef;

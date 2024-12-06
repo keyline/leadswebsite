@@ -16,9 +16,9 @@
 
 /*PC VERSION*/
 @media screen and (max-width: 1200px) {
-    .headlogo img {
+    /* .headlogo img {
         max-width: 100%;
-    }
+    } */
     .inner_banner_distributor {
         background: url(../img/distub_banner.jpg) no-repeat;
         background-position: center;
@@ -195,7 +195,9 @@ body.abrido a#burger {
     width: 80%;
     min-height: auto;
 }
-.head_roationlogo{display:none;}
+.head_roationlogo img{
+    width: 55px;
+}
 .home_banner_slider_holder3 .home_slider_info .home_silder_imginner {
     width: 70%;
 }
@@ -228,6 +230,10 @@ body.abrido a#burger {
 /*MOBILE VERSION*/
 @media screen and (max-width: 767px) {
 /* .hideon_tab{display: none !important;} */
+.head_roationlogo {
+    top: 6px;
+    left: 173px;
+}
 .home_video iframe {
     width: 80%;
     min-height: 100%;
