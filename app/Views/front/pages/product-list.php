@@ -193,21 +193,24 @@
                     });
 
                     productHtml += `</div><div class="swiper-pagination"></div></div>`;
-                    productHtml += `<div class="other_info_box">
-                        <ul class="d-flex justify-content-center">`;
-                    
-                    product.warrenty_section = JSON.parse(product.warrenty_section); 
-                    product.warrenty_section.forEach(warranty => {
-                        if (warranty == 'warrenty') {
-                            productHtml += `<li><img src="<?= base_url('public/assets/img/warenty.svg') ?>" alt="" class="img-fluid"></li>`;
-                        } else if (warranty == 'motion_sensor') {
-                            productHtml += `<li><img src="<?= base_url('public/assets/img/hand.svg') ?>" alt="" class="img-fluid"></li>`;
-                        } else if (warranty == 'isa_technology') {
-                            productHtml += `<li><img src="<?= base_url('public/assets/img/isa.svg') ?>" alt="" class="img-fluid"></li>`;
-                        }
-                    });
+                    if(product.warrenty_section){
+                        productHtml += `<div class="other_info_box">
+                            <ul class="d-flex justify-content-center">`;
+                        
+                        product.warrenty_section = JSON.parse(product.warrenty_section); 
+                        product.warrenty_section.forEach(warranty => {
+                            if (warranty == 'warrenty') {
+                                productHtml += `<li><img src="<?= base_url('public/assets/img/warenty.svg') ?>" alt="" class="img-fluid"></li>`;
+                            } else if (warranty == 'motion_sensor') {
+                                productHtml += `<li><img src="<?= base_url('public/assets/img/hand.svg') ?>" alt="" class="img-fluid"></li>`;
+                            } else if (warranty == 'isa_technology') {
+                                productHtml += `<li><img src="<?= base_url('public/assets/img/isa.svg') ?>" alt="" class="img-fluid"></li>`;
+                            }
+                        });
 
-                    productHtml += `</ul></div></div></a></div>`;
+                        productHtml += `</ul></div>`;
+                    }
+                    productHtml += `</div></a></div>`;
                 });
 
                 $('#product_list').append(productHtml);
