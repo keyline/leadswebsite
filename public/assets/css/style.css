@@ -2878,7 +2878,12 @@ span.office-briefcase {
     transform: scale(0.9);
     will-change: opacity, transform;
   }
+
   #home-section-4 iframe {
+    width: 80%;
+    min-height: 100%;
+}
+#home-section-4 video {
     width: 80%;
     min-height: 100%;
 }

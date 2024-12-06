@@ -345,11 +345,14 @@ $db = \Config\Database::connect();
     <div class="text-line">Meets</div>
     <div class="text-line">Style</div>
     <div class="video-container">
-        <iframe src="https://www.youtube.com/embed/Vw7FQ4FaRKc?si=029kv4bemvaYcHFG" 
+        <!-- <iframe src="https://www.youtube.com/embed/Vw7FQ4FaRKc?si=029kv4bemvaYcHFG" 
                 title="YouTube video player" 
                 allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
                 allowfullscreen>
-        </iframe>
+        </iframe> -->
+        <video controls>
+            <source src="<?= base_url('public/') ?>/assets/img/home_video.mp4" type="video/mp4">
+        </video>
     </div>
 </section>
 <!-- <section class="home_video hideon_desktop ">
