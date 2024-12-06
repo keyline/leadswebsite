@@ -193,11 +193,11 @@
                     });
 
                     productHtml += `</div><div class="swiper-pagination"></div></div>`;
+                    product.warrenty_section = JSON.parse(product.warrenty_section);
                     if(product.warrenty_section){
                         productHtml += `<div class="other_info_box">
-                            <ul class="d-flex justify-content-center">`;
-                        
-                        product.warrenty_section = JSON.parse(product.warrenty_section); 
+                            <ul class="d-flex justify-content-center">`;                        
+                         
                         product.warrenty_section.forEach(warranty => {
                             if (warranty == 'warrenty') {
                                 productHtml += `<li><img src="<?= base_url('public/assets/img/warenty.svg') ?>" alt="" class="img-fluid"></li>`;
