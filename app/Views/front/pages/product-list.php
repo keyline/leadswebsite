@@ -77,6 +77,7 @@
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
+                            <?php if(!empty(json_decode($product_list->warrenty_section))) { ?>
                             <div class="other_info_box">
                                 <ul class="d-flex justify-content-center">
                                     <?php foreach(json_decode($product_list->warrenty_section) as $warrenty_section) { ?>                                                    
@@ -92,6 +93,7 @@
                                     <?php } ?>  
                                 </ul>
                             </div>
+                            <?php } ?>
                         </div>
                     </a>
                 </div>                
