@@ -97,7 +97,7 @@
                 </div>                
             <?php endforeach;?>            
         </div>
-        <?php if(count($product) > 4) {?>
+        <?php pr(count($product)); if(count($product) > 4) {?>
         <button id="load_more_btn" style="float: right;background-color:#ed1c24;border: tomato;" class="btn btn-primary">Load More</button>
         <?php } ?>
         <div id="loading" style="display: none;text-align: center;">
