@@ -194,7 +194,7 @@
 
                     productHtml += `</div><div class="swiper-pagination"></div></div>`;
                     product.warrenty_section = JSON.parse(product.warrenty_section);
-                    if(product.warrenty_section){
+                    if(!empty(product.warrenty_section)){
                         productHtml += `<div class="other_info_box">
                             <ul class="d-flex justify-content-center">`;                        
                          
