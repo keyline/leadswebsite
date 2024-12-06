@@ -77,8 +77,9 @@
                                 </div>
                                 <div class="swiper-pagination"></div>
                             </div>
-                            <?php if(!empty(json_decode($product_list->warrenty_section))) { ?>
-                            <div class="other_info_box">
+                            <?php if(count(json_decode($product_list->warrenty_section))){?>   
+                                
+                                <div class="other_info_box">
                                 <ul class="d-flex justify-content-center">
                                     <?php foreach(json_decode($product_list->warrenty_section) as $warrenty_section) { ?>                                                    
                                     <li> 
@@ -93,7 +94,9 @@
                                     <?php } ?>  
                                 </ul>
                             </div>
-                            <?php } ?>
+                                
+                                <?php } ?>
+                            
                         </div>
                     </a>
                 </div>                
@@ -193,23 +196,31 @@
                     });
 
                     productHtml += `</div><div class="swiper-pagination"></div></div>`;
-                    product.warrenty_section = JSON.parse(product.warrenty_section);
-                    if(product.warrenty_section.length > 0){
-                        productHtml += `<div class="other_info_box">
-                            <ul class="d-flex justify-content-center">`;                        
-                         
-                        product.warrenty_section.forEach(warranty => {
-                            if (warranty == 'warrenty') {
-                                productHtml += `<li><img src="<?= base_url('public/assets/img/warenty.svg') ?>" alt="" class="img-fluid"></li>`;
-                            } else if (warranty == 'motion_sensor') {
-                                productHtml += `<li><img src="<?= base_url('public/assets/img/hand.svg') ?>" alt="" class="img-fluid"></li>`;
-                            } else if (warranty == 'isa_technology') {
-                                productHtml += `<li><img src="<?= base_url('public/assets/img/isa.svg') ?>" alt="" class="img-fluid"></li>`;
-                            }
-                        });
+                    product.warrenty_section = JSON.parse(product.warrenty_section); 
+                   
+if(Array.isArray(product.warrenty_section) && product.warrenty_section.length){
+    productHtml += `<div class="other_info_box">
+                        <ul class="d-flex justify-content-center">`;
+                    product.warrenty_section.forEach(warranty => {
+                        if (warranty == 'warrenty') {
+                            productHtml += `<li><img src="<?= base_url('public/assets/img/warenty.svg') ?>" alt="" class="img-fluid"></li>`;
+                        } else if (warranty == 'motion_sensor') {
+                            productHtml += `<li><img src="<?= base_url('public/assets/img/hand.svg') ?>" alt="" class="img-fluid"></li>`;
+                        } else if (warranty == 'isa_technology') {
+                            productHtml += `<li><img src="<?= base_url('public/assets/img/isa.svg') ?>" alt="" class="img-fluid"></li>`;
+                        }
+                    });
+                    productHtml += `</ul></div>`;
+}
+                     
+                       
 
-                        productHtml += `</ul></div>`;
-                    }
+
+                 
+
+
+
+                    
                     productHtml += `</div></a></div>`;
                 });
 
