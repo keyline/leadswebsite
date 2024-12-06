@@ -368,6 +368,7 @@ class Frontend extends BaseController
         $page_name                  = 'blog-list';
 
         $data['recentBlog']         = $this->getNewBlogs(3);
+        $data['Blog_count']         = $this->getNewBlogs();
 
         echo $this->front_layout($title, $page_name, $data);
     }
