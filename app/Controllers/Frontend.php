@@ -78,7 +78,7 @@ class Frontend extends BaseController
             $conditions['blogs.id !='] = $blogId; // Exclude this blog ID
         }
         $select = 'blogs.*, blog_category.name AS category_name';
-        $order_by = [['field' => 'blogs.created_at', 'type' => 'DESC']];
+        $order_by = [['field' => 'blogs.content_date', 'type' => 'DESC']];
 
         $latestBlogs = $this->common_model->find_data(
             'blogs',             // Table name
@@ -153,7 +153,7 @@ class Frontend extends BaseController
         }
 
         $select = 'blogs.*, blog_category.name AS category_name';
-        $order_by = [['field' => 'blogs.created_at', 'type' => 'DESC']];
+        $order_by = [['field' => 'blogs.content_date', 'type' => 'DESC']];
 
         $latestItems = $this->common_model->find_data(
             'blogs',
@@ -174,7 +174,6 @@ class Frontend extends BaseController
 
     public function index()
     {
-
         $data                       = [];
 
         $title                      = 'Home';
@@ -443,7 +442,7 @@ class Frontend extends BaseController
                                 <li><?= $blog->category_name ?></li>
                             </ul>
                             <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                <span class="ps-2"><?= (new \DateTime($blog->created_at))->format('M j, Y') ?></span> | <span class="ps-2"><?= $blog->post_by ?></span> | <span class="pe-2"><?= (new \DateTime($blog->created_at))->format('h.m A') ?></span>
+                                <span class="ps-2"><?= (new \DateTime($blog->content_date))->format('M j, Y') ?></span> | <span class="ps-2"><?= $blog->post_by ?></span> | <span class="pe-2"><?= (new \DateTime($blog->created_at))->format('h.m A') ?></span>
                             </p>
                             <h3><?= truncateText($blog->title, 50) ?></h3>
                             <p class="shortdes"><?= truncateText($blog->short_description, 70) ?></p>
@@ -1098,7 +1097,7 @@ class Frontend extends BaseController
 
         $order_by = [['field' => 'sort', 'type' => 'ASC']];
 
-        $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1],'','','',$order_by);
+        $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1], '', '', '', $order_by);
 
 
         if ($this->request->getMethod() === 'post') {

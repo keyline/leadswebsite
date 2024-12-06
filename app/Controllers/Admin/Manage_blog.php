@@ -112,6 +112,8 @@ class Manage_blog extends BaseController
 
             // Data processing and insertion if validation passed
             try {
+                $postData['title'] =   mb_convert_encoding($postData['title'], 'UTF-8', 'auto');
+
                 $fields1 = [
                     'blog_category'             => $postData['blog_category'],
                     'title'                     => $postData['title'],
@@ -210,6 +212,8 @@ class Manage_blog extends BaseController
 
             // Data processing and insertion if validation passed
             try {
+                $postData['title'] =   mb_convert_encoding($postData['title'], 'UTF-8', 'auto');
+
                 $fields1 = [
                     'blog_category'             => $postData['blog_category'],
                     'title'                     => $postData['title'],

@@ -97,7 +97,8 @@ define('SMTP_USER', 'no-reply@leadsdev.keylines.net.in');
 define('SMTP_PASS', 'cX?9C(REdqM,');
 define('SMTP_PORT', 465);
 
-// Define configurations for different users
+
+// Define configurations for different users 
 $configs = [
     'laragon' => [
         'BASEURL' => 'https://leadswebsite.test/',
@@ -109,7 +110,7 @@ $configs = [
         'BASEURL' => 'http://localhost/leadswebsite/',
         'USERNAME' => 'root',
         'PASSWORD' => '',
-        'DATABASE' => 'keyline_leads'
+        'DATABASE' => 'keyline1_leadsdev'
     ],
     'live' => [
         'BASEURL' => 'https://leadsdev.keylines.net.in/',
