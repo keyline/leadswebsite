@@ -31,7 +31,7 @@ class Manage_blog extends BaseController
     {
         $session = \Config\Services::session();
         if (!$session->get('is_admin_login')) {
-            return redirect()->to('/Administrator');
+            return redirect()->to('/admin');
         }
         $model = new CommonModel();
         $this->data = array(
