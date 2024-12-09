@@ -47,7 +47,7 @@
             <form id="warranty_registration_form" method="POST" enctype="multipart/form-data" action="">
                 <!-- Step 1: Customer Information -->
                 <div class="step-1">
-                    <h3>Get Your 10% OFF Coupon!</h3>
+                    <h3>🎉Get Your 10% OFF Coupon!🎉</h3>
                     <p>Fill out the form below and receive your unique code instantly, Show your nearest Leads dealer & enjoy the discount.</p>
                     <div class="row g-3">
                         <div class="col-md-6">
@@ -71,7 +71,7 @@
                 <div class="mt-5 text-end">
                     <input type="hidden" name="recaptcha_token" id="recaptcha_token">
                     <!-- g-recaptcha -->
-                    <button class="btn btn-primary g-recaptcha " data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit1'>Submit</button>
+                    <button class="btn btn-primary g-recaptcha " data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit1'>Generate My Coupon</button>
                 </div>
 
             </form>
