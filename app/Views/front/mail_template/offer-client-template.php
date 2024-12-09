@@ -63,28 +63,10 @@
 
 <body>
     <div class="container">
-        <h1>Offer Enquiry for <?= htmlspecialchars($full_name) ?></h1>
+        <h1>Promocode Details</h1>
         <img class="destination-image" src="<?php echo base_url('uploads/'.$site_setting->site_logo); ?>" alt="Destination Image">
-        <p>Hello Leadsindia,</p>
-        <br>
-        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
-            <tr>
-                <td><strong>Name:</strong></td>
-                <td><?= htmlspecialchars($full_name) ?></td>
-            </tr>
-            <tr>
-                <td><strong>Email:</strong></td>
-                <td><?= htmlspecialchars($email_address) ?></td>
-            </tr>            
-            <tr>
-                <td><strong>Phone:</strong></td>
-                <td><?= htmlspecialchars($phone_number) ?></td>
-            </tr>
-            <tr>
-                <td><strong>Promocode:</strong></td>
-                <td><?=  $promo_code ?></td>
-            </tr>            
-        </table>
+        <p>Hello <?= htmlspecialchars($full_name) ?>,</p>
+        <p>Thank you for your inquiry. We are pleased to offer you a 10% discount with the promocode: <?=$promo_code?>.</p>        
 
         <p class="footer">Best regards,<br><?= htmlspecialchars($full_name) ?></p>
     </div>
