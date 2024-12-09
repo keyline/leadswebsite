@@ -1295,22 +1295,14 @@ class Frontend extends BaseController
                 ];
                 // pr($formData);
 
-                $insert_id = $this->common_model->save_data('product_registration', $formData);
-
-                if ($insert_id) {
-                    foreach ($data['productCategory'] as $item) {
-                        if ($item->id == $postData['product_type']) {
-                            $formData['products'] = $item->name;
-                            break;
-                        }
-                    }
+                // $insert_id = $this->common_model->save_data('product_registration', $formData);
+                
 
                     $body = view('Views/front/mail_template/offer-template', $formData);
 
                     $this->sendToAdmin('Offer Enquiry', $body, 'service', 'Leadsindia');
 
-                    $this->session->setFlashdata('success_message', 'Request send successfully');
-                }
+                    $this->session->setFlashdata('success_message', 'Request send successfully');                
             } else {
                 $this->session->setFlashdata('error_message', 'reCAPTCHA verification failed. Please try again.');
             }
