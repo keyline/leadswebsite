@@ -1297,7 +1297,7 @@ class Frontend extends BaseController
 
                 // $insert_id = $this->common_model->save_data('product_registration', $formData);
                 
-                $data['site_setting'] = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1]);
+                $formData['site_setting'] = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1]);
                     $body_admin = view('Views/front/mail_template/offer-template', $formData);
                     $body_client = view('Views/front/mail_template/offer-template', $formData);
 
