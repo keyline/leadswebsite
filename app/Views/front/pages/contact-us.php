@@ -18,7 +18,15 @@
 <!-- mission section start -->
 <section class="contact_section">
 	<div class="container">
-		
+		<div class="row">
+			<div class="col-md-6">
+				<div class="tollfree_innerbox">
+					<div class="tollfree_title">
+						<a href="tel: 1800-212-1200">Toll free - 1800-212-1200</a>
+					</div>
+				</div>												
+			</div>
+		</div>
 		<div class="row justify-content-center">
 			<!-- <div class="col-md-12">
 				<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d58916.47387804551!2d88.36018915820313!3d22.643361!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f8a1362e4125df%3A0x5c4bc4b5cd9f4737!2sLEADS%20OVERSEAS%20PVT%20LTD%20-%20MADHYAMGRAM%2C%20KOLKATA!5e0!3m2!1sen!2sin!4v1730718239387!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
