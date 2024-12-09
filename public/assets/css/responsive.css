@@ -577,7 +577,9 @@ ul.head_social {
     flex-wrap: wrap;
     justify-content: flex-start;
 }
-
+.hide_notshow_normal ul.head_social{
+    padding-right: 0;
+}
 }
 @media screen and (max-width: 360px) {
     .diskeyfe_downbtn a{font-size: 12px;}
