@@ -2266,11 +2266,15 @@ footer.footer {
 
 .tollfree_innerbox {
     /* background: #f3f3f3; */
-    padding: 50px;
+    padding-bottom: 30px;
     border-radius: 10px;
     min-height: 20px;
     /* margin-bottom: 25px; */
 }
+.tollfree_innerbox a{
+    text-decoration: none;
+}
+
 .tollfree_innerbox .tollfree_title {
     color: #ed1c24;
     font-size: 24px;
