@@ -1297,12 +1297,12 @@ class Frontend extends BaseController
 
                 // $insert_id = $this->common_model->save_data('product_registration', $formData);
                 
-
+                $data['site_setting'] = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1]);
                     $body_admin = view('Views/front/mail_template/offer-template', $formData);
                     $body_client = view('Views/front/mail_template/offer-template', $formData);
 
-                    $this->send('system@keylines.net', 'Leadsindia', 'Offer Enquiry', $body);
-                    $this->send($postData['email_address'], $postData['full_name'], 'Offer Enquiry', $body);
+                    $this->send('system@keylines.net', 'Leadsindia', 'Offer Enquiry', $body_admin);
+                    $this->send($postData['email_address'], $postData['full_name'], 'Offer Enquiry', $body_client);
 
                     $this->session->setFlashdata('success_message', 'Request send successfully');                
             } else {
