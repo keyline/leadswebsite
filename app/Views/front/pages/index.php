@@ -11,7 +11,7 @@ $db = \Config\Database::connect();
 
                         <!-- Kitchen Chimney -->
                         <div class="carousel-item active">
-                            <div class="home_banner_slider_holder home_banner_slider_holder1">
+                            <div class="home_banner_slider_holder home_banner_slider_holder1 desktop_banner">
                                 <div class="row vh-100">
                                     <div class="col-md-4 d-none d-md-block d-flex align-items-end ">
                                         <img src="<?= base_url('public/') ?>/assets/img/banner_new_lady1.png" alt=""
@@ -31,15 +31,19 @@ $db = \Config\Database::connect();
                                                             class="img-fluid long-arrow"></a>
                                                 </div>
                                             </div>
-
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                            <!-- mobile banner -->
+                            <a href="<?= base_url('/product/kitchen-chimney') ?>" class="mobile_banner">
+                                    <img src="<?= base_url('public/') ?>/assets/img/leads_m_banner1.webp" alt=""
+                                class="img-fluid">
+                            </a>
                         </div>
                         <!-- ai Kitchen Chimney -->
                         <div class="carousel-item">
-                            <div class="home_banner_slider_holder home_banner_slider_holder2">
+                            <div class="home_banner_slider_holder home_banner_slider_holder2 desktop_banner">
                                 <div class="row vh-100">
                                     <div class="col-md-5 d-none d-md-block d-flex align-items-end ">
                                         <img src="<?= base_url('public/') ?>/assets/img/banner_ai_model.webp" alt=""
@@ -63,12 +67,16 @@ $db = \Config\Database::connect();
                                     </div>
                                 </div>
                             </div>
+                            <!-- mobile banner -->
+                            <a href="<?= base_url('/product/kitchen-chimney') ?>" class="mobile_banner">
+                                    <img src="<?= base_url('public/') ?>/assets/img/leads_m_banner2.webp" alt=""
+                                class="img-fluid">
+                            </a>
                         </div>
                         <!-- Pure Water -->
                         <div class="carousel-item">
-                            <div class="home_banner_slider_holder home_banner_slider_holder3">
+                            <div class="home_banner_slider_holder home_banner_slider_holder3 desktop_banner">
                                 <div class="row justify-content-center vh-100">
-
                                     <div class="col-lg-8 col-md-10">
                                         <div class="home_slider_info">
                                             <div class="home_silder_imginner">
@@ -93,10 +101,14 @@ $db = \Config\Database::connect();
                                     </div> -->
                                 </div>
                             </div>
+                            <!-- mobile banner -->
+                            <a href="<?= base_url('/product/ro-water-purifier') ?>" class="mobile_banner">
+                                <img src="<?= base_url('public/') ?>/assets/img/leads_m_banner3.webp" alt="" class="img-fluid">
+                            </a>
                         </div>
                         <!-- Cook Top -->
                         <div class="carousel-item">
-                            <div class="home_banner_slider_holder home_banner_slider_holder4">
+                            <div class="home_banner_slider_holder home_banner_slider_holder4 desktop_banner">
                                 <div class="row justify-content-center align-items-center vh-100">
                                     <div class="col-lg-10 col-md-10">
                                         <div class="home_slider_info">
@@ -122,8 +134,13 @@ $db = \Config\Database::connect();
                                         <img src="<?= base_url('public/') ?>/assets/img/banner_4_human.png" alt=""
                                             class="img-fluid home_banner_model animated fadeInLeft delay-1">
                                     </div> -->
+                                    <!-- mobile banner -->
                                 </div>
                             </div>
+                            <a href="<?= base_url('/product/cook-tops-hob-tops') ?>" class="mobile_banner">
+                                <img src="<?= base_url('public/') ?>/assets/img/leads_m_banner4.webp" alt=""
+                        class="img-fluid">
+                            </a>
                         </div>
                     </div>
 

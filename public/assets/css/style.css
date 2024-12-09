@@ -670,6 +670,9 @@ span.without_melink {
     padding-bottom: 25px;
 }
 
+.mobile_banner{
+    display: none;
+}
 /* ********|| BANNER ENDS ||******** */
 /* ********|| Home about STARTS ||******** */
 /* home_product_section css */
@@ -927,6 +930,9 @@ span.without_melink {
 }
 .about_more_box h4{
     font-size: 54px;
+    margin-bottom: 0;
+    line-height: 26px;
+    margin-top: 15px
 }
 .about_more_box p{
     font-size: 24px;
