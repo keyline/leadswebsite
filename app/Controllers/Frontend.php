@@ -1253,7 +1253,7 @@ class Frontend extends BaseController
         if ($this->request->getMethod() === 'post') {
 
             $postData = $this->request->getPost();
-            pr($postData);        
+            // pr($postData);        
 
             $rule = [
                 'full_name' => [
@@ -1267,60 +1267,7 @@ class Frontend extends BaseController
                 'phone_number' => [
                     'rules' => 'required|numeric|regex_match[/^[0-9]{10,15}$/]',
                     'label' => 'Phone Number'
-                ],
-                'street_address' => [
-                    'rules' => 'permit_empty|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                    'label' => 'Street Address'
-                ],
-                'city' => [
-                    'rules' => 'permit_empty|min_length[3]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                    'label' => 'City'
-                ],
-                'state' => [
-                    'rules' => 'permit_empty|max_length[100]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                    'label' => 'State'
-                ],
-                'zip_code' => [
-                    'rules' => 'permit_empty|min_length[6]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                    'label' => 'Zip code'
-                ],
-                'country' => [
-                    'rules' => 'permit_empty|min_length[2]|max_length[100]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                    'label' => 'Country'
-                ],
-                'product_type' => [
-                    'rules' => 'permit_empty',
-                    'label' => 'Product type'
-                ],
-                'model_number' => [
-                    'rules' => 'permit_empty',
-                    'label' => 'Model number'
-                ],
-                'serial_number' => [
-                    'rules' => 'required',
-                    'label' => 'Serial Number'
-                ],
-                'date_of_purchase' => [
-                    'rules' => 'permit_empty|valid_date[Y-m-d]',
-                    'label' => 'Purchase Date'
-                ],
-                'place_of_purchase' => [
-                    'rules' => 'permit_empty|min_length[2]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                    'label' => 'Dealer Name'
-                ],
-                'invoice_number' => [
-                    'rules' => 'permit_empty|min_length[2]|max_length[255]|regex_match[/^(?!.*<script.*?>).*$/i]',
-                    'label' => 'Invoice Number'
-                ],
-
-                'purchase_invoice' => [
-                    'rules' => 'max_size[purchase_invoice,1024]|mime_in[purchase_invoice,application/pdf,image/jpg,image/jpeg,image/png]',
-                    'label' => 'Purchase Invoice'
-                ],
-                'barcode_photo' => [
-                    'rules' => 'max_size[barcode_photo,1024]|mime_in[barcode_photo,image/jpg,image/jpeg,image/png]',
-                    'label' => 'Barcode Photo'
-                ]
+                ]                
 
                 // 'recaptcha_token' => [
                 //     'rules' => 'required',
@@ -1333,34 +1280,20 @@ class Frontend extends BaseController
                 // 
             } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
                 $this->common_model = new CommonModel();
-                $purchase_invoice = $barcode_photo = null;
-
-                /* image upload */
-
-                $purchase_invoice =  $this->uploadFile('purchase_invoice', 'purchase_invoice');
-
-                $barcode_photo = $this->uploadFile('barcode_photo', 'barcode_photo');
-
-                /* image upload */
+                /*promocode generate*/
+                // Generate a random 6-character alphanumeric string
+                $random_str = strtoupper(bin2hex(random_bytes(3)));
+                // Combine prefix and random string
+                $promo_code = 'Lead' . $random_str;
+                /*promocode generate*/
 
                 $formData = [
                     'full_name' => $postData['full_name'],
                     'email_address' => $postData['email_address'],
-                    'phone_number' => $postData['phone_number'],
-                    'street_address' => $postData['street_address'],
-                    'city' => $postData['city'],
-                    'state' => $postData['state'],
-                    'zip_code' => $postData['zip_code'],
-                    'country' => $postData['country'],
-                    'product_type' => $postData['product_type'],
-                    'model_number' => $postData['model_number'],
-                    'serial_number' => $postData['serial_number'],
-                    'date_of_purchase' => $postData['date_of_purchase'],
-                    'place_of_purchase' => $postData['place_of_purchase'],
-                    'invoice_number' => $postData['invoice_number'],
-                    'purchase_invoice_file' => $purchase_invoice,
-                    'barcode_photo_file' => $barcode_photo
+                    'phone_number' => $postData['phone_number'] ,
+                    'promo_code'   => $promo_code                   
                 ];
+                pr($formData);
 
                 $insert_id = $this->common_model->save_data('product_registration', $formData);
 
