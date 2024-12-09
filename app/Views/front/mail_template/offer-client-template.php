@@ -63,10 +63,11 @@
 
 <body>
     <div class="container">
-        <h1>Promocode Details</h1>
         <img class="destination-image" src="<?php echo base_url('uploads/'.$site_setting->site_logo); ?>" alt="Destination Image">
+        <h1>Promocode Details</h1>        
         <p>Hello <?= htmlspecialchars($full_name) ?>,</p>
-        <p>Thank you for your inquiry. We are pleased to offer you a 10% discount with the promocode: <?=$promo_code?>.</p>                
+        <p>Thank you for your inquiry. </p>
+        <p>We are pleased to offer you a 10% discount against the promocode: <span style="color: #ed1c24;"><?=$promo_code?></span>.</p>                
     </div>
 </body>
 
