@@ -1293,7 +1293,7 @@ class Frontend extends BaseController
                     'phone_number' => $postData['phone_number'] ,
                     'promo_code'   => $promo_code                   
                 ];
-                pr($formData);
+                // pr($formData);
 
                 $insert_id = $this->common_model->save_data('product_registration', $formData);
 
