@@ -371,7 +371,9 @@ body.abrido a#burger {
 .home_banner_slider_holder3 .home_slider_info .home_silder_imginner {
     width: 90%;
 }
-
+.home_slider_section .carousel-indicators{
+    bottom: 20px
+}
 }
 
 
@@ -383,7 +385,15 @@ body.abrido a#burger {
 /*LARGE MOBILE VERSION*/
 @media screen and (max-width: 600px) {
 .home_slider_section .swiper-thumbs{display: none;}    
+.home_slider_section .carousel-indicators {
+    bottom: 20px;
+    right: 2%;
 }
+.home_slider_section .thumb_inner{
+    padding: 0;
+}
+}
+
 @media screen and (max-width: 575px) {
 .foot-righttop ul li {
     width: 100%;
@@ -503,6 +513,7 @@ span.spandesi_info {
 .amcpolicy_section .tabcontent_inner .amc-tabcontent_item:last-child{
     margin: 20px 0;
 }
+
 }
 
 
@@ -553,6 +564,10 @@ ul.head_social {
 .amc-bottomnote ul {
     flex-wrap: wrap;
     justify-content: flex-start;
+}
+.home_slider_section .thumb_inner img {
+    max-width: 35px;
+    max-height: 25px;
 }
 }
 @media screen and (max-width: 360px) {
