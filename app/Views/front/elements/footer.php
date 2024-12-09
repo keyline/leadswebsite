@@ -53,6 +53,7 @@
                                     foreach ($phone_numbers as $index => $number) { ?>
                                         <a href="tel:"> <?= $number ?> </a>
                                 <?php
+                                break;
                                         if ($index < $totalNumbers - 1) {
                                             echo ', '; // Add comma if it's not the last number
                                         }
