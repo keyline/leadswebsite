@@ -313,6 +313,12 @@ body.abrido a#burger {
 .home_banner_slider_holder4 .home_banner_btn_holder{
     text-align: center;
 }
+.desktop_banner{
+    display: none;
+}
+.mobile_banner{
+    display: block;
+}
 .job-list-item .job-info.job-list-item-col{
     flex: 1 1 100%;
 }
