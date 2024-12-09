@@ -20,8 +20,8 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<div class="contact_innerbox">
-					<div class="cont_title">
+				<div class="tollfree_innerbox">
+					<div class="tollfree_title">
 						<a href="tel: 1800-212-1200">Toll free - 1800-212-1200</a>
 					</div>
 				</div>												

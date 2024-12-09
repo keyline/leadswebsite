@@ -2263,6 +2263,22 @@ footer.footer {
     min-height: 400px;
     margin-bottom: 25px;
 }
+
+.tollfree_innerbox {
+    /* background: #f3f3f3; */
+    padding: 50px;
+    border-radius: 10px;
+    min-height: 20px;
+    /* margin-bottom: 25px; */
+}
+.tollfree_innerbox .tollfree_title {
+    color: #ed1c24;
+    font-size: 24px;
+    text-transform: uppercase;
+    font-weight: 600;
+    /* margin-bottom: 25px; */
+}
+
 .contact_section iframe {
     width: 100%;
     border-radius: 10px;
