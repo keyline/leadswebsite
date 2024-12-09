@@ -1250,14 +1250,10 @@ class Frontend extends BaseController
 
         $page_name                  = 'offer';
 
-        $order_by = [['field' => 'sort', 'type' => 'ASC']];
-
-        $data['productCategory']    = $this->common_model->find_data('product_category', 'array', ['published' => 1], '', '', '', $order_by);
-
-
         if ($this->request->getMethod() === 'post') {
 
             $postData = $this->request->getPost();
+            pr($postData);        
 
             $rule = [
                 'full_name' => [
