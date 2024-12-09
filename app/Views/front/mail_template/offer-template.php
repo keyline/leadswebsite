@@ -63,10 +63,9 @@
 
 <body>
     <div class="container">
-        <h1>Offer Enquiry for <?= htmlspecialchars($full_name) ?></h1>
         <img class="destination-image" src="<?php echo base_url('uploads/'.$site_setting->site_logo); ?>" alt="Destination Image">
-        <p>Hello Leadsindia,</p>
-        <br>
+        <h1>Offer Enquiry for <?= htmlspecialchars($full_name) ?></h1>        
+        <p>Hello Leadsindia,</p>        
         <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
             <tr>
                 <td><strong>Name:</strong></td>
@@ -84,9 +83,7 @@
                 <td><strong>Promocode:</strong></td>
                 <td><?=  $promo_code ?></td>
             </tr>            
-        </table>
-
-        <p class="footer">Best regards,<br><?= htmlspecialchars($full_name) ?></p>
+        </table>        
     </div>
 </body>
 

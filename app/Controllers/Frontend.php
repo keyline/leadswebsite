@@ -1284,7 +1284,7 @@ class Frontend extends BaseController
                 // Generate a random 6-character alphanumeric string
                 $random_str = strtoupper(bin2hex(random_bytes(3)));
                 // Combine prefix and random string
-                $promo_code = 'Lead' . $random_str;
+                $promo_code = 'LEAD' . $random_str;
                 /*promocode generate*/
 
                 $formData = [
@@ -1299,7 +1299,7 @@ class Frontend extends BaseController
                 
                 $formData['site_setting'] = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1]);
                     $body_admin = view('Views/front/mail_template/offer-template', $formData);
-                    $body_client = view('Views/front/mail_template/offer-template', $formData);
+                    $body_client = view('Views/front/mail_template/offer-clienttemplate', $formData);
 
                     $this->send('system@keylines.net', 'Leadsindia', 'Offer Enquiry', $body_admin);
                     $this->send($postData['email_address'], $postData['full_name'], 'Offer Enquiry', $body_client);
