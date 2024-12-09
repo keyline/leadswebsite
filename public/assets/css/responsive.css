@@ -386,11 +386,23 @@ body.abrido a#burger {
 @media screen and (max-width: 600px) {
 .home_slider_section .swiper-thumbs{display: none;}    
 .home_slider_section .carousel-indicators {
-    bottom: 20px;
-    right: 2%;
+    bottom: 7px;
+    right: 1%;
 }
 .home_slider_section .thumb_inner{
     padding: 0;
+    width: 55px;
+}
+.home_slider_section .thumb_inner img {
+    max-width: 35px;
+    max-height: 18px;
+}
+.home_slider_section .thumb_inner h4{
+    font-size: 7px;
+}
+.carousel-indicators [data-bs-target]{
+    border-top: 8px solid transparent;
+    border-bottom: 8px solid transparent;
 }
 }
 
@@ -565,10 +577,7 @@ ul.head_social {
     flex-wrap: wrap;
     justify-content: flex-start;
 }
-.home_slider_section .thumb_inner img {
-    max-width: 35px;
-    max-height: 25px;
-}
+
 }
 @media screen and (max-width: 360px) {
     .diskeyfe_downbtn a{font-size: 12px;}
