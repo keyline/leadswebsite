@@ -20,7 +20,7 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<a href="tel: 1800-212-1200">Toll free - 1800-212-1200</a>
+				<a class="cont_title" href="tel: 1800-212-1200">Toll free - 1800-212-1200</a>
 			</div>
 		</div>
 		<div class="row justify-content-center">

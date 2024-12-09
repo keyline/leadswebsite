@@ -112,7 +112,7 @@
                             <p class="text-danger error" id="name-error"><?= session('errors.product_type') ?? '' ?></p>
                         </div>
                         <div class="col-md-6">
-                            <label for="model_number" class="form-label">Model Number <span class="text-danger">*</span></label>
+                            <label for="model_number" class="form-label">Model Name <span class="text-danger">*</span></label>
                             <input type="text" class="form-control" id="model_number" name="model_number" value="<?= old('model_number') ?>">
                             <p class="text-danger error" id="name-error"><?= session('errors.model_number') ?? '' ?></p>
                         </div>
