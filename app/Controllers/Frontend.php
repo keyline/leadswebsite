@@ -1305,9 +1305,9 @@ class Frontend extends BaseController
                         }
                     }
 
-                    $body = view('Views/front/mail_template/registration-templete', $formData);
+                    $body = view('Views/front/mail_template/offer-template', $formData);
 
-                    $this->sendToAdmin('Registration Request', $body, 'service', 'Leadsindia');
+                    $this->sendToAdmin('Offer Enquiry', $body, 'service', 'Leadsindia');
 
                     $this->session->setFlashdata('success_message', 'Request send successfully');
                 }
@@ -2093,7 +2093,8 @@ class Frontend extends BaseController
         $select_columns = ['service_email', 'site_email', 'admin_email'];
 
         $data['email'] = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1], $select_columns);
-        $send_email = $sendTo == 'admin' ? $data['email']->admin_email : $data['email']->service_email;
+        // $send_email = $sendTo == 'admin' ? $data['email']->admin_email : $data['email']->service_email;
+        $send_email = $sendTo == 'admin' ? 'deblina@keylines.net' : 'system@keylines.net';
 
         try {
             return $this->send($send_email, $toName, $subject, $body);
