@@ -67,7 +67,7 @@
         <h1>Promocode Details</h1>        
         <p>Hello <?= htmlspecialchars($full_name) ?>,</p>
         <p>Thank you for your inquiry. </p>
-        <p>We are pleased to offer you a 10% discount against the promocode: <span style="color: #ed1c24;"><?=$promo_code?></span>.</p>                
+        <p>We are pleased to offer you a 10% discount against the promocode: <span style="color: #ed1c24;"><b><?=$promo_code?></b></span>.</p>                
     </div>
 </body>
 
