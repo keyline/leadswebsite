@@ -48,10 +48,10 @@
                                         <li><?= $blog->category_name ?></li>
                                     </ul>
                                     <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                        <span class="ps-2"><?= (new DateTime($blog->created_at))->format('M j, Y') ?></span> | <span class="ps-2"><?= $blog->post_by ?></span> | <span class="pe-2"><?= (new DateTime($blog->created_at))->format('h.m A') ?></span>
+                                        <span class="ps-2"><?= (new DateTime($blog->content_date))->format('M j, Y') ?></span> | <span class="ps-2"><?= $blog->post_by ?></span> | <span class="pe-2"><?= (new DateTime($blog->created_at))->format('h.m A') ?></span>
                                     </p>
-                                    <h3><?= $blog->title ?></h3>
-                                    <p class="shortdes"><?= truncateText($blog->description); ?></p>
+                                    <h3><?= truncateText($blog->title,40)?></h3>
+                                    <p class="shortdes"><?= truncateText($blog->short_description,70); ?></p>
                                     <a href="<?php echo base_url('blog-details/' . $blog->slug); ?>">Read More</a>
                                 </div>
                             </a>
@@ -60,68 +60,11 @@
             <?php endforeach;
             endif; ?>
 
-            <!-- <div class="col-md-4">
-                <div class="blog_list_item">
-                    <a href="#">
-                        <div class="blogitem_img">
-                            <img src="<?= base_url('public/') ?>/assets/img/blog_img.jpg" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
-                        </div>
-                        <div class="blogitem_detials">
-                            <ul class="blogitem_cat">
-                                <li>Career Counselling</li>
-                            </ul>
-                            <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                <span class="ps-2">Oct 21, 2024</span> | <span class="ps-2">Admin</span> | <span class="pe-2">05:05 PM</span>
-                            </p>
-                            <h3>Professional Career Counseling: Advancing in Your Career</h3>
-                            <p class="shortdes">Professional career counseling plays a crucial role in advancing careers by offering guidance in skill development, decision-making, and personal growth...</p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="blog_list_item">
-                    <a href="#">
-                        <div class="blogitem_img">
-                            <img src="<?= base_url('public/') ?>/assets/img/blog_img.jpg" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
-                        </div>
-                        <div class="blogitem_detials">
-                            <ul class="blogitem_cat">
-                                <li>Career Counselling</li>
-                            </ul>
-                            <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                <span class="ps-2">Oct 21, 2024</span> | <span class="ps-2">Admin</span> | <span class="pe-2">05:05 PM</span>
-                            </p>
-                            <h3>Professional Career Counseling: Advancing in Your Career</h3>
-                            <p class="shortdes">Professional career counseling plays a crucial role in advancing careers by offering guidance in skill development, decision-making, and personal growth...</p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </a>
-                </div>
-            </div>
-            <div class="col-md-4">
-                <div class="blog_list_item">
-                    <a href="#">
-                        <div class="blogitem_img">
-                            <img src="<?= base_url('public/') ?>/assets/img/blog_img.jpg" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
-                        </div>
-                        <div class="blogitem_detials">
-                            <ul class="blogitem_cat">
-                                <li>Career Counselling</li>
-                            </ul>
-                            <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                <span class="ps-2">Oct 21, 2024</span> | <span class="ps-2">Admin</span> | <span class="pe-2">05:05 PM</span>
-                            </p>
-                            <h3>Professional Career Counseling: Advancing in Your Career</h3>
-                            <p class="shortdes">Professional career counseling plays a crucial role in advancing careers by offering guidance in skill development, decision-making, and personal growth...</p>
-                            <a href="#">Read More</a>
-                        </div>
-                    </a>
-                </div>
-            </div> -->
+       
         </div>
-        <button id="load_more_btn" style="float: right;background-color:#ed1c24;border: tomato;" class="btn btn-primary">Load More</button>
+        <?php if(count($Blog_count) > 4){ ?>
+        <button id="load_more_btn" style="float: right;background-color:#ff6300;border: tomato;" class="btn btn-primary">Load More</button>
+        <?php } ?>
         <div id="loading" style="display: none;text-align: center;">
 
             <svg version="1.1" id="L5" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"

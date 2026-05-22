@@ -27,7 +27,7 @@ error_reporting(E_ALL);
  *
  * For security be sure to declare any new methods as protected or private.
  */
-
+#[\AllowDynamicProperties]
 class BaseController extends Controller
 {
 	/**
@@ -38,6 +38,9 @@ class BaseController extends Controller
 	 * @var array
 	 */
 	protected $helpers = ['common_helper'];
+	protected $common_model;
+	protected $session;
+	protected $uri;
 
 	/**
 	 * Constructor.
@@ -94,7 +97,8 @@ class BaseController extends Controller
 		$data['phone_numbers']		= explode(',', $data['site_setting']->whatsapp_no);
 		$data['admin_mails']		= explode(',', $data['site_setting']->admin_email);
 		$data['whatsapp_link'] 	    = !empty($data['first_whatsapp_no']) ? "https://wa.me/" . trim($data['first_whatsapp_no']) . "?text=Hello!%20I'm%20excited%20to%20explore%20your%20offerings.%20Can%20we%20connect%20to%20discuss%20further?" : "";
-	
+		$data['download'] 		    = $this->common_model->find_data('download', 'array');
+
 		$data['metadetails'] 		= $this->common_model->find_data('metadetails', 'array');
 		$data['title'] 				= $title . '-' . $data['site_setting']->site_name;
 		$data['page_header'] 		= $title;
@@ -106,12 +110,17 @@ class BaseController extends Controller
 		$data['accreditations']     = $this->common_model->find_data('accreditations', 'array', ['published' => 1]);
 		/** testimonials & accreditations **/
 		$orderBy[0] 				= ['field' => 'id', 'type' => 'DESC'];
+		$data['contents']           = $this->common_model->find_data('content_page', 'array', ['published' => 1], '', '', '', $orderBy);
 		$data['blogs']              = $this->common_model->find_data('blogs', 'array', ['status' => 1], '', '', '', $orderBy);
 		$data['clients']            = $this->common_model->find_data('sms_client', 'array', ['published' => 1]);
 		$data['testimonials']       = $this->common_model->find_data('sms_testimonials', 'array', ['published' => 1]);
 		$data['commodities']        = $this->common_model->find_data('commodities', 'array', ['published' => 1]);
 		$data['countries']        	= $this->common_model->find_data('sms_countries', 'array', ['published' => 1]);
-		// pr($data['countries']);
+		$order_by[0]                = array('field' => 'sort', 'type' => 'asc');
+		$data['product_menu']   	= $this->common_model->find_data('product_category', 'array', ['published' => 1], '', '', '', $order_by);
+		$data['popup_settings']   	= $this->common_model->find_data('popup_settings', 'row', '', '', '', '', '');
+		$data['home_page_video_settings']   	= $this->common_model->find_data('home_page_video_settings', 'row', '', '', '', '', '');
+		$data['products_video_settings']   	= $this->common_model->find_data('products_video_settings', 'row', '', '', '', '', '');
 
 
 		$data['head'] 				= view('front/elements/head', $data);
@@ -219,46 +228,77 @@ class BaseController extends Controller
 	}
 
 
-	protected function send()
-	{
-		// Include Composer's autoloader
-		// require 'vendor/autoload.php';
+	// protected function send($to, $toName, $subject, $body)
+	// {
+	// 	// Include Composer's autoloader
+	// 	// require 'vendor/autoload.php';
 
+	// 	$mail = new PHPMailer(true);
+
+	// 	try {
+	// 		//Server settings
+	// 		$mail->SMTPDebug = 0;//SMTP::DEBUG_SERVER;                      //Enable verbose debug output
+	// 		$mail->isSMTP();                                            //Send using SMTP
+	// 		$mail->Host       = SMTP_HOST;                     //Set the SMTP server to send through
+	// 		$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
+	// 		$mail->Username   = SMTP_USER;                     //SMTP username
+	// 		$mail->Password   = SMTP_PASS;                               //SMTP password
+	// 		$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
+	// 		$mail->Port       = 465;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+
+	// 		//Recipients
+	// 		$mail->setFrom(SET_FROM, SET_NAME);
+	// 		$mail->addAddress($to, $toName);     //Add a recipient
+	// 		// $mail->addAddress('ellen@example.com');               //Name is optional
+	// 		// $mail->addReplyTo('info@example.com', 'Information');
+	// 		// $mail->addCC('cc@example.com');
+	// 		// $mail->addBCC('bcc@example.com');
+
+	// 		//Attachments
+	// 		// $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
+	// 		// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+
+	// 		//Content
+	// 		$mail->isHTML(true);                                  //Set email format to HTML
+	// 		$mail->Subject = $subject;
+	// 		$mail->Body    = $body;
+	// 		// $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+	// 		return $mail->send();
+	// 		// echo 'Message has been sent';
+	// 	} catch (Exception $e) {
+	// 		throw "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+	// 	}
+	// }
+
+
+	protected function send($to, $toName, $subject, $body)
+	{
 		$mail = new PHPMailer(true);
 
 		try {
-			//Server settings
-			$mail->SMTPDebug = SMTP::DEBUG_SERVER;                      //Enable verbose debug output
-			$mail->isSMTP();                                            //Send using SMTP
-			$mail->Host       = 'smtp-relay.brevo.com';                     //Set the SMTP server to send through
-			$mail->SMTPAuth   = true;                                   //Enable SMTP authentication
-			$mail->Username   = 'victoriatravelskdpl@gmail.com';                     //SMTP username
-			$mail->Password   = 'My5XaC1cn2EpP8Is';                               //SMTP password
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS;            //Enable implicit TLS encryption
-			$mail->Port       = 587;                                    //TCP port to connect to; use 587 if you have set `SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS`
+			// Server settings
+			$mail->SMTPDebug = 0; // Disable verbose debug output
+			//$mail->isSMTP(); // Send using SMTP
+			$mail->Host       = SMTP_HOST; // Set the SMTP server to send through
+			$mail->SMTPAuth   = true; // Enable SMTP authentication
+			$mail->Username   = SMTP_USER; // SMTP username
+			$mail->Password   = SMTP_PASS; // SMTP password
+			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable implicit TLS encryption # ENCRYPTION_SMTPS // PHPMailer::ENCRYPTION_STARTTLS
+			$mail->Port       = 465; // TCP port to connect to (use 587 for STARTTLS)
 
-			//Recipients
-			$mail->setFrom('no-replay@victoriatravels.com', 'Victoria Travels');
-			$mail->addAddress('shubhasinha77@gmail.com', 'shubha');     //Add a recipient
-			// $mail->addAddress('ellen@example.com');               //Name is optional
-			// $mail->addReplyTo('info@example.com', 'Information');
-			// $mail->addCC('cc@example.com');
-			// $mail->addBCC('bcc@example.com');
+			// Recipients
+			$mail->setFrom(SET_FROM, SET_NAME);
+			$mail->addAddress($to, $toName);
 
-			//Attachments
-			// $mail->addAttachment('/var/tmp/file.tar.gz');         //Add attachments
-			// $mail->addAttachment('/tmp/image.jpg', 'new.jpg');    //Optional name
+			// Content
+			$mail->isHTML(true); // Set email format to HTML
+			$mail->Subject = $subject;
+			$mail->Body    = $body;
 
-			//Content
-			$mail->isHTML(true);                                  //Set email format to HTML
-			$mail->Subject = 'Here is the subject';
-			$mail->Body    = 'This is the HTML message body <b>in bold!</b>';
-			// $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
-
-			$mail->send();
-			echo 'Message has been sent';
+			return $mail->send();
 		} catch (Exception $e) {
-			echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
+			throw new Exception("Message could not be sent. Mailer Error: {$mail->ErrorInfo}");
 		}
 	}
 }

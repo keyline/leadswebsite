@@ -1,14 +1,12 @@
-<!-- Views/travel_email_template.php -->
-
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Travel Agency Email</title>
+    <title>Leadsindia</title>
     <style>
-
         body {
             font-family: 'Arial', sans-serif;
             line-height: 1.6;
@@ -62,15 +60,55 @@
         }
     </style>
 </head>
+
 <body>
     <div class="container">
-        <h1>Explore Exciting Destinations with Our Travel Agency</h1>
-        <img class="destination-image" src="https://victoria.keylines.net.in/uploads/1702639700header-logo.webp" alt="Destination Image">
-        <p>Hello [Recipient],</p>
-        <p>Plan your next adventure with us! Discover breathtaking destinations and create unforgettable memories.</p>
-        <p>Check out our latest travel packages and book your dream vacation today.</p>
-        <a href="#" class="button">Explore Now</a>
-        <p class="footer">Best regards,<br>Your Travel Agency Team</p>
+        <h1>Service Request from <?= htmlspecialchars($name) ?></h1>
+        <img class="destination-image" src="<?php echo base_url('uploads/'.$site_setting->site_logo); ?>" alt="Destination Image">
+        <p>Hello Leadsindia,</p>
+        <br>
+        <p><?= $comments ?></p>
+
+        <br>
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr>
+                <td><strong>Name:</strong></td>
+                <td><?= htmlspecialchars($name) ?></td>
+            </tr>
+            <tr>
+                <td><strong>Address:</strong></td>
+                <td><?= htmlspecialchars($address) ?></td>
+            </tr>
+
+            <tr>
+                <td><strong>Phone:</strong></td>
+                <td><?= htmlspecialchars($phone) ?></td>
+            </tr>
+            <tr>
+                <td><strong>Products:</strong></td>
+                <td><?= implode(", ", $products) ?></td>
+            </tr>
+            <tr>
+                <td><strong>Model Name:</strong></td>
+                <td><?= htmlspecialchars($model_name) ?></td>
+            </tr>
+            <tr>
+                <td><strong>Serial No:</strong></td>
+                <td><?= htmlspecialchars($serial_no) ?></td>
+            </tr>
+            <tr>
+                <td><strong>Installation Date:</strong></td>
+                <td><?= (new DateTime(htmlspecialchars($installation_date)))->format('jS M Y') ?></td>
+            </tr>
+            <tr>
+                <td><strong>Purchase Date:</strong></td>
+                <td><?= (new DateTime(htmlspecialchars($purchase_date)))->format('jS M Y') ?></td>
+            </tr>
+
+        </table>
+
+        <p class="footer">Best regards,<br><?= htmlspecialchars($name) ?></p>
     </div>
 </body>
+
 </html>

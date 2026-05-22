@@ -1,4 +1,26 @@
 User-agent: *
-Disallow: 
+Disallow:
+Allow: *.js
+Allow: *.css
+Disallow: https://leadsindia.net/.git
+Disallow: https://leadsindia.net/HTML_RAW
+Disallow: https://leadsindia.net/Backup
+Disallow: https://leadsindia.net/dev
 
-Sitemap: https://victoriatravels.com/sitemap.xml
+
+User-agent: GPTBot
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: */feed/
+Disallow: /?
+
+User-agent: ChatGPT-User
+Allow: /
+Allow: *.js
+Allow: *.css
+Disallow: */feed/
+Disallow: /?
+
+
+Sitemap: https://leadsindia.net/sitemap.xml

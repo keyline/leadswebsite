@@ -1,16 +1,48 @@
+<style>
+    .position-circle {
+    margin-top: 10px;
+    width: 30px;
+    height: 30px;
+    line-height: 30px;
+    border-radius: 50%;
+    background-color: #007bff;
+    color: white;
+    text-align: center;
+    font-weight: bold;
+    font-size: 16px;
+}
+</style>
+
 <?php
-if($row) {
-    $company_name                      = $row->company_name;  
-    $product_title                     = $row->product_title;  
-    $product_description               = $row->product_description;
-    $product_icon                      = $row->product_icon;
-    $product_image                     = $row->product_image;
+if($row) { ;
+    $product_category                  = $row->product_category;  
+    $product_title                     = $row->product_title;      
+    $content_description               = json_decode($row->content_description);    
+    $content_title                     = json_decode($row->content_title);
+    $regular_price                     = $row->regular_price;
+    $sale_price                        = $row->sale_price;    
+    $warrenty_section_id               = json_decode($row->warrenty_section);
+    $key_feature_id                    = json_decode($row->key_feature);   
+    $is_new                            = $row->is_new;
+    $is_home                           = $row->is_home;     
+    $video_url                         = $row->video_url;   
+    $video_code                        = $row->video_code;
+    $isVideoUpload                     = $row->isvideoupload; 
+    $video_file                        = $row->video_file;
 } else {
-    $company_name                      = set_value('company_name', '');
-    $product_title                     = set_value('product_title', '');
-    $product_description               = set_value('product_description', '');
-    $product_icon                      = set_value('product_icon', '');
-    $product_image                     = set_value('product_image', '');
+    $product_category                 = set_value('product_category', '');
+    $product_title                    = set_value('product_title', '');    
+    $regular_price                    = set_value('regular_price', '');
+    $sale_price                       = set_value('sale_price', '');
+    $others_image                     = '';
+    $key_feature_id                   = [];
+    $warrenty_section_id              = [];
+    $content_title                    = [];
+    $content_description              = [];    
+    $video_url                        = '';
+    $video_code                       = '';
+    $isVideoUpload                    = ''; 
+    $video_file                       = '';
 }
 ?>
 <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
@@ -54,12 +86,12 @@ if($row) {
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="partner_type">Company Name</label>
-                                    <select class="js-example-basic-single form-control" id="partner_type" name="company_name">
-                                        <option value="" selected="selected">Select Company Name</option>
+                                    <label class="form-label" for="product_category">Product category</label>
+                                    <select class="js-example-basic-single form-control" id="product_category" name="product_category" required>
+                                        <option value="" selected="selected">Select Product Category</option>
                                          <?php                                          
-                                         if($companies){ $i=1; foreach ($companies as $row) {?>
-                                        <option value="<?=$row->id; ?>"<?php if($company_name==$row->id) { ?> selected="selected"<?php } ?>><?=$row->name;?></option>
+                                         if($productCats){ $i=1; foreach ($productCats as $row) {?>
+                                        <option value="<?=$row->id; ?>"<?php if($product_category==$row->id) { ?> selected="selected"<?php } ?>><?=$row->name;?></option>
                                         <?php }} ?>
                                     </select>
                                     
@@ -73,53 +105,158 @@ if($row) {
                             </div> 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="product_description">Product Description</label>
-                                    <textarea class="form-control ckeditor" name="product_description" id="product_description" placeholder="Product Description" col="5" required="required"><?php echo $product_description; ?></textarea>
+                                    <label class="form-label" for="product_description">Product Specifications</label> 
+                                            <?php 
+                                            if(!empty($content_title)){
+                                            for($i = 1; $i <= count($content_title); $i++) {?>
+                                                <div>
+                                                    <div class="specification-row">
+                                                        <input type="text" name="content_title[]" value="<?php if(isset($content_title[$i-1]) && $content_title[$i-1] != ''){ echo $content_title[$i-1]; } ?>" class="form-control" placeholder="Specification Title" required>
+                                                        <textarea class="form-control summernote" name="content_description[]" placeholder="Specification Description" required="required" rows="5"><?php if(isset($content_description[$i-1]) && $content_description[$i-1] != ''){ echo $content_description[$i-1]; } ?></textarea>
+                                                        <!-- <input type="text" name="content_description[]" value="?php if(isset($content_description[$i-1]) && $content_description[$i-1] != ''){ echo $content_description[$i-1]; } ?>" class="form-control" placeholder="Specification Description" required> -->
+                                                        <!-- <button type="button" class="btn btn-primary add-description-row">+</button> -->
+                                                    </div>
+                                                </div>  
+                                            <?php }} ?>  
+                                        <div id="specification-container">
+                                            <div class="specification-row">
+                                                <input type="text" name="content_title[]" class="form-control" placeholder="Specification Title" required>
+                                                <textarea class="form-control summernote" name="content_description[]" placeholder="Specification Description" required="required" rows="5"></textarea>
+                                                <!-- <input type="text" name="content_description[]" class="form-control"  required> -->
+                                                <button type="button" class="btn btn-primary add-description-row">+</button>
+                                            </div>
+                                        </div>                                                                           
+                                </div>                                                                   
+                            </div>                                                                                                                                                       
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="others_image">Product Images</label>                                    
+                                    <div class="row">
+                                        <?php if($others_image!='') { foreach($others_image as $image) {?>
+                                        <div class="col-md-3">
+                                            <img src="<?php echo base_url();?>/uploads/product/<?php echo $image->image_file; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />                                            
+                                            <div class="position-circle">
+                                                <?php echo $image->position; ?>
+                                            </div>
+                                            <p class="mt-2">                                                    
+                                                    <a href="<?php echo base_url(); ?>/admin/manage_product/edit_image/<?php echo $image->image_id; ?>" class="btn btn-primary btn-sm" title="Edit Image"><i class="fa fa-edit"></i> Edit</a>
+                                                    <a href="<?php echo base_url(); ?>/admin/manage_product/delete_image/<?php echo $image->image_id; ?>" class="btn btn-danger btn-sm" title="Delete Image" onclick="return confirm('Do You Want To Delete This Image');"><i class="fa fa-trash"></i> Delete</a>
+                                            </p>
+                                        </div>
+                                        <?php } }?>                                                                                                                                                      
+                                    </div>                                    
+
+                                    <div class="input-group mb-3">
+                                        <div class="input-group-prepend">
+                                            <span class="input-group-text">Product Images</span>
+                                        </div>
+                                        <div id="image-upload-container">
+                                            <div class="image-upload-row">
+                                                <input type="file" name="others_image[]" class="form-control" >
+                                                <input type="number" name="position[]" class="form-control" placeholder="Position" >
+                                                <button type="button" class="btn btn-primary add-image-row">+</button>
+                                            </div>
+                                        </div>                                        
+                                        <div class="image-preview" id="imagePreview"></div> 
+                                    </div>
+                                </div>                                
+                            </div> 
+                            <div class="col-md-6">
+                                <label class="form-label" for="others_image">Product Video</label>  
+                                <div class="form-group">
+                                    <div class="custom-control custom-checkbox">
+                                        <input type="checkbox" class="custom-control-input" id="isvideoupload" name="isvideoupload" onclick="toggleUploadFields()" <?php if ($isVideoUpload == 'true') echo 'checked'; ?>>
+                                        <label class="custom-control-label" for="isvideoupload">Do you want to upload a video file ?</label>
+                                    </div>
+                                </div>
+                                <div id="videoUrlDiv">
+                                    <label for="videoUrl">Video URL</label>
+                                    <input type="url" class="form-control" id="videoUrl" name="videoUrl" placeholder="Enter youtube video url" value="<?= $video_url ?>" >
+                                    <?php if($video_url != ''){?>
+                                        <iframe width="350" height="250" src="https://www.youtube.com/embed/<?= $video_code ?>" 
+                                                title="YouTube video player" frameborder="0" 
+                                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                                                allowfullscreen>
+                                        </iframe>                                   
+                                    <?php } ?>                      
+                                </div>
+                                <div id="uploadFields" style="display:none;">  
+                                    <div class="input-group-prepend">
+                                        <span class="input-group-text">Media file</span>
+                                    </div>                              
+                                    <!-- <label for="mediaFile"></label> -->
+                                    <input type="file" name="videoFile" accept="video/*" class="form-control" id="mediaFile">
+                                    <?php if($video_file != ''){?>
+                                        <video width="320" height="240" controls>
+                                            <source src="<?php echo base_url();?>/uploads/product/<?php echo $video_file; ?>" type="video/mp4">                                            
+                                        </video>
+                                        <!-- <video src="" style="width: 150px; height: 150px; margin-top: 10px;"> -->
+                                    <?php } ?>
+                                </div>
+                            </div>
+                            
+                            
+
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="Key Feature" class="form-label">Key Feature</label><br>
+                                    <?php                                          
+                                         if($key_feature){ $i=1; foreach ($key_feature as $row) {
+                                            $checked = in_array($row->id, $key_feature_id) ? 'checked' : ''; ?>
+                                         <input type="checkbox" id="key_feature" name="key_feature[]" value="<?=$row->id; ?>" <?=$checked; ?>> <?=$row->key_feature_title;?>
+                                    <?php }} ?>                                        
+                                </div>
+                            </div>    
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="warrenty" class="form-label">Warranty Section</label><br>
+                                    <?php                                          
+                                         if($warrenty_section){ $i=1; foreach ($warrenty_section as $row) {
+                                            $checked = in_array($row->id, $warrenty_section_id) ? 'checked' : ''; ?>
+                                         <input type="checkbox" id="warrenty" name="warrenty_section[]" value="<?=$row->id; ?>" <?=$checked; ?>> <?=$row->warrenty_section_title;?>
+                                    <?php }} ?>   
+                                    <!-- <input type="checkbox" id="warrenty" name="warrenty_section[]" value="warrenty" <?= !empty($warrenty_section) && in_array('warrenty', $warrenty_section) ? 'checked' : '' ?>>
+                                    <label for="warrenty">Warranty</label>
+                                    
+                                    <input type="checkbox" id="motion_sensor" name="warrenty_section[]" value="motion_sensor" <?= !empty($warrenty_section) && in_array('motion_sensor', $warrenty_section) ? 'checked' : '' ?>>
+                                    <label for="motion_sensor">Motion Sensor</label>
+                                    
+                                    <input type="checkbox" id="isa_technology" name="warrenty_section[]" value="isa_technology" <?= !empty($warrenty_section) && in_array('isa_technology', $warrenty_section) ? 'checked' : '' ?>>
+                                    <label for="isa_technology">ISA Technology</label> -->
+                                    
+                                    <p id="warranty_error" style="color: red; display: none;">Please select at least one option.</p>
+                                </div>  
+                            </div>    
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label class="form-label" for="regular_price">Regular Price</label>
+                                    <input type="text" class="form-control" name="regular_price" id="regular_price" placeholder="Regular Price" value="<?php echo $regular_price; ?>" required="required">
                                 </div>
                             </div> 
                             <div class="col-md-6">
                                 <div class="form-group">
-                                    <label class="form-label" for="product_icon">Product Icon</label>
-                                    <div class="input-group mb-2">
-                                      <?php if($product_icon!='') { ?>
-                                      <img src="<?php echo base_url();?>/uploads/product/<?php echo $product_icon; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
-                                      <?php } ?>
-                                    </div>
-
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Product Icon</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="product_icon" name="product_icon" <?php if($action == 'Add'){?>required<?php }?>>
-                                            <label class="custom-file-label" for="product_icon">Choose file</label>
-                                        </div>
-                                    </div>
+                                    <label class="form-label" for="sale_price">Sale Price</label>
+                                    <input type="text" class="form-control" name="sale_price" id="sale_price" placeholder="Sale Price" value="<?php echo $sale_price; ?>">
                                 </div>
-                            </div>
+                            </div>    
                             <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="services_image">Product Image</label>                                    
-                                    <div class="row">
-                                        <?php if($product_image!='') { ?>
-                                        <div class="col-md-3">
-                                            <img src="<?php echo base_url();?>/uploads/product/<?php echo $product_image; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
-                                        </div>
-                                        <?php } ?>                                        
-                                    </div>
-                                    
-
-                                    <div class="input-group mb-3">
-                                        <div class="input-group-prepend">
-                                            <span class="input-group-text">Product Image</span>
-                                        </div>
-                                        <div class="custom-file">
-                                            <input type="file" class="custom-file-input" id="product_image" name="product_image" <?php if($action == 'Add'){?>required<?php }?>>
-                                            <label class="custom-file-label" for="product_image">Choose file</label>
-                                        </div>
-                                    </div>
+                                <label for="is_new" class="col-md-2 col-lg-2 col-form-label">Is New</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="radio" id="is_new_yes" name="is_new" value="1" <?= set_value('is_new', $is_new ?? '') == '1' ? 'checked' : '' ?>>
+                                    <label for="is_new_yes">Yes</label>
+                                    <input type="radio" id="is_new_no" name="is_new" value="0" <?= set_value('is_new', $is_new ?? '') == '0' ? 'checked' : '' ?>>
+                                    <label for="is_new_no">No</label>
                                 </div>
-                            </div>
+                            </div> 
+                            <div class="col-md-6">
+                                <label for="is_home" class="col-md-2 col-lg-2 col-form-label">Is Home</label>
+                                <div class="col-md-10 col-lg-10">
+                                    <input type="radio" id="is_home_yes" name="is_home" value="1" <?= set_value('is_home', $is_home ?? '') == '1' ? 'checked' : '' ?>>
+                                    <label for="is_home_yes">Yes</label>
+                                    <input type="radio" id="is_home_no" name="is_home" value="0" <?= set_value('is_home', $is_home ?? '') == '0' ? 'checked' : '' ?>>
+                                    <label for="is_home_no">No</label>
+                                </div>
+                            </div> 
                         </div>
                         <button type="submit" class="btn  btn-primary">Submit</button>
                     </form>
@@ -128,3 +265,113 @@ if($row) {
         </div>
     </div>
 </div>
+<script>
+    document.getElementById('others_image').addEventListener('change', function(event) {
+        const imagePreview = document.getElementById('imagePreview');
+        imagePreview.innerHTML = ''; // Clear previous previews
+        const files = event.target.files;
+        
+        for (let i = 0; i < files.length; i++) {
+            const file = files[i];
+            
+            if (file && file.type.match('image.*')) {
+                const reader = new FileReader();
+                
+                reader.onload = function(e) {
+                    const img = document.createElement('img');
+                    img.src = e.target.result;
+                    imagePreview.appendChild(img);
+                };
+                
+                reader.readAsDataURL(file);
+            }
+        }
+    });
+</script>
+<!-- <script>
+    document.querySelector('form').addEventListener('submit', function(event) {
+        const checkboxes = document.querySelectorAll('input[name="warrenty_section[]"]');
+        const isChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
+        
+        if (!isChecked) {
+            event.preventDefault();  // Stop form submission
+            document.getElementById('warranty_error').style.display = 'block';
+        } else {
+            document.getElementById('warranty_error').style.display = 'none';
+        }
+    });
+</script> -->
+<script>
+document.querySelector('.add-image-row').addEventListener('click', function () {
+    const row = document.createElement('div');
+    row.className = 'image-upload-row';
+    row.innerHTML = `
+        <input type="file" name="others_image[]" class="form-control">
+        <input type="number" name="position[]" class="form-control" placeholder="Position">
+        <button type="button" class="btn btn-danger remove-image-row">-</button>
+    `;
+    document.getElementById('image-upload-container').appendChild(row);
+});
+
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('remove-image-row')) {
+        e.target.parentNode.remove();
+    }
+});
+
+document.querySelector('.add-description-row').addEventListener('click', function () {
+    const row = document.createElement('div');
+    row.className = 'specification-row';
+    row.innerHTML = `
+        <input type="text" name="content_title[]" class="form-control" placeholder="Specification Title" required>
+        <textarea class="form-control summernote" name="content_description[]" placeholder="Specification Description" required="required" rows="5"></textarea>        
+        <button type="button" class="btn btn-danger remove-specification-row">-</button>
+    `;
+    document.getElementById('specification-container').appendChild(row);
+
+    // Reinitialize Summernote for the new textarea
+    $('.summernote').summernote({
+        height: 150, // Set editor height
+        toolbar: [
+            ['style', ['style']],
+            ['font', ['bold', 'italic', 'underline', 'clear']],
+            ['fontsize', ['fontsize']],
+            ['color', ['color']],
+            ['para', ['ul', 'ol', 'paragraph']],
+            ['table', ['table']],
+            ['insert', ['link', 'picture', 'video']],
+            ['view', ['fullscreen', 'codeview', 'help']]
+        ],        
+    });
+});
+
+
+document.addEventListener('click', function (e) {
+    if (e.target && e.target.classList.contains('remove-specification-row')) {
+        e.target.parentNode.remove();
+    }
+});
+</script>
+
+<script>
+    function toggleUploadFields() {
+    const checkbox = document.getElementById('isvideoupload');
+    const uploadFields = document.getElementById('uploadFields');
+    const videoUrlDiv = document.getElementById('videoUrlDiv');
+    const videoUrlInput = document.getElementById('videoUrl');
+
+    if (checkbox.checked) {
+        uploadFields.style.display = 'block';
+        videoUrlDiv.style.display = 'none';
+        videoUrlInput.value = ''; // Clear video URL
+    } else {
+        uploadFields.style.display = 'none';
+        videoUrlDiv.style.display = 'block';
+    }
+}
+
+// Ensure correct display on page load
+document.addEventListener("DOMContentLoaded", function () {
+    toggleUploadFields();
+});
+</script>

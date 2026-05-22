@@ -1,19 +1,19 @@
 <?php
-if($row) {
+if ($row) {
     $name                       = $row->name;
-    $email                   = $row->email;
-    $experience                 = $row->experience;
+    $email                      = $row->email;
+    $vacancies                  = $row->vacancies;
     $msg                        = $row->msg;
-    $career_cv                  = $row->career_cv;
+    $location                   = $row->location;
 } else {
     $name                       = set_value('name', '');
-    $email                   = set_value('email', '');
-    $experience                 = set_value('experience', '');
+    $email                      = set_value('email', '');
+    $vacancies                  = set_value('vacancies', '');
     $msg                        = set_value('mg', '');
-    $career_cv                  = set_value('career_cv', '');
+    $location                   = set_value('location', '');
 }
 ?>
-<script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script>
+<!-- <script src="//cdn.ckeditor.com/4.13.1/full/ckeditor.js"></script> -->
 <div class="pcoded-content">
     <div class="page-header">
         <div class="page-block">
@@ -36,15 +36,15 @@ if($row) {
             <div class="card">
                 <div class="card-header">
                     <h5><?php echo $page_header; ?></h5>
-                    <?php if($session->getFlashdata('success_message')) { ?>
-                    <div class="alert alert-success alert-dismissible fade show" role="alert">
-                        <strong>Success!</strong> <?php echo $session->getFlashdata('success_message');?>
-                        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-                    </div>
+                    <?php if ($session->getFlashdata('success_message')) { ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>Success!</strong> <?php echo $session->getFlashdata('success_message'); ?>
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
                     <?php } ?>
-                    <?php if($session->getFlashdata('error_message')) { ?>
+                    <?php if ($session->getFlashdata('error_message')) { ?>
                         <div class="alert alert-danger alert-dismissible fade show" role="alert">
-                            <strong>Error!</strong> <?php echo $session->getFlashdata('error_message');?>
+                            <strong>Error!</strong> <?php echo $session->getFlashdata('error_message'); ?>
                             <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                         </div>
                     <?php } ?>
@@ -52,38 +52,41 @@ if($row) {
                 <div class="card-body">
                     <form id="validation-form123" action="" method="post" enctype="multipart/form-data">
                         <div class="row">
-                            <div class="col-md-6">
+                            <div class="col-md-12">
                                 <div class="form-group">
-                                    <label class="form-label" for="name">Name</label>
+                                    <label class="form-label" for="name">Post Name</label>
                                     <input type="text" class="form-control" name="name" id="name" placeholder="Name" value="<?php echo $name; ?>" required="required">
                                 </div>
                             </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="location">Email</label>
-                                    <input type="email" class="form-control" name="email" id="designation" placeholder="Email" value="<?php echo $email; ?>" required="required">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="experience">Experience</label>
-                                    <input type="text" class="form-control" name="experience" id="company_name" placeholder="Experience" value="<?php echo $experience; ?>" required="required">
-                                </div>
-                            </div>
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label class="form-label" for="msg">Message</label>
-                                    <textarea class="form-control" name="msg" id="comments" placeholder="Message" required="required" rows="10"><?php echo $msg; ?></textarea>
-                                </div>
-                            </div>
+
                             <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="vacancies">Vacancies</label>
+                                    <input type="text" class="form-control" name="vacancies" id="vacancies" placeholder="Vacancies" value="<?php echo $vacancies; ?>" required="required" oninput="validateVacancies(this)">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="name">Location</label>
+                                    <input type="text" class="form-control" name="location" id="name" placeholder="Location" value="<?php echo $location; ?>" required="required">
+                                </div>
+                            </div>
+
+                            <div class="col-md-12">
+                                <div class="form-group">
+                                    <label class="form-label" for="msg">Discription</label>
+                                    <textarea class="form-control summernote" name="msg" id="comments" placeholder="Message" required="required" rows="10"><?php echo $msg; ?></textarea>
+                                </div>
+                            </div>
+                            <!-- <div class="col-md-12">
                                 <div class="form-group">
                                     <label class="form-label" for="career_cv">Upload your CV</label>
                                     <div class="input-group mb-2">
-                                      <?php if($career_cv!='') { ?>
-                                      <!-- <img src="?php echo base_url();?>/uploads/career/?php echo $career_cv; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  /> -->
-                                      <a href="<?= base_url();?>/uploads/career/<?php echo $career_cv; ?>" target="blank" class="fas fa-eye" style='color:green'> View pdf</a>
-                                      <?php } ?>
+                                      <?php /* if ($career_cv != '') { ?>
+
+                                      <a href="<?= base_url(); ?>/uploads/career/<?php echo $career_cv; ?>" target="blank" class="fas fa-eye" style='color:green'> View pdf</a>
+                                      <?php } */?>
                                     </div>
 
                                     <div class="input-group mb-3">
@@ -96,7 +99,7 @@ if($row) {
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> -->
                         </div>
                         <button type="submit" class="btn  btn-primary">Submit</button>
                     </form>
@@ -105,3 +108,28 @@ if($row) {
         </div>
     </div>
 </div>
+
+
+
+<?= $this->section('scripts') ?>
+
+<script>
+    function validateVacancies(input) {
+        let value = input.value;
+
+        // Remove non-numeric characters
+        value = value.replace(/[^0-9]/g, '');
+
+        // Ensure the number is between 1 and 50
+        if (value > 50) {
+            value = 50;
+        } else if (value < 1 && value !== '') {
+            value = 1;
+        }
+
+        // Update the input value
+        input.value = value;
+    }
+</script>
+
+<?= $this->endSection() ?>

@@ -30,7 +30,9 @@ $site_setting = $common_model->find_data('sms_site_settings','row');
 			</div>
 		</div>
 		<div class="auth-side-form">
-			<form method="post" action="<?php echo base_url('admin/user/login'); ?>">
+			<!--<form method="post" action="?php echo base_url('admin/user/login'); ?>">-->
+			<form method="post" action="<?php echo base_url('/Admin'); ?>">
+			    <?= csrf_field() ?>
 				<div class=" auth-content">
 					<img src="<?php echo base_url(); ?>/uploads/<?php echo $site_setting->site_logo; ?>" alt="" class="img-fluid mb-4 d-block d-xl-none d-lg-none">
 					<h3 class="mb-4 f-w-400">Signin</h3>
@@ -83,9 +85,9 @@ $site_setting = $common_model->find_data('sms_site_settings','row');
 	</div>
 </div>
 <?php
-$this->session = \Config\Services::session();
-$this->session->setFlashdata('success_message', '');
-$this->session->setFlashdata('error_message', '');
+$session = \Config\Services::session();
+$session->setFlashdata('success_message', '');
+$session->setFlashdata('error_message', '');
 ?>
 <!-- [ signin-img ] end -->
 <!-- Required Js -->

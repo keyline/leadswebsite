@@ -124,7 +124,7 @@ brandSlider.on('translated.owl.carousel', function(event) {
     
 
     
-
+    
 
     
   
@@ -165,6 +165,8 @@ $(window).scroll(function() {
         $(".header").removeClass("sticky-header");
     }
 });
+
+
 
 // aos animation
 

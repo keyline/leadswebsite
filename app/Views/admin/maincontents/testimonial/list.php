@@ -56,7 +56,14 @@
                                 <tbody>
                                     <?php if ($rows) {
                                         $i = 1;
-                                        foreach ($rows as $row) { ?>
+                                        foreach ($rows as $row) {
+
+                                            if ($row->comments !== null) {
+                                                $wrappedComments = wordwrap($row->comments, 40, "<br>\n");
+                                            } else {
+                                                $wrappedComments = '';
+                                            }
+                                    ?>
                                             <tr>
                                                 <!-- <td>
                                         <input type='checkbox' name='draw[]' value="<?php echo $row->id ?>" id="required-checkbox1" onClick="CheckIfChecked()">
@@ -64,7 +71,8 @@
                                                 <td><?php echo $i++; ?></td>
                                                 <td><?php echo $row->name; ?></td>
                                                 <th><?= $row->place_name  ?></th>
-                                                <td><?php echo wordwrap($row->comments, 40, "<br>\n"); ?></td>
+                                                <td><?php echo $wrappedComments ?></td>
+
                                                 <td>
                                                     <?php if ($row->image != '') { ?>
                                                         <img src="<?= base_url('/uploads/testimonials/' . $row->image) ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />

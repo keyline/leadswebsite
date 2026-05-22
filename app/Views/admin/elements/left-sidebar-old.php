@@ -1,0 +1,107 @@
+<div class="navbar-wrapper">
+    <div class="navbar-content scroll-div ">
+        <ul class="nav pcoded-inner-navbar ">
+            <!-- Dashboard -->
+            <li class="nav-item"><a href="<?php echo base_url('Dashboard'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-home"></i></span><span class="pcoded-mtext">Dashboard</span></a></li>
+            <!-- Meta Details -->
+            <li class="nav-item"><a href="<?php echo base_url('admin/manage_metadetails'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-hash"></i></span><span class="pcoded-mtext">Meta Details</span></a></li>
+            <!-- Clients -->
+            <li class="nav-item"><a href="<?php echo base_url('admin/Manage_client'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-user"></i></span><span class="pcoded-mtext">Client</span></a></li>
+
+            <!-- <li class="nav-item"><a href="<?php echo base_url('admin/manage_enquire'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-help-circle"></i></span><span class="pcoded-mtext">Enquiry</span></a></li> -->
+
+
+
+            <!-- Enquire List -->
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Enquiry Manage</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_enquire/') ?>">Enquiry</a></li>
+                    <li><a href="<?= base_url('admin/Manage_distributor_enquire/') ?>">Distributor Enquiry</a></li>
+                    <li><a href="<?= base_url('admin/Manage_services') ?>">Service</a></li>
+                    <li><a href="<?= base_url('admin/Manage_amc_enquire') ?>">AMC Enquiry</a></li>
+                    <li><a href="<?= base_url('admin/Manage_product_registration') ?>">Product Registrations</a></li>
+                </ul>
+            </li>
+
+
+            <!-- about -->
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">About</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_certificates/') ?>">Certificates</a></li>
+                    <li><a href="<?= base_url('admin/about_setting') ?>">About</a></li>
+                </ul>
+            </li>
+
+            <!-- Blog -->
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Blogs</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_blog_category/') ?>">Blogs Category</a></li>
+                    <li><a href="<?= base_url('admin/manage_blog') ?>">Blogs</a></li>
+                </ul>
+            </li>
+
+            <!-- Media -->
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-file-text"></i></span><span class="pcoded-mtext">Media</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/Manage_video_media/') ?>">Video Media</a></li>
+                    <li><a href="<?= base_url('admin/Manage_image_media') ?>">Image Media</a></li>
+                </ul>
+            </li>
+
+
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Products</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_product_category/') ?>">Products Category</a></li>
+                    <li><a href="<?= base_url('admin/manage_product') ?>">Products</a></li>
+                    <li class="nav-item pcoded-hasmenu">
+                        <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Master</span></a>
+                        <ul class="pcoded-submenu">
+                            <li><a href="<?= base_url('admin/manage_key_feature/') ?>">Key Features</a></li>
+                            <li><a href="<?= base_url('admin/manage_warrenty_section/') ?>">Warrenty Section</a></li>
+                        </ul>
+                    </li>
+                </ul>
+            </li>
+
+            <!-- <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Master</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/manage_key_feature/') ?>">Key Features</a></li>
+                </ul>
+            </li>
+            -->
+
+            <!-- Career -->
+            <li class="nav-item pcoded-hasmenu">
+                <a href="#!" class="nav-link "><span class="pcoded-micon"><i class="feather icon-package"></i></span><span class="pcoded-mtext">Career Manage</span></a>
+                <ul class="pcoded-submenu">
+                    <li><a href="<?= base_url('admin/Manage_career/') ?>">Career</a></li>
+                    <li><a href="<?= base_url('admin/Manage_applicants') ?>">Applicants</a></li>
+                </ul>
+            </li>
+
+            <!-- Testimonial -->
+            <li class="nav-item"><a href="<?php echo base_url('admin/manage_testimonial'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Testimonial</span></a></li>
+
+            <!-- download -->
+            <li class="nav-item"><a href="<?php echo base_url('admin/Manage_download'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Download</span></a></li>
+
+            <!-- Service Request -->
+            <!-- <li class="nav-item"><a href="<?php echo base_url('admin/Manage_services'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Service Request</span></a></li> -->
+
+
+            <!-- Service Request -->
+            <li class="nav-item"><a href="<?php echo base_url('admin/Manage_content_page'); ?>" class="nav-link "><span class="pcoded-micon"><i class="feather icon-users"></i></span><span class="pcoded-mtext">Content pages</span></a></li>
+
+
+
+
+            <li class="nav-item pcoded-hasmenu">&nbsp;</li>
+        </ul>
+    </div>
+</div>

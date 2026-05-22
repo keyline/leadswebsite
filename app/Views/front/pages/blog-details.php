@@ -6,8 +6,9 @@
                   <div id="sticky-sidebar-demo" class="sidebar fixed-sidebar">
                       <h5 class="nav-title">Table of contents</h5>
 
-                      <?php if (count($contents)):
-                            foreach ($contents as $content): ?>
+                      <?php if (count($blog_contents)):
+                            foreach ($blog_contents as $content):
+                        ?>
                               <a class="anchor_links_nav_health_guides" href="#h-<?= strtolower($content->table_of_content_slug) ?>"> <?= ucfirst($content->table_of_content) ?> </a>
                       <?php
                             endforeach;
@@ -27,9 +28,8 @@
 
                           <ul class="blog_meta">
                               <li><i class="fa-solid fa-user"></i> <?= $blog->post_by ?></li>
-                              <li><i class="fa-regular fa-calendar-days"></i><?= (new DateTime($blog->created_at))->format('F jS, Y') ?></li>
-                              <li><i class="fa-regular fa-clock"></i><?= (new DateTime($blog->created_at))->format('h.m A') ?></li>
-
+                              <li><i class="fa-regular fa-calendar-days"></i><?= (new DateTime($blog->content_date))->format('F jS, Y') ?></li>
+                              <li><i class="fa-regular fa-clock"></i><?= (new DateTime($blog->content_date))->format('h.m A') ?></li>
                           </ul>
 
                           <div class="blogdetails_fullimage">
@@ -39,8 +39,8 @@
                           <div id="links-box" class="blogdetial_infomation">
                               <?= $blog->description ?>
                               <!-- ++++++++++++++++++++++++++++++++++ -->
-                              <?php if (count($contents)):
-                                    foreach ($contents as $content):
+                              <?php if (count($blog_contents)):
+                                    foreach ($blog_contents as $content):
                                         $summary_text = !empty(trim($content->summary)) ?
                                             '<div class="medical-disclaimer disclaimer-copy">
                                                             <h4>Summary</h4>
@@ -62,9 +62,13 @@
 
                           <div class="blogdetails_share">
                               <ul>
-                                  <li><a href="#" class="blogshare" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                  <!-- <li><a href="#" class="blogshare" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
                                   <li><a href="#" class="blogshare" target="_blank"><i class="fa-brands fa-twitter"></i></a></li>
-                                  <li><a href="#" class="blogshare" target="_blank"><i class="fa-brands fa-pinterest-p"></i></a></li>
+                                  <li><a href="#" class="blogshare" target="_blank"><i class="fa-brands fa-pinterest-p"></i></a></li> -->
+                                  <li><a href="https://www.facebook.com/sharer.php?u=<?=base_url()?>/blog-details/<?=$blog->slug?>" class="blogshare" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                                    <li><a href="https://twitter.com/intent/tweet?url=<?=base_url()?>/blog-details/<?=$blog->slug?>" class="blogshare" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                                    <!-- <li><a href="#" target="_blank"><i class="fa-brands fa-youtube"></i></a></li> -->
+                                    <li><a href="https://wa.me/?text=<?=base_url()?>/blog-details/<?=$blog->slug?>" class="blogshare" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
                               </ul>
                           </div>
                   </div>
@@ -118,10 +122,10 @@
                                           <div class="blogitem_detials">
 
                                               <p class="u-text-p8 u-mb-sm u-mt-md u-text-gray-700">
-                                                  <span class="ps-2"><?= (new DateTime($relatedBlog->created_at))->format('M j, Y') ?></span> | <span class="pe-2"><?= $relatedBlog->category_name  ?></span> | <span class="ps-2"><?= $relatedBlog->post_by ?></span>
+                                                  <span class="ps-2"><?= (new DateTime($relatedBlog->content_date))->format('M j, Y') ?></span> | <span class="pe-2"><?= $relatedBlog->category_name  ?></span> | <span class="ps-2"><?= $relatedBlog->post_by ?></span>
                                               </p>
-                                              <h3><?= $relatedBlog->title ?></h3>
-                                              <p class="shortdes"> <?= truncateText($relatedBlog->description); ?> <span class="u-text-primary">read more</span></p>
+                                              <h3><?= truncateText($relatedBlog->title,40) ?></h3>
+                                              <p class="shortdes"> <?= truncateText($relatedBlog->short_description,70); ?> <span class="u-text-primary">read more</span></p>
                                           </div>
                                       </a>
                                   </div>
@@ -183,8 +187,6 @@
   <?= $this->section('scripts') ?>
   <script>
       $(document).ready(function() {
-         
-
           var a = new StickySidebar('#sticky-sidebar-demo', {
               topSpacing: 25,
               containerSelector: '.blogdetails_item',

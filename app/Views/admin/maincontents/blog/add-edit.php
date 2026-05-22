@@ -212,7 +212,7 @@ if ($row) {
 
                                         <div class="col-md-6">
                                             <div class="form-group">
-                                                <label class="form-label" for="meta_Keyword">Summary <span class="text-danger">*</span></label>
+                                                <label class="form-label" for="meta_Keyword">Summary <span class="text-danger"></span></label>
                                                 <textarea class="form-control" name="summary[]" placeholder=""  rows="2"><?= $content->summary ?></textarea>
                                             </div>
                                         </div>
@@ -328,6 +328,25 @@ if ($row) {
                 x++; //Increment field counter
                 $(wrapper).append(fieldHTML); //Add field html
                 CKEDITOR.replace('meta_description' + x);
+
+
+                // Reinitialize Summernote for the new textarea
+                $('.summernote').summernote({
+                        height: 150, // Set editor height
+                        toolbar: [
+                            ['style', ['style']],
+                            ['font', ['bold', 'italic', 'underline', 'clear']],
+                            ['fontsize', ['fontsize']],
+                            ['color', ['color']],
+                            ['para', ['ul', 'ol', 'paragraph']],
+                            ['table', ['table']],
+                            ['insert', ['link', 'picture', 'video']],
+                            ['view', ['fullscreen', 'codeview', 'help']]
+                        ],        
+                    });
+
+
+
             } else alert(`max ${maxField} blog content can be create`);
         });
 
@@ -337,6 +356,8 @@ if ($row) {
             $(this).parent('div').parent('div').remove(); //Remove field html
             x--; //Decrement field counter
         });
+
+        
     });
 </script>
 <?= $this->endSection() ?>

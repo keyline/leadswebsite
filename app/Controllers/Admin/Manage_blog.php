@@ -31,7 +31,7 @@ class Manage_blog extends BaseController
     {
         $session = \Config\Services::session();
         if (!$session->get('is_admin_login')) {
-            return redirect()->to('/Administrator');
+            return redirect()->to('/admin');
         }
         $model = new CommonModel();
         $this->data = array(
@@ -112,6 +112,8 @@ class Manage_blog extends BaseController
 
             // Data processing and insertion if validation passed
             try {
+                $postData['title'] =   mb_convert_encoding($postData['title'], 'UTF-8', 'auto');
+
                 $fields1 = [
                     'blog_category'             => $postData['blog_category'],
                     'title'                     => $postData['title'],
@@ -153,6 +155,7 @@ class Manage_blog extends BaseController
 
                 return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Inserted successfully');
             } catch (\Exception $e) {
+                pr($e->getMessage());
                 log_message('error', $e->getMessage()); // Log the error message
                 return redirect()->back()->withInput()->with('error_message', 'An unexpected error occurred');
             }
@@ -209,6 +212,8 @@ class Manage_blog extends BaseController
 
             // Data processing and insertion if validation passed
             try {
+                $postData['title'] =   mb_convert_encoding($postData['title'], 'UTF-8', 'auto');
+
                 $fields1 = [
                     'blog_category'             => $postData['blog_category'],
                     'title'                     => $postData['title'],

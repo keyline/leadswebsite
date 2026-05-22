@@ -3,12 +3,15 @@ namespace App\Controllers\Admin;
 use App\Controllers\BaseController;
 use App\Models\CommonModel;
 class User extends BaseController {
+    
 	public function __construct()
     {
        
     }
+    
     public function index() 
     {
+        // dd('dashboard');
         //pr($this->session->get());
         if(!$this->session->get('is_admin_login')) {
        
@@ -25,18 +28,22 @@ class User extends BaseController {
         echo $this->layout_after_login($title,$page_name,$data);
     }
     public function login() 
-    { 
+    {
+        // dd('here');
         $data['page_name'] = 'Login';
         $data['session'] = $this->session;
         $data['common_model'] = $this->common_model;
         if($this->request->getMethod() == 'post') {
+            // dd('after submit');
             //echo "papu";
             // die;
             $input = $this->validate([
                 'username' => 'required',
                 'password' => 'required|min_length[5]'
             ]);
+            // dd('validator');
             if($input == true) {
+                // dd('If validator true');
                 $conditions = array(
                     'username'=>$this->request->getPost('username'),
                     'password'=>md5($this->request->getPost('password')),
@@ -44,7 +51,9 @@ class User extends BaseController {
                     );
                 $record = $this->common_model->find_data('sms_users','row',$conditions);
                 // print_r($record);die;
+                // dd($record);
                 if($record) {
+                    // dd('If match');
                     $session_data = array(
                                         'user_id'=>$record->id,
                                         'user_type'=>$record->user_type,
@@ -55,8 +64,22 @@ class User extends BaseController {
                     $this->session->set($session_data);
 
                     $this->session->setFlashdata('success_message', 'Login success! Redirecting to dashboard');
-                    return redirect()->to('/admin/user/');
+                    // return redirect()->to('/admin/user/');
+                    // return redirect()->to('/Dashboard');
+                    // return redirect()->to(base_url('Dashboard'));
+                    // dd(base_url('Dashboard'));
+                    // dd('redirect');
+                    // return redirect()->to(site_url('Dashboard'));
+                    // header('Location: https://leadsindia.net/Dashboard');
+                    // exit;
+                    // $response = \Config\Services::response();
+                    // $response->setHeader('Location', site_url('Dashboard'));
+                    // $response->setStatusCode(302);
+                    // return $response;
+                    echo '<script>window.location.href="' . site_url('Dashboard') . '";</script>';
+                    exit;
                 } else {
+                    // dd('If not match');
                     $this->session->setFlashdata('error_message', 'Invalid credentials');
                     return redirect()->to('/Admin');
                 }                
@@ -131,12 +154,16 @@ class User extends BaseController {
 
             $postData = array(
                     'site_name'=>$this->request->getPost('site_name'),
+                    'site_url'=>$this->request->getPost('site_url'),
                     // 'site_description'=>$this->request->getPost('site_description'),
                     // 'site_video'=>$this->request->getPost('site_video'),
                     'admin_email'=>$this->request->getPost('admin_email'),
                     'site_address'=>$this->request->getPost('site_address'),
+                    'registered_address'=>$this->request->getPost('registered_address'),
+                    'service_email'=>$this->request->getPost('service_email'),
                     // 'site_phone'=>$this->request->getPost('site_phone'),
                     'whatsapp_no'=>$this->request->getPost('whatsapp_no'),
+                    'office_no'=>$this->request->getPost('office_no'),
                     // 'site_state_code'=>$this->request->getPost('site_state_code'),
                     // 'site_gstn'=>$this->request->getPost('site_gstn'),
                     // 'site_pan'=>$this->request->getPost('site_pan'),

@@ -1,4 +1,4 @@
-<section class="home_enquiry">
+<section class="home_enquiry" id="home_enquiry">
     <div class="container">
         <div class="row">
             <div class="col-md-10">
@@ -10,13 +10,13 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Name" aria-label="First name" name="name" value="<?= old('name') ?>">
                                     <?php if (session('errors.name')): ?>
-                                        <div class="error text-danger"><?= esc(session('errors.name')) ?></div>
+                                        <!-- <div class="error text-danger"><?= esc(session('errors.name')) ?></div> -->
                                     <?php endif; ?>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="Mobile No" aria-label="Mobile No" name="number" value="<?= old('number') ?>">
                                     <?php if (session('errors.number')): ?>
-                                        <div class="error text-danger"><?= esc(session('errors.number')) ?></div>
+                                        <!-- <div class="error text-danger"><?= esc(session('errors.number')) ?></div> -->
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -24,14 +24,14 @@
                                 <div class="col-sm-6">
                                     <input type="text" class="form-control" placeholder="City" aria-label="City" name="city" value="<?= old('city') ?>">
                                     <?php if (session('errors.city')): ?>
-                                        <div class="error text-danger"><?= esc(session('errors.city')) ?></div>
+                                        <!-- <div class="error text-danger"><?= esc(session('errors.city')) ?></div> -->
                                     <?php endif; ?>
                                 </div>
                                 <div class="col-sm-6">
                                     <input type="email" class="form-control" placeholder="Email" aria-label="Email" name="email" value="<?= old('email') ?>">
                                     <?php if (session('errors.email')): ?>
-                                        <div class=" error text-danger"><?= esc(session('errors.email')) ?>
-                                        </div>
+                                        <!-- <div class=" error text-danger"><?= esc(session('errors.email')) ?>
+                                        </div> -->
                                     <?php endif; ?>
                                 </div>
                             </div>
@@ -39,15 +39,15 @@
                                 <div class="col-sm-12">
                                     <textarea name="message" id="" placeholder="Message"><?= old('message') ?></textarea>
                                     <?php if (session('errors.message')): ?>
-                                        <div class="error text-danger"><?= esc(session('errors.message')) ?></div>
+                                        <!-- <div class="error text-danger"><?= esc(session('errors.message')) ?></div> -->
                                     <?php endif; ?>
                                 </div>
                             </div>
                             <div class="row">
                                 <input type="hidden" name="page_name" value="<?= service('uri')->getPath() ?>">
-                                <input type="hidden" name="recaptcha_token" id="recaptcha_token">
+                                <input type="hidden" name="recaptcha_token" id="recaptcha_token2">
                                 <div class="col-sm-6">
-                                    <button type="submit" class="g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit'>submit <img src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt="" class="img-fluid long-arrow"></button>
+                                    <button type="submit" class="g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit2'>submit <img src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt="" class="img-fluid long-arrow"></button>
                                 </div>
                             </div>
                         </form>
@@ -63,10 +63,15 @@
             <div class="col-md-2">
                 <div class="home_enquiry_social_btn">
                     <ul>
+                        <?php if(!empty ($site_setting->facebook_link)){ ?>
                         <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
+                        <? } if(!empty ($site_setting->twitter_link)) { ?>
                         <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
+                        <?php } if(!empty ($site_setting->youtube_link)) { ?>
                         <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
+                        <?php } if(!empty ($whatsapp_link)) { ?>
                         <li><a href="<?= $whatsapp_link ?>" target="_blank"><i class="fa-brands fa-whatsapp"></i></a></li>
+                        <?php } ?>
                     </ul>
                 </div>
             </div>
@@ -79,18 +84,18 @@
 
 <?= $this->section('scripts') ?>
 <script>
-
+    // (function(){
     // Handle reCAPTCHA callback
-    function onSubmit(token) {
+    function onSubmit2(token) {
         // Set the token in the hidden input
-        $('#recaptcha_token').val(token);
+        $('#recaptcha_token2').val(token);
 
         // Trigger AJAX form submission
-        submitForm();
+        submitForm2();
     }
 
     // Submit the form via AJAX
-    function submitForm() {
+    function submitForm2() {
         $.ajax({
             url: "api/contact-us", // Replace with your server URL
             type: "POST",
@@ -131,5 +136,7 @@
         // Trigger reCAPTCHA validation
         grecaptcha.execute();
     });
+
+    // })();
 </script>
 <?= $this->endSection() ?>

@@ -39,46 +39,22 @@
                         <table id="simpletable" class="table table-striped table-bordered wrap">
                             <thead>
                                 <tr>
-                                    <th>#</th>
-                                    <th>Company Name</th>
-                                    <th>Product Title</th>
-                                    <th>Product icon</th>
-                                    <th>Product Image</th>
-                                    <th>Product Description</th>
+                                    <th>#</th>                                   
+                                    <th>Product Title</th>                                                                                                            
                                     <th>Action</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <?php if($rows) { $i=1; foreach($rows as $row) {
-                                    
-                                            ?>
+                                <?php if($rows) { $i=1; foreach($rows as $row) {                                    
+                                ?>
                                 <tr>
-                                    <td><?php echo $i++; ?></td>
-                                    
-                                    <td>
-                                        <?php 
-                                    $companies= $common_model->find_data('sms_company', 'row', ['id'=>$row->company_name]);
-                                    if($companies){                                        
-                                        echo $companies->name; 
-                                    } ?>
-                                    </td>
-                                
-                                    <td><?php echo $row->product_title; ?></td>
-                                    <td>
-                                        <?php if($row->product_icon!='') { ?>
-                                          <img src="<?=base_url('/uploads/product/'.$row->product_icon)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
-                                        <?php } ?>                                        
-                                    </td>
-                                    <td>
-                                        <?php if($row->product_image!='') { ?>
-                                          <img src="<?=base_url('/uploads/product/'.$row->product_image)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  />
-                                        <?php } ?>                                        
-                                    </td>
-                                    <td><?php echo $row->product_description; ?></td>
+                                    <td><?php echo $i++; ?></td>                                                                                                        
+                                    <td><?php echo $row->product_title; ?></td>                                                                                                            
                                     
                                     <td>
                                         <?php $primary_key = $moduleDetail['primary_key']; ?>
                                         <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/edit/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-primary" title="Edit"><i class="feather icon-edit"></i></a>
+                                        <!-- <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/image_list/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-primary" title="Show Other Images"><i class="feather icon-edit"></i>Show Other Images</a> -->
                                         
                                         <button type="button" class="btn btn-danger" onclick="sweet_multiple('<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/confirm_delete/<?php echo $row->$primary_key; ?>');"><i class="feather icon-trash"></i></button>
 

@@ -50,9 +50,9 @@
 
 
 	<?php
-	$this->session = \Config\Services::session();
-	$this->session->setFlashdata('success_message', '');
-	$this->session->setFlashdata('error_message', '');
+	$session = \Config\Services::session();
+	$session->setFlashdata('success_message', '');
+	$session->setFlashdata('error_message', '');
 	?>
 
 

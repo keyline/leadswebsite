@@ -37,8 +37,8 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $indexPage = 'index.php';
-
+	// public $indexPage = 'index.php';
+	public $indexPage = '';
 	/**
 	 * --------------------------------------------------------------------------
 	 * URI PROTOCOL
@@ -152,8 +152,10 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	public $sessionDriver = 'CodeIgniter\Session\Handlers\DatabaseHandler';
-
+    //public $sessionDriver = 'CodeIgniter\Session\Handlers\DatabaseHandler';
+	// public $sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler';
+	// public $sessionDriver = 'CodeIgniter\Session\Handlers\DatabaseHandler';
+    public $sessionDriver = 'CodeIgniter\Session\Handlers\FileHandler';
 	/**
 	 * --------------------------------------------------------------------------
 	 * Session Cookie Name
@@ -194,8 +196,13 @@ class App extends BaseConfig
 	 *
 	 * @var string
 	 */
-	//public $sessionSavePath = WRITEPATH . 'session';
-	public $sessionSavePath = 'ci_sessions';
+
+	// public $sessionSavePath = WRITEPATH . 'session';
+    //public $sessionSavePath = 'ci_sessions';
+	
+	public $sessionSavePath = WRITEPATH . 'session';
+    // public $sessionSavePath = 'ci_sessions';
+
 
 
 	/**

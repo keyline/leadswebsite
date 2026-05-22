@@ -11,6 +11,7 @@
     </div>
 </section>
 <!-- inner page banner end -->
+
 <!-- mission section start -->
 <section class="mission_section">
     <div class="container">
@@ -48,6 +49,17 @@
                                         </div>
                                     </div>
                                 </div>
+                                <!-- presence -->
+                                <div class="tab-pane fade" id="v-pills-presence" role="tabpanel" aria-labelledby="v-pills-presence-tab" tabindex="0">
+                                    <div class="mission_info">
+
+                                        <div class="feature_plan mission_text mt-4">
+                                            <h4>Presence</h4>
+                                            <?= $setting->presence_text  ?? '' ?>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- presence -->
 
                                 <div class="tab-pane fade" id="v-pills-profile" role="tabpanel" aria-labelledby="v-pills-profile-tab" tabindex="0">
                                     <div class="row justify-content-end">
@@ -55,7 +67,9 @@
                                             <ul class="client-logo-list">
                                                 <?php foreach ($certificates as $certificate): ?>
                                                     <li>
-                                                        <img src="<?= base_url('uploads/') ?>/certificate/<?= $certificate->image_data ?>" alt="" class="img-fluid">
+                                                        <a href="<?= base_url('uploads/') ?>/certificate/<?= $certificate->image_data ?>" class="thumbnail" title="">
+                                                            <img src="<?= base_url('uploads/') ?>/certificate/<?= $certificate->image_data ?>" alt="" class="img-fluid">
+                                                        </a>
                                                     </li>
                                                 <?php endforeach; ?>
                                             </ul>
@@ -67,15 +81,15 @@
                         </div>
                     </div>
                     <div class="about_more_box">
-                        <a href="#">
-                            <div class="mission_tabs">
-                                <p class="hypne">Mission & Vision</p>
-                                <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
-                                    <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Our Presence</a>
-                                    <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificates</a>
-                                </div>
+
+                        <div class="mission_tabs">
+                            <!-- <p class="hypne"></p> -->
+                            <div class="nav flex-column nav-pills" id="v-pills-tab" role="tablist" aria-orientation="vertical">
+                                <a class="nav-link active" id="v-pills-home-tab" data-bs-toggle="pill" data-bs-target="#v-pills-home" type="button" role="tab" aria-controls="v-pills-home" aria-selected="true">Mission & Vision</a>
+                                <a class="nav-link" id="v-pills-presence-tab" data-bs-toggle="pill" data-bs-target="#v-pills-presence" type="button" role="tab" aria-controls="v-pills-presence" aria-selected="false">Our Presence</a>
+                                <a class="nav-link" id="v-pills-profile-tab" data-bs-toggle="pill" data-bs-target="#v-pills-profile" type="button" role="tab" aria-controls="v-pills-profile" aria-selected="false">Certificates</a>
                             </div>
-                        </a>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -95,3 +109,27 @@
 <!-- home enquiry start -->
 <?= $enquiry ?>
 <!-- home enquiry end -->
+
+
+
+<?= $this->section('scripts') ?>
+<script>
+    $(function() {
+        $('.thumbnail').viewbox();
+        $('.thumbnail-2').viewbox({
+            fullscreenButton: true
+        });
+
+        (function() {
+            var vb = $('.popup-link').viewbox();
+            $('.popup-open-button').click(function() {
+                vb.trigger('viewbox.open');
+            });
+            $('.close-button').click(function() {
+                vb.trigger('viewbox.close');
+            });
+        })();
+
+    });
+</script>
+<?= $this->endSection() ?>

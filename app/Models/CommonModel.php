@@ -64,6 +64,9 @@ class CommonModel extends Model
         if ($limit != 0) $builder->limit($limit, $offset);
         $query = $builder->get();
 
+        // Debugging: Get the last executed query
+        // die($this->db->getLastQuery()); // Output the query
+
         switch ($return_type) {
             case 'array':
             case '':
@@ -85,7 +88,7 @@ class CommonModel extends Model
                 $result = $query->getNumRows();
                 break;
         }
-        //echo $this->db->getLastQuery();die;
+        // echo $this->db->getLastQuery();die;
         return $result;
     }
 
@@ -95,11 +98,14 @@ class CommonModel extends Model
         $builder = $this->db->table($table);
         if ($id == '') {
             $builder->insert($postdata);
+            // pr($this->db->getLastQuery());
             return $this->db->insertID();
         } else {
             $builder->where($field, $id);
-            $builder->update($postdata);
-            return $this->db->affectedRows();
+            // pr($this->db->getLastQuery());
+            return $builder->update($postdata);
+    
+            // return $this->db->affectedRows();
         }
     }
 
@@ -122,6 +128,7 @@ class CommonModel extends Model
     function upload_single_file($fieldName, $fileName, $uploadedpath, $uploadType)
     {
         $imge = $fileName;
+
         if ($imge == '') {
             $slider_image = 'no-user-image.jpg';
         } else {
@@ -189,6 +196,7 @@ class CommonModel extends Model
             } else {
                 $return_array = array('status' => 0, 'message' => $message, 'newFilename' => '');
             }
+            //  pr($return_array) ; die;
             return $return_array;
         }
     }
@@ -265,6 +273,8 @@ class CommonModel extends Model
         $apiMessage = [];
         $apiResponse = [];
         if (count($images) > 0) {
+            // pr($images);
+
             for ($p = 0; $p < count($images); $p++) {
                 $imge = $images[$p]->getClientName();
                 //pr($imge);
@@ -607,5 +617,47 @@ class CommonModel extends Model
     {
         return  $this->db->table($table)->where($field, $id)->delete();
     }
-    
+
+
+    function upload_video_file($fieldName, $fileName, $uploadedpath)
+    {
+        $video = $fileName;
+        $status = 0;
+
+        if ($video == '') {
+            $message = 'No video file provided.';
+            $newFilename = 'no-video.mp4';
+        } else {
+            $videoFileType = pathinfo($video, PATHINFO_EXTENSION);
+            $allowedVideoTypes = ['mp4', 'avi', 'mov', 'wmv', 'flv', 'mkv', 'webm'];
+
+            // Check if the uploaded file is a valid video type
+            if (!in_array(strtolower($videoFileType), $allowedVideoTypes)) {
+                $message = 'Sorry, only MP4, AVI, MOV, WMV, FLV, MKV, and WEBM files are allowed';
+                $status = 0;
+            } else {
+                $message = 'Video upload ok';
+                $status = 1;
+            }
+
+            // Generate a unique filename for the uploaded video
+            $newFilename = time() . '_' . $video;
+            $temp = $_FILES[$fieldName]["tmp_name"];
+            $upload_path = 'uploads/' . ($uploadedpath ? $uploadedpath . '/' : '');
+
+            if ($status) {
+                // Move the uploaded video to the upload path
+                if (!is_dir($upload_path)) {
+                    mkdir($upload_path, 0755, true); // Create directory if it doesn't exist
+                }
+                move_uploaded_file($temp, $upload_path . $newFilename);
+            }
+        }
+
+        return [
+            'status' => $status,
+            'message' => $message,
+            'newFilename' => $status ? $newFilename : ''
+        ];
+    }
 }

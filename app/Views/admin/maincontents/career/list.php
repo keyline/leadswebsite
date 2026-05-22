@@ -41,10 +41,10 @@
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Experience</th>
-                                    <th>Message</th>
-                                    <th>CV</th>
+                                    <th>Vacancies</th>
+                                    <th>Location</th>
+                                    <th>Discription</th>
+                                    <!-- <th>CV</th> -->
                                     <th>Action</th>
                                 </tr>
                             </thead>
@@ -53,15 +53,15 @@
                                 <tr>
                                     <td><?php echo $i++; ?></td>
                                     <td><?php echo $row->name; ?></td>
-                                    <td><?php echo $row->email; ?></td>
-                                    <td><?php echo $row->experience; ?></td>
+                                    <td><?php echo $row->vacancies; ?></td>
+                                    <td><?php echo $row->location; ?></td>
                                     <td><?php echo wordwrap($row->msg,40,"<br>\n"); ?></td>
-                                    <td>
-                                        <?php if($row->career_cv!='') { ?>
-                                          <!-- <img src="?=base_url('/uploads/career/'.$row->image)?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;"  /> -->
+                                    <!-- <td>
+                                        <?php /* if($row->career_cv!='') { ?>
+
                                           <a href="<?= base_url('/uploads/career/'.$row->career_cv) ?>" target="blank" class="fas fa-eye" style='color:green'> View pdf</a>
-                                        <?php } ?>                                        
-                                    </td>
+                                        <?php } */ ?>                                        
+                                    </td> -->
                                     <td>
                                         <?php $primary_key = $moduleDetail['primary_key']; ?>
                                         <a href="<?php echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; ?>/edit/<?php echo $row->$primary_key; ?>" class="btn  btn-icon btn-primary" title="Edit"><i class="feather icon-edit"></i></a>

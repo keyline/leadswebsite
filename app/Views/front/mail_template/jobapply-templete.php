@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leadsindia</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1 {
+            color: #3498db;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #555555;
+            margin-bottom: 15px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 10px 20px;
+            margin: 20px 0;
+            text-decoration: none;
+            background-color: #e74c3c;
+            color: #ffffff;
+            border-radius: 5px;
+        }
+
+        .destination-image {
+            width: 35%;
+            max-height: 300px;
+            object-fit: cover;
+            border-radius: 5px;
+            margin-bottom: 20px;
+        }
+
+        .footer {
+            margin-top: 20px;
+            font-size: 12px;
+            color: #999999;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>job apply by <?= htmlspecialchars($first_name) ?> <?= htmlspecialchars($last_name) ?></h1>
+        <img class="destination-image" src="<?php echo base_url('uploads/'.$site_setting->site_logo); ?>" alt="Destination Image">
+        <p>Hello admin,</p>
+        <p>You have received a new job application request! A candidate has expressed interest in the position you posted. </p>
+        <p>Please take a moment to review their application and proceed with the next steps in the hiring process. </p>
+        <br>
+
+
+        <table style="width: 100%; border-collapse: collapse; margin-top: 20px;">
+            <tr>
+                <td><strong>Name:</strong></td>
+                <td><?= htmlspecialchars($first_name) ?> <?= htmlspecialchars($last_name) ?></td>
+            </tr>
+            <tr>
+                <td><strong>Email:</strong></td>
+                <td><?= htmlspecialchars($email) ?></td>
+            </tr>
+
+            <tr>
+                <td><strong>Phone:</strong></td>
+                <td><?= htmlspecialchars($phone) ?></td>
+            </tr>
+            <tr>
+                <td><strong>Qualification:</strong></td>
+                <td><?= htmlspecialchars($qualification) ?></td>
+            </tr>
+            <tr>
+                <td><strong>Job name:</strong></td>
+                <td><?= htmlspecialchars(is_object($job_id) ? $job_id->name : $job_id) ?></td>
+            </tr>
+            <tr>
+                <td><strong>CV:</strong></td>
+                <td><a target="_blank" href="<?= base_url('/uploads/applicantCv/') . '/' . htmlspecialchars($cv_file) ?>"><?=htmlspecialchars($cv_file)?></a></td>
+            </tr>
+
+        </table>
+
+        <p class="footer">Best regards,<br> Leadsindia Team </p>
+    </div>
+</body>
+
+</html>

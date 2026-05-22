@@ -13,13 +13,15 @@
                                             <div class="home-blog-info">
                                                 <div class="row">
                                                     <div class="col-md-8">
+                                                        <div class="homeblog_imgsize">
                                                         <img src="<?= base_url('uploads/') ?>/blogs/<?= $blog->image ?>" alt="" class="img-fluid">
+                                                        </div>
                                                     </div>
                                                 </div>
                                                 <h4> <?= $blog->title ?> <a href="<?php echo base_url('blog-details/' . $blog->slug); ?>" class="blog-read-more">Read More</a></h4>
                                                 <ul class="admin-info-list">
                                                     <li>By <a href="" onclick="event.preventDefault();"> <?= $blog->post_by ?> </a></li>
-                                                    <li> <?= (new DateTime($blog->created_at))->format('F jS, Y') ?> </li>
+                                                    <li> <?= (new DateTime($blog->content_date))->format('F jS, Y') ?> </li>
                                                     <li><a href="" onclick="event.preventDefault();"><?= $blog->category_name ?></a></li>
                                                 </ul>
                                             </div>
@@ -37,7 +39,7 @@
                         </div>
                     </div>
                     <div class="about_more_box">
-                        <a href="#">
+                        <a href="<?= base_url('blog') ?>">
                             <p>LATEST</p>
                             <h4>Blogs</h4>
                         </a>

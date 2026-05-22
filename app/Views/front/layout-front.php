@@ -11,13 +11,18 @@
 
 <body>
 
-    <nav id="nav-main" class="">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-N4ZM5MQZ"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
+
+    <nav id="nav-main" class="<?= ($page_header == 'Blog Details') ? 'blogdetail_head' : '' ?>">
         <?= $menu ?>
     </nav>
 
     <!------------|| NAV BAR STARTS ||------------>
 
-    <header class="header">
+    <header class="header <?= ($page_header == 'Blog Details') ? 'blogdetails_header' : '' ?>">
 
         <?= $header ?>
 
@@ -39,17 +44,19 @@
 
         <?php
 
-        $this->session = \Config\Services::session();
+        $session = \Config\Services::session();
 
-        $this->session->setFlashdata('success_message', '');
+        $session->setFlashdata('success_message', '');
 
-        $this->session->setFlashdata('error_message', '');
+        $session->setFlashdata('error_message', '');
 
         ?>
 
     </footer>
 
-
+    <div class="footer_whatsapp">
+<a href="https://wa.me/+919593679111?text=I,%20want%20to%20know%20more%20about%20Leads%20Overseas%20Offerings%20(leadsindia.net)." target="_blank"><img class="zoom-in-out-box" src="<?= base_url('public/assets/img/') ?>/whatsapp-computer-icons.png" alt="logo"></a>        
+</div>
 
 
     <!-- Optional JavaScript; choose one of the two! -->
@@ -64,6 +71,11 @@
     <!-- <script defer type="text/javascript" src="assets/js/script.js"></script> -->
     <script src="<?= base_url('public/assets/') ?>/owl/owl-min.js"></script>
     <script src="<?= base_url('public/assets/') ?>/js/menumaker.js"></script>
+    <script src="<?= base_url('public/assets/') ?>/js/jquery.viewbox.min.js"></script>
+    <!-- lightbox js -->
+    <script src="<?= base_url('public/assets/') ?>/js/lightbox.min.js"></script>
+    <!-- <script src="?= base_url('public/assets/') ?>/js/fancybox.umd.js"></script> -->
+
     <script src="https://www.jquery-az.com/jquery/js/sticky-sidebar/sticky-sidebar.js"></script>
 
     <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
@@ -82,12 +94,24 @@
     <script src="https://www.google.com/recaptcha/api.js"></script>
     <script>
         var swiper = new Swiper(".mySwiper", {
-            spaceBetween: 10,
-            slidesPerView: 4,
+            spaceBetween: 18,
+            slidesPerView: 3,
             freeMode: true,
             watchSlidesProgress: true,
+            breakpoints: {
+                320: {
+                spaceBetween: 30,
+                },
+                767: {
+                spaceBetween: 40,
+                },
+                991: {
+                spaceBetween: 18,
+                },
+            },
         });
         var swiper2 = new Swiper(".mySwiper2", {
+            loop: true,
             spaceBetween: 10,
             navigation: {
                 nextEl: ".swiper-button-next",
@@ -158,11 +182,20 @@
         });
     </script>
     <script>
+        lightbox.option({
+        'disableScrolling': true,
+        })
+        // Fancybox.bind('[data-fancybox="gallery"]', {
+        // Thumbs : {
+        //   type: "classic"
+        // }
+        // }); 
+    </script>
+    <script>
         // first product image slider
         var swiper = new Swiper(".productimgswiper", {
             loop: true,
-            spaceBetween: 0,
-
+            spaceBetween: 10,
             pagination: {
                 el: ".swiper-pagination",
                 clickable: true,
@@ -247,6 +280,8 @@
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
+
+
     <script>
         // jQuery(function() {
 
@@ -267,7 +302,6 @@
         //     });
 
         // });
-        
     </script>
 
     <script type="text/javascript" src="<?= base_url('material/assets/js/jquery.captcha.basic.min.js') ?>"></script>
@@ -743,7 +777,7 @@
         function showAlert({
             position = "center",
             icon = "success",
-            title = "Data saved",
+            title = "",
             showConfirmButton = false,
             timer = 1500
         }) {
@@ -756,7 +790,6 @@
             });
         }
     </script>
-
 
     <!-- [ page wise Scripts ] -->
     <?= $this->renderSection('scripts') ?>

@@ -37,11 +37,22 @@ $RECYCLE.BIN/
 .Trash-*
 
 #-------------------------
+# Apache Config Files
+#-------------------------
+.htaccess
+.htpasswd
+
+#-------------------------
 # Environment Files
 #-------------------------
 # These should never be under version control,
 # as it poses a security risk.
 .env
+.env.*
+.env.local
+.env.production
+.env.staging
+.env.development
 .vagrant
 Vagrantfile
 

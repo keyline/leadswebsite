@@ -82,22 +82,25 @@ defined('EXIT__AUTO_MAX')      || define('EXIT__AUTO_MAX', 125); // highest auto
 
 
 // Recaptcha keys 
-define('SITE_KEY', '6LcrV24qAAAAAGiMTANmc62DzEspkI2iK6KVkWsa');
-define('SECRET_KEY', '6LcrV24qAAAAAOIAhAdBL4W4H33lis3VRnsZXOUz');
+// define('SITE_KEY', '6LcrV24qAAAAAGiMTANmc62DzEspkI2iK6KVkWsa');
+// define('SECRET_KEY', '6LcrV24qAAAAAOIAhAdBL4W4H33lis3VRnsZXOUz');
+define('SITE_KEY', '6Ld3TJcqAAAAAA6rWy4xRYcopUze0NnG0F4mjeeC');
+define('SECRET_KEY', '6Ld3TJcqAAAAAI830tWh5FpddhXUK5qG__69BeTi');
 
 //mail
 
-define('CLIENT_MAIL', 'shubhasinha77@gmail.com');// sudip.keyline@gmail.com   // old:'enquiry@victoriatravels.net' 'snehasish@victoriatravels.net'    #'website.victoriatravels@gmail.com'
+define('CLIENT_MAIL', 'shubhasinha77@gmail.com'); // sudip.keyline@gmail.com   // old:'enquiry@victoriatravels.net' 'snehasish@victoriatravels.net'    #'website.victoriatravels@gmail.com'
 define('CLIENT_CC_MAIL', 'system@keylines.net');
-define('SET_FROM', 'no-replay@victoriatravels.com');
-define('SET_NAME', 'Victoria Travels');
+define('SET_FROM', 'no-reply@leadsindia.net');
+define('SET_NAME', 'Leadsindia');
 
-define('SMTP_HOST', 'smtp-relay.brevo.com'); 
-define('SMTP_USER', 'victoriatravelskdpl@gmail.com');
-define('SMTP_PASS', 'My5XaC1cn2EpP8Is');
-define('SMTP_PORT', 587);
+define('SMTP_HOST', 'smtp-relay.brevo.com');
+define('SMTP_USER', '8197d7001@smtp-brevo.com');
+define('SMTP_PASS', '41mIvTyafYLqScXA');
+define('SMTP_PORT', 587);  //87
 
-// Define configurations for different users
+
+// Define configurations for different users 
 $configs = [
     'laragon' => [
         'BASEURL' => 'https://leadswebsite.test/',
@@ -106,16 +109,16 @@ $configs = [
         'DATABASE' => 'keyline1_leadsdev',
     ],
     'localhost' => [
-        'BASEURL' => 'https://localhost/leadswebsite/',
+        'BASEURL' => 'http://localhost/leadswebsite/',
         'USERNAME' => 'root',
         'PASSWORD' => '',
         'DATABASE' => 'keyline_leads'
     ],
     'live' => [
-        'BASEURL' => 'https://leadsdev.keylines.net.in/',
-        'USERNAME' => 'keyline1_leadsdev',
-        'PASSWORD' => 'ovpBo~0e7m8.',
-        'DATABASE' => 'keyline1_leadsdev',
+        'BASEURL' => 'https://leadsindia.net/',
+        'USERNAME' => 'leadsind_kdpl_new',
+        'PASSWORD' => 'Cwd!Ogq^~8xL',
+        'DATABASE' => 'leadsind_kdpl_new',
     ],
 ];
 
@@ -127,3 +130,23 @@ define('BASEURL', $configs[$currentUser]['BASEURL']);
 define('USERNAME', $configs[$currentUser]['USERNAME']);
 define('PASSWORD', $configs[$currentUser]['PASSWORD']);
 define('DATABASE', $configs[$currentUser]['DATABASE']);
+
+
+
+// media_categories
+
+define('MEDIA_CATEGORIES', [
+    1 => "Electronic Media",
+    2 => "Outdoor Media",
+    3 => "Print Media",
+    4 => "Press Release",
+    5 => "AGM"
+]);
+
+// amc banner
+define('AMC_BANNER', [
+    1 => "AMC_Cook_Tops.jpg",
+    2 => "AMC_Water_Purifier.jpg",
+    3 => "AMC_Chimni.jpg",
+    4 => "AMC_Water_Treatment_Plant.jpg"
+]);

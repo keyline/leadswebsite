@@ -1,3 +1,12 @@
+<?php
+$isAMC = ($moduleDetail['controller'] == 'manage_amc_enquire');
+$isDistributorEnquiry = ($moduleDetail['controller'] == 'manage_distributor_enquire');
+
+
+
+
+// pr($moduleDetail['controller']);
+?>
 <div class="pcoded-content">
     <div class="page-header">
         <div class="page-block">
@@ -32,7 +41,7 @@
                     <?php } ?>
                     <h5>
                         <!-- <a href="<?php /* echo base_url(); ?>/admin/<?php echo $moduleDetail['controller']; */ ?>/add" class="btn btn-success">Add <?php /* echo $moduleDetail['module']; */ ?></a> -->
-                        <a target="_blank" href="<?= base_url() . '/admin/manage_enquire/download_csv' ?>" class="btn btn-success">Export</a>
+                        <a target="_blank" href="<?= base_url() . '/admin/' . $moduleDetail['controller'] . '/download_csv' ?>" class="btn btn-success">Export</a>
 
                     </h5>
                 </div>
@@ -45,7 +54,13 @@
                                     <th>#</th>
                                     <th>Name</th>
                                     <th>Email & Number</th>
-                                    <th> massage </th>
+                                    <?php if ($isAMC) { ?>
+                                        <th>Product</th>
+                                    <?php } ?>
+                                    <?php if ($isDistributorEnquiry) { ?>
+                                        <th>Product Interest</th>
+                                    <?php } ?>
+                                    <th>massage </th>
                                     <th>Enquire Date</th>
                                     <!-- <th>Action</th> -->
                                 </tr>
@@ -53,15 +68,23 @@
                             <tbody>
                                 <?php
 
-                                if ($rows) {
+                                if ($rows) {                                                                        
                                     $i = 1;
                                     foreach ($rows as $row) {
-
                                 ?>
                                         <tr>
                                             <td><?= $i++; ?></td>
                                             <td><small><?= $row->name ?></small></td>
                                             <td> <small><?= $row->email; ?> <br> <?= $row->phone; ?></small> </td>
+                                            <?php if ($isAMC) { ?>
+                                                <td> <small><?= $row->product_name; ?></small> </td>
+                                            <?php } ?>
+                                            <?php if ($isDistributorEnquiry) {
+                                                $productcat_id = $row->product_interest;
+                                                $apikey1 = array_search($productcat_id, array_column($productcat, 'id')) ;                                                
+                                                 ?>
+                                                <td> <small><?=$productcat[$apikey1]->name?></small> </td>
+                                            <?php } ?>
                                             <td> <small><?= $row->comment; ?></small> </td>
                                             <td><small><?= date('jS M Y', strtotime($row->created_at));  ?></small></td>
 

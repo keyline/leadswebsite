@@ -1,11 +1,41 @@
 <?php
-$uriString =  $_SERVER["REQUEST_URI"];
+$uriString = $_SERVER["REQUEST_URI"] ?? '/';
+$path = trim(parse_url($uriString, PHP_URL_PATH), '/'); // '' for homepage
 $uriArr = explode('/', $uriString);
-?>
+
+// ---- Your requested overrides ----
+$specialMeta = [
+    '' => [
+        'title' => 'Leads India – Premium Home Appliances & Smart Living Solutions in Eastern India',
+        'description' => 'Leads India is your trusted home and kitchen solutions company and home appliances distributor in Eastern India, offering premium brands, innovative home technology, and smart living solutions.',
+    ],
+    'product/kitchen-chimney' => [
+        'title' => 'Best Kitchen Chimney in Eastern India – Filterless & Auto Clean Technology',
+        'description' => 'Shop the best kitchen chimney in Eastern India with Leads – auto clean, filterless, high suction & silent models under ₹20,000. Perfect for Indian cooking.',
+    ],
+    'product/ro-water-purifier' => [
+        'title' => 'Best Water Purifier in Eastern India - Premium RO  Purifier at Best Price',
+        'description' => 'Leads India offers the best RO water purifier in Eastern India. Pure water, smart technology & premium features – all at unbeatable prices.',
+    ],
+];
+
+$rendered = false;
+if (isset($specialMeta[$path])) {
+    $rendered = true; ?>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title><?= htmlspecialchars($specialMeta[$path]['title'], ENT_QUOTES, 'UTF-8'); ?></title>
+    <meta name="description" content="<?= htmlspecialchars($specialMeta[$path]['description'], ENT_QUOTES, 'UTF-8'); ?>">
+<?php } ?>
+
+<?php if (!$rendered): ?>
 <!-- Required meta tags -->
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1.0, shrink-to-fit=no">
+
 <?php
 foreach ($metadetails as $key => $meta) :
     if ($uriArr[1] == $meta->url) { ?>
@@ -19,16 +49,39 @@ foreach ($metadetails as $key => $meta) :
         <meta property="og:title" content="<?= $meta->title; ?>">
         <meta property="og:description" content="<?= $meta->description; ?>">
         <meta property="og:url" content="<?= base_url($meta->url) ?>">
-<?php }
+<?php
+        $rendered = true;
+        break;
+    }
 endforeach;
 ?>
+
+<?php if (!$rendered): ?>
+        <title>Leads Overseas - Leads</title>
+        <meta name="description" content="Leads Overseas Pvt. Ltd. 
+
+LEADS is the Brand Name of Leads Overseas Pvt. Ltd. AN ISO 9001:2008 Certified company, established in 2002. Company has gained excellent reputation within a very short period.
+
+We Presently importing kitchen appliances from Malaysia and Manufactured Domestic and commercial water purification system with reputed High quality">
+        <meta name="keywords" content="">
+        <meta property="og:type" content="website">
+        <meta property="og:image" content="<?php echo base_url(); ?>/uploads/<?php echo $site_setting->site_favicon; ?>">
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:title" content="Leads Overseas - Leads">
+        <meta property="og:description" content="Leads Overseas Pvt. Ltd. 
+
+LEADS is the Brand Name of Leads Overseas Pvt. Ltd. AN ISO 9001:2008 Certified company, established in 2002. Company has gained excellent reputation within a very short period.
+
+We Presently importing kitchen appliances from Malaysia and Manufactured Domestic and commercial water purification system with reputed High quality">
+        <meta property="og:url" content="<?php echo base_url(); ?>">
+<?php endif; // end default fallback ?>
+<?php endif; // end !$rendered ?>
 <!-- Favicon icon -->
 <link rel="icon" href="<?php echo base_url(); ?>/uploads/<?php echo $site_setting->site_favicon; ?>" type="image/x-icon">
 <!-- Bootstrap CSS -->
-<!-- assets/bootstrap/css/bootstrap.min.css -->
 <link rel="stylesheet" href="<?= base_url('public/assets/bootstrap/css/') ?>/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/menumaker.css">
-
 
 <!------------GOOGLE FONT------------>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -49,27 +102,41 @@ endforeach;
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/easy-responsive-tabs.css " />
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
 
+<!-- lightbox css link -->
+<link rel="stylesheet" href="<?= base_url('public/assets/css/') ?>/lightbox.min.css">
+<!-- <link rel="stylesheet" href="?= base_url('public/assets/css/') ?>/fancybox.css"> -->
+<!-- <link rel="stylesheet" href="<?= base_url('public/assets/css/') ?>/xzoom.min.css"> -->
+
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/style.css">
 <link rel="stylesheet" href="<?= base_url('public/assets/css/') ?>/custom.css">
 <link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/responsive.css">
 
+<link rel="stylesheet" type="text/css" href="<?= base_url('public/assets/css/') ?>/viewbox.css">
+
 <!-- <link rel="canonical" href="https://victoriatravels.com<?php echo ($_SERVER['REQUEST_URI']); ?>"> -->
 
 <!-- Google Tag Manager -->
-<script async>
-    (function(w, d, s, l, i) {
-        w[l] = w[l] || [];
-        w[l].push({
-            'gtm.start': new Date().getTime(),
-            event: 'gtm.js'
-        });
-        var f = d.getElementsByTagName(s)[0],
-            j = d.createElement(s),
-            dl = l != 'dataLayer' ? '&l=' + l : '';
-        j.async = true;
-        j.src =
-            'https://www.googletagmanager.com/gtm.js?id=' + i + dl;
-        f.parentNode.insertBefore(j, f);
-    })(window, document, 'script', 'dataLayer', 'GTM-TSJSNPT3');
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-N4ZM5MQZ');</script>
+<!-- End Google Tag Manager -->
+
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '2343321332669635');
+fbq('track', 'PageView');
 </script>
-<!-- End Google Tag Manager -->
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=2343321332669635&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
