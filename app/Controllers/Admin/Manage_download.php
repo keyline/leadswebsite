@@ -145,7 +145,8 @@ class Manage_download extends BaseController
 
             $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
             $this->session->setFlashdata('success_message', $this->data['module'] . ' updated successfully');
-            return redirect()->to('/admin/' . $this->data['controller']);
+            // return redirect()->to('/admin/' . $this->data['controller']);
+            return redirect()->to('/admin/Manage_download');
         }
         echo $this->layout_after_login($title, $page_name, $data);
     }

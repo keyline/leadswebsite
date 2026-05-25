@@ -1,6 +1,6 @@
 <?php
 if ($row) {
-    print_r($row);
+    // print_r($row);
     $name                       = $row->name;
 } else {
     $name                       = set_value('name', '');

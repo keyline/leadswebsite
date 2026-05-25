@@ -459,7 +459,8 @@ if (strpos(current_url(), 'product/modular-kitchen') !== false) :
     $('#loading').show();
 
     $.ajax({
-        url: '<?= base_url('Frontend/product/' . $productCat->slug) ?>',
+       // url: '?= base_url('Frontend/product/' . $productCat->slug) ?>',
+        url: '<?= base_url('/product/' . $productCat->slug) ?>',
         type: 'POST',
         data: { offset: offset },
         success: function (response) {
@@ -558,9 +559,11 @@ if (strpos(current_url(), 'product/modular-kitchen') !== false) :
                 }
             }
         },
-        error: function () {
+        error: function (xhr, status, error) {
+            console.log(xhr.responseText);
             alert('Could not load more products');
             $('#loading').hide();
+            
         }
     });
 });

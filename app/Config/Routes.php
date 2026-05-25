@@ -73,6 +73,7 @@ $routes->get('/amc-policy', 'Frontend::amcPolicy');
 $routes->get('/blog', 'Frontend::blog');
 $routes->get('api/load-blogs', 'Frontend::loadMoreBlog');
 $routes->get('/product/(:any)', 'Frontend::product/$1');
+$routes->post('/product/(:any)', 'Frontend::product/$1');
 $routes->get('/product-details/(:any)', 'Frontend::product_details/$1');
 $routes->get('api/load_more_products', 'Frontend::load_more_products');
 
@@ -202,6 +203,9 @@ $routes->match(['get', 'post'], '/admin/Home_page_video_settings', 'Admin\Home_p
 $routes->match(['get', 'post'], '/admin/Home_page_video_settings/(:any)', 'Admin\Home_page_video_settings::$1');
 $routes->match(['get', 'post'], '/admin/Products_video_setting', 'Admin\Products_video_setting::index');
 $routes->match(['get', 'post'], '/admin/Products_video_setting/(:any)', 'Admin\Products_video_setting::$1');
+
+
+$routes->match(['get', 'post'], '/admin/manage_download/edit/(:any)', 'Admin\Manage_download::edit/$1');
 
 /* Admin Panel */
 
