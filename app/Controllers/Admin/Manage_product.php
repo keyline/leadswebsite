@@ -368,7 +368,8 @@ class Manage_product extends BaseController
                      $imageFile = $this->request->getFile('others_image');        
                      if($imageFile != ''){
                         $imageName      = $imageFile->getClientName();
-                        $uploadedFile   = $this->upload_single_file('others_image', $imageName, 'product', 'image');
+                        // $uploadedFile   = $this->upload_single_file('others_image', $imageName, 'product', 'image');
+                        $uploadedFile   = $this->data['model']->upload_single_file('others_image', $imageName, 'product', 'image');
                         if($uploadedFile['status']){
                             $image = $uploadedFile['newFilename'];
                         } else {
