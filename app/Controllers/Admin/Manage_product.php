@@ -284,7 +284,11 @@ class Manage_product extends BaseController
                         $imageId = $this->data['model']->save_data('product_others_image', $imageFields, '', 'image_id');                     
                     }
                 }                            
-                return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Update successfully');            
+                // return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Update successfully'); 
+                $this->session->setFlashdata('success_message', 'Update successfully');
+                echo '<script>window.location.href="' . site_url('admin/manage_product') . '";</script>';
+                exit; 
+
         }
         echo $this->layout_after_login($title, $page_name, $data);
     }

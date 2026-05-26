@@ -207,6 +207,11 @@ $routes->match(['get', 'post'], '/admin/Products_video_setting/(:any)', 'Admin\P
 
 $routes->match(['get', 'post'], '/admin/manage_download/edit/(:any)', 'Admin\Manage_download::edit/$1');
 $routes->match(['get', 'post'], '/admin/manage_warrenty_section/add', 'Admin\Manage_warrenty_section::add');
+$routes->match(['get', 'post'], '/admin/manage_warrenty_section/confirm_delete/(:any)', 'Admin\Manage_warrenty_section::confirm_delete/$1');
+
+
+
+
 /* Admin Panel */
 
 
