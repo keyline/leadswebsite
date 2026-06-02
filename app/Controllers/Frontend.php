@@ -1179,7 +1179,7 @@ class Frontend extends BaseController
                     'label' => 'Serial Number'
                 ],
                 'date_of_purchase' => [
-                    'rules' => 'permit_empty|valid_date[Y-m-d]',
+                    'rules' => 'required',
                     'label' => 'Purchase Date'
                 ],
                 'place_of_purchase' => [
