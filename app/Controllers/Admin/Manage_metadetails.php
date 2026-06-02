@@ -47,7 +47,9 @@ class Manage_metadetails extends BaseController {
                                 );
             $record     = $this->data['model']->save_data($this->data['table_name'], $postData, '', $this->data['primary_key']);            
             $this->session->setFlashdata('success_message', $this->data['module'].' inserted successfully');
-            return redirect()->to('/admin/'.$this->data['controller']);
+            // return redirect()->to('/admin/'.$this->data['controller']);
+            echo '<script>window.location.href="' . site_url('admin/manage_metadetails') . '";</script>';
+            exit;
         }
         echo $this->layout_after_login($title,$page_name,$data);
     }
@@ -59,6 +61,7 @@ class Manage_metadetails extends BaseController {
         $page_name                  = 'metadetails/add-edit';        
         $conditions                 = array($this->data['primary_key']=>$id);
         $data['row']                = $this->data['model']->find_data($this->data['table_name'], 'row', $conditions);
+        // pr($data['row']);
 
         if($this->request->getMethod() == 'post') {            
             // $slug = strtolower($this->data['model']->clean($this->request->getPost('title')));
@@ -71,7 +74,9 @@ class Manage_metadetails extends BaseController {
                         );
             $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
             $this->session->setFlashdata('success_message', $this->data['module'].' updated successfully');
-            return redirect()->to('/admin/'.$this->data['controller']);
+            // return redirect()->to('/admin/'.$this->data['controller']);
+            echo '<script>window.location.href="' . site_url('admin/manage_metadetails') . '";</script>';
+            exit;
         }        
         echo $this->layout_after_login($title,$page_name,$data);
     }
@@ -82,7 +87,9 @@ class Manage_metadetails extends BaseController {
                         );
         $updateData = $this->common_model->save_data($this->data['table_name'],$postData,$id,$this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'].' deleted successfully');
-        return redirect()->to('/admin/'.$this->data['controller']);
+        // return redirect()->to('/admin/'.$this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/manage_metadetails') . '";</script>';
+        exit;
     }
     public function deactive($id)
     {
@@ -91,7 +98,9 @@ class Manage_metadetails extends BaseController {
                         );
         $updateData = $this->common_model->save_data($this->data['table_name'],$postData,$id,$this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'].' deactivated successfully');
-        return redirect()->to('/admin/'.$this->data['controller']);
+        // return redirect()->to('/admin/'.$this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/manage_metadetails') . '";</script>';
+        exit;
     }
     public function active($id)
     {
@@ -100,6 +109,8 @@ class Manage_metadetails extends BaseController {
                         );
         $updateData = $this->common_model->save_data($this->data['table_name'],$postData,$id,$this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'].' activated successfully');
-        return redirect()->to('/admin/'.$this->data['controller']);
+        // return redirect()->to('/admin/'.$this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/manage_metadetails') . '";</script>';
+        exit;
     }
 }

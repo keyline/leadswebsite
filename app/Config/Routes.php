@@ -204,10 +204,24 @@ $routes->match(['get', 'post'], '/admin/Home_page_video_settings/(:any)', 'Admin
 $routes->match(['get', 'post'], '/admin/Products_video_setting', 'Admin\Products_video_setting::index');
 $routes->match(['get', 'post'], '/admin/Products_video_setting/(:any)', 'Admin\Products_video_setting::$1');
 
-
+//new
 $routes->match(['get', 'post'], '/admin/manage_download/edit/(:any)', 'Admin\Manage_download::edit/$1');
 $routes->match(['get', 'post'], '/admin/manage_warrenty_section/add', 'Admin\Manage_warrenty_section::add');
 $routes->match(['get', 'post'], '/admin/manage_warrenty_section/confirm_delete/(:any)', 'Admin\Manage_warrenty_section::confirm_delete/$1');
+
+$routes->match(['get', 'post'], '/admin/manage_metadetails/add', 'Admin\Manage_metadetails::add');
+$routes->match(['get', 'post'], '/admin/manage_metadetails/edit/(:any)', 'Admin\Manage_metadetails::edit/$1');
+$routes->match(['get', 'post'], '/admin/manage_metadetails/confirm_delete/(:any)', 'Admin\Manage_metadetails::confirm_delete/$1');
+$routes->match(['get', 'post'], '/admin/manage_metadetails/deactive/(:any)', 'Admin\Manage_metadetails::deactive/$1');
+$routes->match(['get', 'post'], '/admin/manage_metadetails/active/(:any)', 'Admin\Manage_metadetails::active/$1');
+
+$routes->match(['get', 'post'], '/admin/manage_client/add', 'Admin\Manage_client::add');
+$routes->match(['get', 'post'], '/admin/manage_client/edit/(:any)', 'Admin\Manage_client::edit/$1');
+$routes->match(['get', 'post'], '/admin/manage_client/confirm_delete/(:any)', 'Admin\Manage_client::confirm_delete/$1');
+$routes->match(['get', 'post'], '/admin/manage_client/deactive/(:any)', 'Admin\Manage_client::deactive/$1');
+$routes->match(['get', 'post'], '/admin/manage_client/active/(:any)', 'Admin\Manage_client::active/$1');
+
+$routes->match(['get', 'post'], '/admin/manage_distributor_enquire/download_csv', 'Admin\Manage_distributor_enquire::download_csv');
 
 
 
