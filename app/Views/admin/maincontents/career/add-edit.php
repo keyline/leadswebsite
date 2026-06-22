@@ -23,8 +23,8 @@ if ($row) {
                         <h5 class="m-b-10"><?php echo $page_header; ?></h5>
                     </div>
                     <ul class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin/'); ?>/user"><i class="feather icon-home"></i></a></li>
-                        <li class="breadcrumb-item"><a href="<?php echo base_url('admin/'); ?>/<?php echo $moduleDetail['controller']; ?>">Manage <?php echo $moduleDetail['module']; ?></a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('/Dashboard'); ?>"><i class="feather icon-home"></i></a></li>
+                        <li class="breadcrumb-item"><a href="<?php echo base_url('/admin/Manage_career'); ?>">Manage <?php echo $moduleDetail['module']; ?></a></li>
                         <li class="breadcrumb-item"><a href="#!"><?php echo $page_header; ?></a></li>
                     </ul>
                 </div>

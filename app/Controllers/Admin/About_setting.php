@@ -45,7 +45,9 @@ class About_setting extends BaseController
             $record = $this->common_model->save_data($this->data['table_name'], $postData, 1, $this->data['primary_key']);
             if ($record)
                 $this->session->setFlashdata('success_message', 'Updated successfully');
-            return redirect()->back();
+            // return redirect()->back();
+            echo '<script>window.location.href="' . site_url('admin/about_setting') . '";</script>';
+            exit;
         }
 
         echo $this->layout_after_login($title, $page_name, $data);

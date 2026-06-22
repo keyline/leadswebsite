@@ -76,7 +76,9 @@ class Manage_career extends BaseController
             // echo (string)$query;
             // die;
             $this->session->setFlashdata('success_message', $this->data['module'] . ' inserted successfully');
-            return redirect()->to('/admin/' . $this->data['controller']);
+            // return redirect()->to('/admin/' . $this->data['controller']);
+            echo '<script>window.location.href="' . site_url('admin/Manage_career') . '";</script>';
+            exit;
         }
         echo $this->layout_after_login($title, $page_name, $data);
     }
@@ -121,7 +123,9 @@ class Manage_career extends BaseController
             );
             $record = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
             $this->session->setFlashdata('success_message', $this->data['module'] . ' updated successfully');
-            return redirect()->to('/admin/' . $this->data['controller']);
+            // return redirect()->to('/admin/' . $this->data['controller']);
+            echo '<script>window.location.href="' . site_url('admin/Manage_career') . '";</script>';
+            exit;
         }
         echo $this->layout_after_login($title, $page_name, $data);
     }
@@ -132,7 +136,9 @@ class Manage_career extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' deleted successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        // return redirect()->to('/admin/' . $this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/Manage_career') . '";</script>';
+        exit;
     }
     public function deactive($id)
     {
@@ -141,7 +147,9 @@ class Manage_career extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' deactivated successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        // return redirect()->to('/admin/' . $this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/Manage_career') . '";</script>';
+        exit;
     }
     public function active($id)
     {
@@ -150,6 +158,8 @@ class Manage_career extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' activated successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        // return redirect()->to('/admin/' . $this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/Manage_career') . '";</script>';
+        exit;
     }
 }

@@ -63,7 +63,9 @@ class Manage_blog extends BaseController
                 // echo $this->db->getLastQuery();die;
             }
             $this->session->setFlashdata('success_message', $this->data['module'] . ' deleted successfully');
-            return redirect()->to('/admin/' . $this->data['controller']);
+            // return redirect()->to('/admin/' . $this->data['controller']);
+            echo '<script>window.location.href="' . site_url('admin/manage_blog') . '";</script>';
+            exit;
         }
         echo $this->layout_after_login($title, $page_name, $data);
     }
@@ -153,7 +155,10 @@ class Manage_blog extends BaseController
                 }
                 /* blog content */
 
-                return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Inserted successfully');
+                // return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Inserted successfully');
+                $this->session->setFlashdata('success_message', 'Inserted successfully');
+                echo '<script>window.location.href="' . site_url('admin/manage_blog') . '";</script>';
+                exit;
             } catch (\Exception $e) {
                 pr($e->getMessage());
                 log_message('error', $e->getMessage()); // Log the error message
@@ -256,7 +261,10 @@ class Manage_blog extends BaseController
                 }
                 /* blog content */
 
-                return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Update successfully');
+                // return redirect()->to('/admin/' . $this->data['controller'])->with('success_message', 'Update successfully');
+                $this->session->setFlashdata('success_message', 'Update successfully');
+                echo '<script>window.location.href="' . site_url('admin/manage_blog') . '";</script>';
+                exit;
             } catch (\Exception $e) {
                 log_message('error', $e->getMessage()); // Log the error message
                 return redirect()->back()->withInput()->with('error_message', 'An unexpected error occurred');
@@ -271,7 +279,9 @@ class Manage_blog extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' deleted successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        // return redirect()->to('/admin/' . $this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/manage_blog') . '";</script>';
+        exit;
     }
     public function deactive($id)
     {
@@ -280,7 +290,9 @@ class Manage_blog extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' deactivated successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        // return redirect()->to('/admin/' . $this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/manage_blog') . '";</script>';
+        exit;
     }
     public function active($id)
     {
@@ -289,7 +301,9 @@ class Manage_blog extends BaseController
         );
         $updateData = $this->common_model->save_data($this->data['table_name'], $postData, $id, $this->data['primary_key']);
         $this->session->setFlashdata('success_message', $this->data['module'] . ' activated successfully');
-        return redirect()->to('/admin/' . $this->data['controller']);
+        // return redirect()->to('/admin/' . $this->data['controller']);
+        echo '<script>window.location.href="' . site_url('admin/manage_blog') . '";</script>';
+        exit;
     }
     // public function manage_image()
     // {

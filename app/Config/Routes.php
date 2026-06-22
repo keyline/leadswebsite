@@ -223,6 +223,34 @@ $routes->match(['get', 'post'], '/admin/manage_client/active/(:any)', 'Admin\Man
 
 $routes->match(['get', 'post'], '/admin/manage_distributor_enquire/download_csv', 'Admin\Manage_distributor_enquire::download_csv');
 
+$routes->match(['get', 'post'], '/admin/manage_services/download_csv', 'Admin\Manage_services::download_csv');
+
+$routes->match(['get', 'post'], '/admin/manage_product_registration/download_csv', 'Admin\Manage_product_registration::download_csv');
+
+$routes->match(['get', 'post'], '/admin/manage_video_media/list/(:any)', 'Admin\Manage_video_media::list/$1');
+$routes->match(['get', 'post'], '/admin/manage_video_media/add/(:any)', 'Admin\Manage_video_media::add/$1');
+$routes->match(['get', 'post'], '/admin/manage_video_media/edit/(:any)', 'Admin\Manage_video_media::edit/$1');
+$routes->match(['get', 'post'], '/admin/manage_video_media/deactive/(:any)', 'Admin\Manage_video_media::deactive/$1');
+$routes->match(['get', 'post'], '/admin/manage_video_media/active/(:any)', 'Admin\Manage_video_media::active/$1');
+$routes->match(['get', 'post'], '/admin/manage_video_media/confirm_delete/(:any)', 'Admin\Manage_video_media::confirm_delete/$1');
+
+$routes->match(['get', 'post'], '/admin/manage_image_media/list/(:any)', 'Admin\Manage_image_media::list/$1');
+$routes->match(['get', 'post'], '/admin/manage_image_media/add/(:any)', 'Admin\Manage_image_media::add/$1');
+$routes->match(['get', 'post'], '/admin/manage_image_media/edit/(:any)', 'Admin\Manage_image_media::edit/$1');
+$routes->match(['get', 'post'], '/admin/manage_image_media/deactive/(:any)', 'Admin\Manage_image_media::deactive/$1');
+$routes->match(['get', 'post'], '/admin/manage_image_media/deactive/(:any)', 'Admin\Manage_image_media::deactive/$1');
+$routes->match(['get', 'post'], '/admin/manage_image_media/active/(:any)', 'Admin\Manage_image_media::active/$1');
+$routes->match(['get', 'post'], '/admin/manage_image_media/confirm_delete/(:any)', 'Admin\Manage_image_media::confirm_delete/$1');
+
+$routes->match(['get', 'post'], '/admin/manage_career/add', 'Admin\Manage_career::add');
+$routes->match(['get', 'post'], '/admin/manage_career/edit/(:any)', 'Admin\Manage_career::edit/$1');
+$routes->match(['get', 'post'], '/admin/manage_career/deactive/(:any)', 'Admin\Manage_career::deactive/$1');
+$routes->match(['get', 'post'], '/admin/manage_career/active/(:any)', 'Admin\Manage_career::active/$1');
+$routes->match(['get', 'post'], '/admin/manage_career/confirm_delete/(:any)', 'Admin\Manage_career::confirm_delete/$1');
+
+$routes->match(['get', 'post'], '/admin/manage_applicants/download_csv', 'Admin\Manage_applicants::download_csv');
+
+
 
 
 
