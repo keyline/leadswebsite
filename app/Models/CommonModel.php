@@ -503,7 +503,7 @@ class CommonModel extends Model
         $from_name          = $siteSetting->site_name;
         $email->setFrom($from_email, $from_name);
         $email->setTo($to_email);
-        $email->setCC('subhomoy@keylines.net', 'Victoria Travels');
+        $email->setCC('deblina@keylines.in', 'Keylines');
         // $email->setCC('info@ecoex.market', 'Ecoex Portal');
         $email->setSubject($email_subject);
         $email->setMessage($mailbody);
