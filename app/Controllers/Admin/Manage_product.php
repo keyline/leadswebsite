@@ -9,6 +9,28 @@ class Manage_product extends BaseController
 {
     //This can be accessed by all class methods
     private $model;
+    private const MAX_PRODUCT_IMAGE_BYTES = 200 * 1024;
+
+    private function productImageUploadError(): ?string
+    {
+        $files = $this->request->getFiles()['others_image'] ?? [];
+        if (!is_array($files)) {
+            $files = [$files];
+        }
+        foreach ($files as $file) {
+            if ($file->getError() === UPLOAD_ERR_NO_FILE) {
+                continue;
+            }
+            if (in_array($file->getError(), [UPLOAD_ERR_INI_SIZE, UPLOAD_ERR_FORM_SIZE], true)
+                || $file->getSize() > self::MAX_PRODUCT_IMAGE_BYTES) {
+                return 'Each product image must be 200 KB or smaller. Please choose a smaller image.';
+            }
+            if (!$file->isValid()) {
+                return 'The product image could not be uploaded. Please select it again and retry.';
+            }
+        }
+        return null;
+    }
     // validation rules 
     private  $rules = [
         'blog_category' => 'required',
@@ -78,6 +100,10 @@ class Manage_product extends BaseController
         $data['key_feature']           = $this->data['model']->find_data('key_feature', 'array', ['published!=' => 3]);
         $data['warrenty_section']           = $this->data['model']->find_data('warrenty_section', 'array', ['published' => 1]);        
         if ($this->request->getMethod() == 'post') {
+            $imageError = $this->productImageUploadError();
+            if ($imageError !== null) {
+                return redirect()->back()->withInput()->with('error_message', $imageError);
+            }
             $postData = $this->request->getPost(); 
             if(!empty($postData['videoUrl']))
             {
@@ -182,6 +208,10 @@ class Manage_product extends BaseController
         // pr($data['others_image']);
 
         if ($this->request->getMethod() == 'post') {
+            $imageError = $this->productImageUploadError();
+            if ($imageError !== null) {
+                return redirect()->back()->withInput()->with('error_message', $imageError);
+            }
             $postData = $this->request->getPost(); 
             // pr($postData);
             $slug = strtolower($this->data['model']->clean($this->request->getPost('product_title')));
@@ -365,6 +395,10 @@ class Manage_product extends BaseController
         $data['row']                = $this->data['model']->find_data('product_others_image', 'row', $conditions);                  
 
         if ($this->request->getMethod() == 'post') {
+            $imageError = $this->productImageUploadError();
+            if ($imageError !== null) {
+                return redirect()->back()->withInput()->with('error_message', $imageError);
+            }
             $postData = $this->request->getPost(); 
             // pr($postData) ;
              $positions = $postData['positions'];                                                                                 

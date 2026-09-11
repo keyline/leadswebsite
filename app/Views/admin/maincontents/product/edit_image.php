@@ -63,7 +63,7 @@ if($row) {
                                         </div>
                                         <div class="custom-file">
                                             <input type="file" name="others_image" class="form-control" id="others_image">
-                                            <small class="text-info">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed</small><br>                                            
+                                            <small class="text-info">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed. Maximum size: 200 KB.</small><br>
                                         </div>
                                         <div class="image-preview" id="imagePreview"></div> 
                                     </div>
@@ -77,8 +77,10 @@ if($row) {
         </div>
     </div>
 </div>
+<?php echo view('admin/maincontents/product/image-upload-validation'); ?>
 <script>
-    document.getElementById('others_image').addEventListener('change', function(event) {
+    document.getElementById('validation-form123').addEventListener('change', function(event) {
+        if (!event.target.matches('input[type="file"][name^="others_image"]')) return;
         const imagePreview = document.getElementById('imagePreview');
         imagePreview.innerHTML = ''; // Clear previous previews
         const files = event.target.files;
@@ -86,7 +88,7 @@ if($row) {
         for (let i = 0; i < files.length; i++) {
             const file = files[i];
             
-            if (file && file.type.match('image.*')) {
+            if (file && file.size <= 200 * 1024 && file.type.match('image.*')) {
                 const reader = new FileReader();
                 
                 reader.onload = function(e) {
