@@ -68,6 +68,7 @@ $routes->match(['get', 'post'],'/demo', 'Frontend::demo');
 // $routes->match(['get', 'post'], '/get_products_by_category', 'Frontend::get_products_by_category');
 $routes->post('/get_products_by_category', 'Frontend::get_products_by_category');
 $routes->get('/return-policy', 'Frontend::returnPolicy');
+$routes->get('/terms-conditions', 'Frontend::termsConditions');
 $routes->get('/amc-policy', 'Frontend::amcPolicy');
 
 $routes->get('/blog', 'Frontend::blog');
@@ -144,6 +145,7 @@ $routes->get('/admin/manage_product/active/(:any)', 'Admin\Manage_product::activ
 $routes->match(['get', 'post'], '/admin/manage_product/image_list/(:any)', 'Admin\Manage_product::image_list/$1');
 $routes->match(['get', 'post'], '/admin/manage_product/edit_image/(:any)', 'Admin\Manage_product::edit_image/$1');
 $routes->get('/admin/manage_product/delete_image/(:any)', 'Admin\Manage_product::delete_image/$1');
+$routes->match(['get', 'post'], '/admin/manage_product_registration/download_csv', 'Admin\Manage_product_registration::download_csv');
 
 $routes->match(['get', 'post'], '/admin/manage_enquire', 'Admin\Manage_enquire::index');
 $routes->get('/admin/manage_enquire/download_csv', 'Admin\Manage_enquire::download_csv');
@@ -191,6 +193,7 @@ $routes->match(['get', 'post'], '/admin/Manage_career', 'Admin\Manage_career::in
 $routes->match(['get', 'post'], '/admin/Manage_career/(:any)', 'Admin\Manage_career::$1');
 $routes->match(['get', 'post'], '/admin/Manage_applicants', 'Admin\Manage_applicants::index');
 $routes->match(['get', 'post'], '/admin/Manage_applicants/(:any)', 'Admin\Manage_applicants::$1');
+$routes->match(['get', 'post'], '/admin/manage_applicants/download_csv', 'Admin\Manage_applicants::download_csv');
 $routes->match(['get', 'post'], '/admin/manage_testimonial', 'Admin\Manage_testimonial::index');
 $routes->match(['get', 'post'], '/admin/manage_testimonial/(:any)', 'Admin\Manage_testimonial::$1');
 $routes->match(['get', 'post'], '/admin/Manage_download', 'Admin\Manage_download::index');

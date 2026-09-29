@@ -63,11 +63,12 @@ if($row) {
                                         </div>
                                         <div class="custom-file">
                                             <input type="file" name="others_image" class="form-control" id="others_image">
-                                            <small class="text-info">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed. Maximum size: 200 KB.</small><br>
+                                            <small class="text-info ml-2">* Only JPG, JPEG, ICO, SVG, PNG, WEBP files are allowed. Maximum size: 200 KB.</small><br>
                                         </div>
-                                        <div class="image-preview" id="imagePreview"></div> 
+                                        
                                     </div>
-                                </div>                                
+                                </div>
+                                <div class="image-preview" id="imagePreview"></div> 
                             </div>                             
                         </div>
                         <button type="submit" class="btn  btn-primary">Submit</button>

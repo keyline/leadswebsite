@@ -34,14 +34,81 @@ class User extends BaseController {
         $data['session'] = $this->session;
         $data['common_model'] = $this->common_model;
         if($this->request->getMethod() == 'post') {
-            // dd('after submit');
-            //echo "papu";
-            // die;
+            // ==========================================
+            // Google reCAPTCHA v3 Verification
+            // ==========================================
+
+            $recaptchaToken = $this->request->getPost('recaptcha_token');
+
+            if (empty($recaptchaToken)) {
+
+                $this->session->setFlashdata(
+                    'error_message',
+                    'reCAPTCHA verification failed. Please try again.'
+                );
+
+                return redirect()->to('/Administrator');
+            }
+
+            // Get Secret Key from .env
+            $secretKey = env('RECAPTCHA_SECRET_KEY');
+
+            try {
+
+                $client = \Config\Services::curlrequest();
+
+                $response = $client->post(
+                    'https://www.google.com/recaptcha/api/siteverify',
+                    [
+                        'form_params' => [
+                            'secret'   => $secretKey,
+                            'response' => $recaptchaToken,
+                            'remoteip' => $this->request->getIPAddress()
+                        ]
+                    ]
+                );
+
+                $recaptchaResult = json_decode($response->getBody());
+
+            } catch (\Exception $e) {
+
+                $this->session->setFlashdata(
+                    'error_message',
+                    'Unable to verify reCAPTCHA. Please try again.'
+                );
+
+                return redirect()->to('/Administrator');
+            }
+
+
+            // Check reCAPTCHA result
+            if (
+                !$recaptchaResult ||
+                empty($recaptchaResult->success) ||
+                !isset($recaptchaResult->score) ||
+                $recaptchaResult->score < 0.5 ||
+                !isset($recaptchaResult->action) ||
+                $recaptchaResult->action !== 'login'
+            ) {
+
+                $this->session->setFlashdata(
+                    'error_message',
+                    'reCAPTCHA verification failed. Please try again.'
+                );
+
+                return redirect()->to('/Administrator');
+            }
+
+
+            // ==========================================
+            // Existing Login Validation
+            // ==========================================
+
             $input = $this->validate([
                 'username' => 'required',
                 'password' => 'required|min_length[5]'
             ]);
-            // dd('validator');
+            
             if($input == true) {
                 // dd('If validator true');
                 $conditions = array(

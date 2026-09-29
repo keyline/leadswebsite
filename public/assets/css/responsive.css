@@ -210,6 +210,9 @@ html, body { overflow-x: hidden; }
     line-height: 1.25;
     display: block;
   }
+  .head_after_roationlogo{
+      max-width:122px;
+  }
 body.abrido a#burger {
     position: relative;
     top: 0;
@@ -377,6 +380,12 @@ body.abrido a#burger {
 .head_roationlogo {
     top: 6px;
     left: 173px;
+}
+.head_after_roationlogo {
+    position: absolute;
+    z-index: 9;
+    top: 6px;
+    left: 235px
 }
 .home_video iframe {
     width: 80%;
@@ -570,7 +579,9 @@ body.abrido a#burger {
 .tollfree_innerbox .tollfree_title {
     font-size: 25px;
 }
-
+.headlogo_holder .head_after_roationlogo{
+    display: none;
+}
 }
 
 @media screen and (max-width: 575px) {
@@ -770,4 +781,39 @@ ul.head_social {
 } 
 @media screen and (max-width: 360px) {
     .diskeyfe_downbtn a{font-size: 12px;}
+}
+/* Awards & Recognition */
+@media screen and (max-width: 1199px) {
+    .home_awards_section{padding:80px 0;}
+    .awards_heading_box h2{font-size:44px;}
+    .awards_video_box .awards_video,
+    .awards_video_facade .awards_poster{height:420px;}
+}
+@media screen and (max-width: 991px) {
+    .home_awards_section{padding:60px 0;}
+    .awards_heading_box h2{font-size:36px;}
+    .awards_heading_box h4{font-size:22px;}
+    .awards_video_box .awards_video,
+    .awards_video_facade .awards_poster{height:340px;}
+    .awards_play_btn{width:70px;height:70px;font-size:22px;}
+}
+@media screen and (max-width: 767px) {
+    .home_awards_section{padding:50px 0;}
+    .awards_eyebrow{font-size:13px;letter-spacing:4px;}
+    .awards_heading_box{margin-bottom:30px;}
+    .awards_heading_box h2{font-size:30px;margin-bottom:15px;}
+    .awards_heading_box h4{font-size:19px;}
+    .awards_heading_box p{font-size:16px;}
+    .awards_divider{width:60px;margin-bottom:18px;}
+    .awards_video_box .awards_video,
+    .awards_video_facade .awards_poster{height:230px;}
+    .awards_play_btn{width:58px;height:58px;font-size:18px;}
+    .awards_btn_box{margin-top:28px;}
+    .awards_btn{font-size:15px;padding:12px 20px;}
+    .awards_btn .long-arrow{width:35px;}
+}
+@media screen and (max-width: 480px) {
+    .awards_heading_box h2{font-size:26px;}
+    .awards_video_box .awards_video,
+    .awards_video_facade .awards_poster{height:190px;}
 }

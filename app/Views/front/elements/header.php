@@ -7,6 +7,7 @@
                 <div class="headlogo"><a class="navbar-brand" href="<?= base_url() ?>"><img src="<?= base_url('public/assets/img/') ?>/logo.png" alt="logo"></a></div>
                 <?php if($page_header != 'Blog Details') {?>
                 <div class="head_roationlogo"><img src="<?= base_url('public/assets/img/') ?>/header_logo_rotation.png" alt="logo"></div>
+                <div class="head_after_roationlogo"><img src="<?= base_url('public/assets/img/') ?>/after-logo.webp" alt="logo"></div>
                 <?php }?>
             </div>
         </div>

@@ -86,10 +86,13 @@
                     <div class="about_more_box">
                         <div class="mission_tabs productlist_bannericon">
                         <?php if ($productCat->icon != '') { ?>
-                            <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->icon; ?>" class="img-responsive img-thumbnail" style="height:100px; width:100px;" />
+                            <img src="<?php echo base_url(); ?>/uploads/product/<?php echo $productCat->icon; ?>" class="img-responsive img-thumbnail"/>
                         <?php } else { ?>
                             <img src="<?= base_url('public/') ?>/assets/img/chimney-icon.webp" alt="" class="img-fluid">
                       <?php  } ?>
+                            <!--<div class="productlist_isi_icon">-->
+                            <!--    <img src="?= base_url('public/') ?>/assets/img/chimney-isi.svg" alt="" class="img-fluid">-->
+                            <!--</div>-->
                             <h4><?= $productCat->name?></h4>
                         </div>
                     </div>

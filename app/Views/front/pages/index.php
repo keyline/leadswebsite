@@ -470,6 +470,12 @@ $db = \Config\Database::connect();
                                     class="img-fluid">
                             </a>
                         </div>
+                        
+                        <!-- Mobile Slider Arrows --> 
+                        <button class="mobile-carousel-control mobile-carousel-prev" type="button" data-bs-target="#tt-home-carousel" data-bs-slide="prev" aria-label="Previous slide"> <span>‹</span> 
+                        </button> 
+                        <button class="mobile-carousel-control mobile-carousel-next" type="button" data-bs-target="#tt-home-carousel" data-bs-slide="next" aria-label="Next slide"> <span>›</span> 
+                        </button>
 
                         <div class="carousel-indicators">
                         <button type="button" data-bs-target="#tt-home-carousel" data-bs-slide-to="0"
@@ -689,7 +695,7 @@ $db = \Config\Database::connect();
                             <?php if(isset($home_page_video_settings) && $home_page_video_settings->content_type == 'video' && !empty($home_page_video_settings->video_path)) { 
                                 $videoPath = base_url('uploads/home_page_video/'.$home_page_video_settings->video_path);
                             ?>
-                                    <video controls autoplay width="100%" height="300">
+                                    <video controls width="100%" height="300">
                                         <source src="<?= $videoPath ?>" type="video/mp4">
                                     </video>
                             <?php } else if(isset($home_page_video_settings) && $home_page_video_settings->content_type == 'youtube_url' && !empty($home_page_video_settings->youtube_url)) { 
@@ -704,7 +710,7 @@ $db = \Config\Database::connect();
                             ?>
 
                                 <?php if($videoId != null){ ?>
-                                   <iframe width="100%" height="300" src="<?= $youtubeVideoID ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
+                                   <iframe width="100%" height="300" src="<?= $youtubeVideoID ?>" title="YouTube video player" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                                 <?php }?>
                             <?php } ?>
                         <!-- <video controls autoplay>
@@ -715,6 +721,7 @@ $db = \Config\Database::connect();
                     <div class="about_content">
                         <p>LEADSS is the Brand Name of Leads Overseas Pvt. Ltd. AN ISO 9001:2008 Certified company, established in 2002. Company has gained excellent reputation within a very short period.</p>
                         <p class="mt-3">We Presently importing kitchen appliances from Malaysia and Manufactured Domestic and commercial water purification system with reputed High quality imported spare..</p>
+                        <div class="head_after_roationlogo2 d-sm-none mt-4"><img src="<?= base_url('public/assets/img/') ?>/after-logo.webp" alt="logo"></div>
                     </div>
                     <div class="about_more_box">
                         <a href="<?= base_url('about') ?>">
@@ -737,10 +744,6 @@ $db = \Config\Database::connect();
 
 
 <!-- ********|| Home Success Stories End ||******** -->
-
-
-
-
 
 
 <!-- ********|| Home 3 button Start ||******** -->
@@ -779,7 +782,7 @@ $db = \Config\Database::connect();
                            <?php if(isset($products_video_settings) && $products_video_settings->content_type1 == 'video' && !empty($products_video_settings->video_path1)){ 
                                   $videoPathForCont1 = base_url('uploads/products_video/'.$products_video_settings->video_path1);
                             ?>
-                                    <video controls autoplay width="100%" height="315" style="background: #000;">
+                                    <video controls width="100%" height="315" style="background: #000;">
                                         <source src="<?= $videoPathForCont1 ?>" type="video/mp4">
                                     </video>
 
@@ -794,7 +797,7 @@ $db = \Config\Database::connect();
                             ?>
                                  <!-- <iframe width="100%" height="315" src="https://www.youtube.com/embed/PX9XNfsm4s8?si=WIFPY2br91YHCOnL" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe> -->
                                  <iframe width="100%" height="315" src="<?= $youtubeVideoIDForCont1 ?>" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
-                           <?php } ?>     
+                           <?php } ?>
                         </div>
                         <div class="col-md-6">
                             <?php if(isset($products_video_settings) && $products_video_settings->content_type2 == 'video' && !empty($products_video_settings->video_path2)){ 
@@ -831,6 +834,83 @@ $db = \Config\Database::connect();
     </div>
 </section>
 <!-- video section end -->
+<!-- ********|| Awards & Recognition STARTS ||******** -->
+<?php
+// Awards video source. Change these values (or wire them to a DB setting) as needed.
+$award_type         = 'youtube_url';                 // 'youtube_url' or 'video'
+$award_youtube_url  = 'https://www.youtube.com/watch?v=0EOWohwzfQ4';
+$award_video_file   = base_url('public/assets/img/International-Glory-Award.mp4');
+
+// Optional: if the admin panel later provides an awards video setting, it wins.
+if (isset($awards_video_settings)) {
+    $award_type = $awards_video_settings->content_type;
+    if ($award_type == 'video' && !empty($awards_video_settings->video_path)) {
+        $award_video_file = base_url('uploads/awards_video/' . $awards_video_settings->video_path);
+    } else if (!empty($awards_video_settings->youtube_url)) {
+        $award_youtube_url = $awards_video_settings->youtube_url;
+    }
+}
+
+if (!function_exists('getYoutubeIdForAwards')) {
+    function getYoutubeIdForAwards($url)
+    {
+        if (preg_match('/v=([^&]+)/', $url, $match)) { return $match[1]; }
+        if (preg_match('/youtu\.be\/([^?]+)/', $url, $match)) { return $match[1]; }
+        return null;
+    }
+}
+
+$award_video_id  = ($award_type == 'youtube_url') ? getYoutubeIdForAwards($award_youtube_url) : null;
+$award_embed_url = $award_video_id ? 'https://www.youtube.com/embed/' . htmlspecialchars($award_video_id) : '';
+// Thumbnail comes straight from YouTube (maxres, with hq fallback handled in JS).
+$award_poster    = $award_video_id ? 'https://img.youtube.com/vi/' . htmlspecialchars($award_video_id) . '/maxresdefault.jpg' : '';
+?>
+<section class="home_awards_section" id="home-awards">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-10 col-md-12">
+                <div class="awards_heading_box" data-aos="fade-down" data-aos-duration="1000">
+                    <span class="awards_eyebrow">Our Achievements</span>
+                    <h2>Awards &amp; Recognition</h2>
+                    <span class="awards_divider"></span>
+                    <h4>Celebrating Excellence &amp; Recognition</h4>
+                    <p>A proud moment for LEADSS at the International Glory Award 2026.</p>
+                </div>
+
+                <div class="awards_video_box" data-aos="fade-up" data-aos-duration="1000">
+                    <?php if ($award_type == 'video') { ?>
+                        <video controls muted playsinline class="awards_video">
+                            <source src="<?= $award_video_file ?>" type="video/mp4">
+                        </video>
+                    <?php } else if ($award_video_id != null) { ?>
+                        <div class="awards_video_facade" data-award-embed="<?= $award_embed_url ?>">
+                            <img src="<?= $award_poster ?>" alt="LEADSS at the International Glory Award 2026" class="img-fluid awards_poster"
+                                onerror="this.onerror=null;this.src='https://img.youtube.com/vi/<?= htmlspecialchars($award_video_id) ?>/hqdefault.jpg';">
+                            <button type="button" class="awards_play_btn" aria-label="Play awards video">
+                                <i class="fa fa-play"></i>
+                            </button>
+                        </div>
+                    <?php } ?>
+                </div>
+
+                <div class="awards_btn_box">
+                    <?php if ($award_type == 'youtube_url' && $award_video_id != null) { ?>
+                        <a href="<?= htmlspecialchars($award_youtube_url) ?>" target="_blank" rel="noopener" class="home_banner_btn awards_btn">
+                            Watch Video
+                            <img src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt="" class="img-fluid long-arrow">
+                        </a>
+                    <?php } else { ?>
+                        <a href="javascript: void(0)" class="home_banner_btn awards_btn">
+                            Watch Video
+                            <img src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt="" class="img-fluid long-arrow">
+                        </a>
+                    <?php } ?>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- ********|| Awards & Recognition ENDS ||******** -->
 <!-- testimonias start section -->
 
 <?= $testimonialbox ?>
@@ -933,6 +1013,18 @@ endif;
 
     $(document).ready(function() {
         $("#home_offer_modal").modal('show');
+    });
+
+    // Awards & Recognition - click poster to load the video
+    $(document).on('click', '.awards_video_facade', function() {
+        var embedUrl = $(this).data('award-embed');
+        if (!embedUrl) return;
+        $(this).replaceWith(
+            '<iframe class="awards_video" src="' + embedUrl + '?autoplay=1&rel=0" ' +
+            'title="Awards & Recognition" frameborder="0" ' +
+            'allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" ' +
+            'allowfullscreen></iframe>'
+        );
     });
 
     // Register ScrollTrigger

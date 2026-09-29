@@ -352,6 +352,15 @@ class Frontend extends BaseController
         $data['setting']          = $this->common_model->find_data('about_setting', 'row');
         echo $this->front_layout($title, $page_name, $data);
     }
+    public function termsConditions()
+    {
+        $title                      = 'Terms & Conditions';
+        $this->common_model         = new CommonModel();
+        $postData['common_model']   = $this->common_model;
+        $page_name                  = 'terms_conditions';
+        $data['setting']          = $this->common_model->find_data('about_setting', 'row');
+        echo $this->front_layout($title, $page_name, $data);
+    }
     public function amcPolicy()
     {
         $title                      = 'AMC Policy';

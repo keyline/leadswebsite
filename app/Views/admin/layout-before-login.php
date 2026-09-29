@@ -16,7 +16,14 @@ $site_setting = $common_model->find_data('sms_site_settings','row');
 	<link rel="icon" href="<?php echo base_url(); ?>/uploads/<?php echo $site_setting->site_favicon; ?>" type="image/x-icon">
 	<!-- vendor css -->
 	<link rel="stylesheet" href="<?php echo base_url('material/'); ?>/assets/css/style.css">
-	
+	<style>
+	.grecaptcha-badge {
+		visibility: visible !important;
+		opacity: 1 !important;
+		display: block !important;
+		z-index: 999999 !important;
+	}
+	</style>
 	
 </head>
 <!-- [ signin-img ] start -->
@@ -31,7 +38,10 @@ $site_setting = $common_model->find_data('sms_site_settings','row');
 		</div>
 		<div class="auth-side-form">
 			<!--<form method="post" action="?php echo base_url('admin/user/login'); ?>">-->
-			<form method="post" action="<?php echo base_url('/Admin'); ?>">
+			<form method="post" action="<?php echo base_url('/Admin'); ?>" id="loginForm">
+				<input type="hidden"
+           name="recaptcha_token"
+           id="recaptcha_token">
 			    <?= csrf_field() ?>
 				<div class=" auth-content">
 					<img src="<?php echo base_url(); ?>/uploads/<?php echo $site_setting->site_logo; ?>" alt="" class="img-fluid mb-4 d-block d-xl-none d-lg-none">
@@ -94,5 +104,34 @@ $session->setFlashdata('error_message', '');
 <script src="<?php echo base_url('material/'); ?>/assets/js/vendor-all.min.js"></script>
 <script src="<?php echo base_url('material/'); ?>/assets/js/plugins/bootstrap.min.js"></script>
 <script src="<?php echo base_url('material/'); ?>/assets/js/waves.min.js"></script>
+<script src="https://www.google.com/recaptcha/api.js?render=<?= env('RECAPTCHA_SITE_KEY') ?>"></script>
+
+<script>
+document.getElementById('loginForm').addEventListener('submit', function(e) {
+
+    e.preventDefault();
+
+    var form = this;
+
+    grecaptcha.ready(function() {
+
+        grecaptcha.execute('<?= env('RECAPTCHA_SITE_KEY') ?>', {
+            action: 'login'
+        }).then(function(token) {
+
+            console.log('reCAPTCHA token generated:', token);
+
+            document.getElementById('recaptcha_token').value = token;
+
+            form.submit();
+
+        }).catch(function(error) {
+            console.error('reCAPTCHA ERROR:', error);
+        });
+
+    });
+
+});
+</script>
 </body>
 </html>

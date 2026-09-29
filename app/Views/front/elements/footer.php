@@ -33,7 +33,8 @@
                     <li><a href="<?= base_url() ?>/about">About Us</a></li>  
                     <li><a href="<?= base_url() ?>/distributor">Become A Distributor</a></li>                                 
                     <li><a href="<?= base_url() ?>/contact">Contact Us</a></li>
-                    <li><a href="<?= base_url() ?>/blog">Blog</a></li>                       
+                    <li><a href="<?= base_url() ?>/blog">Blog</a></li>  
+                    <li><a href="<?= base_url() ?>/terms-conditions">Terms & Conditions</a></li>
                 </ul>
             </div>
         </div>
