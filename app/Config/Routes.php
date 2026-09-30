@@ -85,6 +85,7 @@ $routes->get('/media/(:any)', 'Frontend::media/$1');
 $routes->get('/page/(:any)', 'Frontend::page/$1');
 
 $routes->get('/contact', 'Frontend::contact_us');
+$routes->get('/thank-you', 'Frontend::thankYou');
 
 $routes->get('/career', 'Frontend::career');
 

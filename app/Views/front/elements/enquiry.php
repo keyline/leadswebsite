@@ -102,12 +102,8 @@
             data: $('.enquiry_form').serialize(),
             success: function(response) {
                 if (response.status) {
-                    // Show success message and reset form
-                    showAlert({
-                        title: response.message,
-                        icon: "success"
-                    });
-                    $('.enquiry_form')[0].reset(); // Clear the form
+                    window.location.assign(<?= json_encode(base_url('thank-you')) ?>);
+                    return;
 
                 } else {
                     showAlert({

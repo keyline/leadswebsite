@@ -213,6 +213,8 @@ class BaseController extends Controller
 			'response' => $recaptchaToken,
 		]);
 		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_CONNECTTIMEOUT, 5);
+		curl_setopt($ch, CURLOPT_TIMEOUT, 15);
 
 		// Execute cURL session
 		$result = curl_exec($ch);

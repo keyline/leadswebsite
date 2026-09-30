@@ -24,7 +24,8 @@
                         <h5>Leading Kitchen Solutions for Dealers & Distributors!</h5>
 
                         <div class="distruibute_inner-form">
-                            <form class="enquiry_form" method="post">
+                            <form id="distributor-form" class="enquiry_form" method="post" action="<?= base_url('api/distributor-enquiry') ?>">
+<div id="distributor-error" class="alert alert-danger" role="alert" tabindex="-1" hidden style="white-space: pre-line;"></div>
                                 <div class="row">
                                     <div class="col-md-12 col-lg-6">
                                         <input type="text" name="name" class="form-control" placeholder="Name" aria-label="First name" required>
@@ -46,8 +47,8 @@
                                         <input type="text" name="city" class="form-control" placeholder="Region/City" aria-label="Region/City">
                                     </div>
                                     <div class="col-md-12 col-lg-6">
-                                        <select class="form-select" name="product_interest" aria-label="Default select example">
-                                            <option selected>Product Interest</option>
+                                        <select required class="form-select" name="product_interest" aria-label="Default select example">
+                                            <option value="" selected>Product Interest</option>
                                             <?php foreach($productcat as $category)
                                             {?>
                                                 <option value="<?=$category->id?>"><?=$category->name?></option>
@@ -65,7 +66,7 @@
                                     <div class="col-md-12 col-lg-6">
                                         <input type="hidden" name="page_name" value="<?= service('uri')->getPath() ?>">
                                         <input type="hidden" name="recaptcha_token" id="recaptcha_token2">
-                                        <button type="submit" class="g-recaptcha" data-sitekey="<?= SITE_KEY ?>" data-callback='onSubmit2' >submit <img src="https://localhost/leadswebsite/public/assets/img/arrow-long-red.png" alt="" class="img-fluid long-arrow"></button>
+                                        <div id="distributor-captcha"></div><button type="submit" id="distributor-submit">Submit</button>
                                     </div>
                                 </div>
                             </form>
@@ -167,59 +168,89 @@
     });
 </script>
 <script>
-    // (function(){
-    // Handle reCAPTCHA callback
-    function onSubmit2(token) {
-        // Set the token in the hidden input
-        $('#recaptcha_token2').val(token);
+(function () {
+    var form = document.getElementById('distributor-form');
+    var button = document.getElementById('distributor-submit');
+    var errorBox = document.getElementById('distributor-error');
+    var widgetId = null;
+    var busy = false;
+    var captchaTimer;
 
-        // Trigger AJAX form submission
-        submitForm2();
+    function fail(message) {
+        clearTimeout(captchaTimer);
+        busy = false;
+        button.disabled = false;
+        button.textContent = 'Submit';
+        errorBox.textContent = message;
+        errorBox.hidden = false;
+        errorBox.focus();
+        if (widgetId !== null && window.grecaptcha) {
+            grecaptcha.reset(widgetId);
+        }
     }
 
-    // Submit the form via AJAX
-    function submitForm2() {
-        $.ajax({
-            url: "api/distributor-enquiry", // Replace with your server URL
-            type: "POST",
-            data: $('.enquiry_form').serialize(),
-            success: function(response) {
-                if (response.status) {
-                    // Show success message and reset form
-                    showAlert({
-                        title: response.message,
-                        icon: "success"
-                    });
-                    $('.enquiry_form')[0].reset(); // Clear the form
-
-                } else {
-                    showAlert({
-                        title: response.message,
-                        icon: "error"
-                    });
-                }
-                grecaptcha.reset(); // Reset the reCAPTCHA widget
-            },
-            error: function(xhr, status, error) {
-                // Show error message
-                showAlert({
-                    title: "An error occurred. Please try again.",
-                    icon: "error",
-                    timer: 2000
+    function sendForm(token) {
+        if (!busy) return;
+        clearTimeout(captchaTimer);
+        button.textContent = 'Submitting...';
+        form.elements.recaptcha_token.value = token;
+        var data = new FormData(form);
+        data.set('g-recaptcha-response', token);
+        var controller = new AbortController();
+        var timeout = setTimeout(function () { controller.abort(); }, 60000);
+        fetch(form.action, { method: 'POST', body: data, signal: controller.signal })
+            .then(function (response) {
+                return response.json().catch(function () {
+                    throw new Error('The server could not process your request. Please try again later.');
                 });
-                console.error(error); // Log the error for debugging
-            }
-        });
+            })
+            .then(function (response) {
+                if (response.status === true) {
+                    window.location.assign(<?= json_encode(base_url('thank-you')) ?>);
+                    return;
+                }
+                var errors = response.errors ? Object.values(response.errors).join('\n') : '';
+                fail(errors || response.message || 'Unable to submit your enquiry. Please try again.');
+            })
+            .catch(function (error) {
+                fail(error.name === 'AbortError'
+                    ? 'The request timed out. Please check with us before submitting again.'
+                    : error.message || 'Unable to connect. Please check your connection and try again.');
+            })
+            .finally(function () { clearTimeout(timeout); });
     }
 
-    // Attach event listener to form submission button
-    $('.enquiry_form').on('submit', function(event) {
-        event.preventDefault(); // Prevent default form submission
-
-        // Trigger reCAPTCHA validation
-        grecaptcha.execute();
+    form.addEventListener('submit', function (event) {
+        event.preventDefault();
+        if (busy || !form.reportValidity()) return;
+        errorBox.hidden = true;
+        if (!window.grecaptcha || typeof grecaptcha.render !== 'function') {
+            fail('Verification could not load. Please check your connection, allow Google reCAPTCHA, and reload this page.');
+            return;
+        }
+        busy = true;
+        button.disabled = true;
+        button.textContent = 'Verifying...';
+        try {
+            if (widgetId === null) {
+                widgetId = grecaptcha.render('distributor-captcha', {
+                    sitekey: <?= json_encode(SITE_KEY) ?>,
+                    size: 'invisible',
+                    callback: sendForm,
+                    'error-callback': function () {
+                        fail('Verification failed to load. Please reload and try again. On localhost, the reCAPTCHA key must allow localhost.');
+                    },
+                    'expired-callback': function () { fail('Verification expired. Please submit again.'); }
+                });
+            }
+            captchaTimer = setTimeout(function () {
+                fail('Verification did not finish. Please retry and complete the CAPTCHA challenge. If this persists on localhost, check the reCAPTCHA domain settings.');
+            }, 120000);
+            grecaptcha.execute(widgetId);
+        } catch (error) {
+            fail('Verification could not start. Please reload the page. Check that the reCAPTCHA key supports this domain.');
+        }
     });
-
-    // })();
+})();
 </script>
 <?= $this->endSection() ?>

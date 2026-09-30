@@ -297,6 +297,8 @@ class Frontend extends BaseController
             $rules = [
                 'name'    => 'required|min_length[3]|max_length[255]|alpha_space',
                 'phone_number'  => 'required|numeric|min_length[10]|max_length[15]|regex_match[/^[0-9]+$/]',
+                'business_name' => 'required|max_length[255]',
+                'product_interest' => 'required|is_natural_no_zero|is_not_unique[product_category.id]',
                 'email'   => 'required|valid_email',
                 // 'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
                 // 'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*>).*$/i]',
@@ -330,12 +332,19 @@ class Frontend extends BaseController
                     $data['site_setting'] = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1]);
                     $data['product_name'] = $this->common_model->find_data('product_category', 'row', ['published' => 1, 'id' => $postData['product_interest']]);
                     $body_admin = view('Views/front/mail_template/distributor-template', $data);
-                    $this->send($data['site_setting']->admin_email, 'Leadsindia', 'Become a Distributor Enquiry', $body_admin);
+                    try {
+                        $this->send($data['site_setting']->admin_email, 'Leadsindia', 'Become a Distributor Enquiry', $body_admin);
+                    } catch (\Exception $e) {
+                        // The enquiry is saved; a mail failure must not invite duplicate submissions.
+                        log_message('error', 'Distributor enquiry notification failed for enquiry ' . $insert_id . ': ' . $e->getMessage());
+                    }
                     // $this->send('deblina@keylines.net', 'Leadsindia', 'Become a Distributor Enquiry', $body_admin);
 
                     return $this->response->setStatusCode(201) // Created
                         ->setJSON(['status' => true, 'message' => 'Request sent successfully']);
                 }
+                return $this->response->setStatusCode(500)
+                    ->setJSON(['status' => false, 'message' => 'Unable to save your enquiry. Please try again later.']);
             } else {
                 return $this->response->setStatusCode(200) // Created
                     ->setJSON(['status' => false, 'message' => 'reCAPTCHA verification failed. Please try again.']);
@@ -352,6 +361,12 @@ class Frontend extends BaseController
         $data['setting']          = $this->common_model->find_data('about_setting', 'row');
         echo $this->front_layout($title, $page_name, $data);
     }
+    public function thankYou()
+    {
+        $this->common_model = new CommonModel();
+        return $this->front_layout('Thank You', 'thank-you', []);
+    }
+
     public function termsConditions()
     {
         $title                      = 'Terms & Conditions';
@@ -964,7 +979,7 @@ class Frontend extends BaseController
 
                     $this->sendToAdmin('Service Request', $body, 'service', 'Leadsindia');
 
-                    $this->session->setFlashdata('success_message', 'Request send successfully');
+                    return redirect()->to(base_url('thank-you'))->setStatusCode(303);
                 }
             } else {
                 $this->session->setFlashdata('error_message', 'reCAPTCHA verification failed. Please try again.');
@@ -1263,7 +1278,7 @@ class Frontend extends BaseController
 
                     $this->sendToAdmin('Registration Request', $body, 'service', 'Leadsindia');
 
-                    $this->session->setFlashdata('success_message', 'Request send successfully');
+                    return redirect()->to(base_url('thank-you'))->setStatusCode(303);
                 }
             } else {
                 $this->session->setFlashdata('error_message', 'reCAPTCHA verification failed. Please try again.');
