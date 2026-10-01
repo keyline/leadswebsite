@@ -91,7 +91,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <script src="https://designmodo.static.domains/full-nav-menu/app.js" charset="utf-8"></script>
 
-    <script src="https://www.google.com/recaptcha/api.js"></script>
+    <?= view('front/elements/recaptcha') ?>
     <script>
         var swiper = new Swiper(".mySwiper", {
             spaceBetween: 18,
@@ -270,9 +270,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     </script>
     <!-- end -->
 
-    <script src="<?= base_url('material/front') ?>/assets/jquery.loading.js"></script>
+    <script src="<?= base_url('material/front') ?>/assets_old/jquery.loading.js"></script>
 
-    <script src="<?= base_url('material/front') ?>/assets/common-function.js"></script>
+    <script src="<?= base_url('material/front') ?>/assets_old/common-function.js"></script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/magnific-popup.js/1.1.0/jquery.magnific-popup.js"></script>
 
@@ -309,7 +309,9 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script type="text/javascript">
         $(document).ready(function() {
 
+            <?php if (!captcha_is_disabled()): ?>
             $('.my-contactForm4').captcha();
+            <?php endif; ?>
 
         });
     </script>

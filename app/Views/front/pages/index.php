@@ -46,7 +46,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                     <h1 class="heading">Get Your<br><strong> 10% OFF Coupon!</strong></h1>
                     <div class="sign-up">
                         <!-- <p class="text-center">Fill out the form below and receive your unique code instantly, Show your nearest Leads dealer & enjoy the discount.</p> -->
-                        <form id="warranty_registration_form" method="POST" action="/offer" class="w-100">
+                        <form id="warranty_registration_form" method="POST" action="<?= base_url('offer') ?>" class="w-100">
                             <div class="input_holder">
                                 <div class="text">
                                     <i class="fa fa-user"></i>

@@ -104,6 +104,7 @@ $session->setFlashdata('error_message', '');
 <script src="<?php echo base_url('material/'); ?>/assets/js/vendor-all.min.js"></script>
 <script src="<?php echo base_url('material/'); ?>/assets/js/plugins/bootstrap.min.js"></script>
 <script src="<?php echo base_url('material/'); ?>/assets/js/waves.min.js"></script>
+<?php if (!captcha_is_disabled()): ?>
 <script src="https://www.google.com/recaptcha/api.js?render=<?= env('RECAPTCHA_SITE_KEY') ?>"></script>
 
 <script>
@@ -133,5 +134,6 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
 });
 </script>
+<?php endif; ?>
 </body>
 </html>

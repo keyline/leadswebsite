@@ -38,67 +38,68 @@ class User extends BaseController {
             // Google reCAPTCHA v3 Verification
             // ==========================================
 
-            $recaptchaToken = $this->request->getPost('recaptcha_token');
+            if (!captcha_is_disabled()) {
+                $recaptchaToken = $this->request->getPost('recaptcha_token');
 
-            if (empty($recaptchaToken)) {
+                if (empty($recaptchaToken)) {
 
-                $this->session->setFlashdata(
-                    'error_message',
-                    'reCAPTCHA verification failed. Please try again.'
-                );
+                    $this->session->setFlashdata(
+                        'error_message',
+                        'reCAPTCHA verification failed. Please try again.'
+                    );
 
-                return redirect()->to('/Administrator');
-            }
+                    return redirect()->to('/Administrator');
+                }
 
-            // Get Secret Key from .env
-            $secretKey = env('RECAPTCHA_SECRET_KEY');
+                // Get Secret Key from .env
+                $secretKey = env('RECAPTCHA_SECRET_KEY');
 
-            try {
+                try {
 
-                $client = \Config\Services::curlrequest();
+                    $client = \Config\Services::curlrequest();
 
-                $response = $client->post(
-                    'https://www.google.com/recaptcha/api/siteverify',
-                    [
-                        'form_params' => [
-                            'secret'   => $secretKey,
-                            'response' => $recaptchaToken,
-                            'remoteip' => $this->request->getIPAddress()
+                    $response = $client->post(
+                        'https://www.google.com/recaptcha/api/siteverify',
+                        [
+                            'form_params' => [
+                                'secret'   => $secretKey,
+                                'response' => $recaptchaToken,
+                                'remoteip' => $this->request->getIPAddress()
+                            ]
                         ]
-                    ]
-                );
+                    );
 
-                $recaptchaResult = json_decode($response->getBody());
+                    $recaptchaResult = json_decode($response->getBody());
 
-            } catch (\Exception $e) {
+                } catch (\Exception $e) {
 
-                $this->session->setFlashdata(
-                    'error_message',
-                    'Unable to verify reCAPTCHA. Please try again.'
-                );
+                    $this->session->setFlashdata(
+                        'error_message',
+                        'Unable to verify reCAPTCHA. Please try again.'
+                    );
 
-                return redirect()->to('/Administrator');
+                    return redirect()->to('/Administrator');
+                }
+
+
+                // Check reCAPTCHA result
+                if (
+                    !$recaptchaResult ||
+                    empty($recaptchaResult->success) ||
+                    !isset($recaptchaResult->score) ||
+                    $recaptchaResult->score < 0.5 ||
+                    !isset($recaptchaResult->action) ||
+                    $recaptchaResult->action !== 'login'
+                ) {
+
+                    $this->session->setFlashdata(
+                        'error_message',
+                        'reCAPTCHA verification failed. Please try again.'
+                    );
+
+                    return redirect()->to('/Administrator');
+                }
             }
-
-
-            // Check reCAPTCHA result
-            if (
-                !$recaptchaResult ||
-                empty($recaptchaResult->success) ||
-                !isset($recaptchaResult->score) ||
-                $recaptchaResult->score < 0.5 ||
-                !isset($recaptchaResult->action) ||
-                $recaptchaResult->action !== 'login'
-            ) {
-
-                $this->session->setFlashdata(
-                    'error_message',
-                    'reCAPTCHA verification failed. Please try again.'
-                );
-
-                return redirect()->to('/Administrator');
-            }
-
 
             // ==========================================
             // Existing Login Validation

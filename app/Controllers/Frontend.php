@@ -303,15 +303,15 @@ class Frontend extends BaseController
                 // 'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
                 // 'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*>).*$/i]',
                 'page_name' => 'required',
-                'recaptcha_token' => 'required',
-                'g-recaptcha-response' => 'required',
+                'recaptcha_token' => captcha_is_disabled() ? 'permit_empty' : 'required',
+                'g-recaptcha-response' => captcha_is_disabled() ? 'permit_empty' : 'required',
             ];
 
             if (!$this->validate($rules)) {
                 // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
                 return $this->response->setStatusCode(200) // Bad Request
                     ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
-            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+            } else if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
 
                 $this->common_model = new CommonModel();
 
@@ -714,15 +714,15 @@ class Frontend extends BaseController
                 'city'    => 'required|min_length[3]|max_length[255]|alpha_space',
                 'message' => 'required|min_length[3]|max_length[1000]|regex_match[/^(?!.*<script.*?>).*$/i]',
                 'page_name' => 'required',
-                'recaptcha_token' => 'required',
-                'g-recaptcha-response' => 'required',
+                'recaptcha_token' => captcha_is_disabled() ? 'permit_empty' : 'required',
+                'g-recaptcha-response' => captcha_is_disabled() ? 'permit_empty' : 'required',
             ];
 
             if (!$this->validate($rules)) {
                 // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
                 return $this->response->setStatusCode(200) // Bad Request
                     ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
-            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+            } else if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
 
                 $this->common_model = new CommonModel();
 
@@ -789,30 +789,29 @@ class Frontend extends BaseController
                 //     'rules' => 'required',
                 //     'label' => 'CV'
                 // ],
-                'recaptcha_token' => 'required',
-                'g-recaptcha-response' => 'required',
+                'recaptcha_token' => captcha_is_disabled() ? 'permit_empty' : 'required',
+                'g-recaptcha-response' => captcha_is_disabled() ? 'permit_empty' : 'required',
             ];
 
             if (!$this->validate($rules)) {
                 return $this->response->setStatusCode(200) // Bad Request
                     ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
-            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+            } else if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
                 /* pdf upload */
                 $file = $this->request->getFile('file');
-                $originalName = $file->getClientName();
-                $fileMimeType = $file->getClientMimeType();
-                $fieldName = 'file';
-                if (($fileMimeType == 'application/pdf') && $originalName != '') {
-                    $upload_array = $this->common_model->upload_single_file($fieldName, $originalName, 'applicantCv', 'pdf');
-                    if ($upload_array['status']) {
-                        $applicantCv = $upload_array['newFilename'];
-                    } else {
-                        return $this->response->setStatusCode(200)
-                            ->setJSON(['status' => false, 'message' => $upload_array['message']]);
-                    }
-                } else {
+                if (!$file || !$file->isValid() || $file->getMimeType() !== 'application/pdf'
+                    || strtolower($file->getClientExtension()) !== 'pdf') {
                     return $this->response->setStatusCode(200) // Created
-                        ->setJSON(['status' => false, 'message' => 'Please upload a pdf file']);
+                        ->setJSON(['status' => false, 'message' => 'Please upload a valid PDF file within the server upload limit.']);
+                }
+                try {
+                    // move() creates the target directory when it is missing.
+                    $file->move(ROOTPATH . 'uploads/applicantCv', $file->getRandomName());
+                    $applicantCv = $file->getName();
+                } catch (\Exception $e) {
+                    log_message('error', 'Career CV upload failed: ' . $e->getMessage());
+                    return $this->response->setStatusCode(200)
+                        ->setJSON(['status' => false, 'message' => 'Unable to save your CV. Please try again later.']);
                 }
 
                 /* pdf upload */
@@ -830,6 +829,7 @@ class Frontend extends BaseController
                     'cv_file' => $applicantCv,
                 ];
                 $maildata = [
+                    'site_setting' => $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1]),
                     'first_name' => $postData['fname'],
                     'last_name' => $postData['lname'],
                     'email' => $postData['email'],
@@ -946,9 +946,8 @@ class Frontend extends BaseController
 
 
             if (!$this->validate($rules)) {
-                $this->session->setFlashdata('errors', $this->validator->getErrors());
-                // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
-            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+                return redirect()->to(base_url('service'))->withInput()->with('errors', $this->validator->getErrors());
+            } else if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
                 $this->common_model = new CommonModel();
 
                 $formData = [
@@ -974,6 +973,8 @@ class Frontend extends BaseController
                 if ($insert_id) {
 
                     $formData['products'] = $this->getCategoryNamesByIds($data['productCategory'], $postData['product_category_id']);
+
+                    $formData['site_setting'] = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1]);
 
                     $body = view('Views/front/mail_template/equerry-templete', $formData);
 
@@ -1035,7 +1036,7 @@ class Frontend extends BaseController
                 $this->session->setFlashdata('errors', $this->validator->getErrors());
                 // return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
 
-            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+            } else if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
                 $this->common_model = new CommonModel();
 
                 $formData = [
@@ -1088,7 +1089,7 @@ class Frontend extends BaseController
             if (!$this->validate($rules)) {
                 return $this->response->setStatusCode(200) // Bad Request
                     ->setJSON(['status' => false, 'message' => 'Enter valid inputs', 'errors' => $this->validator->getErrors()]);
-            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+            } else if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
 
                 $this->common_model = new CommonModel();
 
@@ -1233,7 +1234,7 @@ class Frontend extends BaseController
             if (!$this->validate($rule)) {
                 return redirect()->back()->withInput()->with('errors', $this->validator->getErrors());
                 // 
-            } else if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+            } else if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
                 $this->common_model = new CommonModel();
                 $purchase_invoice = $barcode_photo = null;
 
@@ -1306,7 +1307,7 @@ class Frontend extends BaseController
 
             $postData = $this->request->getPost();
             
-            if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+            if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
                 $this->common_model = new CommonModel();
                 /*promocode generate*/
                 // Generate a random 6-character alphanumeric string
@@ -1330,11 +1331,35 @@ class Frontend extends BaseController
                 $body_admin = view('Views/front/mail_template/offer-template', $formData);
                 $body_client = view('Views/front/mail_template/offer-client-template', $formData);
 
-                $this->send($formData['site_setting']->admin_email, 'Leadsindia', 'Offer Enquiry', $body_admin);
-                $this->send($postData['email_address'], $postData['full_name'], 'Offer Enquiry', $body_client);
+                try {
+                    $insert_id = $this->common_model->save_data('sms_contact_enquiry', [
+                        'enquiry_type' => 'ENQUIRY',
+                        'organisation' => 'Offer Request',
+                        'name' => $postData['full_name'],
+                        'email' => $postData['email_address'],
+                        'phone' => $postData['phone_number'],
+                        'special_enquiry' => $promo_code,
+                        'comment' => "Address: " . $postData['address'] . "\nCoupon code: " . $promo_code,
+                    ]);
+                } catch (\Exception $e) {
+                    log_message('error', 'Offer enquiry could not be saved: ' . $e->getMessage());
+                    $insert_id = false;
+                }
+                if (!$insert_id) {
+                    return redirect()->to(base_url('offer'))->withInput()
+                        ->with('error_message', 'We could not save your offer request. Please try again later or contact us directly.');
+                }
+
+                $this->sendToAdmin('Offer Enquiry', $body_admin, 'admin', 'Leadsindia');
+                try {
+                    $this->send($postData['email_address'], $postData['full_name'], 'Offer Enquiry', $body_client);
+                } catch (\Exception $e) {
+                    log_message('error', 'Offer customer confirmation failed: ' . $e->getMessage());
+                }
+                $this->session->setFlashdata('offer_coupon', $promo_code);
                 
-                // Redirect back to the previous page
-                return redirect()->back()->with('success_message', 'Request sent successfully');
+                // Redirect successful submissions to the confirmation page
+                return redirect()->to(base_url('thank-you'))->setStatusCode(303);
 
 
                 // $this->session->setFlashdata('success_message', 'Request sent successfully');
@@ -1369,7 +1394,7 @@ class Frontend extends BaseController
 
             $postData = $this->request->getPost();
             
-            if ($this->verifyRecaptcha($_POST['recaptcha_token'])) {
+            if ($this->verifyRecaptcha($this->request->getPost('recaptcha_token'))) {
                 $this->common_model = new CommonModel();                
                 $formData = [
                     'full_name' => $postData['full_name'],
@@ -1392,12 +1417,39 @@ class Frontend extends BaseController
                 $body_admin = view('Views/front/mail_template/demo-template', $formData);
                 $body_client = view('Views/front/mail_template/demo-client-template', $formData);
 
-                // $this->send($formData['site_setting']->admin_email, 'Leadsindia', 'Offer Enquiry', $body_admin);
-                $this->send('deblina@keylines.net', 'Leadsindia', 'Demo Enquiry', $body_admin);
-                $this->send($postData['email_address'], $postData['full_name'], 'Demo Enquiry', $body_client);
+                try {
+                    $insert_id = $this->common_model->save_data('sms_contact_enquiry', [
+                        'enquiry_type' => 'ENQUIRY',
+                        'organisation' => 'Demo Request',
+                        'name' => $postData['full_name'],
+                        'email' => $postData['email_address'],
+                        'phone' => $postData['phone_number'],
+                        'product_interest' => $postData['product_interest'],
+                        'special_enquiry' => $postData['product_list'],
+                        'comment' => "Address: " . $postData['address']
+                            . "\nState: " . $postData['state']
+                            . "\nProduct: " . ($formData['product_name']->product_title ?? $postData['product_list'])
+                            . "\nDemo date: " . $postData['date'],
+                    ]);
+                } catch (\Exception $e) {
+                    log_message('error', 'Demo enquiry could not be saved: ' . $e->getMessage());
+                    $insert_id = false;
+                }
+                if (!$insert_id) {
+                    return redirect()->to(base_url('demo'))->withInput()
+                        ->with('error_message', 'We could not save your demo request. Please try again later or contact us directly.');
+                }
+
+                $this->sendToAdmin('Demo Enquiry', $body_admin, 'admin', 'Leadsindia');
+                try {
+                    $this->send($postData['email_address'], $postData['full_name'], 'Demo Enquiry', $body_client);
+                } catch (\Exception $e) {
+                    // The request is saved; do not encourage a duplicate submission.
+                    log_message('error', 'Demo customer confirmation failed: ' . $e->getMessage());
+                }
                 
-                // Redirect back to the previous page
-                return redirect()->back()->with('success_message', 'Request sent successfully');
+                // Redirect successful submissions to the confirmation page
+                return redirect()->to(base_url('thank-you'))->setStatusCode(303);
 
 
                 // $this->session->setFlashdata('success_message', 'Request sent successfully');

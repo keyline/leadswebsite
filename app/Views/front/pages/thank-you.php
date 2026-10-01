@@ -16,6 +16,9 @@
         <span class="thank-you-icon" aria-hidden="true">&#10003;</span>
         <h1>Thank you!</h1>
         <p>Your submission has been received successfully.<br>Our team will review your details and get in touch with you.</p>
+        <?php if ($coupon = session()->getFlashdata('offer_coupon')): ?>
+            <p>Your coupon code: <strong><?= esc($coupon) ?></strong><br>Please save this code for your records.</p>
+        <?php endif; ?>
         <a class="thank-you-home" href="<?= base_url() ?>">Back to Home</a>
     </div>
 </main>

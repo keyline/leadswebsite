@@ -203,6 +203,10 @@ class BaseController extends Controller
 
 	function verifyRecaptcha($recaptchaToken)
 	{
+		if (captcha_is_disabled()) {
+			return true;
+		}
+
 		// Initialize cURL session
 		$ch = curl_init('https://www.google.com/recaptcha/api/siteverify');
 
@@ -281,13 +285,16 @@ class BaseController extends Controller
 		try {
 			// Server settings
 			$mail->SMTPDebug = 0; // Disable verbose debug output
-			//$mail->isSMTP(); // Send using SMTP
+			$mail->isSMTP();
 			$mail->Host       = SMTP_HOST; // Set the SMTP server to send through
 			$mail->SMTPAuth   = true; // Enable SMTP authentication
-			$mail->Username   = SMTP_USER; // SMTP username
-			$mail->Password   = SMTP_PASS; // SMTP password
-			$mail->SMTPSecure = PHPMailer::ENCRYPTION_SMTPS; // Enable implicit TLS encryption # ENCRYPTION_SMTPS // PHPMailer::ENCRYPTION_STARTTLS
-			$mail->Port       = 465; // TCP port to connect to (use 587 for STARTTLS)
+			$mail->Username   = env('email.SMTPUser', SMTP_USER);
+			$mail->Password   = env('email.SMTPPass', SMTP_PASS);
+			$mail->Port       = (int) SMTP_PORT;
+			$mail->SMTPSecure = $mail->Port === 465
+				? PHPMailer::ENCRYPTION_SMTPS
+				: PHPMailer::ENCRYPTION_STARTTLS;
+			$mail->Timeout = 15;
 
 			// Recipients
 			$mail->setFrom(SET_FROM, SET_NAME);

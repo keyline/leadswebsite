@@ -12,7 +12,7 @@
                         <ul>
                             <?php if(!empty ($site_setting->facebook_link)){ ?>
                             <li><a href="<?= $site_setting->facebook_link ?>" target="_blank"><i class="fa-brands fa-facebook-f"></i></a></li>
-                            <? } if(!empty ($site_setting->twitter_link)) { ?>
+                            <?php } if(!empty ($site_setting->twitter_link)) { ?>
                             <li><a href="<?= $site_setting->twitter_link ?>" target="_blank"><i class="fa-brands fa-x-twitter"></i></a></li>
                             <?php } if(!empty ($site_setting->youtube_link)) { ?>
                             <li><a href="<?= $site_setting->youtube_link ?>" target="_blank"><i class="fa-brands fa-youtube"></i></a></li>
