@@ -1,5 +1,5 @@
 <?php
-session_start();
+// Let CodeIgniter initialize its configured session handler and cookie.
 // Valid PHP Version?
 $minPHPVersion = '7.3';
 if (version_compare(PHP_VERSION, $minPHPVersion, '<'))

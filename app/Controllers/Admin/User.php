@@ -33,11 +33,18 @@ class User extends BaseController {
         $data['page_name'] = 'Login';
         $data['session'] = $this->session;
         $data['common_model'] = $this->common_model;
+        // Require an explicit local setting and a loopback connection.
+        $data['recaptchaEnabled'] = !(
+            filter_var(env('ADMIN_RECAPTCHA_LOCAL_BYPASS', false), FILTER_VALIDATE_BOOLEAN)
+            && in_array($_SERVER['REMOTE_ADDR'] ?? '', ['127.0.0.1', '::1'], true)
+            && in_array(parse_url('http://' . ($_SERVER['HTTP_HOST'] ?? ''), PHP_URL_HOST), ['localhost', '127.0.0.1', '[::1]'], true)
+        );
         if($this->request->getMethod() == 'post') {
             // ==========================================
             // Google reCAPTCHA v3 Verification
             // ==========================================
 
+            if ($data['recaptchaEnabled']) {
             $recaptchaToken = $this->request->getPost('recaptcha_token');
 
             if (empty($recaptchaToken)) {
@@ -47,7 +54,7 @@ class User extends BaseController {
                     'reCAPTCHA verification failed. Please try again.'
                 );
 
-                return redirect()->to('/Administrator');
+                return redirect()->to(site_url('Admin'));
             }
 
             // Get Secret Key from .env
@@ -77,7 +84,7 @@ class User extends BaseController {
                     'Unable to verify reCAPTCHA. Please try again.'
                 );
 
-                return redirect()->to('/Administrator');
+                return redirect()->to(site_url('Admin'));
             }
 
 
@@ -96,9 +103,9 @@ class User extends BaseController {
                     'reCAPTCHA verification failed. Please try again.'
                 );
 
-                return redirect()->to('/Administrator');
+                return redirect()->to(site_url('Admin'));
             }
-
+            }
 
             // ==========================================
             // Existing Login Validation
@@ -143,8 +150,8 @@ class User extends BaseController {
                     // $response->setHeader('Location', site_url('Dashboard'));
                     // $response->setStatusCode(302);
                     // return $response;
-                    echo '<script>window.location.href="' . site_url('Dashboard') . '";</script>';
-                    exit;
+                    $this->session->regenerate(true);
+                    return redirect()->to(site_url('Dashboard'));
                 } else {
                     // dd('If not match');
                     $this->session->setFlashdata('error_message', 'Invalid credentials');

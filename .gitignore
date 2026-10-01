@@ -139,3 +139,7 @@ nb-configuration.xml
 /.phpunit.*.cache
 
 error_log
+
+# Local landing-page review tools and browser artifacts.
+/writable/dev-tools/
+/writable/landing-review/

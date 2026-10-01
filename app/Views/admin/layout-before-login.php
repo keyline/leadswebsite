@@ -104,7 +104,8 @@ $session->setFlashdata('error_message', '');
 <script src="<?php echo base_url('material/'); ?>/assets/js/vendor-all.min.js"></script>
 <script src="<?php echo base_url('material/'); ?>/assets/js/plugins/bootstrap.min.js"></script>
 <script src="<?php echo base_url('material/'); ?>/assets/js/waves.min.js"></script>
-<script src="https://www.google.com/recaptcha/api.js?render=<?= env('RECAPTCHA_SITE_KEY') ?>"></script>
+<?php if ($recaptchaEnabled ?? true): ?>
+<script src="https://www.google.com/recaptcha/api.js?render=<?= esc(env('RECAPTCHA_SITE_KEY'), 'attr') ?>"></script>
 
 <script>
 document.getElementById('loginForm').addEventListener('submit', function(e) {
@@ -113,13 +114,16 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
     var form = this;
 
+    if (typeof grecaptcha === 'undefined') {
+        alert('Unable to load reCAPTCHA. Check your connection and reload the page.');
+        return;
+    }
+
     grecaptcha.ready(function() {
 
         grecaptcha.execute('<?= env('RECAPTCHA_SITE_KEY') ?>', {
             action: 'login'
         }).then(function(token) {
-
-            console.log('reCAPTCHA token generated:', token);
 
             document.getElementById('recaptcha_token').value = token;
 
@@ -127,11 +131,13 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
         }).catch(function(error) {
             console.error('reCAPTCHA ERROR:', error);
+            alert('reCAPTCHA verification failed. Please reload the page and try again.');
         });
 
     });
 
 });
 </script>
+<?php endif; ?>
 </body>
 </html>
