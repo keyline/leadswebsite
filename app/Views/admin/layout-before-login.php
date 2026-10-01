@@ -114,13 +114,16 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
     var form = this;
 
+    if (typeof grecaptcha === 'undefined') {
+        alert('Unable to load reCAPTCHA. Check your connection and reload the page.');
+        return;
+    }
+
     grecaptcha.ready(function() {
 
         grecaptcha.execute('<?= env('RECAPTCHA_SITE_KEY') ?>', {
             action: 'login'
         }).then(function(token) {
-
-            console.log('reCAPTCHA token generated:', token);
 
             document.getElementById('recaptcha_token').value = token;
 
@@ -128,6 +131,7 @@ document.getElementById('loginForm').addEventListener('submit', function(e) {
 
         }).catch(function(error) {
             console.error('reCAPTCHA ERROR:', error);
+            alert('reCAPTCHA verification failed. Please reload the page and try again.');
         });
 
     });

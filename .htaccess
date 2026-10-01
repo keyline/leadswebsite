@@ -25,6 +25,9 @@ Options All -Indexes
 
 	RewriteEngine On
 
+    # The landing assets directory shares its name with the application route.
+    RewriteRule ^landing/?$ index.php/landing [L,QSA]
+
 
 
 	# If you installed CodeIgniter in a subfolder, you will need to
@@ -393,6 +396,8 @@ Options All -Indexes
 # php -- BEGIN cPanel-generated handler, do not edit
 # Set the “ea-php82” package as the default “PHP” programming language.
 <IfModule mime_module>
-  AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+  <IfModule !php_module>
+    AddHandler application/x-httpd-ea-php82 .php .php8 .phtml
+  </IfModule>
 </IfModule>
 # php -- END cPanel-generated handler, do not edit

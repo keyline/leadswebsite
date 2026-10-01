@@ -62,6 +62,11 @@ $routes->setAutoRoute(false);
 
 $routes->get('/', 'Frontend::index');
 
+$routes->get('landing', 'Landing::index');
+$routes->post('landing/submit', 'Landing::submit', ['filter' => 'csrf']);
+$routes->get('admin/landing-page', 'Admin\LandingPage::index');
+$routes->get('admin/landing-page/export', 'Admin\LandingPage::export');
+
 $routes->get('/about', 'Frontend::about');
 $routes->get('/distributor', 'Frontend::distributor');
 $routes->match(['get', 'post'],'/demo', 'Frontend::demo');
