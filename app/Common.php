@@ -13,3 +13,12 @@
  *
  * @link: https://codeigniter4.github.io/CodeIgniter4/
  */
+
+/** Bypass CAPTCHA only for direct requests from this machine to localhost. */
+function captcha_is_disabled(): bool
+{
+    $host = strtolower(parse_url('http://' . ($_SERVER['HTTP_HOST'] ?? ''), PHP_URL_HOST) ?: '');
+
+    return in_array($host, ['localhost', '127.0.0.1', '[::1]'], true)
+        && in_array($_SERVER['REMOTE_ADDR'] ?? '', ['127.0.0.1', '::1', '::ffff:127.0.0.1'], true);
+}

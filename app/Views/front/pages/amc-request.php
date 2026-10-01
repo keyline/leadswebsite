@@ -70,9 +70,11 @@
                     <div class="col-md-4 ponit product_parent" data-id="<?= $category->id ?>">
                         <div class="blog_list_item">
 
+                            <?php if (!empty(AMC_BANNER[$category->id])): ?>
                             <div class="blogitem_img">
                                 <img src="<?= base_url('public/') ?>/assets/img/<?= AMC_BANNER[$category->id] ?>" alt="Professional Career Counseling: Advancing in Your Career" style="height: 300px;">
                             </div>
+                            <?php endif; ?>
 
                             <div class="blogitem_detials">
                                 <ul class="blogitem_cat">
@@ -213,13 +215,8 @@
             contentType: false,
             success: function(response) {
                 if (response.status) {
-                    // Show success message and reset form
-                    showAlert({
-                        title: response.message,
-                        icon: "success"
-                    });
-                    $('#jobApply')[0].reset(); // Clear the form
-                    $("#applyModal").modal('hide');
+                    window.location.assign(<?= json_encode(base_url('thank-you')) ?>);
+                    return;
                 } else {
                     if (response.errors) {
                         // Loop through each error and display it in the corresponding element if it exists

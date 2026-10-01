@@ -4,7 +4,7 @@ namespace Config;
 
 use CodeIgniter\Validation\CreditCardRules;
 use CodeIgniter\Validation\FileRules;
-use CodeIgniter\Validation\FormatRules;
+use App\Validation\FormatRules;
 use CodeIgniter\Validation\Rules;
 
 class Validation

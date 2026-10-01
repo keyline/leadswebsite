@@ -267,13 +267,8 @@
             contentType: false,
             success: function(response) {
                 if (response.status) {
-                    // Show success message and reset form
-                    showAlert({
-                        title: response.message,
-                        icon: "success"
-                    });
-                    $('#jobApply')[0].reset(); // Clear the form
-                    $("#applyModal").modal('hide');
+                    window.location.assign(<?= json_encode(base_url('thank-you')) ?>);
+                    return;
                 } else {
                     if (response.errors) {
                         // Loop through each error and display it in the corresponding element if it exists

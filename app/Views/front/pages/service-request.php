@@ -91,7 +91,7 @@
                             <?php if (count($productCategory)) {
                                 foreach ($productCategory as $key => $category) { ?>
                                     <div class="form-check">
-                                        <input class="form-check-input" type="checkbox" name="product_category_id[]" id="input_<?= $key ?>" value="<?= $category->id ?>" <?= in_array($category->id, old('product_category_id.*', [])) ? 'checked' : '' ?>>
+                                        <input class="form-check-input" type="checkbox" name="product_category_id[]" id="input_<?= $key ?>" value="<?= $category->id ?>" <?= in_array($category->id, (array) old('product_category_id', [])) ? 'checked' : '' ?>>
                                         <label class="form-check-label" for="input_<?= $key ?>"><?= $category->name ?></label>
                                     </div>
                             <?php }

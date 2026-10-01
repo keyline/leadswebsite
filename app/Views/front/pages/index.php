@@ -1,9 +1,20 @@
 <?php
 $db = \Config\Database::connect();
+$popupType = $popup_settings->popup_type ?? '';
+$showHomePopup = $popupType === 'form';
+if ($popupType === 'image' || $popupType === 'video') {
+    $popupFile = $popupType === 'image'
+        ? ($popup_settings->image_path ?? '')
+        : ($popup_settings->video_path ?? '');
+    $showHomePopup = $popupFile !== '' && is_file(ROOTPATH . 'uploads/popup/' . $popupFile);
+} elseif ($popupType === 'youtube_url') {
+    $showHomePopup = !empty($popup_settings->youtube_url);
+}
 ?>
 <!-- ********|| BANNER ENDS ||******** -->
 <!-- home page popup start-->
 <!-- Modal -->
+<?php if ($showHomePopup): ?>
 <div class="modal fade home_offer_modal"  id="home_offer_modal" tabindex="-1" aria-labelledby="home_offer_modalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content">
@@ -35,7 +46,7 @@ $db = \Config\Database::connect();
                     <h1 class="heading">Get Your<br><strong> 10% OFF Coupon!</strong></h1>
                     <div class="sign-up">
                         <!-- <p class="text-center">Fill out the form below and receive your unique code instantly, Show your nearest Leads dealer & enjoy the discount.</p> -->
-                        <form id="warranty_registration_form" method="POST" action="/offer" class="w-100">
+                        <form id="warranty_registration_form" method="POST" action="<?= base_url('offer') ?>" class="w-100">
                             <div class="input_holder">
                                 <div class="text">
                                     <i class="fa fa-user"></i>
@@ -113,6 +124,7 @@ $db = \Config\Database::connect();
         </div>
     </div>
 </div>
+<?php endif; ?>
 <!-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#home_offer_modal">
         Launch demo modal
     </button> -->
@@ -1012,7 +1024,25 @@ endif;
 
 
     $(document).ready(function() {
-        $("#home_offer_modal").modal('show');
+        var popup = document.getElementById('home_offer_modal');
+        if (!popup || window.location.hash) return;
+
+        // Wait for the image so a failed request never opens an empty overlay.
+        var popupImage = popup.querySelector('img');
+        if (popupImage) {
+            var showLoadedPopup = function() {
+                if (popupImage.naturalWidth > 0 && !window.location.hash) {
+                    $(popup).modal('show');
+                }
+            };
+            if (popupImage.complete) {
+                showLoadedPopup();
+            } else {
+                popupImage.addEventListener('load', showLoadedPopup, { once: true });
+            }
+        } else {
+            $(popup).modal('show');
+        }
     });
 
     // Awards & Recognition - click poster to load the video
