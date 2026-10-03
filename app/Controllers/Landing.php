@@ -60,7 +60,19 @@ class Landing extends BaseController
                 ->with('landing_old', $data);
         }
         $this->session->set('landing_last_submit', time());
-        return redirect()->to(site_url('landing') . '#enquire')
-            ->with('landing_success', 'Thank you! Your enquiry has been received. Our team will contact you to discuss your partnership opportunity.');
+        // Keep the saved enquiry even if the SMTP notification fails.
+        try {
+            $settings = $this->common_model->find_data('sms_site_settings', 'row', ['published' => 1], ['admin_email']);
+            if (!$settings || empty($settings->admin_email)) {
+                throw new \RuntimeException('Admin email is not configured.');
+            }
+            $body = view('front/mail_template/landing-enquiry', $data);
+            if (!$this->send($settings->admin_email, 'Leadsindia', 'New Partnership Enquiry - Landing Page', $body)) {
+                log_message('error', 'Landing enquiry was saved, but its admin email notification failed.');
+            }
+        } catch (\Throwable $e) {
+            log_message('error', 'Landing enquiry was saved, but its admin email notification could not be sent: {message}', ['message' => $e->getMessage()]);
+        }
+        return redirect()->to(base_url('thank-you'))->setStatusCode(303);
     }
 }
