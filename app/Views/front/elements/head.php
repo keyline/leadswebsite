@@ -115,14 +115,6 @@ We Presently importing kitchen appliances from Malaysia and Manufactured Domesti
 
 <!-- <link rel="canonical" href="https://victoriatravels.com<?php echo ($_SERVER['REQUEST_URI']); ?>"> -->
 
-<!-- Google Tag Manager -->
-<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-})(window,document,'script','dataLayer','GTM-N4ZM5MQZ');</script>
-<!-- End Google Tag Manager -->
-
 <!-- Meta Pixel Code -->
 <script>
 !function(f,b,e,v,n,t,s)
@@ -140,25 +132,3 @@ fbq('track', 'PageView');
 src="https://www.facebook.com/tr?id=2343321332669635&ev=PageView&noscript=1"
 /></noscript>
 <!-- End Meta Pixel Code -->
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-XLCX98XHB6"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-XLCX98XHB6');
-</script>
-
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=AW-879441889"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'AW-879441889');
-</script>
