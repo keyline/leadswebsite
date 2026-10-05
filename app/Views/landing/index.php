@@ -109,7 +109,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
                 <p>Share a few details. Our team can contact you to discuss the available dealership and distributorship opportunities.</p>
                 <?php if ($success): ?><div class="form-notice success" role="status" tabindex="-1"><?= $icon('check') ?><span><?= esc($success) ?></span></div><?php endif; ?>
                 <?php if ($errors || $formError): ?><div class="form-notice error" role="alert" tabindex="-1"><strong>Please check your enquiry.</strong><ul><?php foreach ($errors as $error): ?><li><?= esc($error) ?></li><?php endforeach; ?><?php if ($formError): ?><li>Your form has expired. Please submit it again.</li><?php endif; ?></ul></div><?php endif; ?>
-                <form action="<?= site_url('landing/submit') ?>" method="post" id="partnership-form">
+                <form action="<?= site_url('distributorship-opportunity/submit') ?>" method="post" id="partnership-form">
                     <?= csrf_field() ?>
                     <div class="honey" aria-hidden="true"><label for="website">Website</label><input id="website" name="website" tabindex="-1" autocomplete="off"></div>
                     <div class="field"><label for="full_name">Full Name <span>*</span></label><input id="full_name" name="full_name" autocomplete="name" placeholder="Your full name" required minlength="2" maxlength="100" value="<?= esc($old['full_name'] ?? '', 'attr') ?>" <?= isset($errors['full_name']) ? 'aria-invalid="true"' : '' ?>></div>

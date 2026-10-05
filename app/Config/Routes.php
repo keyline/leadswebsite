@@ -62,7 +62,9 @@ $routes->setAutoRoute(false);
 
 $routes->get('/', 'Frontend::index');
 
-$routes->get('landing', 'Landing::index');
+$routes->get('distributorship-opportunity', 'Landing::index');
+$routes->post('distributorship-opportunity/submit', 'Landing::submit', ['filter' => 'csrf']);
+$routes->addRedirect('landing', 'distributorship-opportunity', 301);
 $routes->post('landing/submit', 'Landing::submit', ['filter' => 'csrf']);
 $routes->get('admin/landing-page', 'Admin\LandingPage::index');
 $routes->get('admin/landing-page/export', 'Admin\LandingPage::export');

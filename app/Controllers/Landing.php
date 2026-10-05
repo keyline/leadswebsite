@@ -45,7 +45,7 @@ class Landing extends BaseController
             $errors['form'] = 'Your enquiry has already been received. Please wait before submitting again.';
         }
         if ($errors) {
-            return redirect()->to(site_url('landing') . '#enquire')
+            return redirect()->to(site_url('distributorship-opportunity') . '#enquire')
                 ->with('landing_errors', $errors)->with('landing_old', $data);
         }
         try {
@@ -55,7 +55,7 @@ class Landing extends BaseController
             }
         } catch (\Throwable $e) {
             log_message('error', 'Landing enquiry could not be saved: {message}', ['message' => $e->getMessage()]);
-            return redirect()->to(site_url('landing') . '#enquire')
+            return redirect()->to(site_url('distributorship-opportunity') . '#enquire')
                 ->with('landing_errors', ['form' => 'We could not save your enquiry. Please try again or call 95936 79111.'])
                 ->with('landing_old', $data);
         }
