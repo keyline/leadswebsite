@@ -1,5 +1,11 @@
 <?= $this->section('style') ?>
 <style>
+    .thank-you-header .head_social li a { color: #222; border-color: #222; }
+    .thank-you-header .head_social li a:hover,
+    .thank-you-header .head_social li a:focus-visible { color: #ff6300; border-color: #ff6300; }
+    .thank-you-header #burger:not(.abrido) span { background-color: #222; }
+    .thank-you-header #burger:not(.abrido):hover span,
+    .thank-you-header #burger:not(.abrido):focus-visible span { background-color: #ff6300 !important; }
     .thank-you-section { padding: 80px 20px; background: #f7f7f7; }
     .thank-you-card { max-width: 720px; margin: auto; padding: 60px 30px; background: #fff; border-radius: 16px; border-top: 5px solid #ff6300; box-shadow: 0 12px 40px rgba(0,0,0,.06); text-align: center; }
     .thank-you-icon { display: inline-flex; align-items: center; justify-content: center; width: 80px; height: 80px; margin-bottom: 24px; border-radius: 50%; background: #fff0e6; color: #ff6300; font-size: 40px; }

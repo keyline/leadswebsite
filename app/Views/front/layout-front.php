@@ -22,7 +22,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
     <!------------|| NAV BAR STARTS ||------------>
 
-    <header class="header <?= ($page_header == 'Blog Details') ? 'blogdetails_header' : '' ?>">
+    <header class="header <?= ($page_header == 'Blog Details') ? 'blogdetails_header' : '' ?> <?= ($page_header == 'Thank You') ? 'thank-you-header' : '' ?>">
 
         <?= $header ?>
 
