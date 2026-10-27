@@ -50,6 +50,12 @@
 
                     <form id="service_request" class="row g-3" action="" method="post">
 
+                        <div class="col-md-12">
+                            <label for="service-email" class="form-label">Email &nbsp;<span class="text-danger">*</span></label>
+                            <input type="email" class="form-control" name="email" id="service-email" maxlength="254" required autocomplete="email" value="<?= esc(old('email')) ?>">
+                            <p class="text-danger error" id="email-error"><?= esc(session('errors.email') ?? '') ?></p>
+                        </div>
+
                         <div class="col-md-6">
                             <label for="input1" class="form-label">Name &nbsp;<span class="text-danger">*</span></label>
                             <input type="text" class="form-control" name="name" id="input1" value="<?= old('name') ?>">

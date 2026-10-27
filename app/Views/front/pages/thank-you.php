@@ -21,7 +21,15 @@
     <div class="thank-you-card">
         <span class="thank-you-icon" aria-hidden="true">&#10003;</span>
         <h1>Thank you!</h1>
+        <?php if ($docket = session()->getFlashdata('service_docket_number')): ?>
+            <p>Your service request has been registered successfully.</p>
+            <p>Your docket number: <strong><?= esc($docket) ?></strong><br>Please save this number for future reference.</p>
+            <?php if ($emailWarning = session()->getFlashdata('service_email_warning')): ?>
+                <p role="status"><?= esc($emailWarning) ?></p>
+            <?php endif; ?>
+        <?php else: ?>
         <p>Your submission has been received successfully.<br>Our team will review your details and get in touch with you.</p>
+        <?php endif; ?>
         <?php if ($coupon = session()->getFlashdata('offer_coupon')): ?>
             <p>Your coupon code: <strong><?= esc($coupon) ?></strong><br>Please save this code for your records.</p>
         <?php endif; ?>

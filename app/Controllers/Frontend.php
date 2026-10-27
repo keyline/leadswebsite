@@ -882,6 +882,10 @@ class Frontend extends BaseController
             $postData = $this->request->getPost();
 
             $rules = [
+                'email' => [
+                    'rules' => 'required|valid_email|max_length[254]',
+                    'label' => 'Email'
+                ],
                 'name' => [
                     'rules' => 'required|regex_match[/^(?!.*<script.*?>).*$/i]',
                     'label' => 'Name'
@@ -951,6 +955,8 @@ class Frontend extends BaseController
                 $this->common_model = new CommonModel();
 
                 $formData = [
+                    'email' => trim($postData['email']),
+                    'docket_number' => 'SR-' . date('Ymd') . '-' . strtoupper(bin2hex(random_bytes(8))),
                     'name' => $postData['name'],
                     'address' => $postData['address'],
                     'landmark' => $postData['landmark'],
@@ -968,9 +974,11 @@ class Frontend extends BaseController
                     'interested' => $postData['work_as'] ?? '',
                 ];
 
-                $insert_id = $this->common_model->save_data('service_request', $formData);
+                $saved = \Config\Database::connect()->table('service_request')->insert($formData);
 
-                if ($insert_id) {
+                if ($saved) {
+
+                    $this->session->setFlashdata('service_docket_number', $formData['docket_number']);
 
                     $formData['products'] = $this->getCategoryNamesByIds($data['productCategory'], $postData['product_category_id']);
 
@@ -978,10 +986,24 @@ class Frontend extends BaseController
 
                     $body = view('Views/front/mail_template/equerry-templete', $formData);
 
-                    $this->sendToAdmin('Service Request', $body, 'service', 'Leadsindia');
+                    $this->sendToAdmin('Service Request - ' . $formData['docket_number'], $body, 'service', 'Leadsindia');
+
+                    try {
+                        $confirmation = view('Views/front/mail_template/service-confirmation', $formData);
+                        $sent = $this->send($formData['email'], $formData['name'], 'Service Request Confirmation - ' . $formData['docket_number'], $confirmation);
+                        if (!$sent) {
+                            throw new \RuntimeException('SMTP did not accept the confirmation email.');
+                        }
+                    } catch (\Exception $e) {
+                        log_message('error', 'Service confirmation email failed for {docket}: {error}', [
+                            'docket' => $formData['docket_number'], 'error' => $e->getMessage()
+                        ]);
+                        $this->session->setFlashdata('service_email_warning', 'Your request is registered, but we could not send your confirmation email. Please save your docket number.');
+                    }
 
                     return redirect()->to(base_url('thank-you'))->setStatusCode(303);
                 }
+                return redirect()->to(base_url('service'))->withInput()->with('error_message', 'Your request could not be saved. Please try again.');
             } else {
                 $this->session->setFlashdata('error_message', 'reCAPTCHA verification failed. Please try again.');
             }
