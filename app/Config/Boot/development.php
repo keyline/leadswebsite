@@ -8,7 +8,9 @@
  | make sure they don't make it to production. And save us hours of
  | painful debugging.
  */
-error_reporting(-1);
+// Legacy framework APIs emit deprecations on newer PHP versions.
+// Keep runtime errors visible without turning those notices into exceptions.
+error_reporting(E_ALL & ~E_DEPRECATED & ~E_USER_DEPRECATED);
 ini_set('display_errors', '1');
 
 /*

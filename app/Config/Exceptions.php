@@ -10,6 +10,13 @@ use CodeIgniter\Config\BaseConfig;
 class Exceptions extends BaseConfig
 {
 	/**
+	 * Data keys to hide from exception backtraces.
+	 *
+	 * @var array
+	 */
+	public $sensitiveDataInTrace = [];
+
+	/**
 	 * --------------------------------------------------------------------------
 	 * LOG EXCEPTIONS?
 	 * --------------------------------------------------------------------------
