@@ -75,6 +75,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= base_url('public/assets/bootstrap/') ?>/js/bootstrap.bundle.min.js"></script>
+    <script>
+        const homeCarousel = document.getElementById('tt-home-carousel');
+        if (homeCarousel) {
+            bootstrap.Carousel.getOrCreateInstance(homeCarousel);
+        }
+    </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <!-- <script src="assets/js/jquery.serialtabs.js"></script> -->

@@ -344,9 +344,8 @@ if ($popupType === 'image' || $popupType === 'video') {
 <div class="home_slider_section">
     <div>
         <div>
-            <div id="tt-home-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+            <div id="tt-home-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
                 <div class="carousel-inner">
-                    <div class="carousel-inner">
                         <!--ai enable chemny-->
                         <div class="carousel-item active">
                             <a href="<?= base_url('/product/kitchen-chimney') ?>">
@@ -439,14 +438,13 @@ if ($popupType === 'image' || $popupType === 'video') {
                                     </div> -->
                                 </div>
                             </div>
+                            </a>
                             <a href="<?= base_url('/product/ro-water-purifier') ?>" class="mobile_banner">
                                 <img src="<?= base_url('public/') ?>/assets/img/ro-water-purifier-mobile.webp" alt=""
                                     class="img-fluid">
                             </a>
                         </div>
-                        </a>
-                        
-                    </div>
+
                         <!--all product-->
                         <div class="carousel-item">
                             <a href="<?= base_url('/product/kitchen-chimney') ?>">
