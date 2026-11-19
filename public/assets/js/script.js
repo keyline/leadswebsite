@@ -69,7 +69,7 @@ brandSlider.on('translated.owl.carousel', function(event) {
         items:1,
         loop: true,
         margin:30,
-        autoplay: false,
+        autoplay: true,
         autoplayTimeout: 4000,
         stagePadding:30,
         smartSpeed:450,
