@@ -344,7 +344,7 @@ if ($popupType === 'image' || $popupType === 'video') {
 <div class="home_slider_section">
     <div>
         <div>
-            <div id="tt-home-carousel" class="carousel slide">
+            <div id="tt-home-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
                 <div class="carousel-inner">
                     <div class="carousel-inner">
                         <!--ai enable chemny-->
