@@ -76,28 +76,19 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= base_url('public/assets/bootstrap/') ?>/js/bootstrap.bundle.min.js"></script>
     <script>
-        const homeCarousel = document.getElementById('tt-home-carousel');
-        if (homeCarousel) {
-            homeCarousel.dataset.autoplayInitialized = 'true';
-            const homeSlides = homeCarousel.querySelectorAll('.carousel-item');
-            const homeIndicators = homeCarousel.querySelectorAll('.carousel-indicators [data-bs-slide-to]');
-            let homeSlideIndex = 0;
+        // Start the homepage banner through Bootstrap so autoplay, controls,
+        // indicators, and slide transitions all share the same state.
+        document.addEventListener('DOMContentLoaded', function () {
+            const homeCarousel = document.getElementById('tt-home-carousel');
+            if (!homeCarousel || !window.bootstrap || !bootstrap.Carousel) return;
 
-            // Use a plain timer so autoplay does not depend on Bootstrap's data API.
-            window.setInterval(function() {
-                homeSlides[homeSlideIndex].classList.remove('active');
-                if (homeIndicators[homeSlideIndex]) {
-                    homeIndicators[homeSlideIndex].classList.remove('active');
-                }
-
-                homeSlideIndex = (homeSlideIndex + 1) % homeSlides.length;
-
-                homeSlides[homeSlideIndex].classList.add('active');
-                if (homeIndicators[homeSlideIndex]) {
-                    homeIndicators[homeSlideIndex].classList.add('active');
-                }
-            }, 5000);
-        }
+            bootstrap.Carousel.getOrCreateInstance(homeCarousel, {
+                interval: 5000,
+                pause: false,
+                ride: 'carousel',
+                wrap: true
+            }).cycle();
+        });
     </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
