@@ -351,24 +351,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                             <a href="<?= base_url('/product/kitchen-chimney') ?>">
                             <div class="home_banner_slider_holder home_banner_slider_holder3 desktop_banner">
                                 <div class="row justify-content-center vh-100">
-                                    <!-- <div class="col-lg-8 col-md-10">
-                                        <div class="home_slider_info">
-                                            <div class="home_silder_imginner">
-                                                <img src="<?= base_url('public/') ?>/assets/img/banner_3_product.png" alt=""
-                                                    class="img-fluid home_banner_slider_product animated fadeInDown delay-2">
-                                            </div>
-                                            <div class="home_slider_inner">
-                                                <h2 class="animated fadeInLeft delay-3">Pure Water, Pure Life –</h2>
-                                                <p class="animated fadeInRight delay-4">Drink Safe, Live Healthy</p>
-                                                <div class="home_banner_btn_holder animated fadeInUp delay-5">
-                                                    <a href="<?= base_url('/product/ro-water-purifier') ?>" class="home_banner_btn">View All <img
-                                                            src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt=""
-                                                            class="img-fluid long-arrow"></a>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                    </div> -->
+                                    
                                 </div>
                             </div>
                             </a>
@@ -382,26 +365,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                             <a href="<?= base_url('/product/kitchen-chimney') ?>">
                             <div class="home_banner_slider_holder home_banner_slider_holder1 desktop_banner">
                                 <div class="row vh-100">
-                                    <!-- <div class="col-md-4 d-none d-md-block d-flex align-items-end ">
-                                        <img src="<?= base_url('public/') ?>/assets/img/banner_new_lady1.webp" alt=""
-                                            class="img-fluid home_banner_model animated fadeInLeft delay-1">
-                                    </div>
-                                    <div class="col-md-8">
-                                        <div class="home_slider_info">
-                                            <img src="<?= base_url('public/') ?>/assets/img/home_banner_product.webp" alt=""
-                                                class="img-fluid home_banner_slider_product animated fadeInDown delay-2">
-                                            <div class="home_slider_inner">
-                                                <h2 class="animated fadeInRight delay-3">Smart</h2>
-                                                <p class="animated fadeInRight delay-4"><span>Chimney</span> for Smart
-                                                    People</p>
-                                                <div class="home_banner_btn_holder animated fadeInUp delay-5">
-                                                    <a href="<?= base_url('/product/kitchen-chimney') ?>" class="home_banner_btn">View All <img
-                                                            src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt=""
-                                                            class="img-fluid long-arrow"></a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                    
                                 </div>
                             </div>
                             </a>
@@ -416,26 +380,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                             <a href="<?= base_url('/product/ro-water-purifier') ?>">
                             <div class="home_banner_slider_holder home_banner_slider_holder4 desktop_banner">
                                 <div class="row justify-content-center align-items-end vh-100">
-                                    <!-- <div class="col-lg-10 col-md-10">
-                                        <div class="home_slider_info">
-                                            <div class="home_silder_imginner">
-                                                <img src="<?= base_url('public/') ?>/assets/img/banner_4_product.png" alt=""
-                                                    class="img-fluid home_banner_slider_product animated fadeInDown delay-2">
-                                            </div>
-                                            <div class="home_slider_inner">
-                                                <h2 class="animated fadeInRight delay-3">Effortless Cooking,<br>Elegant Design</h2>
-                                                <p class="animated fadeInRight delay-4">Upgrade Your Cook Top!</p>
-                                                <div class="home_banner_btn_holder animated fadeInUp delay-5">
-                                                    <a href="<?= base_url('/product/cook-tops-hob-tops') ?>" class="home_banner_btn">View All <img
-                                                            src="<?= base_url('public/') ?>/assets/img/arrow-long.webp" alt=""
-                                                            class="img-fluid long-arrow"></a>
-                                                </div>
-                                            </div>
-
-
-
-                                        </div>
-                                    </div> -->
+                                    
                                 </div>
                             </div>
                             </a>
@@ -451,25 +396,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                             <div class="home_banner_slider_holder home_banner_slider_holder5 desktop_banner">
                                 <div class="row justify-content-center align-items-end vh-100">
                                     <div class="col-lg-10 col-md-10">
-                                        <!-- <div class="home_slider_info">
-                                            <div class="slider5_model_box">
-                                                <img src="<?= base_url('public/') ?>/assets/img/slider5_slider_model.webp" alt=""
-                                            class="img-fluid home_banner_model animated fadeInLeft delay-1">
-                                            </div>
-                                            <div class="home_silder_imginner">
-                                                <img src="<?= base_url('public/') ?>/assets/img/slider5_slider_products.webp" alt=""
-                                                    class="img-fluid home_banner_slider_product animated fadeInRight delay-3">
-                                            </div>
-                                            <div class="home_slider_inner">
-                                                <h4 class="animated fadeInRight delay-3">Reimagine your <br><strong>Kitchen</strong></h4>
-                                                <p class="animated fadeInRight delay-4">With Leadss <br>Innovative technology</p>
-                                                <div class="home_banner_btn_holder animated fadeInUp delay-5">
-                                                    <a href="<?= base_url('/product/kitchen-chimney') ?>" class="home_banner_btn">View All <img
-                                                            src="<?= base_url('public/') ?>/assets/img/arrow-org.webp" alt=""
-                                                            class="img-fluid long-arrow"></a>
-                                                </div>
-                                            </div>
-                                        </div> -->
+                                       
                                     </div>
                                 </div>
                             </div>
@@ -517,13 +444,6 @@ if ($popupType === 'image' || $popupType === 'video') {
                                 <h4>All Products</h4>
                             </div>
                         </button>
-                        <!-- <button type="button" data-bs-target="#tt-home-carousel" data-bs-slide-to="4"
-                            aria-label="Slide 4" class="thumb_inner">
-                            <div>
-                                <img src="<?= base_url('public/') ?>/assets/img/banner_icon3.png" />
-                                <h4>Cook Tops Hob Tops</h4>
-                            </div>
-                        </button> -->
                     </div>
                 </div>
             </div>
