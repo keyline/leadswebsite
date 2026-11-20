@@ -344,7 +344,7 @@ if ($popupType === 'image' || $popupType === 'video') {
 <div class="home_slider_section">
     <div>
         <div>
-            <div id="tt-home-carousel" class="carousel slide home-autoplay-slider">
+            <div id="tt-home-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000" data-bs-pause="false">
                 <div class="carousel-inner">
                         <!--ai enable chemny-->
                         <div class="carousel-item active">
@@ -409,20 +409,20 @@ if ($popupType === 'image' || $popupType === 'video') {
                         </div>
                         
                         <!-- Mobile Slider Arrows --> 
-                        <button class="mobile-carousel-control mobile-carousel-prev" type="button" data-bs-target="#tt-home-carousel" data-home-slide="prev" aria-label="Previous slide"> <span>‹</span>
+                        <button class="mobile-carousel-control mobile-carousel-prev" type="button" data-bs-target="#tt-home-carousel" data-bs-slide="prev" aria-label="Previous slide"> <span>‹</span>
                         </button> 
-                        <button class="mobile-carousel-control mobile-carousel-next" type="button" data-bs-target="#tt-home-carousel" data-home-slide="next" aria-label="Next slide"> <span>›</span>
+                        <button class="mobile-carousel-control mobile-carousel-next" type="button" data-bs-target="#tt-home-carousel" data-bs-slide="next" aria-label="Next slide"> <span>›</span>
                         </button>
 
                         <div class="carousel-indicators">
-                        <button type="button" data-bs-target="#tt-home-carousel" data-home-slide-to="0"
+                        <button type="button" data-bs-target="#tt-home-carousel" data-bs-slide-to="0"
                             aria-label="Slide 0" class="active thumb_inner">
                             <div>
                                 <img src="<?= base_url('public/') ?>/assets/img/bulet_ai_icon.png" />
                                 <h4>ai enabled Chimney</h4>
                             </div>
                         </button>
-                        <button type="button" data-bs-target="#tt-home-carousel" data-home-slide-to="1" class="thumb_inner"
+                        <button type="button" data-bs-target="#tt-home-carousel" data-bs-slide-to="1" class="thumb_inner"
                             aria-current="true" aria-label="Slide 1">
                             <div>
                                 <img src="<?= base_url('public/') ?>/assets/img/banner_icon1.png" />
@@ -430,14 +430,14 @@ if ($popupType === 'image' || $popupType === 'video') {
                             </div>
                         </button>
                         
-                        <button type="button" data-bs-target="#tt-home-carousel" data-home-slide-to="2"
+                        <button type="button" data-bs-target="#tt-home-carousel" data-bs-slide-to="2"
                             aria-label="Slide 2" class="thumb_inner">
                             <div>
                                 <img src="<?= base_url('public/') ?>/assets/img/banner_icon2.png" />
                                 <h4>RO Water Purifier</h4>
                             </div>
                         </button>
-                        <button type="button" data-bs-target="#tt-home-carousel" data-home-slide-to="3" class="thumb_inner"
+                        <button type="button" data-bs-target="#tt-home-carousel" data-bs-slide-to="3" class="thumb_inner"
                             aria-current="true" aria-label="Slide 3">
                             <div>
                                 <img src="<?= base_url('public/') ?>/assets/img/all_products.svg" />
@@ -861,93 +861,6 @@ $award_poster    = $award_video_id ? 'https://img.youtube.com/vi/' . htmlspecial
 <!-- home blog section end -->
 
 <?= $this->section('scripts') ?>
-
-<script>
-    document.addEventListener('DOMContentLoaded', function () {
-        const slider = document.getElementById('tt-home-carousel');
-        if (!slider) return;
-
-        const slides = Array.from(slider.querySelectorAll('.carousel-item'));
-        const indicators = Array.from(slider.querySelectorAll('[data-home-slide-to]'));
-        const previousButton = slider.querySelector('[data-home-slide="prev"]');
-        const nextButton = slider.querySelector('[data-home-slide="next"]');
-        if (slides.length < 2) return;
-
-        let currentIndex = Math.max(0, slides.findIndex(function (slide) {
-            return slide.classList.contains('active');
-        }));
-        let timer;
-        let paused = false;
-
-        function showSlide(index) {
-            currentIndex = (index + slides.length) % slides.length;
-            slides.forEach(function (slide, slideIndex) {
-                slide.classList.toggle('active', slideIndex === currentIndex);
-                slide.setAttribute('aria-hidden', slideIndex === currentIndex ? 'false' : 'true');
-            });
-            indicators.forEach(function (indicator, indicatorIndex) {
-                const isActive = indicatorIndex === currentIndex;
-                indicator.classList.toggle('active', isActive);
-                indicator.setAttribute('aria-current', isActive ? 'true' : 'false');
-            });
-        }
-
-        function startAutoplay() {
-            window.clearInterval(timer);
-            if (!paused) {
-                timer = window.setInterval(function () {
-                    showSlide(currentIndex + 1);
-                }, 5000);
-            }
-        }
-
-        function pauseAutoplay() {
-            paused = true;
-            window.clearInterval(timer);
-        }
-
-        function resumeAutoplay() {
-            paused = false;
-            startAutoplay();
-        }
-
-        indicators.forEach(function (indicator, index) {
-            indicator.addEventListener('click', function () {
-                showSlide(index);
-                startAutoplay();
-            });
-        });
-
-        if (previousButton) previousButton.addEventListener('click', function () {
-            showSlide(currentIndex - 1);
-            startAutoplay();
-        });
-        if (nextButton) nextButton.addEventListener('click', function () {
-            showSlide(currentIndex + 1);
-            startAutoplay();
-        });
-
-        slider.addEventListener('mouseenter', pauseAutoplay);
-        slider.addEventListener('mouseleave', resumeAutoplay);
-        slider.addEventListener('focusin', pauseAutoplay);
-        slider.addEventListener('focusout', function () {
-            if (!slider.contains(document.activeElement)) resumeAutoplay();
-        });
-
-        let touchStartX = 0;
-        slider.addEventListener('touchstart', function (event) {
-            touchStartX = event.changedTouches[0].screenX;
-        }, { passive: true });
-        slider.addEventListener('touchend', function (event) {
-            const distance = event.changedTouches[0].screenX - touchStartX;
-            if (Math.abs(distance) > 50) showSlide(currentIndex + (distance < 0 ? 1 : -1));
-            startAutoplay();
-        }, { passive: true });
-
-        showSlide(currentIndex);
-        startAutoplay();
-    });
-</script>
 
 <?php
 /*
