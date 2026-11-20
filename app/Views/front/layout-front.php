@@ -78,6 +78,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script>
         const homeCarousel = document.getElementById('tt-home-carousel');
         if (homeCarousel) {
+            homeCarousel.dataset.autoplayInitialized = 'true';
             const homeSlides = homeCarousel.querySelectorAll('.carousel-item');
             const homeIndicators = homeCarousel.querySelectorAll('.carousel-indicators [data-bs-slide-to]');
             let homeSlideIndex = 0;

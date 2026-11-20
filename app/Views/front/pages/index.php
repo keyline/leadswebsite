@@ -942,6 +942,30 @@ $award_poster    = $award_video_id ? 'https://img.youtube.com/vi/' . htmlspecial
 
 <?= $this->section('scripts') ?>
 
+<script>
+    (function () {
+        const carousel = document.getElementById('tt-home-carousel');
+        if (!carousel || carousel.dataset.autoplayInitialized === 'true') return;
+
+        const slides = carousel.querySelectorAll('.carousel-item');
+        const indicators = carousel.querySelectorAll('.carousel-indicators [data-bs-slide-to]');
+        if (slides.length < 2) return;
+
+        let currentIndex = 0;
+        carousel.dataset.autoplayInitialized = 'true';
+
+        window.setInterval(function () {
+            slides[currentIndex].classList.remove('active');
+            if (indicators[currentIndex]) indicators[currentIndex].classList.remove('active');
+
+            currentIndex = (currentIndex + 1) % slides.length;
+
+            slides[currentIndex].classList.add('active');
+            if (indicators[currentIndex]) indicators[currentIndex].classList.add('active');
+        }, 5000);
+    })();
+</script>
+
 <?php
 /*
 if (session()->get('offer_submit')): ?>
