@@ -75,21 +75,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <!-- Option 1: jQuery and Bootstrap Bundle (includes Popper) -->
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="<?= base_url('public/assets/bootstrap/') ?>/js/bootstrap.bundle.min.js"></script>
-    <script>
-        // Start the homepage banner through Bootstrap so autoplay, controls,
-        // indicators, and slide transitions all share the same state.
-        document.addEventListener('DOMContentLoaded', function () {
-            const homeCarousel = document.getElementById('tt-home-carousel');
-            if (!homeCarousel || !window.bootstrap || !bootstrap.Carousel) return;
-
-            bootstrap.Carousel.getOrCreateInstance(homeCarousel, {
-                interval: 5000,
-                pause: false,
-                ride: 'carousel',
-                wrap: true
-            }).cycle();
-        });
-    </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/ScrollTrigger.min.js"></script>
     <!-- <script src="assets/js/jquery.serialtabs.js"></script> -->

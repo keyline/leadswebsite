@@ -8,6 +8,40 @@
 @media(max-width: 991px){
     
 }
+
+.home-autoplay-slider .carousel-inner {
+    position: relative;
+    overflow: hidden;
+}
+
+.home-autoplay-slider .carousel-item {
+    display: block;
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: opacity .6s ease-in-out;
+    z-index: 0;
+}
+
+.home-autoplay-slider .carousel-item.active {
+    position: relative;
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    z-index: 1;
+}
+
+.home-autoplay-slider .carousel-item > a {
+    display: block;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .home-autoplay-slider .carousel-item {
+        transition: none;
+    }
+}
 @media(max-width: 767px){
     
 }
