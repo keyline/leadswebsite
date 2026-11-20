@@ -78,15 +78,23 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script>
         const homeCarousel = document.getElementById('tt-home-carousel');
         if (homeCarousel) {
-            const homeCarouselInstance = bootstrap.Carousel.getOrCreateInstance(homeCarousel, {
-                interval: false,
-                pause: false,
-                wrap: true
-            });
+            const homeSlides = homeCarousel.querySelectorAll('.carousel-item');
+            const homeIndicators = homeCarousel.querySelectorAll('.carousel-indicators [data-bs-slide-to]');
+            let homeSlideIndex = 0;
 
-            // Advance the hero slider using a dedicated timer.
+            // Use a plain timer so autoplay does not depend on Bootstrap's data API.
             window.setInterval(function() {
-                homeCarouselInstance.next();
+                homeSlides[homeSlideIndex].classList.remove('active');
+                if (homeIndicators[homeSlideIndex]) {
+                    homeIndicators[homeSlideIndex].classList.remove('active');
+                }
+
+                homeSlideIndex = (homeSlideIndex + 1) % homeSlides.length;
+
+                homeSlides[homeSlideIndex].classList.add('active');
+                if (homeIndicators[homeSlideIndex]) {
+                    homeIndicators[homeSlideIndex].classList.add('active');
+                }
             }, 5000);
         }
     </script>
