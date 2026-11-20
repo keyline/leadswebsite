@@ -9,37 +9,33 @@
     
 }
 
-.home-autoplay-slider .carousel-inner {
-    position: relative;
+.home-autoplay-slider.swiper {
+    width: 100%;
+    height: auto;
     overflow: hidden;
 }
 
-.home-autoplay-slider .carousel-item {
-    display: block;
-    position: absolute;
-    inset: 0;
-    opacity: 0;
-    visibility: hidden;
-    pointer-events: none;
-    transition: opacity .6s ease-in-out;
-    z-index: 0;
+.home-autoplay-slider .swiper-wrapper {
+    align-items: stretch;
 }
 
-.home-autoplay-slider .carousel-item.active {
+.home-autoplay-slider .swiper-slide.carousel-item {
+    display: block;
     position: relative;
+    float: none;
+    margin-right: 0;
     opacity: 1;
     visibility: visible;
     pointer-events: auto;
-    z-index: 1;
 }
 
-.home-autoplay-slider .carousel-item > a {
+.home-autoplay-slider .swiper-slide > a {
     display: block;
 }
 
 @media (prefers-reduced-motion: reduce) {
-    .home-autoplay-slider .carousel-item {
-        transition: none;
+    .home-autoplay-slider.swiper {
+        scroll-behavior: auto;
     }
 }
 @media(max-width: 767px){
