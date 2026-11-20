@@ -344,10 +344,10 @@ if ($popupType === 'image' || $popupType === 'video') {
 <div class="home_slider_section">
     <div>
         <div>
-            <div id="tt-home-carousel" class="swiper home-autoplay-slider">
-                <div class="swiper-wrapper">
+            <div id="tt-home-carousel" class="carousel slide home-autoplay-slider">
+                <div class="carousel-inner">
                         <!--ai enable chemny-->
-                        <div class="swiper-slide carousel-item active">
+                        <div class="carousel-item active">
                             <a href="<?= base_url('/product/kitchen-chimney') ?>">
                             <div class="home_banner_slider_holder home_banner_slider_holder3 desktop_banner">
                                 <div class="row justify-content-center vh-100">
@@ -361,7 +361,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                             </a>
                         </div>
                         <!-- Kitchen Chimney -->
-                        <div class="swiper-slide carousel-item">
+                        <div class="carousel-item">
                             <a href="<?= base_url('/product/kitchen-chimney') ?>">
                             <div class="home_banner_slider_holder home_banner_slider_holder1 desktop_banner">
                                 <div class="row vh-100">
@@ -376,7 +376,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                             </a>
                         </div>
                         <!-- Pure Water -->
-                        <div class="swiper-slide carousel-item">
+                        <div class="carousel-item">
                             <a href="<?= base_url('/product/ro-water-purifier') ?>">
                             <div class="home_banner_slider_holder home_banner_slider_holder4 desktop_banner">
                                 <div class="row justify-content-center align-items-end vh-100">
@@ -391,7 +391,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                         </div>
 
                         <!--all product-->
-                        <div class="swiper-slide carousel-item">
+                        <div class="carousel-item">
                             <a href="<?= base_url('/product/kitchen-chimney') ?>">
                             <div class="home_banner_slider_holder home_banner_slider_holder5 desktop_banner">
                                 <div class="row justify-content-center align-items-end vh-100">
@@ -408,8 +408,6 @@ if ($popupType === 'image' || $popupType === 'video') {
                             </a>
                         </div>
                         
-                </div>
-
                         <!-- Mobile Slider Arrows --> 
                         <button class="mobile-carousel-control mobile-carousel-prev" type="button" data-bs-target="#tt-home-carousel" data-home-slide="prev" aria-label="Previous slide"> <span>‹</span>
                         </button> 
@@ -446,6 +444,7 @@ if ($popupType === 'image' || $popupType === 'video') {
                                 <h4>All Products</h4>
                             </div>
                         </button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -866,52 +865,87 @@ $award_poster    = $award_video_id ? 'https://img.youtube.com/vi/' . htmlspecial
 <script>
     document.addEventListener('DOMContentLoaded', function () {
         const slider = document.getElementById('tt-home-carousel');
-        if (!slider || typeof Swiper === 'undefined') return;
+        if (!slider) return;
 
+        const slides = Array.from(slider.querySelectorAll('.carousel-item'));
         const indicators = Array.from(slider.querySelectorAll('[data-home-slide-to]'));
-        const swiper = new Swiper(slider, {
-            loop: true,
-            speed: 700,
-            autoplay: {
-                delay: 5000,
-                disableOnInteraction: false,
-                pauseOnMouseEnter: true,
-            },
-            allowTouchMove: true,
-            observer: true,
-            observeParents: true,
-            on: {
-                init: function () {
-                    updateIndicators(this.realIndex);
-                },
-                slideChange: function () {
-                    updateIndicators(this.realIndex);
-                }
-            }
-        });
+        const previousButton = slider.querySelector('[data-home-slide="prev"]');
+        const nextButton = slider.querySelector('[data-home-slide="next"]');
+        if (slides.length < 2) return;
 
-        function updateIndicators(index) {
+        let currentIndex = Math.max(0, slides.findIndex(function (slide) {
+            return slide.classList.contains('active');
+        }));
+        let timer;
+        let paused = false;
+
+        function showSlide(index) {
+            currentIndex = (index + slides.length) % slides.length;
+            slides.forEach(function (slide, slideIndex) {
+                slide.classList.toggle('active', slideIndex === currentIndex);
+                slide.setAttribute('aria-hidden', slideIndex === currentIndex ? 'false' : 'true');
+            });
             indicators.forEach(function (indicator, indicatorIndex) {
-                const isActive = indicatorIndex === index;
+                const isActive = indicatorIndex === currentIndex;
                 indicator.classList.toggle('active', isActive);
                 indicator.setAttribute('aria-current', isActive ? 'true' : 'false');
             });
         }
 
+        function startAutoplay() {
+            window.clearInterval(timer);
+            if (!paused) {
+                timer = window.setInterval(function () {
+                    showSlide(currentIndex + 1);
+                }, 5000);
+            }
+        }
+
+        function pauseAutoplay() {
+            paused = true;
+            window.clearInterval(timer);
+        }
+
+        function resumeAutoplay() {
+            paused = false;
+            startAutoplay();
+        }
+
         indicators.forEach(function (indicator, index) {
             indicator.addEventListener('click', function () {
-                swiper.slideToLoop(index);
+                showSlide(index);
+                startAutoplay();
             });
         });
 
-        const previousButton = slider.querySelector('[data-home-slide="prev"]');
-        const nextButton = slider.querySelector('[data-home-slide="next"]');
         if (previousButton) previousButton.addEventListener('click', function () {
-            swiper.slidePrev();
+            showSlide(currentIndex - 1);
+            startAutoplay();
         });
         if (nextButton) nextButton.addEventListener('click', function () {
-            swiper.slideNext();
+            showSlide(currentIndex + 1);
+            startAutoplay();
         });
+
+        slider.addEventListener('mouseenter', pauseAutoplay);
+        slider.addEventListener('mouseleave', resumeAutoplay);
+        slider.addEventListener('focusin', pauseAutoplay);
+        slider.addEventListener('focusout', function () {
+            if (!slider.contains(document.activeElement)) resumeAutoplay();
+        });
+
+        let touchStartX = 0;
+        slider.addEventListener('touchstart', function (event) {
+            touchStartX = event.changedTouches[0].screenX;
+        }, { passive: true });
+        slider.addEventListener('touchend', function (event) {
+            const distance = event.changedTouches[0].screenX - touchStartX;
+            if (Math.abs(distance) > 50) showSlide(currentIndex + (distance < 0 ? 1 : -1));
+            startAutoplay();
+        }, { passive: true });
+
+        showSlide(currentIndex);
+        startAutoplay();
     });
 </script>
 
