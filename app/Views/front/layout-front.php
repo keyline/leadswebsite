@@ -78,7 +78,12 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     <script>
         const homeCarousel = document.getElementById('tt-home-carousel');
         if (homeCarousel) {
-            bootstrap.Carousel.getOrCreateInstance(homeCarousel);
+            bootstrap.Carousel.getOrCreateInstance(homeCarousel, {
+                interval: 5000,
+                ride: 'carousel',
+                pause: false,
+                wrap: true
+            });
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
