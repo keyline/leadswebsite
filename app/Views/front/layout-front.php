@@ -79,14 +79,15 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
         const homeCarousel = document.getElementById('tt-home-carousel');
         if (homeCarousel) {
             const homeCarouselInstance = bootstrap.Carousel.getOrCreateInstance(homeCarousel, {
-                interval: 5000,
-                ride: 'carousel',
+                interval: false,
                 pause: false,
                 wrap: true
             });
 
-            // Explicitly start the autoplay cycle after initialization.
-            homeCarouselInstance.cycle();
+            // Advance the hero slider using a dedicated timer.
+            window.setInterval(function() {
+                homeCarouselInstance.next();
+            }, 5000);
         }
     </script>
     <script src="https://cdn.jsdelivr.net/npm/gsap@3.12.5/dist/gsap.min.js"></script>
